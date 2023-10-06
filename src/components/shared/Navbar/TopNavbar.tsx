@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Icon } from "@iconify/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import imag1 from "../../../assets/offerLogo/pic1.png";
 import imag2 from "../../../assets/offerLogo/pic2.png";
@@ -14,8 +15,34 @@ import Image from "next/image";
  */
 
 const TyneNavbar = () => {
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [previousScroll, setPreviousScroll] = useState(0);
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > previousScroll) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+
+    setPreviousScroll(currentScroll);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll, previousScroll]);
+
+  const headerClasses = `fixed top-0 z-30 w-full border-b border-gray-200 transition-transform duration-300 ${
+    isHeaderVisible ? "translate-y-0" : "-translate-y-full"
+  } bg-gradient-to-r from-violet-300 to-violet-400`;
   return (
-    <div className="hidden h-10  md:block bg-gradient-to-r from-violet-300 to-violet-400">
+    <div className={headerClasses}>
       <div className="mx-auto grid max-w-screen-xl grid-cols-4 gap-5  text-gray-900">
         <div className="flex justify-center">
           <Link href="/eid/collection">

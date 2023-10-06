@@ -41,14 +41,14 @@ const NavLinks = () => {
                   }`}
                 />
               </span>
-              <span className="text-xl md:mt-1 md:ml-2  md:block hidden group-hover:rotate-180 group-hover:-mt-2 ">
+              <span className="text-xl md:mt-1 md:ml-2  md:block hidden group-hover:rotate-180 group-hover:duration-500 ">
                 <Icon icon="ep:arrow-down" />
               </span>
             </h1>
             {link.submenu && (
               <div>
-                <div className="absolute top-20 hidden group-hover:md:block hover:md:block ">
-                  <div className="py-3 bg-white">
+                <div className="absolute top-[68px] hidden group-hover:md:block hover:md:block ">
+                  <div className="pb-3 bg-white">
                     <div
                       className="w-4 h-4 left-3 absolute 
                     mt-1 bg-gray-100 rotate-45"
@@ -61,7 +61,7 @@ const NavLinks = () => {
                           {mysublinks.Head}
                         </h1>
                         {mysublinks.sublink.map((slink) => (
-                          <li className="text-sm text-gray-600 my-2.5 hover:bg-gray-300 ">
+                          <li className="text-sm text-gray-600 my-2.5 hover:bg-gray-200 px-5">
                             <Link
                               href={slink.link}
                               className="hover:text-primary"

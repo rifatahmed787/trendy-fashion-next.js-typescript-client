@@ -32,9 +32,9 @@ const Navbar = () => {
     };
   }, [handleScroll, previousScroll]);
 
-  const navbarClasses = `fixed top-auto z-20 border-b w-full border-gray-200 transition-transform duration-300 ${
-    isNavbarVisible ? "translate-y-0" : "-translate-y-full"
-  } bg-white shadow-md`;
+  const navbarClasses = `fixed   z-20 border-b w-full border-gray-200 transition-transform duration-300 ${
+    isNavbarVisible ? "translate-y-0 top-10" : "-translate-y-full top-auto"
+  } bg-white shadow-sm`;
 
   return (
     <>
@@ -85,6 +85,8 @@ const Navbar = () => {
                 Sale Offer
               </Link>
             </li>
+
+            {/* dropdown navlinks */}
             <NavLinks />
 
             <li>
