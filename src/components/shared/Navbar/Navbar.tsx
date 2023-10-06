@@ -1,17 +1,44 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { Icon } from "@iconify/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../../assets/Logo.png";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [previousScroll, setPreviousScroll] = useState(0);
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > previousScroll) {
+      setIsNavbarVisible(false);
+    } else {
+      setIsNavbarVisible(true);
+    }
+
+    setPreviousScroll(currentScroll);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll, previousScroll]);
+
+  const navbarClasses = `fixed top-auto z-20 border-b w-full border-gray-200 transition-transform duration-300 ${
+    isNavbarVisible ? "translate-y-0" : "-translate-y-full"
+  } bg-white shadow-md`;
 
   return (
     <>
-      <nav className="fixed z-50 w-full bg-white shadow-sm">
+      <nav className={navbarClasses}>
         <div className="flex items-center justify-around font-medium">
           <div className="z-50 flex w-full justify-between p-5 md:w-auto">
             <Link href="/">
