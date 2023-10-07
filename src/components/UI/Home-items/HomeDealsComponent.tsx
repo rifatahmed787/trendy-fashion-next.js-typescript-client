@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
+import "../../../app/globals.css";
 type Swiper = {
   swiper: Swiper | null;
 
@@ -36,7 +37,7 @@ const HomeDealsComponent = () => {
     <div className="my-10 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-7 md:gap-5 lg:grid-cols-7 lg:gap-5">
         <div className="col-span-2 mb-5 mt-7">
-          <div className="my-2 flex items-center justify-center rounded-xl border-2 border-dotted border-[#FAC213] bg-[#FEF8E5] px-6 py-4">
+          <div className="my-2 flex items-center justify-center rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <div className="">
               <h2 className="mt-5 text-center text-[16px] font-bold text-gray-900">
                 2nd shopping surprise
@@ -44,7 +45,7 @@ const HomeDealsComponent = () => {
               <h2 className="mb-5 text-center text-[16px] font-bold text-gray-900">
                 campaign!
               </h2>
-              <p className="mb-7 flex cursor-pointer items-center rounded-full bg-[#FAC213] px-4 py-2 text-sm text-white">
+              <p className="mb-7 flex cursor-pointer items-center rounded-full bg-primary-200 px-4 py-2 text-sm text-white">
                 <span className="font-semibold">ChackProducts</span>{" "}
                 <Icon width={20} icon="ic:baseline-arrow-right" />
               </p>
@@ -142,8 +143,14 @@ const HomeDealsComponent = () => {
                       alt=""
                     />
                     <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
+                      <button className="relative inline-flex items-center justify-center w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out button-group">
+                        <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-y-5 bg-primary-200 first-span ease">
+                          <Icon icon="mdi:cart-heart" width={20} />
+                        </span>
+                        <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform second-span ease bg-gray-800">
+                          Add To Cart
+                        </span>
+                        <span className="relative invisible ">Add To Cart</span>
                       </button>
                     </div>
                     <div className="absolute right-2 top-3">

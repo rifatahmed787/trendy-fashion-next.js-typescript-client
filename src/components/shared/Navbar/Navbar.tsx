@@ -7,10 +7,13 @@ import Logo from "../../../assets/Logo.png";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
+  const router = useRouter();
 
   const handleScroll = () => {
     const currentScroll = window.scrollY;
@@ -64,7 +67,7 @@ const Navbar = () => {
               <Link
                 href="/eid/collection"
                 className={`py-  inline-block ${
-                  location.pathname === "/eid/collection"
+                  router.pathname === "/eid/collection"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -77,7 +80,7 @@ const Navbar = () => {
               <Link
                 href="/sale/offer"
                 className={`py-  inline-block ${
-                  location.pathname === "/sale/offer"
+                  router.pathname === "/sale/offer"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -93,7 +96,7 @@ const Navbar = () => {
               <Link
                 href="/pre/order"
                 className={`py-  inline-block ${
-                  location.pathname === "/pre/order"
+                  router.pathname === "/pre/order"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -106,7 +109,7 @@ const Navbar = () => {
               <Link
                 href="/shop/location"
                 className={`py-  inline-block ${
-                  location.pathname === "/shop/location"
+                  router.pathname === "/shop/location"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
