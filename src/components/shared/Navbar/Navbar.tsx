@@ -7,13 +7,14 @@ import Logo from "../../../assets/Logo.png";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
-  const router = useRouter();
+
+  const pathname = usePathname();
 
   const handleScroll = () => {
     const currentScroll = window.scrollY;
@@ -67,7 +68,7 @@ const Navbar = () => {
               <Link
                 href="/eid/collection"
                 className={`py-  inline-block ${
-                  router.pathname === "/eid/collection"
+                  pathname === "/eid/collection"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -80,7 +81,7 @@ const Navbar = () => {
               <Link
                 href="/sale/offer"
                 className={`py-  inline-block ${
-                  router.pathname === "/sale/offer"
+                  pathname === "/sale/offer"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -96,7 +97,7 @@ const Navbar = () => {
               <Link
                 href="/pre/order"
                 className={`py-  inline-block ${
-                  router.pathname === "/pre/order"
+                  pathname === "/pre/order"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
@@ -109,7 +110,7 @@ const Navbar = () => {
               <Link
                 href="/shop/location"
                 className={`py-  inline-block ${
-                  router.pathname === "/shop/location"
+                  pathname === "/shop/location"
                     ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
