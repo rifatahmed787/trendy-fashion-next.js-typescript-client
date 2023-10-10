@@ -1,0 +1,9 @@
+.checkbox:not(:checked) + .checkmark {
+  display: none;
+  background: white;
+}
+
+.checkbox:checked + .checkmark {
+  display: flex;
+  background: #211e52;
+}
