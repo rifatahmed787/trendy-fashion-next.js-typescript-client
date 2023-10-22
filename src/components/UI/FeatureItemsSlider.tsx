@@ -5,7 +5,8 @@
 // // Import Swiper styles
 // import "swiper/css";
 // import "swiper/css/navigation";
-// import ICONS from "../shared/Icons/AllIcons";
+// import ICONS from "@/shared/AllIcons";
+// import { IBook } from "@/types/Book";
 
 // const SwiperButtonNext = () => {
 //   const swiper = useSwiper();
@@ -42,7 +43,7 @@
 //       {books_list_data?.map((book) => {
 //         return (
 //           <SwiperSlide className="w-[370px] ">
-//             <BookCard book={book} />
+//             {/* <BookCard book={book} /> */}
 //           </SwiperSlide>
 //         );
 //       })}

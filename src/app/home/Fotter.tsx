@@ -9,7 +9,14 @@ const Footer = () => {
     return new Date().getFullYear();
   };
   return (
-    <footer>
+    <footer
+      style={{
+        backgroundImage:
+          'url("https://www.hulu.com/static/hitch/s3/2018-01/mobile-devices-footer%402x.png")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Top area: Blocks */}
         <div className="grid sm:grid-cols-12 gap-8 py-8 md:py-12 border-t border-gray-200">
@@ -66,7 +73,7 @@ const Footer = () => {
 
           {/* 2nd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h6 className="text-gray-800 font-medium mb-2">Products</h6>
+            <h6 className="text-gray-800 font-medium mb-2">ABOUT MOVIE</h6>
             <ul className="text-sm">
               <li className="mb-2">
                 <Link
@@ -113,7 +120,7 @@ const Footer = () => {
 
           {/* 3rd block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h6 className="text-gray-800 font-medium mb-2">Resources</h6>
+            <h6 className="text-gray-800 font-medium mb-2">RESOURCES</h6>
             <ul className="text-sm">
               <li className="mb-2">
                 <Link
@@ -160,7 +167,7 @@ const Footer = () => {
 
           {/* 4th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-2">
-            <h6 className="text-gray-800 font-medium mb-2">Company</h6>
+            <h6 className="text-gray-800 font-medium mb-2">LEGAL STUFF</h6>
             <ul className="text-sm">
               <li className="mb-2">
                 <Link
@@ -207,7 +214,7 @@ const Footer = () => {
 
           {/* 5th block */}
           <div className="sm:col-span-6 md:col-span-3 lg:col-span-3">
-            <h6 className="text-gray-800 font-medium mb-2">Subscribe</h6>
+            <h6 className="text-gray-800 font-medium mb-2">SUBSCRIBE</h6>
             <p className="text-sm text-gray-600 mb-4">
               Get the latest news and articles to your inbox every month.
             </p>
@@ -216,16 +223,10 @@ const Footer = () => {
                 <div className="relative md:mb-6">
                   <input
                     type="text"
-                    className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] text-neutral-200 outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+                    className="peer block min-h-[auto] w-full px-3 py-[0.32rem] leading-[1.6] text-neutral-700"
                     id="exampleFormControlInput1"
                     placeholder="Email address"
                   />
-                  <label
-                    htmlFor="exampleFormControlInput1"
-                    className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-200 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-neutral-200 peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-neutral-200"
-                  >
-                    Email address
-                  </label>
 
                   <button
                     type="submit"
@@ -311,7 +312,7 @@ const Footer = () => {
               className="text-blue-600 hover:underline"
               href="https://cruip.com/"
             >
-              Trendy-Fashion {getCurrentYear()}
+              Movie {getCurrentYear()}
             </a>
             . All rights reserved.
           </div>

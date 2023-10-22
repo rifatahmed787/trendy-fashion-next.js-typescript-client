@@ -120,18 +120,26 @@ const Navbar = () => {
             </li>
           </ul>
 
-          <div className="hidden md:block ">
+          <div className="hidden md:block">
             <div className="flex gap-4">
-              <Link href="/goldsmith/order/summery">
+              {/* <Link href="/goldsmith/order/summery">
                 <Icon icon="solar:cart-line-duotone" />
               </Link>
               <Icon
                 icon="streamline:interface-favorite-heart-reward-social-rating-media-heart-it-like-favorite-love"
                 // onClick={() => setShowMyModal(true)}
-              />
+              /> */}
 
-              <Link href="/goldsmith/account">
-                <Icon icon="uiw:user" />
+              <Link href="/login">
+                <button
+                  data-modal-target="signinModal"
+                  data-modal-toggle="signinModal"
+                  className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
+                  type="button"
+                >
+                  <Icon icon="mdi:user" width={25} />
+                  Signin
+                </button>
               </Link>
             </div>
           </div>

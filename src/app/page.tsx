@@ -5,6 +5,7 @@ import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
 import HomePageBanner from "@/components/UI/Home-items/HomeSlider/HomeSlider";
 import HomeSuperComponent from "@/components/UI/Home-items/HomeSuperComponent";
 import HomeGoldTastmonial from "@/components/UI/Home-items/HomeTestimonial";
+import TestimonialCarousel from "@/components/UI/Testimonial/Testimonial";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <HomeSectionComponent />
       <HomeGoldTastmonial />
       <CustomerServices />
+      <TestimonialCarousel />
     </div>
   );
 }
