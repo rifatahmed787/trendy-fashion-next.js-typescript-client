@@ -67,7 +67,7 @@ export default function TestimonialCarousel() {
           <div className="container px-5 md:px-10 py-10 mx-auto ">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
-                <div className="h-full bg-gray-100 p-8 rounded border-r-4 border-primary-100">
+                <div className="h-full bg-gray-100 p-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
                   {ICONS.koma_icon}
                   <p className="leading-relaxed mb-6">
                     Synth chartreuse iPhone lomo cray raw denim brunch everyday

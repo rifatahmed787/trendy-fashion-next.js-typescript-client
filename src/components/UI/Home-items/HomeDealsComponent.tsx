@@ -98,8 +98,10 @@ const HomeDealsComponent = () => {
         </div>
 
         <div className="col-span-5">
-          <h1 className=" ml-5 text-lg font-bold">Deals of the Week</h1>
-          <hr />
+          <h1 className=" ml-5 text-lg font-bold relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:bottom-0 after:w-full after:h-0.5">
+            Deals of the Week
+          </h1>
+          {/* <hr /> */}
           <Swiper
             slidesPerView={4}
             spaceBetween={10}
