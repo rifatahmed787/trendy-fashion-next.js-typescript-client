@@ -30,7 +30,9 @@ const config: Config = {
           600: "#010105",
         },
         primary: {
+          100: "#FFC50F",
           200: "#FAC213",
+          300: "#da9100",
         },
         footer: "#CFF1FF",
         button: "#05072F",

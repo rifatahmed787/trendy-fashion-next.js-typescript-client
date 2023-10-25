@@ -1,264 +1,216 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
-import { Icon } from "@iconify/react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// Import Swiper React components
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Navigation } from "swiper/modules";
+
+// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
-import { Autoplay, Navigation } from "swiper/modules";
-import { useRef } from "react";
-import tastmonialImage1 from "../../../assets/GoldSmithTestimonials/goldImage1.webp";
-import tastmonialImage2 from "../../../assets/GoldSmithTestimonials/goldImage2.webp";
-import tastmonialImage3 from "../../../assets/GoldSmithTestimonials/goldImage3.webp";
-import tastmonialImage4 from "../../../assets/GoldSmithTestimonials/goldImage4.webp";
-import tastmonialImage5 from "../../../assets/GoldSmithTestimonials/goldImage5.webp";
-import tastmonialImage6 from "../../../assets/GoldSmithTestimonials/goldImage6.webp";
-import tastmonialImage7 from "../../../assets/GoldSmithTestimonials/goldImage7.webp";
-import tastmonialImage8 from "../../../assets/GoldSmithTestimonials/goldImage8.webp";
+import ICONS from "@/components/shared/Icons/AllIcons";
+
 import Image from "next/image";
 
-type Swiper = {
-  swiper: Swiper | null;
-
-  slidePrev: () => void;
-  slideNext: () => void;
-};
-
-type SwiperRef = {
-  swiper?: Swiper;
-};
-
-const HomeGoldTastmonial = () => {
-  const swiperRef = useRef<SwiperRef>(null); // Use a single useRef for Swiper instance
-
-  // Function to slide to the previous slide
-  const goPrevButton = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slidePrev();
-    }
-  };
-
-  // Function to slide to the next slide
-  const goNextButton = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-    }
-  };
+const SwiperButtonNext = () => {
+  const swiper = useSwiper();
   return (
-    <div className="group">
-      <div>
-        <h1 className="mt-14 text-center text-3xl font-semibold">#GoldSmith</h1>
-        <p className="mt-8 text-center text-[14px] text-[#727272]">
-          Tag <span className="font-semibold text-[#1f1f1f]">@ninetheme</span>{" "}
-          in your Instagram posts for a chance to be featured here.
-        </p>
-        <p className="mt-5 text-center text-[14px] text-[#727272]">
-          Find more inspiration on our{" "}
-          <span className="font-semibold text-[#1f1f1f]">
-            Instagram account.
-          </span>
-        </p>
-      </div>{" "}
-      <Swiper
-        slidesPerView={6}
-        spaceBetween={10}
-        breakpoints={{
-          340: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          640: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 4,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 6,
-            spaceBetween: 50,
-          },
-        }}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: true,
-        }}
-        navigation={{
-          prevEl: ".prev-button",
-          nextEl: ".next-button",
-        }}
-        loop={true}
-        modules={[Navigation, Autoplay]}
-        className="mySwiper mx-auto mt-16 w-[100%]"
-      >
-        {/* part 1 */}
-        <SwiperSlide className="hover:z-50 ">
-          <div className="relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage1}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 2 */}
-        <SwiperSlide className="hover:z-50  ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage2}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 3 */}
-        <SwiperSlide className="hover:z-50  ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage3}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 4 */}
-        <SwiperSlide className=" hover:z-50 ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage4}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 5 */}
-        <SwiperSlide className=" hover:z-50 ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage5}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 6 */}
-        <SwiperSlide className="hover:z-50  ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage6}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 7 */}
-        <SwiperSlide className=" hover:z-50 ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage7}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        {/* part 8 */}
-        <SwiperSlide className="hover:z-50  ">
-          <div className="group relative h-40 w-40 overflow-hidden">
-            <Image
-              width={undefined}
-              src={tastmonialImage8}
-              alt=""
-              className="h-40 w-40 rounded-full duration-300 group-hover:scale-110"
-            />
-            <Icon
-              icon="skill-icons:instagram"
-              width={30}
-              className="absolute left-0 top-0 hidden duration-300 group-hover:block"
-            />
-            <p className="absolute bottom-[-30px] left-0 right-0 m-auto flex items-center justify-center text-white duration-300 group-hover:bottom-0 group-hover:left-[0%] group-hover:right-[0%] group-hover:top-[0%]">
-              #goldsimth
-            </p>
-          </div>
-        </SwiperSlide>
-        <div className="mt-5 flex items-center justify-center gap-3 text-center">
-          <button
-            className="prev-button absolute left-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb]  group-hover:text-black"
-            onClick={goPrevButton}
-          >
-            <Icon icon="ep:arrow-left-bold" />
-          </button>
-          <button
-            className="next-button absolute right-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb]  group-hover:text-black"
-            onClick={goNextButton}
-          >
-            <Icon icon="ep:arrow-right-bold" />
-          </button>
-        </div>
-      </Swiper>
-    </div>
+    <button
+      className="text-lg text-primary-100"
+      onClick={() => swiper.slideNext()}
+    >
+      {ICONS.arrow_long_right}
+    </button>
+  );
+};
+const SwiperButtonPrev = () => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className="text-2xl text-primary-100"
+      onClick={() => swiper.slidePrev()}
+    >
+      {ICONS.arrow_long_left}
+    </button>
   );
 };
 
-export default HomeGoldTastmonial;
+export default function TestimonialCarousel() {
+  return (
+    <>
+      <div className="pt-16 pb-5">
+        <h1 className="text-xl md:text-4xl text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/5 before:-bottom-2 before:bg-primary-100 before:h-1 ">
+          What Our Client Say
+        </h1>
+      </div>
+      <Swiper
+        slidesPerView={"auto"}
+        spaceBetween={30}
+        pagination={true}
+        breakpoints={{
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
+          },
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+        }}
+        modules={[Navigation]}
+        className="w-full h-full flex flex-col"
+      >
+        <SwiperSlide>
+          <div className="container px-5 md:px-10 py-10 mx-auto ">
+            <div className="flex flex-wrap -m-4">
+              <div className="p-4 w-full">
+                <div className="h-full bg-gray-100 p-8 rounded border-r-4 border-primary-100">
+                  {ICONS.koma_icon}
+                  <p className="leading-relaxed mb-6">
+                    Synth chartreuse iPhone lomo cray raw denim brunch everyday
+                    carry neutra before they sold out fixie 90's microdosing.
+                    Tacos pinterest fanny pack venmo, post-ironic heirloom
+                    try-hard pabst authentic iceland.
+                  </p>
+                  <a className="inline-flex items-center">
+                    <Image
+                      width={30}
+                      height={30}
+                      alt="testimonial"
+                      src="https://dummyimage.com/106x106"
+                      className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+                    />
+                    <span className="flex-grow flex flex-col pl-4">
+                      {/* <p className="text-primary font-inter border-none text-sm text-right font-bold flex items-center gap-2 ">
+                      {Array.from({ length: book.rating }, (_, index) => (
+                        <span key={index}>{ICONS.star_icon}</span>
+                      ))}
+                      {book.rating}
+                    </p> */}
+                      <span className="title-font font-medium text-gray-900">
+                        Holden Caulfield
+                      </span>
+                      <span className="text-gray-500 text-sm">
+                        UI DEVELOPER
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="container px-5 md:px-10 py-10 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              <div className="p-4 w-full">
+                <div className="h-full bg-gray-100 p-8 rounded">
+                  {ICONS.koma_icon}
+                  <p className="leading-relaxed mb-6">
+                    Synth chartreuse iPhone lomo cray raw denim brunch everyday
+                    carry neutra before they sold out fixie 90's microdosing.
+                    Tacos pinterest fanny pack venmo, post-ironic heirloom
+                    try-hard pabst authentic iceland.
+                  </p>
+                  <a className="inline-flex items-center">
+                    <Image
+                      width={30}
+                      height={30}
+                      alt="testimonial"
+                      src="https://dummyimage.com/106x106"
+                      className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+                    />
+                    <span className="flex-grow flex flex-col pl-4">
+                      <span className="title-font font-medium text-gray-900">
+                        Holden Caulfield
+                      </span>
+                      <span className="text-gray-500 text-sm">
+                        UI DEVELOPER
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="container px-5 md:px-10 py-10 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              <div className="p-4 w-full">
+                <div className="h-full bg-gray-100 p-8 rounded">
+                  {ICONS.koma_icon}
+                  <p className="leading-relaxed mb-6">
+                    Synth chartreuse iPhone lomo cray raw denim brunch everyday
+                    carry neutra before they sold out fixie 90's microdosing.
+                    Tacos pinterest fanny pack venmo, post-ironic heirloom
+                    try-hard pabst authentic iceland.
+                  </p>
+                  <a className="inline-flex items-center">
+                    <Image
+                      width={30}
+                      height={30}
+                      alt="testimonial"
+                      src="https://dummyimage.com/106x106"
+                      className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+                    />
+                    <span className="flex-grow flex flex-col pl-4">
+                      <span className="title-font font-medium text-gray-900">
+                        Holden Caulfield
+                      </span>
+                      <span className="text-gray-500 text-sm">
+                        UI DEVELOPER
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="container px-5 md:px-10 py-10 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              <div className="p-4 w-full">
+                <div className="h-full bg-gray-100 p-8 rounded">
+                  {ICONS.koma_icon}
+                  <p className="leading-relaxed mb-6">
+                    Synth chartreuse iPhone lomo cray raw denim brunch everyday
+                    carry neutra before they sold out fixie 90's microdosing.
+                    Tacos pinterest fanny pack venmo, post-ironic heirloom
+                    try-hard pabst authentic iceland.
+                  </p>
+                  <a className="inline-flex items-center">
+                    <Image
+                      width={30}
+                      height={30}
+                      alt="testimonial"
+                      src="https://dummyimage.com/106x106"
+                      className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+                    />
+                    <span className="flex-grow flex flex-col pl-4">
+                      <span className="title-font font-medium text-gray-900">
+                        Holden Caulfield
+                      </span>
+                      <span className="text-gray-500 text-sm">
+                        UI DEVELOPER
+                      </span>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SwiperSlide>
+
+        <div className="flex items-center justify-center gap-5 mb-5 pr-5 md:pr-10">
+          <SwiperButtonPrev />
+          <SwiperButtonNext />
+        </div>
+      </Swiper>
+    </>
+  );
+}

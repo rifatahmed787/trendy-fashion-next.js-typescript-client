@@ -7,6 +7,10 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import "../../../app/globals.css";
+import image1 from "../.../../../../assets/HomePageBannerImg/sectionthree.jpg";
+import image2 from "../.../../../../assets/HomePageBannerImg/section3.jpg";
+import image3 from "../.../../../../assets/HomePageBannerImg/section3down.jpg";
+
 type Swiper = {
   swiper: Swiper | null;
 
@@ -18,7 +22,7 @@ type SwiperRef = {
   swiper?: Swiper;
 };
 const HomeDealsComponent = () => {
-  const swiperRef = useRef<SwiperRef>(null); // Use a single useRef for Swiper instance
+  const swiperRef = useRef<SwiperRef>(null);
 
   // Function to slide to the previous slide
   const goPrevButton = () => {
@@ -46,7 +50,7 @@ const HomeDealsComponent = () => {
                 campaign!
               </h2>
               <p className="mb-7 flex cursor-pointer items-center rounded-full bg-primary-200 px-4 py-2 text-sm text-white">
-                <span className="font-semibold">ChackProducts</span>{" "}
+                <span className="font-semibold">CheckProducts</span>{" "}
                 <Icon width={20} icon="ic:baseline-arrow-right" />
               </p>
             </div>
@@ -55,13 +59,13 @@ const HomeDealsComponent = () => {
             <Image
               width={300}
               height={64}
-              src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2022/12/background-10-500x500.webp"
+              src={image1}
               alt=""
               className="h-64 w-full rounded-lg md:h-56"
             />
-
+            <span className="absolute inset-0 top-0 left-0 bg-black opacity-40 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
-              <div className="flex items-center justify-center text-center text-black">
+              <div className="flex items-center justify-center text-center text-primary-100">
                 <div className="mx-auto">
                   <h3 className="text-[12px] font-bold uppercase">EARRINGS</h3>
                   <h1 className="my-2 text-[16px] font-bold uppercase">
@@ -75,18 +79,16 @@ const HomeDealsComponent = () => {
             <Image
               width={300}
               height={64}
-              src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2022/12/background-3-500x500.webp"
+              src={image2}
               alt=""
               className="h-64 w-full rounded-lg md:h-56"
             />
-
+            <span className="absolute inset-0 top-0 left-0 bg-black opacity-40 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
-              <div className="flex items-center justify-center text-center text-black">
+              <div className="flex items-center justify-center text-center text-primary-100">
                 <div className="mx-auto">
-                  <h3 className="text-[12px] font-bold uppercase">
-                    GOLD BUCKLE
-                  </h3>
-                  <h1 className="my-2 text-[16px] font-bold uppercase">
+                  <h3 className="text-[12px] font-bold uppercase">Buy Now</h3>
+                  <h1 className="my-2 text-[16px] font-bold uppercase ">
                     Free Shipping On Over $50
                   </h1>
                 </div>
@@ -94,6 +96,7 @@ const HomeDealsComponent = () => {
             </div>
           </div>
         </div>
+
         <div className="col-span-5">
           <h1 className=" ml-5 text-lg font-bold">Deals of the Week</h1>
           <hr />
@@ -153,10 +156,10 @@ const HomeDealsComponent = () => {
                         <span className="relative invisible ">Add To Cart</span>
                       </button>
                     </div>
-                    <div className="absolute right-2 top-3">
+                    <div className="absolute right-2 top-0">
                       <Icon
                         icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
+                        className="cursor-pointer rounded-full p-1 hover:text-gray-500"
                         width={25}
                         height={64}
                       />
@@ -180,307 +183,8 @@ const HomeDealsComponent = () => {
                 </div>
               </section>
             </SwiperSlide>
-            {/* part 2 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37042501_OR_B-500x500.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 3 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37042513_20_D2-500x500.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 4 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37020108_OR-500x500.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 5 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37050262_OR-99999999_01-500x500.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 6 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/10/37096318_PL_B-500x500.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 7 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37032503_OR-450x450.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
-            {/* part 8 */}
-            <SwiperSlide className="hover:z-50  ">
-              <section className="">
-                <div className="group h-fit w-full">
-                  <div className="relative overflow-hidden">
-                    <Image
-                      width={300}
-                      height={64}
-                      className="h-52 w-full object-cover duration-300 group-hover:scale-110 group-hover:opacity-80"
-                      src="https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2021/12/37010208_OR_D2-450x450.webp"
-                      alt=""
-                    />
-                    <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-                      <button className="w-full bg-black px-5 py-2 text-white">
-                        Add to cart
-                      </button>
-                    </div>
-                    <div className="absolute right-2 top-3">
-                      <Icon
-                        icon="mdi:heart-outline"
-                        className="cursor-pointer rounded-full bg-[#ececec] p-1 hover:text-gray-500"
-                        width={25}
-                      />
-                      <Icon
-                        icon="iconamoon:restart-fill"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                      <Icon
-                        icon="basil:eye-outline"
-                        className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
-                        width={25}
-                      />
-                    </div>
-                  </div>
-                  <h2 className="mt-3 text-xl capitalize">Straw Hat</h2>
-                  <del className="text-sm text-red-700">$49</del>
-                  <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
-                    $35
-                  </p>
-                </div>
-              </section>
-            </SwiperSlide>
+
+            {/* swiper button */}
             <div className="mt-5 flex items-center justify-center gap-3 text-center">
               <button
                 className="prev-button absolute left-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 duration-300 hover:bg-[#ffffffcb] text-black"
@@ -489,31 +193,32 @@ const HomeDealsComponent = () => {
                 <Icon icon="ep:arrow-left-bold" />
               </button>
               <button
-                className="next-button absolute right-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 duration-300 ghover:bg-[#ffffffcb] text-black"
+                className="next-button absolute right-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 duration-300 hover:bg-[#ffffffcb] text-black"
                 onClick={goNextButton}
               >
                 <Icon icon="ep:arrow-right-bold" />
               </button>
             </div>
           </Swiper>
+
+          {/* section down kids fashion picture */}
           <div
             style={{
               backgroundImage:
-                'url("https://ninetheme.com/themes/goldsmith/wp-content/uploads/2022/12/background-9-500x500.webp")',
+                'url("https://res.cloudinary.com/dztlowlu0/image/upload/e_improve:outdoor/be5sspn2qkqwraisfvkd.jpg")',
             }}
             className="relative h-96 rounded-lg bg-cover bg-center"
           >
-            <div className="absolute inset-0 rounded-lg bg-black opacity-50"></div>
+            <span className="absolute inset-0 rounded-lg bg-black opacity-20"></span>
             <div className="gird absolute grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
               <div className="flex w-[100%] items-center justify-center text-[#e7e7e7] md:w-[50%] lg:w-[50%]">
                 <div className="mx-4">
-                  <h3 className="ml-10 mt-20 w-32 rounded-full bg-[#000000] p-1 text-center text-[12px] font-bold md:mt-12 lg:mt-20">
-                    NECKLACES
+                  <h3 className="ml-10 mt-20 w-32 rounded-full bg-primary-100 p-1 text-center text-3 text-black font-bold md:mt-12 lg:mt-20">
+                    Kids Fashion
                   </h3>
                   <h1 className="ml-10 text-[45px] font-bold uppercase">
-                    The past into your
+                    Let Our Future Be Stylish
                   </h1>
-                  <p className="ml-10 mt-10 underline">See More Products</p>
                 </div>
               </div>
             </div>

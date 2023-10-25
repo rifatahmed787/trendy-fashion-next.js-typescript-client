@@ -23,7 +23,7 @@ const HomeSuperComponent = () => {
             2nd shopping surprise campaign!
           </h1>
           <p className="flex cursor-pointer items-center rounded-full bg-[#FAC213] px-4 py-2 text-sm text-white">
-            <span className="font-semibold">ChackProducts</span>{" "}
+            <span className="font-semibold">CheckProducts</span>{" "}
             <Icon width={20} icon="ic:baseline-arrow-right" />
           </p>
         </div>

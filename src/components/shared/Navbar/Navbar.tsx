@@ -3,7 +3,7 @@
 
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
-import Logo from "../../../assets/Logo.png";
+import Logo from "../../../assets/Logo/trendy.svg";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
@@ -44,12 +44,12 @@ const Navbar = () => {
     <>
       <nav className={navbarClasses}>
         <div className="flex items-center justify-around font-medium">
-          <div className="z-50 flex w-full justify-between p-5 md:w-auto">
+          <div className="z-50 flex w-full justify-between p-1 md:w-auto">
             <Link href="/">
               <Image
                 src={Logo}
                 alt="logo"
-                className="h-9 w-20 md:cursor-pointer"
+                className="w-16 h-16 md:cursor-pointer"
                 width={undefined}
               />
             </Link>
@@ -66,14 +66,14 @@ const Navbar = () => {
           <ul className="hidden items-center gap-5 md:flex ">
             <li>
               <Link
-                href="/eid/collection"
-                className={`py-  inline-block ${
-                  pathname === "/eid/collection"
-                    ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
+                href="/"
+                className={`inline-block hover:border-b-primary-200 ${
+                  pathname === "/"
+                    ? "border-b-2 border-b-primary-200 px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
               >
-                Eid Collections
+                Home
               </Link>
             </li>
 

@@ -6,7 +6,7 @@ const HomeSectionComponent = () => {
     <div
       style={{
         backgroundImage:
-          'url("https://f8g8b9p5.rocketcdn.me/themes/goldsmith/wp-content/uploads/2022/12/background-2-scaled.webp")',
+          'url("https://res.cloudinary.com/dztlowlu0/image/upload/e_improve:outdoor/ahmwwdb0oumziywpjajv.jpg")',
       }}
       className="relative h-96 bg-cover bg-center"
     >
@@ -28,14 +28,16 @@ const HomeSectionComponent = () => {
               - these are relationships that took years.
             </p>
             <div className="flex items-center justify-center">
-              <h3 className="mb-10 mt-7 flex w-64 items-center justify-center border-2  px-1 py-2 text-center text-[12px] font-bold text-white duration-200 hover:bg-[#ffffff]  hover:text-black">
-                View all leather products{" "}
-                <Icon
-                  icon="ic:baseline-arrow-right"
-                  width={22}
-                  className="ml-5"
-                />
-              </h3>
+              <button>
+                <h3 className="mb-10 mt-7 flex w-64 items-center justify-center border-2  px-1 py-2 text-center text-[12px] font-bold text-white duration-200 hover:bg-primary-100  hover:text-black">
+                  View all leather products{" "}
+                  <Icon
+                    icon="ic:baseline-arrow-right"
+                    width={22}
+                    className="ml-5"
+                  />
+                </h3>
+              </button>
             </div>
           </div>
         </div>

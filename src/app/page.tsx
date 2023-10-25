@@ -4,8 +4,7 @@ import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
 import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
 import HomePageBanner from "@/components/UI/Home-items/HomeSlider/HomeSlider";
 import HomeSuperComponent from "@/components/UI/Home-items/HomeSuperComponent";
-import HomeGoldTastmonial from "@/components/UI/Home-items/HomeTestimonial";
-import TestimonialCarousel from "@/components/UI/Testimonial/Testimonial";
+import TestimonialCarousel from "@/components/UI/Home-items/HomeTestimonial";
 
 export default function Home() {
   return (
@@ -15,8 +14,8 @@ export default function Home() {
       <HomeDealsComponent />
       <HomeSuperComponent />
       <HomeSectionComponent />
-      <HomeGoldTastmonial />
-      <CustomerServices />
+      {/* <HomeGoldTastmonial /> */}
+      {/* <CustomerServices /> */}
       <TestimonialCarousel />
     </div>
   );
