@@ -79,14 +79,14 @@ const Navbar = () => {
 
             <li>
               <Link
-                href="/sale/offer"
-                className={`py-  inline-block ${
-                  pathname === "/sale/offer"
-                    ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
+                href="/products"
+                className={`inline-block hover:border-b-primary-200 ${
+                  pathname === "/products"
+                    ? "border-b-2 border-b-primary-200 px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
               >
-                Sale Offer
+                Products
               </Link>
             </li>
 

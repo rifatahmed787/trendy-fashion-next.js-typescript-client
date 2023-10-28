@@ -3,7 +3,7 @@ import { Icon } from "@iconify/react";
 
 const HomeSuperComponent = () => {
   return (
-    <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-5 lg:gap-3 px-5 md:px-10">
+    <div className="mb-20 grid grid-cols-1 gap-0 lg:grid-cols-5 lg:gap-3 px-5 md:px-10">
       <div className="col-span-3 my-2 rounded-xl border-2 border-dotted border-[#F03E3E] px-6 py-4">
         <div className="flex justify-between">
           <h1 className="flex items-center text-[16px] font-bold text-[#F03E3E]">
