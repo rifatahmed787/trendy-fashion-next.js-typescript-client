@@ -1,9 +1,10 @@
 "use client";
-import { Icon } from "@iconify/react";
+
 import logo from "../../../assets/Logo/trendy.svg";
 import Image from "next/image";
 import Link from "next/link";
 import Paragraph from "@/components/UI/Paragraph/Paragraph";
+import SocialIcons from "../SocialIcons/SocialIcons";
 
 const Footer = () => {
   const getCurrentYear = () => {
@@ -243,72 +244,7 @@ const Footer = () => {
         {/* Bottom area */}
         <div className="md:flex flex-row-reverse md:items-center md:justify-between py-4 md:py-8 border-t border-gray-200 md:mx-10 relative before:absolute before:content-normal before:top-0 before:left-0 before:w-full before:h-0.5 before:bg-primary-100">
           {/* Social links */}
-
-          <ul className="flex justify-center items-center gap-5">
-            {/* facebook */}
-            <li
-              className="flex justify-center items-center group relative text-center cursor-pointer
-                  rounded-full w-10 h-10 border-2 border-primary-100 after:absolute after:content-normal after:top-1 after:right-1 after:bottom-1 after:left-1
-                   after:bg-white after:rounded-full after:transform after:scale-0
-                   after:transition-all after:duration-300 hover:after:transform hover:after:scale-100"
-            >
-              <a href="#" className="block text-white z-10">
-                <Icon
-                  icon="ri:facebook-fill"
-                  width={25}
-                  className="text-primary-100 group-hover:text-brand "
-                />
-              </a>
-            </li>
-
-            {/* instagram */}
-            <li
-              className="flex justify-center items-center group relative text-center cursor-pointer
-                  rounded-full w-10 h-10 border-2 border-primary-100 after:absolute after:content-normal after:top-1 after:right-1 after:bottom-1 after:left-1
-                   after:bg-white after:rounded-full after:transform after:scale-0
-                   after:transition-all after:duration-300 hover:after:transform hover:after:scale-100"
-            >
-              <a href="#" className="block text-white z-10">
-                <Icon
-                  icon="mdi:instagram"
-                  width={25}
-                  className="text-primary-100 group-hover:text-brand "
-                />
-              </a>
-            </li>
-
-            {/* twitter */}
-            <li
-              className="flex justify-center items-center group relative text-center cursor-pointer
-                  rounded-full w-10 h-10 border-2 border-primary-100 after:absolute after:content-normal after:top-1 after:right-1 after:bottom-1 after:left-1
-                   after:bg-white after:rounded-full after:transform after:scale-0
-                   after:transition-all after:duration-300 hover:after:transform hover:after:scale-100"
-            >
-              <a href="#" className="block text-white z-10">
-                <Icon
-                  icon="mdi:twitter"
-                  width={25}
-                  className="text-primary-100 group-hover:text-brand "
-                />
-              </a>
-            </li>
-
-            {/* youtube */}
-            <li
-              className="flex justify-center items-center group relative text-center cursor-pointer
-                  rounded-full w-10 h-10 border-2 border-primary-100 after:absolute after:content-normal after:top-1 after:right-1 after:bottom-1 after:left-1
-                   after:bg-white after:rounded-full after:transform after:scale-0
-                   after:transition-all after:duration-300 hover:after:transform hover:after:scale-100"
-            >
-              <a href="#" className="block text-white z-10">
-                <Icon
-                  icon="mdi:youtube"
-                  width={25}
-                  className="text-primary-100 group-hover:text-brand "
-                />
-              </a>
-            </li>
-          </ul>
+          <SocialIcons />
 
           {/* Copyrights note */}
           <div className="text-sm text-gray-600 mr-4">

@@ -92,32 +92,6 @@ const Navbar = () => {
 
             {/* dropdown navlinks */}
             <NavLinks />
-
-            <li>
-              <Link
-                href="/pre/order"
-                className={`py-  inline-block ${
-                  pathname === "/pre/order"
-                    ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
-                    : "text-[#181818]"
-                }`}
-              >
-                Pre Order
-              </Link>
-            </li>
-
-            <li>
-              <Link
-                href="/shop/location"
-                className={`py-  inline-block ${
-                  pathname === "/shop/location"
-                    ? "border-b-4 border-b-[#0090A6] px-2 py-[26px] text-black "
-                    : "text-[#181818]"
-                }`}
-              >
-                Shop Location
-              </Link>
-            </li>
           </ul>
 
           <div className="hidden md:block">
