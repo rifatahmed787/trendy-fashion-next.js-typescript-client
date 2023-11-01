@@ -46,6 +46,7 @@ export default function TestimonialCarousel() {
         slidesPerView={"auto"}
         spaceBetween={30}
         pagination={true}
+        speed={1000}
         breakpoints={{
           640: {
             slidesPerView: 1,

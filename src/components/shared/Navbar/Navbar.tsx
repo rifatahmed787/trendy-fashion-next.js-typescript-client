@@ -8,12 +8,13 @@ import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import MobileNav from "./MobileNav";
+import useModal from "@/Hooks/useModal";
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
-
+  const { openModal } = useModal();
   const pathname = usePathname();
 
   const handleScroll = () => {
@@ -53,15 +54,6 @@ const Navbar = () => {
                 width={undefined}
               />
             </Link>
-            {/* hamburg menu start*/}
-            <div className="text-3xl md:hidden" onClick={() => setOpen(!open)}>
-              {/* <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon> */}
-              <Icon
-                icon="solar:hamburger-menu-broken"
-                name={`${open ? "close" : "menu"}`}
-              />
-            </div>
-            {/* hamburg menu end*/}
           </div>
           <ul className="hidden items-center gap-5 md:flex ">
             <li>
@@ -106,8 +98,9 @@ const Navbar = () => {
 
               <Link href="/login">
                 <button
-                  data-modal-target="signinModal"
-                  data-modal-toggle="signinModal"
+                  onClick={() => {
+                    openModal("login");
+                  }}
                   className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
                   type="button"
                 >
@@ -119,18 +112,8 @@ const Navbar = () => {
           </div>
 
           {/* Mobile navbar */}
-          <ul
-            className={`fixed
-        bottom-0 top-0 w-full overflow-y-auto bg-white py-24 pl-4 font-bold duration-500
-        md:hidden ${open ? "left-0" : "left-[-100%]"}
-        `}
-          >
-            {/* <li className="hover:bg-gray-300 duration-200 border-b">
-            <Link to="/home" className="py-7 px-3 inline-block ">
-              Home
-            </Link>
-          </li> */}
-            <NavLinks />
+          <ul className={`fixed z-50 w-full md:hidden`}>
+            <MobileNav />
           </ul>
         </div>
       </nav>

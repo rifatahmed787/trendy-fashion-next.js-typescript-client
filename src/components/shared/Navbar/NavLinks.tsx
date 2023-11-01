@@ -16,7 +16,7 @@ const NavLinks = () => {
         <div>
           <div className=" text-left md:cursor-pointer group">
             <h1
-              className={`md:py-7 py-2 flex justify-between items-center md:pr-0 pr-5 group hover:text-[#0090A6]`}
+              className={`md:py-7 py-2 flex justify-between items-center md:pr-0 pr-5 group hover:text-primary-100`}
               // ${
               //   router.pathname === "/"
               //     ? "border-b-4 border-b-[#0090A6] text-white px-2 py-[26px] "

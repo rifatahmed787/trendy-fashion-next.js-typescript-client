@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 
-const FilterAccordion = ({ item }) => {
+const FilterAccordion = ({ item }: any) => {
   const [items, setItems] = useState(item);
   const handletoggleActive = () => {
     let newActive = items.active === 1 ? 0 : 1;

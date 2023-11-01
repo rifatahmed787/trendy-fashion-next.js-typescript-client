@@ -8,6 +8,7 @@ import Navbar from "@/components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/Footer/Footer";
 import { Provider } from "react-redux";
 import { store } from "@/Redux/store";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,7 @@ export default function RootLayout({
           <Navbar />
           <div className="min-h-screen pt-32">{children}</div>
           <Footer />
+          <Toaster />
         </Provider>
       </body>
     </html>

@@ -46,6 +46,20 @@ const config: Config = {
           new2: "#AA7B2F",
         },
       },
+      animation: {
+        "slide-in": "slide-in 0.5s forwards",
+        "slide-out": "slide-out 0.5s forwards",
+      },
+      keyframes: {
+        "slide-in": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        "slide-out": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-100%)" },
+        },
+      },
     },
   },
   plugins: [require("flowbite/plugin"), require("tailwind-scrollbar-hide")],

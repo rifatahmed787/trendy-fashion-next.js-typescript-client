@@ -105,6 +105,7 @@ const HomeDealsComponent = () => {
           <Swiper
             slidesPerView={4}
             spaceBetween={10}
+            speed={1500}
             breakpoints={{
               340: {
                 slidesPerView: 1,

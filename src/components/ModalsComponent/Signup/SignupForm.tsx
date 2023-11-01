@@ -1,12 +1,12 @@
 import { useUserRegisterMutation } from "@/Redux/features/auth/authApi";
-import { DarkModeContext } from "../DarkModeContext/DarkModeContext";
+import { DarkModeContext } from "../../DarkModeContext/DarkModeContext";
 import { useContext, useEffect, useState } from "react";
-import TextInput from "../UI/Form-items/TextInput";
-import Button from "../UI/Button";
+import TextInput from "../../UI/Form-items/TextInput";
+import Button from "../../UI/Button";
 import Link from "next/link";
-import ToastContainer from "../UI/Toast";
-import ICONS from "../shared/Icons/AllIcons";
-import FileInput from "../UI/Form-items/FileInput";
+import ToastContainer from "../../UI/Toast";
+import ICONS from "../../shared/Icons/AllIcons";
+import FileInput from "../../UI/Form-items/FileInput";
 import { get_error_messages } from "@/lib/Error_message";
 
 const SignUpForm = () => {
@@ -14,8 +14,6 @@ const SignUpForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   // signup mutation hook
   const [register, { isError, error, isSuccess }] = useUserRegisterMutation();
-
-  const [uploader] = useUploderMutation();
 
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);

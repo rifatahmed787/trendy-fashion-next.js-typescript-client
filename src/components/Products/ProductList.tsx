@@ -69,7 +69,7 @@ const ProductList = () => {
           className={` ${open ? "w-72" : "w-[5px] "}   relative duration-700`}
         >
           <svg
-            className={`text-primary-300 absolute   -top-5  z-50 cursor-pointer  rounded-full  ${
+            className={`text-primary-300 absolute   -top-5  z-10 cursor-pointer  rounded-full  ${
               !open ? "rotate-180 -right-8" : "right-4"
             } `}
             onClick={() => setOpen(!open)}
@@ -114,8 +114,8 @@ const ProductList = () => {
         {/* body */}
         <div className="flex-1">
           <div className=" pb-10">
-            <div className="mx-auto sm:text-center lg:max-w-xl">
-              <p className=" mb-4 inline-block  text-2xl font-semibold uppercase tracking-wider lg:text-[32px]">
+            <div className="mx-auto text-center lg:max-w-xl">
+              <p className=" mb-4 inline-block text-2xl font-semibold uppercase tracking-wider lg:text-[32px]">
                 Products
               </p>
             </div>

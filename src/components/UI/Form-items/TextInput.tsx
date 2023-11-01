@@ -1,19 +1,9 @@
-import { InputType } from "@/Types/Input";
 import { cn } from "@/lib/Utils";
-
+import { RiErrorWarningLine } from "react-icons/ri";
 import { useState } from "react";
-
-type ITextInput = {
-  label?: string;
-  type: InputType;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  currentValue: string | number;
-  placeHolder: string;
-  className?: string;
-  required?: boolean;
-  htmlFor?: string;
-  id?: string;
-};
+import { ITextInput } from "./Input.types";
+import React from "react";
+import PasswordToggler from "./PasswordToggler/PasswordToggler";
 
 const TextInput = ({
   label,
@@ -24,8 +14,14 @@ const TextInput = ({
   className,
   required,
   id,
+  rightIcon,
+  errorMessage,
 }: ITextInput) => {
-  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
+  const [inputType, setInputType] = React.useState(type);
+  const [numberOfCharacters, setNumberOfCharacters] = React.useState(0);
+
+  const isPassword = type === "password" && numberOfCharacters !== 0;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -34,6 +30,13 @@ const TextInput = ({
   const handleBlur = () => {
     setIsFocused(false);
   };
+
+  const handleTogglePassword = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setInputType((prev) => (prev === "password" ? "text" : "password"));
+  };
+
+  const showPassword = inputType === "password" && numberOfCharacters !== 0;
 
   const defaultClassValue = `block py-3 px-0 w-full text-sm bg-transparent border-2 border-primary appearance-none rounded-md focus:outline-none focus:ring-0 focus:border-primary peer focus:border-t-1 pl-2`;
 
@@ -60,6 +63,21 @@ const TextInput = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
       />
+      {isPassword && !rightIcon ? (
+        <PasswordToggler
+          className="ml-2"
+          isPasswordVisible={showPassword}
+          onToggle={handleTogglePassword}
+        />
+      ) : null}
+      {rightIcon ? <button>{rightIcon}</button> : null}
+
+      {errorMessage ? (
+        <div className="text-xs text-red-700 mt-[0.4rem] flex items-center">
+          <RiErrorWarningLine className="inline-block h-3 w-3 mr-[0.45rem] self-start mt-[0.1rem]" />
+          <span>{errorMessage}</span>
+        </div>
+      ) : null}
     </div>
   );
 };

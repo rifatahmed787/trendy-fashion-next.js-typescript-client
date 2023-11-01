@@ -207,9 +207,11 @@ const HomePageBanner = () => {
           <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
             <div className="flex items-center justify-center text-center text-white">
               <div className="mx-auto">
-                <h3 className="text-[12px] font-bold uppercase">Gold Pierc</h3>
+                <h3 className="text-[12px] font-bold uppercase">
+                  All products
+                </h3>
                 <h1 className="font-smeibold my-2 text-[26px] uppercase">
-                  Flash Sale
+                  Product Sale
                 </h1>
                 <h4>15 NOV - 25 NOV</h4>
                 <Link href="/" className="mt-3 underline">

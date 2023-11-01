@@ -3,7 +3,7 @@ import {
   ILoginRes,
   IRegister,
   IRegisterRes,
-} from "../../../types/auth.types";
+} from "@/Types/auth.types";
 import { apiSlice } from "../../api/apiSlice";
 import { login } from "./authSlice";
 import Cookies from "js-cookie";
@@ -64,33 +64,6 @@ export const authApi = apiSlice.injectEndpoints({
       }),
     }),
 
-    //   userResetPass: builder.mutation<IUserResetPassRes, IUserResetPassArgs>({
-    //     query: (data) => ({
-    //       url: "/auth/reset-password",
-    //       method: "POST",
-    //       body: data,
-    //     }),
-    //   }),
-
-    //   userPassWordChange: builder.mutation<
-    //     IUserPassWordChangeRes,
-    //     IUserPassWordChangeArgs
-    //   >({
-    //     query: (data) => ({
-    //       url: "/auth/change-password",
-    //       method: "POST",
-    //       body: data,
-    //     }),
-    //   }),
-
-    //   userFollow: builder.mutation({
-    //     query: (data) => ({
-    //       url: "/follow/following",
-    //       method: "POST",
-    //       body: data,
-    //     }),
-    //   }),
-
     // getUserDetails: builder.query<IGetUserDetailsRes, IGetUserDetailsArgs>({
     //   query: () => ({
     //     url: "/auth/get-user-details",
@@ -103,9 +76,6 @@ export const authApi = apiSlice.injectEndpoints({
 export const {
   useUserLoginMutation,
   useUserRegisterMutation,
-  // useUserResetPassMutation,
   useUserLogOutMutation,
-  // useUserPassWordChangeMutation,
-  // useUserGetByIdQuery,
   // useGetUserDetailsQuery,
 } = authApi;

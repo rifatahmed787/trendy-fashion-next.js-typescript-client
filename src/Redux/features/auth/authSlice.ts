@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import { RootState } from "../../store";
-import { IAuthState } from "@/types/auth.types";
+import { IAuthState } from "@/Types/auth.types";
 
 const initialState: IAuthState = {
   isLoggedIn: false,

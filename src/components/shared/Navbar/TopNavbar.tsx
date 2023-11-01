@@ -45,11 +45,24 @@ const TyneNavbar = () => {
     <div className={headerClasses}>
       <div className="mx-auto grid max-w-screen-xl grid-cols-4 gap-5  text-gray-900">
         <div className="flex justify-center">
-          <Link href="/eid/collection">
+          <Link
+            href="/eid/collection"
+            className="flex justify-center items-center"
+          >
+            <div className="my-auto text-sm leading-3 border-r border-r-gray-900 pr-2">
+              <a
+                href="tel:+8801752555788"
+                className="border-brand flex items-center space-x-1"
+              >
+                <span className="text-brand text-[14px]">
+                  24/7 customer service
+                </span>
+              </a>
+            </div>
             <Image
               src={imag2}
               alt=""
-              className="h-[40px] w-[130px]"
+              className="h-[40px] w-[130px] ml"
               width={100}
             />
           </Link>
@@ -63,8 +76,9 @@ const TyneNavbar = () => {
             className="mt-2"
           >
             <p>
-              I can be a React component, multiple React components, or just
-              some text.
+              “If you do build a great experience, customers tell each other
+              about that. Word of mouth is very powerful.” – Jeff Bezos, founder
+              of Amazon
             </p>
           </Marquee>
         </div>
@@ -81,15 +95,7 @@ const TyneNavbar = () => {
               className="border-brand text- flex items-center space-x-1"
             >
               <Icon icon="material-symbols:phone-forwarded-outline-rounded" />
-              <span className="text-brand text-[14px]">+8801752555788</span>
-            </a>
-
-            <a
-              href="tel:+8801752555788"
-              className="border-brand text- flex items-center space-x-1"
-            >
-              <Icon icon="maki:emergency-phone" />
-              <span className="text-brand text-[14px]">+8801521423492</span>
+              <span className="text-brand text-[14px]">+8801945518927</span>
             </a>
           </div>
 
