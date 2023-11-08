@@ -1,3 +1,4 @@
+"use client";
 import { useUserRegisterMutation } from "@/Redux/features/auth/authApi";
 import { DarkModeContext } from "../../DarkModeContext/DarkModeContext";
 import { useContext, useEffect, useState } from "react";

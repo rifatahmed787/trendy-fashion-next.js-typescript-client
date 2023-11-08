@@ -10,3 +10,16 @@
 .button-group:hover .second-span {
   transform: translateY(100%);
 }
+
+.modal-backdrop {
+  @apply fixed overflow-hidden bg-gray-800/50
+   backdrop-blur-sm left-0 right-0 top-0 bottom-0 
+   z-[1050] flex flex-col items-center justify-center;
+}
+.modal-backdrop.open {
+  @apply opacity-0;
+}
+
+.modal-body {
+  @apply bg-white px-4 py-6 lg:px-10 xl:px-16 lg:py-8 max-h-screen overflow-y-scroll lg:scrollbar-hide  my-4 rounded-lg mx-4 lg:mx-auto max-w-[75rem]  2xl:max-w-[85rem];
+}

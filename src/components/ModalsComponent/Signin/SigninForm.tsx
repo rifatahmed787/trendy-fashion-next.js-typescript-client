@@ -1,7 +1,5 @@
 "use client";
-import { useContext } from "react";
 
-import { DarkModeContext } from "../../DarkModeContext/DarkModeContext";
 import ICONS from "../../shared/Icons/AllIcons";
 import TextInput from "../../UI/Form-items/TextInput";
 import { useUserLoginMutation } from "@/Redux/features/auth/authApi";
@@ -14,7 +12,6 @@ import toast from "react-hot-toast";
 import CheckBox from "@/components/UI/Check-box/Checkbox";
 
 const SignInForm = () => {
-  const { darkMode } = useContext(DarkModeContext);
   const { isOpen, onClose, openModal } = useModal();
   // login mutation hook
   const [login, { isLoading }] = useUserLoginMutation();

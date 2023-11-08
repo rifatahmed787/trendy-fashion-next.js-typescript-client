@@ -22,3 +22,5 @@ export interface PortalProps {
   containerId: string;
   children: React.ReactNode;
 }
+
+export type TToggler = [boolean, () => void, (value: boolean) => void];

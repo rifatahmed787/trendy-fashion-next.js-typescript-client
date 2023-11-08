@@ -1,11 +1,9 @@
-import TopNavbar from "@/components/shared/Navbar/TopNavbar";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import Navbar from "@/components/shared/Navbar/Navbar";
-import Footer from "@/components/shared/Footer/Footer";
 import { Toaster } from "react-hot-toast";
 import Providers from "./lib/Providers";
+import RenderModal from "@/components/ModalsComponent/Index";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,11 +21,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <TopNavbar />
-          <Navbar />
-          <div className="min-h-screen pt-32">{children}</div>
-          <Footer />
+          <div className="min-h-screen">{children}</div>
           <Toaster />
+          <RenderModal />
         </Providers>
       </body>
     </html>
