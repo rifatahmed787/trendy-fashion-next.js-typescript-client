@@ -13,7 +13,7 @@ export default function ModalBody({
   return (
     <div
       style={style}
-      className={`modal-body w-[calc(100%-2rem)] px-4 lg:px-8  max-w-lg lg:max-w-2xl scrollbar-hide ${className}`}
+      className={`modal-body w-[calc(100%-2rem)] px-4 lg:px-8  max-w-lg lg:max-w-3xl scrollbar-hide ${className}`}
       onClick={preventClickToClose}
     >
       {children}

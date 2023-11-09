@@ -10,12 +10,12 @@ export const apiSlice = createApi({
       // Access the authentication token from the Redux store
       const authToken = (getState() as RootState).auth.accessToken;
       if (authToken) {
-        headers.set("Authorization", `${authToken}`);
+        headers.set("Authorization", `Bearer ${authToken}`);
       }
       return headers;
     },
   }),
-  tagTypes: ["filteringItems", "women", "reviews", "latest_dress", "wishlist"],
+  tagTypes: ["filteringItems", "tasks", "completetask", "incompletetask"],
 
   endpoints: () => ({}),
 });

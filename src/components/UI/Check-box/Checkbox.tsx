@@ -17,8 +17,8 @@ export default function CheckBox({
 }: ICheckbox) {
   return (
     <label
-      className={`h-5 w-5 lg:h-6 lg:w-6 inline-block items-center justify-center rounded-md 
-            border-2 border-v2-new1 cursor-pointer
+      className={`h-4 w-4 lg:h-5 lg:w-5 inline-block items-center justify-center rounded-md 
+            border-2 border-primary-100 cursor-pointer
             overflow-hidden ${classes?.label}
             `}
       htmlFor={id}

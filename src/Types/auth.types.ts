@@ -1,7 +1,7 @@
 export interface IUser {
   _id?: string;
   email?: string;
-  userName?: string;
+  username: string;
   hasVerifiedEmail?: boolean;
   role?: "Admin" | "User";
   avatar?: string;
@@ -22,14 +22,15 @@ export interface IAuthState {
 /*auth register type*/
 // user register types
 export interface IRegister {
-  userName: string;
+  username: string;
   email: string;
+  avatar?: string;
   password: string;
 }
 
 export interface IRegisterData {
   user?: IUser | null;
-
+  email: string | null;
   error: string;
   accessToken?: string | null;
   refreshToken?: string | null;

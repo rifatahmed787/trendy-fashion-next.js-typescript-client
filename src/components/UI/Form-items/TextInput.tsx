@@ -1,6 +1,5 @@
 import { cn } from "@/lib/Utils";
 import { RiErrorWarningLine } from "react-icons/ri";
-import { useState } from "react";
 import { ITextInput } from "./Input.types";
 import React from "react";
 import PasswordToggler from "./PasswordToggler/PasswordToggler";
@@ -33,12 +32,23 @@ const TextInput = ({
 
   const handleTogglePassword = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setInputType((prev) => (prev === "password" ? "text" : "password"));
+    setInputType((prev) => {
+      const newType = prev === "password" ? "text" : "password";
+      return newType;
+    });
   };
+
+  const onChangeHandler = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e);
+      setNumberOfCharacters(e.target.value.length);
+    },
+    [onChange]
+  );
 
   const showPassword = inputType === "password" && numberOfCharacters !== 0;
 
-  const defaultClassValue = `block py-3 px-0 w-full text-sm bg-transparent border-2 border-primary appearance-none rounded-md focus:outline-none focus:ring-0 focus:border-primary peer focus:border-t-1 pl-2`;
+  const defaultClassValue = `block py-3 px-0 w-full text-sm bg-transparent border-2 border-primary-100 appearance-none rounded-md focus:outline-none focus:ring-0 text-black focus:border-primary-100 peer focus:border-t-1 pl-2`;
 
   return (
     <div className="flex flex-col gap-2 relative">
@@ -55,9 +65,9 @@ const TextInput = ({
       <input
         id={id || "input-box"}
         className={cn(className, defaultClassValue)}
-        type={type}
+        type={inputType}
         value={currentValue}
-        onChange={onChange}
+        onChange={onChangeHandler}
         placeholder={placeHolder}
         required={required ?? false}
         onFocus={handleFocus}
@@ -65,11 +75,12 @@ const TextInput = ({
       />
       {isPassword && !rightIcon ? (
         <PasswordToggler
-          className="ml-2"
+          className="ml-2 absolute top-0 bottom-0 flex items-center right-2"
           isPasswordVisible={showPassword}
           onToggle={handleTogglePassword}
         />
       ) : null}
+
       {rightIcon ? <button>{rightIcon}</button> : null}
 
       {errorMessage ? (

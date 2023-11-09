@@ -16,6 +16,35 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      async onQueryStarted(loginArgs, { dispatch, queryFulfilled }) {
+        try {
+          const signupRes = await queryFulfilled;
+
+          if (signupRes) {
+            dispatch(
+              login({
+                isLoggedIn: true,
+                user: signupRes?.data?.data?.email || null,
+                accessToken: signupRes?.data?.data?.accessToken || null,
+                refreshToken: signupRes?.data?.data?.refreshToken || null,
+              })
+            );
+
+            Cookies.set(
+              "user",
+              JSON.stringify({
+                user: signupRes?.data?.data?.email,
+                isLoggedIn: true,
+              })
+            );
+
+            Cookies.set("token", signupRes?.data?.data?.accessToken ?? "");
+          }
+        } catch {
+          //do nothing
+          console.log({ loginArgs });
+        }
+      },
     }),
 
     userLogin: builder.mutation<ILoginRes, ILoginArgs>({
