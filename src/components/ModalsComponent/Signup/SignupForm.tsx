@@ -89,16 +89,15 @@ const SignUpForm = () => {
     } else if (isRegisterSuccess) {
       setAlertType("success");
       toast.success("Signed up successfully");
+      onClose();
     }
-  }, [isRegisterError, isRegisterSuccess, registerError]);
+  }, [isRegisterError, isRegisterSuccess, onClose, registerError]);
 
   //error and success handlaing
   useEffect(() => {
-    if (isError && error && "data" in error) {
+    if (isError && error) {
       setIsAlertOpen(true);
       setAlertType("error");
-      const error_messages = get_error_messages(error);
-      setAlertMessages(error_messages);
     } else if (isSuccess) {
       setAlertType("success");
     }
@@ -122,7 +121,7 @@ const SignUpForm = () => {
             <div className="flex flex-col gap-6">
               <div className="grid grid-cols-2 gap-3">
                 <Controller
-                  name="name.firstName"
+                  name="firstName"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
@@ -138,7 +137,7 @@ const SignUpForm = () => {
                   )}
                 />
                 <Controller
-                  name="name.lastName"
+                  name="lastName"
                   control={control}
                   defaultValue=""
                   render={({ field }) => (
@@ -147,7 +146,7 @@ const SignUpForm = () => {
                       placeHolder=""
                       currentValue={field.value}
                       onChange={field.onChange}
-                      required={true}
+                      required={false}
                       id="lastName"
                       htmlFor="lastName"
                       label="Last Name"

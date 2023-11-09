@@ -1,9 +1,9 @@
 export interface IUser {
-  _id?: string;
+  id?: number;
   email?: string;
   username: string;
   hasVerifiedEmail?: boolean;
-  role?: "Admin" | "User";
+  role?: "admin" | "user";
   avatar?: string;
   phoneNumber?: string;
   location?: string;
@@ -29,7 +29,7 @@ export interface IRegister {
 }
 
 export interface IRegisterData {
-  user?: IUser | null;
+  user_details?: IUser | null;
   email: string | null;
   error: string;
   accessToken?: string | null;
@@ -49,7 +49,7 @@ export interface ILoginArgs {
 }
 
 export interface ILoginData {
-  email?: string | null;
+  user_details?: IUser | null;
   accessToken?: string | null;
   refreshToken?: string | null;
 }
