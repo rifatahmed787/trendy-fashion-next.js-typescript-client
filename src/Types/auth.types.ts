@@ -69,7 +69,7 @@ export interface ILoginAction {
 }
 
 export interface IGetUserDetailsRes {
-  id: string;
+  id: number;
   userName: string;
   email: string;
   imageUrl: string;
