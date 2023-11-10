@@ -97,12 +97,10 @@ export const links = [
       {
         Head: "Outers Page",
         sublink: [
-          { name: "Blog", link: "/goldsmith/blog" },
-          { name: "Careers", link: "/goldsmith/careers" },
-          { name: "FAQ", link: "/goldsmith/faq" },
-          { name: "About Me", link: "/goldsmith/about/me" },
-          { name: "About Us", link: "/goldsmith/about/us" },
-          { name: "Contact", link: "/goldsmith/contact" },
+          { name: "Blog", link: "/blog" },
+          { name: "FAQ", link: "/accordian" },
+          { name: "About Us", link: "aboutus" },
+          { name: "Contact Us", link: "/contact" },
         ],
       },
     ],

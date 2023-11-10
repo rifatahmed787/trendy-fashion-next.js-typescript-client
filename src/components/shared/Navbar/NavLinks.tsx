@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { links } from "./MyLinks";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 const NavLinks = () => {
   const [heading, setHeading] = useState("");
@@ -17,11 +16,6 @@ const NavLinks = () => {
           <div className=" text-left md:cursor-pointer group">
             <h1
               className={`md:py-7 py-2 flex justify-between items-center md:pr-0 pr-5 group hover:text-primary-100`}
-              // ${
-              //   router.pathname === "/"
-              //     ? "border-b-4 border-b-[#0090A6] text-white px-2 py-[26px] "
-              //     : "text-[#181818] "
-              // }
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
                 setSubHeading("");
@@ -29,11 +23,6 @@ const NavLinks = () => {
             >
               {link.name}
               <span className="text-xl md:hidden inline ">
-                {/* <ion-icon
-                  name={`${
-                    heading === link.name ? "chevron-up" : "chevron-down"
-                  }`}
-                ></ion-icon> */}
                 <Icon
                   icon="ep:arrow-down"
                   name={`${

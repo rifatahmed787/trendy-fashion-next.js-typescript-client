@@ -1,3 +1,4 @@
+import EcommerceStats from "@/components/Countup/Countup";
 import HomeSectionComponent from "@/components/UI/Home-items/BackgroundSection";
 import ContactForm from "@/components/UI/Home-items/HomeContact";
 import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
@@ -14,6 +15,7 @@ export default function Home() {
       <HomeDealsComponent />
       <HomeSuperComponent />
       <HomeSectionComponent />
+      <EcommerceStats />
       <TestimonialCarousel />
       <ContactForm />
     </div>
