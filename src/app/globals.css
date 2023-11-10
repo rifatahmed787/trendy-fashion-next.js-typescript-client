@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* home dealsComponent css */
+/* -----------------------------
+---------home dealsComponent css----
+----------------------------------- */
 .button-group:hover .first-span {
   transform: translateY(0);
 }
@@ -11,6 +13,25 @@
   transform: translateY(100%);
 }
 
+/* -------------------------
+-------home contact--------
+--------------------------- */
+@media only screen and (max-width: 640px) {
+  .input-width {
+    width: 99%;
+  }
+}
+
+.bg-image-contact {
+  background-image: url("../assets/shopImage/cloth.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* -----------------------
+-----modal css calss------
+----------------------- */
 .modal-backdrop {
   @apply fixed overflow-hidden bg-gray-800/50
    backdrop-blur-sm left-0 right-0 top-0 bottom-0 

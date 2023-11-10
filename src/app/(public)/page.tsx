@@ -1,5 +1,5 @@
 import HomeSectionComponent from "@/components/UI/Home-items/BackgroundSection";
-import CustomerServices from "@/components/UI/Home-items/CustomerService";
+import ContactForm from "@/components/UI/Home-items/HomeContact";
 import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
 import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
 import HomePageBanner from "@/components/UI/Home-items/HomeSlider/HomeSlider";
@@ -14,9 +14,8 @@ export default function Home() {
       <HomeDealsComponent />
       <HomeSuperComponent />
       <HomeSectionComponent />
-      {/* <HomeGoldTastmonial /> */}
-      {/* <CustomerServices /> */}
       <TestimonialCarousel />
+      <ContactForm />
     </div>
   );
 }

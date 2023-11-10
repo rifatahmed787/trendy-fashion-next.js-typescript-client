@@ -37,7 +37,7 @@ const Navbar = () => {
     };
   }, [handleScroll, previousScroll]);
 
-  const navbarClasses = `fixed   z-20 border-b w-full border-gray-200 transition-transform duration-300 ${
+  const navbarClasses = `fixed   z-40 border-b w-full border-gray-200 transition-transform duration-300 ${
     isNavbarVisible ? "translate-y-0 top-10" : "-translate-y-full top-auto"
   } bg-white shadow-sm`;
 
