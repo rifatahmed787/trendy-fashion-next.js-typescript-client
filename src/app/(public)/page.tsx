@@ -6,12 +6,14 @@ import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
 import HomePageBanner from "@/components/UI/Home-items/HomeSlider/HomeSlider";
 import HomeSuperComponent from "@/components/UI/Home-items/HomeSuperComponent";
 import TestimonialCarousel from "@/components/UI/Home-items/HomeTestimonial";
+import LatestCollection from "@/components/UI/Home-items/LatestCollection";
 
 export default function Home() {
   return (
     <div>
       <HomePageBanner />
       <HomeServiceComponent />
+      <LatestCollection />
       <HomeDealsComponent />
       <HomeSuperComponent />
       <HomeSectionComponent />

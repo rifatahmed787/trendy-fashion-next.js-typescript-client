@@ -6,10 +6,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import "../../../app/globals.css";
 import image1 from "../.../../../../assets/HomePageBannerImg/sectionthree.jpg";
 import image2 from "../.../../../../assets/HomePageBannerImg/section3.jpg";
-import image3 from "../.../../../../assets/HomePageBannerImg/section3down.jpg";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -39,7 +37,7 @@ const HomeDealsComponent = () => {
   };
   return (
     <div className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-7 md:gap-5 lg:grid-cols-7 lg:gap-5">
+      <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-7 md:gap-5 lg:gap-5">
         <div className="col-span-2 mb-5 mt-7">
           <div className="my-2 flex items-center justify-center rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <div className="">
