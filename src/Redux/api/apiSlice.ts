@@ -15,7 +15,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ["filteringItems", "tasks", "completetask", "incompletetask"],
+  tagTypes: ["filteringItems", "tasks", "completetask", "incompletetask", "accordian"],
 
   endpoints: () => ({}),
 });

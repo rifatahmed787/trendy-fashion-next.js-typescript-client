@@ -96,7 +96,7 @@ const HomeDealsComponent = () => {
         </div>
 
         <div className="col-span-5">
-          <h1 className=" ml-5 text-lg font-bold relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:bottom-0 after:w-full after:h-0.5">
+          <h1 className=" ml-5 text-2xl font-bold relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:bottom-0 after:w-full after:h-0.5 title">
             Deals of the Week
           </h1>
           {/* <hr /> */}
@@ -217,7 +217,7 @@ const HomeDealsComponent = () => {
                   <h3 className="ml-10 mt-20 w-32 rounded-full bg-primary-100 p-1 text-center text-3 text-black font-bold md:mt-12 lg:mt-20">
                     Kids Fashion
                   </h3>
-                  <h1 className="ml-10 text-[45px] font-bold uppercase">
+                  <h1 className="ml-10 text-[45px] font-bold uppercase title">
                     Let Our Future Be Stylish
                   </h1>
                 </div>

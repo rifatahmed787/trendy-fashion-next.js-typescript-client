@@ -38,7 +38,7 @@ export default function TestimonialCarousel() {
   return (
     <>
       <div className="pt-16 pb-5">
-        <h1 className="text-xl md:text-4xl text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/5 before:-bottom-2 before:bg-primary-100 before:h-1 ">
+        <h1 className="text-xl md:text-4xl text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/5 before:-bottom-2 before:bg-primary-100 before:h-1 title">
           What Our Client Say
         </h1>
       </div>

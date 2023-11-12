@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Montserrat", "sans-serif"],
+        serif: ["Playfair Display", "serif"],
+      },
       colors: {
         gray: {
           50: "#F9F9FB",

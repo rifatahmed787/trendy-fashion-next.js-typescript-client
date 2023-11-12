@@ -1,5 +1,6 @@
 import EcommerceStats from "@/components/Countup/Countup";
 import HomeSectionComponent from "@/components/UI/Home-items/BackgroundSection";
+import HeroSection from "@/components/UI/Home-items/HeroSection";
 import ContactForm from "@/components/UI/Home-items/HomeContact";
 import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
 import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
@@ -14,6 +15,7 @@ export default function Home() {
       <HomePageBanner />
       <HomeServiceComponent />
       <LatestCollection />
+      <HeroSection />
       <HomeDealsComponent />
       <HomeSuperComponent />
       <HomeSectionComponent />

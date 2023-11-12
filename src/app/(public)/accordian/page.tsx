@@ -1,7 +1,7 @@
-import Accordian from "@/components/UI/Pages/Accordian/Accordian";
 import React from "react";
 import faq from "../../../assets/BannerImg/accordian.jpg";
 import Image from "next/image";
+import ProductAccordian from "@/components/UI/Pages/Accordian/ProductAccordian";
 
 const Faq = () => {
   return (
@@ -15,7 +15,7 @@ const Faq = () => {
       />
 
       <div className="my-10">
-        <Accordian />
+        <ProductAccordian />
       </div>
     </div>
   );

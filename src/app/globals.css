@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Playfair+Display:wght@400;700&display=swap");
+
+/* ------------------------
+hero section
+---------------------------*/
+.hero-section {
+  background-image: url("../assets/HomePageBannerImg/sectiontwo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /* background-color: #3e5263; */
+  /* font-family: "Montserrat", sans-serif; */
+}
+
+.title {
+  font-family: "Playfair Display", serif;
+}
+
 /* -----------------------------
 ---------home dealsComponent css----
 ----------------------------------- */
