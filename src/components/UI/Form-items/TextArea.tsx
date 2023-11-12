@@ -32,7 +32,7 @@ const TextArea = ({
   const handleBlur = () => {
     setIsFocused(false);
   };
-  const defaultClassValue = `block py-3 px-0 w-full text-sm bg-transparent border-2 border-primary appearance-none rounded-md focus:outline-none focus:ring-0 focus:border-primary peer focus:border-t-1 pl-2 `;
+  const defaultClassValue = `block py-3 px-0 w-full text-sm bg-transparent border-2 border-primary-100 appearance-none rounded-md focus:outline-none focus:ring-0 focus:border-primary-100 peer focus:border-t-1 pl-2 `;
   return (
     <div className="flex flex-col gap-2 ">
       <label

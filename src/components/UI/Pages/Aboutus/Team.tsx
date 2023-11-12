@@ -10,12 +10,13 @@ import team7 from "../../../../assets/AboutUsImage/team7.webp";
 import team8 from "../../../../assets/AboutUsImage/team8.webp";
 
 import Image from "next/image";
+import Link from "next/link";
 
 const Team = () => {
   return (
     <>
       <section className="px-2 py-16 bg-white md:px-0">
-        <div className="container items-center max-w-6xl px-8 mx-auto xl:px-5">
+        <div className="container items-center max-w-7xl px-8 mx-auto xl:px-5">
           <div className="flex flex-wrap items-center sm:-mx-3">
             <div className="w-11/12 md:w-1/2">
               <div className="w-full h-auto overflow-hidden rounded-md ">
@@ -111,8 +112,8 @@ const Team = () => {
                   shared vision and a relentless pursuit of excellence.
                 </p>
                 <div className="relative flex flex-col sm:flex-row sm:space-x-4">
-                  <a
-                    href="#_"
+                  <Link
+                    href="/contactus"
                     className="flex items-center w-full px-6 py-3 mb-3 text-lg bg-primary-100 rounded-md sm:mb-0 sm:w-auto"
                   >
                     Contact Us
@@ -129,7 +130,7 @@ const Team = () => {
                       <line x1="5" y1="12" x2="19" y2="12"></line>
                       <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
-                  </a>
+                  </Link>
                   <a
                     href="#_"
                     className="flex items-center px-6 py-3 text-gray-500 bg-gray-100 rounded-md hover:bg-gray-200 hover:text-gray-600"

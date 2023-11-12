@@ -76,7 +76,7 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px]">
+                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
                   </h1>
@@ -103,7 +103,7 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px]">
+                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
                   </h1>
@@ -130,7 +130,7 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px]">
+                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
                   </h1>
@@ -157,7 +157,7 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px]">
+                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
                   </h1>
@@ -207,10 +207,10 @@ const HomePageBanner = () => {
           <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
             <div className="flex items-center justify-center text-center text-white">
               <div className="mx-auto">
-                <h3 className="text-[12px] font-bold uppercase">
+                <h3 className="text-[12px] font-bold uppercase title">
                   All products
                 </h3>
-                <h1 className="font-smeibold my-2 text-[26px] uppercase">
+                <h1 className="font-smeibold my-2 text-[26px] uppercase title">
                   Product Sale
                 </h1>
                 <h4>15 NOV - 25 NOV</h4>

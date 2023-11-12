@@ -22,7 +22,9 @@ const HomeServiceComponent = () => {
           height={undefined}
         />
         <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md duration-300 overflow-hidden">
-          <h2 className="text-2xl font-bold mb-2">Amazing Value Every Day</h2>
+          <h2 className="text-2xl font-bold mb-2 title">
+            Amazing Value Every Day
+          </h2>
           <Paragraph className="py-3 text-gray-400">
             Items prices that fit your budget
           </Paragraph>
@@ -50,7 +52,7 @@ const HomeServiceComponent = () => {
           height={undefined}
         />
         <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-          <h2 className="text-2xl font-bold mb-2 text-brand">
+          <h2 className="text-2xl font-bold mb-2 title">
             Successful Customer Service
           </h2>
           <Paragraph className="text-gray-400">
@@ -80,9 +82,7 @@ const HomeServiceComponent = () => {
           height={undefined}
         />
         <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-          <h2 className="text-2xl font-bold mb-2 text-brand">
-            All Payment Methods
-          </h2>
+          <h2 className="text-2xl font-bold mb-2 title">All Payment Methods</h2>
           <Paragraph className="text-gray-400 py-7">
             Don't bother with payment details.
           </Paragraph>
@@ -101,7 +101,7 @@ const HomeServiceComponent = () => {
       </div>
 
       {/* card four  */}
-      <div className="w-80 lg:pr-3 h-72 group overflow-hidden">
+      <div className="w-80 h-72 group overflow-hidden">
         <Image
           src={serviceLogo4}
           alt=""
@@ -110,8 +110,8 @@ const HomeServiceComponent = () => {
           height={undefined}
         />
         <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-          <h2 className="text-2xl font-bold mb-2 text-brand">
-            Completely free shipping
+          <h2 className="text-2xl font-bold mb-2 title">
+            Completely Free Shipping Service
           </h2>
           <Paragraph className="text-gray-400 py-3">
             Items prices that fit your budget

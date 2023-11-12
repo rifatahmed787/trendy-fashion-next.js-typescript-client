@@ -100,7 +100,7 @@ export const links = [
           { name: "Blog", link: "/blog" },
           { name: "FAQ", link: "/accordian" },
           { name: "About Us", link: "/about" },
-          { name: "Contact Us", link: "/contact" },
+          { name: "Contact Us", link: "/contactus" },
         ],
       },
     ],
