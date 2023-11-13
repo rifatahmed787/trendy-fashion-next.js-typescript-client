@@ -16,6 +16,14 @@ hero section
   /* font-family: "Montserrat", sans-serif; */
 }
 
+.latest-product-super {
+  background-image: url("../assets/HomePageBannerImg/homesuper.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  border-radius: 15px;
+}
+
 .title {
   font-family: "Playfair Display", serif;
 }
