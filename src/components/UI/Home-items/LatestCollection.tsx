@@ -1,5 +1,4 @@
 "use client";
-
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/grid";
@@ -15,7 +14,6 @@ import CartProduct from "../CartProduct";
 import { useGetLatestProductsQuery } from "@/Redux/features/products/productApi";
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import WhiteButton from "@/components/Button/SecondaryButton";
-import Paragraph from "../Paragraph/Paragraph";
 
 const LatestCollection = () => {
   const router = useRouter();
@@ -26,7 +24,6 @@ const LatestCollection = () => {
   } = useGetLatestProductsQuery({});
 
   const latest_products = latestProducts?.data;
-  console.log(latest_products);
 
   const SwiperButtonNext = () => {
     const swiper = useSwiper();
@@ -64,7 +61,7 @@ const LatestCollection = () => {
         </div>
 
         <div className="col-span-5 ">
-          <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-10">
+          <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
             <h1 className=" ml-5 text-2xl font-bold relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:bottom-0 after:w-44 after:h-0.5 mb-5 title">
               Latest Collections
             </h1>

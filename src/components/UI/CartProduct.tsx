@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { IProduct } from "@/Types/products";
+import Ratings from "./Rating/Rating";
 const CartProduct = ({ product }: { product: IProduct }) => {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -58,8 +59,15 @@ const CartProduct = ({ product }: { product: IProduct }) => {
         <h2 className="mt-3 text-xl capitalize title">
           {product?.productName}
         </h2>
-        <del className="text-sm text-red-700">$49</del>
-        <p className="ml-1 mt-2 inline-block text-sm text-gray-700">
+
+        <div className="flex gap-5 items-center">
+          <del className="text-sm text-red-700">$49</del>
+          <Ratings
+            starClassName="w-4 h-4 lg:w-5 lg:h-5"
+            ratings={product?.productRating || 0}
+          />
+        </div>
+        <p className="ml-1 mt-2 inline-block text-lg font-bold text-gray-700">
           ${product?.productPrice}
         </p>
       </div>

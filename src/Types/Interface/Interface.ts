@@ -23,4 +23,17 @@ export interface PortalProps {
   children: React.ReactNode;
 }
 
+export interface IStar extends IGeneralProps {
+  ratings: number;
+  starClassName?: string;
+  starProps?: any;
+}
+
+export interface IStarProps extends IGeneralProps {
+  state?: "full" | "half" | "empty";
+  size?: number;
+  color?: string;
+  onClick?: () => void;
+}
+
 export type TToggler = [boolean, () => void, (value: boolean) => void];
