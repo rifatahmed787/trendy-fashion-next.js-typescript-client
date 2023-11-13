@@ -8,13 +8,13 @@ const Thanks = () => {
         <span className="block xl:inline">The Heart of Our Brand:</span>
         <span className="block text-primary-100 xl:inline">You</span>
       </h1>
-      <p className="mx-auto text-base text-gray-500 sm:max-w-md md:max-w-3xl mt-10">
+      <p className="mx-auto text-base text-gray-500 sm:max-w-md md:max-w-3xl mt-10 px-5">
         At Trendy Fashion, we believe in more than just products – we believe in
         journeys, in connections, and in crafting experiences that resonate with
         you. Our story began at a humble kitchen table, fueled by a passion for
         innovation and a desire to create something exceptional.
       </p>
-      <div className="relative flex flex-col sm:flex-row sm:space-x-4 justify-center mt-10">
+      <div className="relative flex flex-col sm:flex-row sm:space-x-4 justify-center mt-10 px-10">
         <Link
           href="/contactus"
           className="flex items-center w-full px-6 py-3 mb-3 text-lg bg-primary-100 rounded-md sm:mb-0 sm:w-auto"
