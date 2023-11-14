@@ -26,10 +26,10 @@ const ProductSearchbar = ({
           setSerchKey(e.target.value);
         }}
         required={true}
-        className="pr-10"
+        className="pr-10 md:pr-20"
       />
       <button
-        className="hover:bg-primary text-black h-[44px] px-2 py-1  rounded-r-md  hover:text-white -ml-10 z-10"
+        className="hover:bg-primary text-black h-[44px] px-2 py-1  rounded-r-md  hover:text-white hover:bg-primary-100 -ml-10 z-10"
         onClick={() => handleFilterValue(serch_key)}
       >
         {ICONS.Search_Icon}

@@ -90,7 +90,9 @@ const ProductList = () => {
         } flex`}
       >
         <div
-          className={` ${open ? "w-72" : "w-[5px] "}   relative duration-700`}
+          className={` ${
+            open ? "w-72" : "w-[5px] "
+          }   relative duration-700 mx-auto`}
         >
           <svg
             className={`text-primary-300 absolute   -top-5  z-10 cursor-pointer  rounded-full  ${
@@ -142,7 +144,7 @@ const ProductList = () => {
                   <ProductSkeleton />
                 </>
               ) : (
-                <div className="w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
+                <div className=" mt-5 md:mt-0 w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
                   {!isError &&
                     !error &&
                     products_list_data?.length > 0 &&

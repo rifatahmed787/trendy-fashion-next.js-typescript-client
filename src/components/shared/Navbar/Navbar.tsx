@@ -11,10 +11,15 @@ import { usePathname } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
+import { useAppSelector } from "@/Hooks/useRedux";
+import Account from "./Account";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
+  const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, login } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
   const pathname = usePathname();
 
@@ -38,14 +43,63 @@ const Navbar = () => {
     };
   }, [handleScroll, previousScroll]);
 
-  const navbarClasses = `fixed   z-40 border-b w-full border-gray-200 transition-transform duration-300 ${
+  const toggleAccountDropdown = () =>
+    setAccountDropdownOpen(!accountDropdownOpen);
+  const accountDropdownClose = () => setAccountDropdownOpen(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
+  };
+
+  // account menu
+  const account = (
+    <>
+      {/*................ Account dropdown menu start ................*/}
+      <li
+        className="font-bold py-3 px-5 cursor-pointer text-white hover:bg-white hover:text-black duration-700 relative"
+        onMouseEnter={toggleAccountDropdown}
+        onMouseLeave={accountDropdownClose}
+      >
+        <div
+          className="flex group cursor-pointer items-center"
+          onClick={toggleAccountDropdown}
+        >
+          <span onClick={() => setAccountDropdownOpen(false)}>
+            <Image
+              width={undefined}
+              height={undefined}
+              src={user?.imageUrl}
+              alt=""
+              className="w-10 h-10 rounded-full mx-auto"
+            />
+          </span>
+          <Icon
+            icon="iconamoon:arrow-down-2-bold"
+            className="group-hover:translate-y-1 duration-300"
+            width="25"
+          />
+        </div>
+
+        {accountDropdownOpen && (
+          <ul
+            className={`dropdown-menu border-t-2 border-primary py-4 absolute right-0 left-auto mt-3 w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Account setAccountDropdownOpen={setAccountDropdownOpen} />
+          </ul>
+        )}
+      </li>
+    </>
+  );
+
+  const navbarClasses = `fixed   z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-10 ${
     isNavbarVisible ? "translate-y-0 top-10" : "-translate-y-full top-auto"
   } bg-white shadow-sm`;
 
   return (
     <>
       <nav className={navbarClasses}>
-        <div className="flex items-center justify-around font-medium">
+        <div className="flex items-center justify-between font-medium">
           <div className="z-50 flex w-full justify-between p-1 md:w-auto">
             <Link href="/">
               <Image
@@ -56,7 +110,10 @@ const Navbar = () => {
               />
             </Link>
           </div>
-          <ul className="hidden items-center gap-5 md:flex ">
+          <ul className="hidden items-center gap-10 md:flex ">
+            <div className="mx-10">
+              <ProductSearchbar />
+            </div>
             <li>
               <Link
                 href="/"
@@ -85,20 +142,10 @@ const Navbar = () => {
 
             {/* dropdown navlinks */}
             <NavLinks />
-
-            {/* <ProductSearchbar/> */}
           </ul>
 
           <div className="hidden md:block">
             <div className="flex gap-4">
-              {/* <Link href="/goldsmith/order/summery">
-                <Icon icon="solar:cart-line-duotone" />
-              </Link>
-              <Icon
-                icon="streamline:interface-favorite-heart-reward-social-rating-media-heart-it-like-favorite-love"
-                // onClick={() => setShowMyModal(true)}
-              /> */}
-
               <button
                 onClick={(e) => {
                   e.preventDefault();
