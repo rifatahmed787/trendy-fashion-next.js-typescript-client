@@ -1,11 +1,7 @@
 /* eslint-disable react/jsx-key */
 "use client";
 import React, { useEffect, useState } from "react";
-import FilterByGender from "./FilterByGender";
 import FilterByCategory from "./FilterByCategory";
-import FilterByPriceRange from "./FilterByPrice";
-import FilterByColor from "./FilterByColor";
-import FilterAccordion from "./FilterAccordian";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useGetProductsQuery } from "@/Redux/features/products/productApi";
 import ProductCard from "../UI/ProductCard";
@@ -27,7 +23,6 @@ const ProductList = () => {
     productName: "",
     productCategory: "",
     productGender: "",
-    age: "",
     search: "",
   });
   // the useGetProductsQuery hook
@@ -39,30 +34,11 @@ const ProductList = () => {
   } = useGetProductsQuery({
     page: pagination.currentPage,
     limit: pagination.pageSize,
+    productName: filter.productName,
+    productCategory: filter.productCategory,
+    productGender: filter.productGender,
+    searchTerm: filter.search,
   });
-
-  const [list, setList] = useState([
-    {
-      heading: "Gender",
-      filterContent: <FilterByGender />,
-      active: 0,
-    },
-    {
-      heading: "Filter By Category",
-      filterContent: <FilterByCategory />,
-      active: 0,
-    },
-    {
-      heading: "Filter By Price",
-      filterContent: <FilterByPriceRange />,
-      active: 0,
-    },
-    {
-      heading: "Filter By color",
-      filterContent: <FilterByColor />,
-      active: 0,
-    },
-  ]);
 
   const searchParams = useSearchParams();
 
@@ -96,7 +72,6 @@ const ProductList = () => {
       productName: searchParams.get("productName") ?? "",
       productCategory: searchParams.get("productCategory") ?? "",
       productGender: searchParams.get("productGender") ?? "",
-      age: searchParams.get("age") ?? "",
       search: searchParams.get("search") ?? "",
     };
 
@@ -151,9 +126,7 @@ const ProductList = () => {
               <div className=" flex h-auto items-center justify-center">
                 <div className="h-auto w-64 border p-5">
                   <p className="text-xl font-semibold">Filter By</p>
-                  {list?.map((item, key) => (
-                    <FilterAccordion item={item} />
-                  ))}
+                  <FilterByCategory filter={filter} setFilter={setFilter} />
                 </div>
               </div>
             </div>
@@ -162,20 +135,14 @@ const ProductList = () => {
 
         {/* body */}
         <div className="flex-1">
-          <div className=" pb-10">
-            <div className="mx-auto text-center lg:max-w-xl">
-              <p className=" mb-4 inline-block text-2xl font-semibold uppercase tracking-wider lg:text-[32px]">
-                Products
-              </p>
-            </div>
-
+          <div className="pb-10">
             <div>
               {isLoading ? (
                 <>
                   <ProductSkeleton />
                 </>
               ) : (
-                <div className=" mt-20 w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
+                <div className="w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
                   {!isError &&
                     !error &&
                     products_list_data?.length > 0 &&
