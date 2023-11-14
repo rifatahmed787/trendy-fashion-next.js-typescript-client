@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import TextInput from "../UI/Form-items/TextInput";
 import ICONS from "../shared/Icons/AllIcons";
 
-const BookSearchbar = ({
+const ProductSearchbar = ({
   current_value,
   handleFilterValue,
 }: {
@@ -38,4 +38,4 @@ const BookSearchbar = ({
   );
 };
 
-export default BookSearchbar;
+export default ProductSearchbar;

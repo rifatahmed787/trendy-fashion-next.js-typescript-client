@@ -10,6 +10,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
+import ProductSearchbar from "@/components/Products/ProductSearchbar";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -84,6 +85,8 @@ const Navbar = () => {
 
             {/* dropdown navlinks */}
             <NavLinks />
+
+            {/* <ProductSearchbar/> */}
           </ul>
 
           <div className="hidden md:block">

@@ -28,3 +28,18 @@ const BlogSkeleton = () => {
 };
 
 export default BlogSkeleton;
+
+// const ProductCardSkeleton = () => {
+//   return (
+//     <div className="h-[450px] w-[300px] p-4 border border-gray-300 rounded-lg">
+//       <div className="h-[60%] bg-gray-300 rounded-md mb-4 animate-pulse"></div>
+//       <div className="h-4 w-20 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+//       <div className="h-4 w-40 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+//       <div className="h-4 w-24 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+//       <div className="flex justify-between">
+//         <div className="h-4 w-12 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+//         <div className="h-4 w-8 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+//       </div>
+//     </div>
+//   );
+// };

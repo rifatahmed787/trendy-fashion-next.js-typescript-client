@@ -1,14 +1,45 @@
 /* eslint-disable react/jsx-key */
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterByGender from "./FilterByGender";
 import FilterByCategory from "./FilterByCategory";
 import FilterByPriceRange from "./FilterByPrice";
 import FilterByColor from "./FilterByColor";
 import FilterAccordion from "./FilterAccordian";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useGetProductsQuery } from "@/Redux/features/products/productApi";
+import ProductCard from "../UI/ProductCard";
+import { IProduct } from "@/Types/products";
+import Pagination from "../Pagination/Pagination";
+import ProductSkeleton from "./ProductSkeleton";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
+  const router = useRouter();
+  // Pagination state
+  const [pagination, setPagination] = useState({
+    totalPage: 1,
+    pageSize: 10,
+    currentPage: 1,
+  });
+  // filter state and effect
+  const [filter, setFilter] = useState({
+    productName: "",
+    productCategory: "",
+    productGender: "",
+    age: "",
+    search: "",
+  });
+  // the useGetProductsQuery hook
+  const {
+    data: products,
+    isLoading,
+    isError,
+    error,
+  } = useGetProductsQuery({
+    page: pagination.currentPage,
+    limit: pagination.pageSize,
+  });
 
   const [list, setList] = useState([
     {
@@ -33,31 +64,49 @@ const ProductList = () => {
     },
   ]);
 
-  //   const {data:dresses, isLoading, isError} = useGetDressQuery()
+  const searchParams = useSearchParams();
 
-  // decide what to render
-  //   let content = null;
+  // Handlers for page navigation
+  const handleSelectPage = (clickedPage: number) => {
+    setPagination({ ...pagination, currentPage: clickedPage });
+  };
 
-  //   if(isLoading){
-  //     content= (<>
-  //     <CardLoader />
-  //     <CardLoader />
-  //     <CardLoader />
-  //     <CardLoader />
-  //     </>)
-  //   }
+  const handleNextPage = () => {
+    setPagination((prev) => ({ ...prev, currentPage: prev.currentPage + 1 }));
+  };
 
-  //   if(!isLoading && isError) {
-  //     content= <Error message="There was an error"/>
-  //   }
+  const handlePreviousPage = () => {
+    setPagination((prev) => ({ ...prev, currentPage: prev.currentPage - 1 }));
+  };
+  const handlePageSizeChange = (newPageSize: number) => {
+    setPagination({ pageSize: newPageSize, currentPage: 1, totalPage: 1 });
+  };
 
-  //   if(!isLoading && !isError && dresses?.length === 0){
-  // content = <Error message="No Dress Found !"/>
-  //   }
+  useEffect(() => {
+    const totalProducts = products?.data?.meta?.total ?? 0;
+    const newTotalPage = Math.ceil(totalProducts / pagination.pageSize);
+    setPagination((prev) => ({
+      ...prev,
+      totalPage: newTotalPage > 0 ? newTotalPage : 1,
+    }));
+  }, [products, pagination.pageSize]);
 
-  //   if(!isLoading && !isError && dresses?.length > 0){
-  //     content = dresses.map(dress => <ProductCard key={dress.id} singleProduct={dress}/>)
-  //       }
+  useEffect(() => {
+    const tempSearchParams = {
+      productName: searchParams.get("productName") ?? "",
+      productCategory: searchParams.get("productCategory") ?? "",
+      productGender: searchParams.get("productGender") ?? "",
+      age: searchParams.get("age") ?? "",
+      search: searchParams.get("search") ?? "",
+    };
+
+    // Convert 'searchParams' to a regular object
+    const searchParamsObj = Object.fromEntries(searchParams.entries());
+    setFilter({ ...tempSearchParams, ...searchParamsObj });
+  }, [router, searchParams]);
+
+  const products_list_data = products?.data?.data;
+
   return (
     <div className="mx-auto max-w-screen-2xl mt-10">
       <div
@@ -120,11 +169,36 @@ const ProductList = () => {
               </p>
             </div>
 
-            {/* <div className="md:grid-cole-3 mx-auto grid gap-10 sm:grid-cols-2 lg:max-w-screen-lg lg:grid-cols-4">
-                {
-                  content
-                }
-              </div> */}
+            <div>
+              {isLoading ? (
+                <>
+                  <ProductSkeleton />
+                </>
+              ) : (
+                <div className=" mt-20 w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
+                  {!isError &&
+                    !error &&
+                    products_list_data?.length > 0 &&
+                    products_list_data.map((product: IProduct) => {
+                      return <ProductCard key={product.id} product={product} />;
+                    })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Pagination component */}
+          <div className="mx-auto max-w-screen-2xl mt-10">
+            <Pagination
+              totalPage={pagination.totalPage}
+              pageSize={pagination.pageSize}
+              currentPage={pagination.currentPage}
+              pageSizeOptions={[5, 10, 15, 20, 25, 30, 35, 40, 45, 50]}
+              handleSelectPage={handleSelectPage}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              handlePageSizeChange={handlePageSizeChange}
+            />
           </div>
         </div>
       </div>

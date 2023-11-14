@@ -1,17 +1,18 @@
 "use client";
-
 import { useEffect, useMemo } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-interface IPagignationProps {
+interface IPaginationProps {
   isLoading?: boolean;
   totalPage: number;
   pageSize: number;
   currentPage: number;
   paginationOption?: number;
+  pageSizeOptions?: number[];
   handleSelectPage?: (clickedPage: number) => void;
   handleNextPage?: (nextPage: number) => void;
   handlePreviousPage?: (previousPage: number) => void;
+  handlePageSizeChange?: (newPageSize: number) => void;
 }
 
 export default function Pagination({
@@ -20,19 +21,19 @@ export default function Pagination({
   totalPage = 1,
   currentPage = 1,
   paginationOption = 5,
+  pageSizeOptions = [5, 10, 15],
   handleSelectPage,
   handleNextPage,
   handlePreviousPage,
-}: IPagignationProps) {
+  handlePageSizeChange,
+}: IPaginationProps) {
   const paginationPageNumbers = useMemo(() => {
     const pageNumbers = [];
     if (totalPage <= paginationOption) {
-      // If totalPage is less than or equal to paginationOption, show all page numbers
       for (let i = 1; i <= totalPage; i++) {
         pageNumbers.push(i);
       }
     } else {
-      // Otherwise, calculate the range of page numbers to display centered around the currentPage
       const halfOption = Math.floor(paginationOption / 2);
       let start = Math.max(currentPage - halfOption, 1);
       let end = Math.min(currentPage + halfOption, totalPage);
@@ -52,27 +53,41 @@ export default function Pagination({
   }, [totalPage, currentPage, paginationOption]);
 
   return (
-    <div className="flex justify-between items-center mt-10 lg:mt-16 ">
+    <div className="flex justify-center gap-5 md:gap-10 items-center my-5 md:my-10 ">
       <span className="text-gray-600 text-lg hidden lg:block">
-        Showing entries {pageSize * currentPage} out of {pageSize * totalPage}
+        Showing {pageSize * currentPage} out of {pageSize * totalPage}
       </span>
+      <div className="flex items-center space-x-2">
+        <span className="text-gray-600 text-lg hidden lg:block">Show:</span>
+        <select
+          value={pageSize}
+          onChange={(e) => handlePageSizeChange?.(parseInt(e.target.value))}
+          className="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+        >
+          {pageSizeOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="flex space-x-4 mx-auto lg:mx-0">
         <button
           disabled={currentPage === 1 || isLoading}
           onClick={() => handlePreviousPage?.(currentPage - 1)}
-          className="rounded-white-button hover:rounded-black-button disabled:cursor-not-allowed"
+          className="p-2 rounded-full hover:bg-primary-100 disabled:cursor-not-allowed group"
         >
-          <IoIosArrowBack className="lg:text-xl text-[#A7A7A7] hover:text-white" />
+          <IoIosArrowBack className="lg:text-xl text-[#A7A7A7] group-hover:text-white duration-200" />
         </button>
         {paginationPageNumbers?.map((paginationPageNumber) => (
           <button
             key={paginationPageNumber}
             disabled={paginationPageNumber === currentPage || isLoading}
             onClick={() => handleSelectPage?.(paginationPageNumber)}
-            className={`disabled:cursor-not-allowed ${
+            className={`disabled:cursor-not-allowed px-2 ${
               paginationPageNumber === currentPage
-                ? "rounded-black-button"
-                : "rounded-white-button"
+                ? "p-[1px] rounded-full bg-primary-100 text-white"
+                : ""
             }`}
           >
             {paginationPageNumber}
@@ -81,9 +96,9 @@ export default function Pagination({
         <button
           disabled={currentPage === totalPage || isLoading}
           onClick={() => handleNextPage?.(currentPage + 1)}
-          className="rounded-white-button hover:rounded-black-button disabled:cursor-not-allowed"
+          className="p-2 rounded-full hover:bg-primary-100 disabled:cursor-not-allowed group"
         >
-          <IoIosArrowForward className="lg:text-xl text-[#A7A7A7] hover:text-white" />
+          <IoIosArrowForward className="lg:text-xl text-[#A7A7A7] group-hover:text-white duration-200" />
         </button>
       </div>
     </div>

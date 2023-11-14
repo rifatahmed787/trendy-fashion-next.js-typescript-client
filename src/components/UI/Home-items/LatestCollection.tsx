@@ -135,7 +135,7 @@ const LatestCollection = () => {
               Top Quality of Product Store !
             </h5>
             <h1 className="text-xl md:text-3xl font-bold title pb-3 text-white">
-              Find your Exciting Product at Our Trendy Shop.
+              Find your Exciting Products at Our Trendy Shop.
             </h1>
             <div className="pb-3">
               <WhiteButton text="Buy Now" />
