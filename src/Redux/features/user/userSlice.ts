@@ -5,14 +5,14 @@ interface IUserState {
   id: number | undefined;
   userName: string | undefined;
   email: string | undefined;
-  imageUrl: string | undefined;
+  avatar: string | undefined;
 }
 
 const initialState: IUserState = {
   id: undefined,
   userName: undefined,
   email: undefined,
-  imageUrl: undefined,
+  avatar: undefined,
 };
 
 export const userSlice = createSlice({
@@ -20,12 +20,12 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<IGetUserDetailsRes>) => {
-      const { id, userName, email, imageUrl } = action.payload;
+      const { id, userName, email, avatar } = action.payload;
       console.log(action.payload);
       state.id = id;
       state.userName = userName;
       state.email = email;
-      state.imageUrl = imageUrl;
+      state.avatar = avatar;
     },
     clearUser: (state) => {
       state.id = undefined;

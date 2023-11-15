@@ -5,13 +5,14 @@ import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import { logout } from "@/Redux/features/auth/authSlice";
+import { AnimatePresence, motion } from "framer-motion";
 
 type AccountProps = {
   setAccountDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
-  const { user } = useAppSelector((state: { auth: any }) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   // handle logout
@@ -20,23 +21,29 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
   };
 
   return (
-    <>
-      <li className="overflow-y-auto">
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, height: 0 }}
+        animate={{ opacity: 1, height: "auto" }}
+        exit={{ opacity: 0, height: 0 }}
+        transition={{ duration: 0.5 }}
+        className=" bg-white"
+      >
         {/* user profile */}
         <div
-          className={`relative after:absolute after:content-normal after:w-full after:h-0.5`}
+          className={`relative after:absolute after:content-normal after:w-full after:h-0.5 after:bg-primary-100 `}
         >
           <Image
-            width={undefined}
-            height={undefined}
-            src={user?.imageUrl}
+            width={50}
+            height={50}
+            src="https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
             alt=""
-            className="w-16 h-16 rounded-full mx-auto"
+            className="rounded-full mx-auto"
           />
 
           <h2 className={`text-lg font-bold text-center my-1`}>
             {" "}
-            {user?.name?.firstName} {user?.name?.lastName}
+            {user?.username}
           </h2>
           <Link href="" className="flex justify-center mb-2">
             <BrandButton text="View Profile" icon="" />
@@ -48,14 +55,14 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
         >
           {/* dashboard */}
           <li>
-            <a
+            <Link
               href="#"
               className={`px-4 py-2 text-base w-full text-left text-gray-700  flex items-center gap-2`}
               onClick={() => setAccountDropdownOpen(false)}
             >
               <Icon icon="material-symbols:dashboard-outline" width={20} />
               Dashboard
-            </a>
+            </Link>
           </li>
 
           {/* shop */}
@@ -110,13 +117,13 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
         {/* <ToggleButton /> */}
         <button
           onClick={handleLogout}
-          className={`px-4 py-2 text-base w-full text-left text-gray-700 flex items-center gap-2 `}
+          className={`px-4 pb-3 text-base w-full text-left text-gray-700 flex items-center gap-2 `}
         >
           <Icon icon="humbleicons:logout" width={20} />
           Log out
         </button>
-      </li>
-    </>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

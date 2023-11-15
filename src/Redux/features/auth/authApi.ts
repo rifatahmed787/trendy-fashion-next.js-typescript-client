@@ -24,7 +24,7 @@ export const authApi = apiSlice.injectEndpoints({
             dispatch(
               login({
                 isLoggedIn: true,
-                user: signupRes?.data?.data?.user_details?.email || null,
+                user: signupRes?.data?.data?.user_details || null,
                 accessToken: signupRes?.data?.data?.accessToken || null,
                 refreshToken: signupRes?.data?.data?.refreshToken || null,
               })
@@ -33,7 +33,7 @@ export const authApi = apiSlice.injectEndpoints({
             Cookies.set(
               "user",
               JSON.stringify({
-                user: signupRes?.data?.data?.user_details?.email,
+                user: signupRes?.data?.data?.user_details,
                 isLoggedIn: true,
               })
             );
@@ -62,7 +62,7 @@ export const authApi = apiSlice.injectEndpoints({
             dispatch(
               login({
                 isLoggedIn: true,
-                user: loginRes?.data?.data?.user_details?.email || null,
+                user: loginRes?.data?.data?.user_details || null,
                 accessToken: loginRes?.data?.data?.accessToken || null,
                 refreshToken: loginRes?.data?.data?.refreshToken || null,
               })
@@ -71,7 +71,7 @@ export const authApi = apiSlice.injectEndpoints({
             Cookies.set(
               "user",
               JSON.stringify({
-                user: loginRes?.data?.data?.user_details?.email,
+                user: loginRes?.data?.data?.user_details,
                 isLoggedIn: true,
               })
             );

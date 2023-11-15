@@ -4,7 +4,7 @@ export interface IUser {
   username: string;
   hasVerifiedEmail?: boolean;
   role?: "admin" | "user";
-  avatar?: string;
+  avatar: string;
   phoneNumber?: string;
   location?: string;
   createdAt: string;
@@ -14,7 +14,7 @@ export interface IUser {
 //auth slice types
 export interface IAuthState {
   isLoggedIn: boolean;
-  user: string | null;
+  user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
 }
@@ -24,7 +24,7 @@ export interface IAuthState {
 export interface IRegister {
   username: string;
   email: string;
-  avatar?: string;
+  avatar: string;
   password: string;
 }
 
@@ -72,5 +72,5 @@ export interface IGetUserDetailsRes {
   id: number;
   userName: string;
   email: string;
-  imageUrl: string;
+  avatar: string;
 }

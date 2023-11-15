@@ -22,7 +22,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                 ? "transform scale-110 opacity-80 duration-700"
                 : "transform-none opacity-100"
             }`}
-            src={product.productImage[isHovered ? 1 : 0]}
+            src={product?.productImage[isHovered ? 1 : 0]}
             alt="product image"
           />
 

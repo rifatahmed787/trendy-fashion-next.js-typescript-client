@@ -11,17 +11,37 @@ import { usePathname } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
-import { useAppSelector } from "@/Hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "./Account";
+import Cookies from "js-cookie";
+import { login } from "@/Redux/features/auth/authSlice";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, login } = useAppSelector((state) => state.auth);
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const userCookie = Cookies.get("user");
+    if (userCookie) {
+      const userObject = JSON.parse(userCookie);
+      const { user, isLoggedIn } = userObject;
+
+      dispatch(
+        login({
+          user,
+          isLoggedIn,
+          accessToken: null,
+          refreshToken: null,
+        })
+      );
+    }
+  }, [dispatch]);
 
   const handleScroll = () => {
     const currentScroll = window.scrollY;
@@ -47,16 +67,12 @@ const Navbar = () => {
     setAccountDropdownOpen(!accountDropdownOpen);
   const accountDropdownClose = () => setAccountDropdownOpen(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
-  };
-
   // account menu
   const account = (
     <>
       {/*................ Account dropdown menu start ................*/}
-      <li
-        className="font-bold py-3 px-5 cursor-pointer text-white hover:bg-white hover:text-black duration-700 relative"
+      <div
+        className=" cursor-pointer  relative"
         onMouseEnter={toggleAccountDropdown}
         onMouseLeave={accountDropdownClose}
       >
@@ -66,29 +82,29 @@ const Navbar = () => {
         >
           <span onClick={() => setAccountDropdownOpen(false)}>
             <Image
-              width={undefined}
-              height={undefined}
-              src={user?.imageUrl}
+              width={50}
+              height={50}
+              src="https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
               alt=""
-              className="w-10 h-10 rounded-full mx-auto"
+              className="rounded-full mx-auto"
             />
           </span>
           <Icon
             icon="iconamoon:arrow-down-2-bold"
-            className="group-hover:translate-y-1 duration-300"
+            className="group-hover:translate-y-1 duration-300 text-primary-100"
             width="25"
           />
         </div>
 
         {accountDropdownOpen && (
           <ul
-            className={`dropdown-menu border-t-2 border-primary py-4 absolute right-0 left-auto mt-3 w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
+            className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
             onClick={() => setIsMenuOpen(false)}
           >
             <Account setAccountDropdownOpen={setAccountDropdownOpen} />
           </ul>
         )}
-      </li>
+      </div>
     </>
   );
 
@@ -144,21 +160,27 @@ const Navbar = () => {
             <NavLinks />
           </ul>
 
-          <div className="hidden md:block">
-            <div className="flex gap-4">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  openModal("login");
-                }}
-                className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
-                type="button"
-              >
-                <Icon icon="mdi:user" width={25} />
-                Signin
-              </button>
-            </div>
-          </div>
+          {user?.email && isLoggedIn ? (
+            <>{account}</>
+          ) : (
+            <>
+              <div className="hidden md:block">
+                <div className="flex gap-4">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      openModal("login");
+                    }}
+                    className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
+                    type="button"
+                  >
+                    <Icon icon="mdi:user" width={25} />
+                    Signin
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
 
           {/* Mobile navbar */}
           <ul className={`fixed z-50 w-full md:hidden`}>
