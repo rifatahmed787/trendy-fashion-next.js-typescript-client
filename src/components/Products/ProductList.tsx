@@ -8,10 +8,13 @@ import ProductCard from "../UI/ProductCard";
 import { IProduct } from "@/Types/products";
 import Pagination from "../Pagination/Pagination";
 import ProductSkeleton from "./ProductSkeleton";
+import { useSelector } from "react-redux";
+import { selectSearch } from "@/Redux/features/products/searchSlice";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
   const router = useRouter();
+  const searchTerm = useSelector(selectSearch);
   // Pagination state
   const [pagination, setPagination] = useState({
     totalPage: 1,
@@ -37,7 +40,7 @@ const ProductList = () => {
     productName: filter.productName,
     productCategory: filter.productCategory,
     productGender: filter.productGender,
-    searchTerm: filter.search,
+    searchTerm: searchTerm,
   });
 
   const searchParams = useSearchParams();

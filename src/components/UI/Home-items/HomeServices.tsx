@@ -29,7 +29,7 @@ const HomeServiceComponent = () => {
             Items prices that fit your budget
           </Paragraph>
           <Link
-            href="/"
+            href="/accordian"
             className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
           >
             <p className="text-xl font-semibold pr-2 ">Read more </p>
@@ -59,7 +59,7 @@ const HomeServiceComponent = () => {
             We work with a focus on 100% customer satisfaction.
           </Paragraph>
           <Link
-            href="/"
+            href="/accordian"
             className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
           >
             <p className="text-xl font-semibold pr-2">Read more </p>
@@ -87,7 +87,7 @@ const HomeServiceComponent = () => {
             Don't bother with payment details.
           </Paragraph>
           <Link
-            href="/"
+            href="/accordian"
             className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
           >
             <p className="text-xl font-semibold mr-2">Read more </p>
@@ -117,7 +117,7 @@ const HomeServiceComponent = () => {
             Items prices that fit your budget
           </Paragraph>
           <Link
-            href="/"
+            href="/accordian"
             className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
           >
             <p className="text-xl font-semibold mr-2">Read more </p>

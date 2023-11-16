@@ -7,7 +7,7 @@ import Logo from "../../../assets/Logo/trendy.svg";
 import NavLinks from "./NavLinks";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
@@ -25,6 +25,7 @@ const Navbar = () => {
   const { openModal } = useModal();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   useEffect(() => {
     const userCookie = Cookies.get("user");

@@ -40,18 +40,18 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           <div className="absolute right-2 top-0">
             <Icon
               icon="mdi:heart-outline"
-              className="cursor-pointer rounded-full p-1 hover:text-gray-500"
+              className="cursor-pointer rounded-full p-1 hover:text-primary-100"
               width={25}
               height={64}
             />
             <Icon
               icon="iconamoon:restart-fill"
-              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-gray-500 group-hover:translate-x-0"
+              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-primary-100 group-hover:translate-x-0"
               width={25}
             />
             <Icon
               icon="basil:eye-outline"
-              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-gray-500 group-hover:translate-x-0"
+              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
               width={25}
             />
           </div>

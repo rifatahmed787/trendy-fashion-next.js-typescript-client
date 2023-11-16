@@ -2,35 +2,38 @@
 import { useState, useEffect } from "react";
 import TextInput from "../UI/Form-items/TextInput";
 import ICONS from "../shared/Icons/AllIcons";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSearch, setSearch } from "@/Redux/features/products/searchSlice";
+import { useRouter } from "next/navigation";
 
-const ProductSearchbar = ({
-  current_value,
-  handleFilterValue,
-}: {
-  current_value: string;
-  handleFilterValue: (value: string) => void;
-}) => {
-  const [serch_key, setSerchKey] = useState("");
+const ProductSearchbar = () => {
+  const dispatch = useDispatch();
+  const searchValue = useSelector(selectSearch);
+  const [searchKey, setSearchKey] = useState("");
+  const router = useRouter();
 
   useEffect(() => {
-    setSerchKey(current_value);
-  }, [current_value]);
+    setSearchKey(searchValue);
+  }, [searchValue]);
+
+  const handleFilterValue = () => {
+    dispatch(setSearch(searchKey));
+    router.push(`/products?search=${encodeURIComponent(searchKey)}`);
+  };
 
   return (
     <div className="relative flex items-center ">
       <TextInput
         type="text"
         placeHolder="Search"
-        currentValue={serch_key}
-        onChange={(e) => {
-          setSerchKey(e.target.value);
-        }}
+        currentValue={searchKey}
+        onChange={(e) => setSearchKey(e.target.value)}
         required={true}
         className="pr-10 md:pr-20"
       />
       <button
-        className="hover:bg-primary text-black h-[44px] px-2 py-1  rounded-r-md  hover:text-white hover:bg-primary-100 -ml-10 z-10"
-        onClick={() => handleFilterValue(serch_key)}
+        className=" text-black h-11 px-2 py-1  rounded-r-md  hover:text-white hover:bg-primary-100 -ml-10 z-10"
+        onClick={handleFilterValue}
       >
         {ICONS.Search_Icon}
       </button>
