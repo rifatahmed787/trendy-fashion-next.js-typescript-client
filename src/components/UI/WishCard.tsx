@@ -1,42 +1,49 @@
-import React, { useEffect, useState } from "react";
+"use client";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
-import { IProduct } from "@/Types/products";
-import Ratings from "./Rating/Rating";
 import Link from "next/link";
-import { useAddProductInWishMutation } from "@/Redux/features/wishlist/wishApi";
+import React, { useEffect, useState } from "react";
+import Ratings from "./Rating/Rating";
+import { IWish } from "@/Types/wish";
+import { IProduct } from "@/Types/products";
 import { useAppSelector } from "@/Hooks/useRedux";
+import { useDeleteProductFromWishMutation } from "@/Redux/features/wishlist/wishApi";
 import useModal from "@/Hooks/useModal";
 import { get_error_messages } from "@/lib/Error_message";
+import ICONS from "../shared/Icons/AllIcons";
 import ToastContainer from "./Toast";
-const CartProduct = ({ product }: { product: IProduct }) => {
+
+const WishCard = ({ product }: { product: IWish }) => {
   const [isHovered, setIsHovered] = useState(false);
+
   const { openModal } = useModal();
+  const products: IProduct | undefined = product?.productId as IProduct;
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
     "success"
   );
   const [AlertMessages, setAlertMessages] = useState("");
-  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
 
   // add in wish mutation hook
   const [
-    addProductInWish,
+    deleteProductFromWish,
     {
-      data: addToWishData,
-      isLoading: isAddToWisLoading,
+      data: removeFromWishData,
+      isLoading: isRemoveWisLoading,
       isError,
       error,
       isSuccess,
     },
-  ] = useAddProductInWishMutation();
+  ] = useDeleteProductFromWishMutation();
 
   //wishListHandler
   const wishListHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn
-      ? addProductInWish({
+      ? deleteProductFromWish({
+          id: product?.id,
           productId: product?.id,
           userId: user?.id,
         })
@@ -53,9 +60,9 @@ const CartProduct = ({ product }: { product: IProduct }) => {
     } else if (isSuccess) {
       setIsAlertOpen(true);
       setAlertType("success");
-      setAlertMessages(addToWishData?.message);
+      setAlertMessages(removeFromWishData?.message);
     }
-  }, [addToWishData?.message, error, isError, isSuccess]);
+  }, [error, isError, isSuccess, removeFromWishData?.message]);
 
   return (
     <>
@@ -73,7 +80,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                 ? "transform scale-110 opacity-80 duration-700"
                 : "transform-none opacity-100"
             }`}
-            src={product?.productImage[isHovered ? 1 : 0]}
+            src={products?.productImage[isHovered ? 1 : 0]}
             alt="product image"
           />
 
@@ -91,41 +98,48 @@ const CartProduct = ({ product }: { product: IProduct }) => {
           <div className="absolute right-2 top-0">
             <button onClick={wishListHandler}>
               {" "}
-              <Icon
-                icon="mdi:heart-outline"
-                className="cursor-pointer rounded-full p-1 hover:text-primary-100"
-                width={25}
-              />
+              {isRemoveWisLoading ? (
+                ICONS.button_loading_icon
+              ) : (
+                <Icon
+                  icon="material-symbols:delete"
+                  className="cursor-pointer p-1 text-red-600"
+                  width={25}
+                  height={64}
+                />
+              )}
             </button>
+
             <Icon
               icon="iconamoon:restart-fill"
               className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-primary-100 group-hover:translate-x-0"
-              width={20}
+              width={25}
             />
             <Link href={`/products/productdetails/${product?.id}`}>
               <Icon
                 icon="basil:eye-outline"
                 className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
-                width={20}
+                width={25}
               />
             </Link>
           </div>
         </div>
         <h2 className="mt-3 text-xl capitalize title">
-          {product?.productName}
+          {products?.productName}
         </h2>
 
         <div className="flex gap-5 items-center">
           <del className="text-sm text-red-700">$49</del>
           <Ratings
             starClassName="w-4 h-4 lg:w-5 lg:h-5"
-            ratings={product?.productRating || 0}
+            ratings={products?.productRating || 0}
           />
         </div>
         <p className="ml-1 mt-2 inline-block text-lg font-bold text-gray-700">
-          ${product?.productPrice}
+          ${products?.productPrice}
         </p>
       </div>
+
       {/* Toast */}
       {isAlertOpen && (
         <ToastContainer
@@ -140,4 +154,4 @@ const CartProduct = ({ product }: { product: IProduct }) => {
   );
 };
 
-export default CartProduct;
+export default WishCard;

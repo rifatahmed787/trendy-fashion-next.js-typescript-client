@@ -3,7 +3,7 @@ import CheckBox from "../UI/Check-box/Checkbox";
 import { useGetUniqueFilteringItemsQuery } from "@/Redux/features/products/productApi";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
-import { AnimatePresence, motion } from "framer-motion";
+import AnimatedFilter from "../FramerMotion/AnimatedFilter/AnimatedFilter";
 
 type IFilterProduct = {
   filter: {
@@ -121,14 +121,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
         </div>
       </div>
 
-      <AnimatePresence>
+      <AnimatedFilter isVisible={isAllProducts}>
         {isAllProducts && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div>
             <div className="mt-2 flex items-center">
               <CheckBox
                 id="all-products"
@@ -149,9 +144,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
                 All Products
               </h1>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </AnimatedFilter>
 
       {/* ----------------------
         Filter By category items
@@ -174,14 +169,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
         </div>
       </div>
 
-      <AnimatePresence>
+      <AnimatedFilter isVisible={isFilterVisible}>
         {isFilterVisible && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div>
             {uniqueCategory.map((category: string) => (
               <div key={category} className="mt-2 flex items-center space-x-2">
                 <CheckBox
@@ -194,9 +184,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
                 </h1>
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </AnimatedFilter>
 
       {/* ----------------------
       Filter By gender items
@@ -218,14 +208,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
           </div>
         </div>
       </div>
-      <AnimatePresence>
+      <AnimatedFilter isVisible={isProductGender}>
         {isProductGender && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-          >
+          <div>
             {uniqueGender.map((gender: string) => (
               <div key={gender} className="mt-2 flex items-center space-x-2">
                 <CheckBox
@@ -238,9 +223,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
                 </h1>
               </div>
             ))}
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+      </AnimatedFilter>
     </div>
   );
 };

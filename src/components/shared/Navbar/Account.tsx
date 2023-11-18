@@ -5,7 +5,6 @@ import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import { logout } from "@/Redux/features/auth/authSlice";
-import { AnimatePresence, motion } from "framer-motion";
 
 type AccountProps = {
   setAccountDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,14 +20,8 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
   };
 
   return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0, height: 0 }}
-        animate={{ opacity: 1, height: "auto" }}
-        exit={{ opacity: 0, height: 0 }}
-        transition={{ duration: 0.5 }}
-        className=" bg-white"
-      >
+    <>
+      <div className="bg-gray-100">
         {/* user profile */}
         <div
           className={`relative after:absolute after:content-normal after:w-full after:h-0.5 after:bg-primary-100 `}
@@ -122,8 +115,8 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
           <Icon icon="humbleicons:logout" width={20} />
           Log out
         </button>
-      </motion.div>
-    </AnimatePresence>
+      </div>
+    </>
   );
 };
 

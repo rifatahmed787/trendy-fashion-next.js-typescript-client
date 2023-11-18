@@ -15,6 +15,7 @@ import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
+import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -32,12 +33,13 @@ const Navbar = () => {
     if (userCookie) {
       const userObject = JSON.parse(userCookie);
       const { user, isLoggedIn } = userObject;
+      const accessToken = Cookies.get("token") || null;
 
       dispatch(
         login({
           user,
           isLoggedIn,
-          accessToken: null,
+          accessToken,
           refreshToken: null,
         })
       );
@@ -97,20 +99,22 @@ const Navbar = () => {
           />
         </div>
 
-        {accountDropdownOpen && (
-          <ul
-            className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <Account setAccountDropdownOpen={setAccountDropdownOpen} />
-          </ul>
-        )}
+        <AnimatedFilter isVisible={accountDropdownOpen}>
+          {accountDropdownOpen && (
+            <ul
+              className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Account setAccountDropdownOpen={setAccountDropdownOpen} />
+            </ul>
+          )}
+        </AnimatedFilter>
       </div>
     </>
   );
 
-  const navbarClasses = `fixed   z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-10 ${
-    isNavbarVisible ? "translate-y-0 top-10" : "-translate-y-full top-auto"
+  const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-10 ${
+    isNavbarVisible ? "translate-y-0 top-[34px]" : "-translate-y-full top-auto"
   } bg-white shadow-sm`;
 
   return (

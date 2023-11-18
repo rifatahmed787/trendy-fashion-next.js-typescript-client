@@ -1,4 +1,7 @@
+"use client";
 import WhiteButton from "@/components/Button/SecondaryButton";
+import { textVariant } from "@/components/FramerMotion/Motion/motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
 
@@ -6,7 +9,7 @@ const HeroSection = () => {
   return (
     <div>
       <div className="hero-section">
-        <div className="py-20 px-10">
+        <motion.div variants={textVariant(0.5)} className="py-20 px-10">
           <p className="uppercase">Premium quality</p>
 
           <h1 className="title text-2xl md:text-5xl uppercase font-bold py-5 lg:w-1/2">
@@ -22,7 +25,7 @@ const HeroSection = () => {
               <WhiteButton text="Shop Now" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

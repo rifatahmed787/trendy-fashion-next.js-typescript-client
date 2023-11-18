@@ -3,6 +3,7 @@ import { useState } from "react";
 import NavLinks from "./NavLinks";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
+import ProductSearchbar from "@/components/Products/ProductSearchbar";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -101,9 +102,9 @@ const MobileNav = () => {
                   </Link>
                 </nav>
                 {/* searchbar */}
-                {/* <div className="pt-4 w-[70%] pl-4">
-                    <NavSearchbar />
-                  </div> */}
+                <div className="pt-4 w-[70%] pl-4">
+                  <ProductSearchbar />
+                </div>
               </div>
             </motion.div>
           </AnimatePresence>

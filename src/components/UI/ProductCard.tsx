@@ -1,10 +1,62 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { IProduct } from "@/Types/products";
 import Ratings from "./Rating/Rating";
+import Link from "next/link";
+import { useAddProductInWishMutation } from "@/Redux/features/wishlist/wishApi";
+import ToastContainer from "./Toast";
+import { get_error_messages } from "@/lib/Error_message";
+import { useAppSelector } from "@/Hooks/useRedux";
+import useModal from "@/Hooks/useModal";
+
 const ProductCard = ({ product }: { product: IProduct }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { openModal } = useModal();
+  // Alert State
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
+    "success"
+  );
+  const [AlertMessages, setAlertMessages] = useState("");
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+
+  // add in wish mutation hook
+  const [
+    addProductInWish,
+    {
+      data: addToWishData,
+      isLoading: isAddToWisLoading,
+      isError,
+      error,
+      isSuccess,
+    },
+  ] = useAddProductInWishMutation();
+
+  //wishListHandler
+  const wishListHandler = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? addProductInWish({
+          productId: product?.id,
+          userId: user?.id,
+        })
+      : openModal("login");
+  };
+
+  //error and success handlaing
+  useEffect(() => {
+    if (isError && error && "data" in error) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      const error_messages = get_error_messages(error);
+      setAlertMessages(error_messages);
+    } else if (isSuccess) {
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(addToWishData?.message);
+    }
+  }, [addToWishData?.message, error, isError, isSuccess]);
 
   return (
     <>
@@ -38,22 +90,27 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             </button>
           </div>
           <div className="absolute right-2 top-0">
-            <Icon
-              icon="mdi:heart-outline"
-              className="cursor-pointer rounded-full p-1 hover:text-primary-100"
-              width={25}
-              height={64}
-            />
+            <button onClick={wishListHandler}>
+              {" "}
+              <Icon
+                icon="mdi:heart-outline"
+                className="cursor-pointer rounded-full p-1 hover:text-primary-100"
+                width={35}
+              />
+            </button>
+
             <Icon
               icon="iconamoon:restart-fill"
               className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-primary-100 group-hover:translate-x-0"
-              width={25}
+              width={28}
             />
-            <Icon
-              icon="basil:eye-outline"
-              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
-              width={25}
-            />
+            <Link href={`/products/productdetails/${product?.id}`}>
+              <Icon
+                icon="basil:eye-outline"
+                className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                width={28}
+              />
+            </Link>
           </div>
         </div>
         <h2 className="mt-3 text-xl capitalize title">
@@ -71,6 +128,16 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           ${product?.productPrice}
         </p>
       </div>
+      {/* Toast */}
+      {isAlertOpen && (
+        <ToastContainer
+          type={AlertType}
+          messages={AlertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+          className="absolute  top-0 z-50 left-0 right-0 mx-auto flex justify-center"
+        />
+      )}
     </>
   );
 };

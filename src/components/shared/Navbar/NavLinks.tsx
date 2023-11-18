@@ -12,7 +12,7 @@ const NavLinks = () => {
   return (
     <>
       {links.map((link) => (
-        <div>
+        <div key={link.name}>
           <div className=" text-left md:cursor-pointer group">
             <h1
               className={`md:py-7 py-2 flex justify-between items-center md:pr-0 pr-5 group hover:text-primary-100`}
@@ -45,12 +45,15 @@ const NavLinks = () => {
                   </div>
                   <div className="bg-gray-100 p-5 grid grid-cols-2 gap-5 ">
                     {link?.sublinks?.map((mysublinks) => (
-                      <div>
+                      <div key={mysublinks.Head}>
                         <h1 className="text-lg font-semibold">
                           {mysublinks.Head}
                         </h1>
                         {mysublinks.sublink.map((slink) => (
-                          <li className="text-sm text-gray-600 my-2.5 hover:bg-gray-200 px-5">
+                          <li
+                            key={slink.name}
+                            className="text-sm text-gray-600 my-2.5 hover:bg-gray-200 px-5"
+                          >
                             <Link
                               href={slink.link}
                               className="hover:text-primary"
@@ -75,7 +78,7 @@ const NavLinks = () => {
           >
             {/* sub-links */}
             {link.sublinks.map((slinks) => (
-              <div>
+              <div key={slinks.Head}>
                 <div>
                   <h1
                     onClick={() =>
@@ -112,7 +115,10 @@ const NavLinks = () => {
                   >
                     {slinks.sublink.map((slink) => (
                       // eslint-disable-next-line react/jsx-key
-                      <li className="py-2 font-normal italic border-b pl-14 hover:bg-gray-300 hover:translate-x-1 duration-300">
+                      <li
+                        key={slink.name}
+                        className="py-2 font-normal italic border-b pl-14 hover:bg-gray-300 hover:translate-x-1 duration-300"
+                      >
                         <Link href={slink.link} className="">
                           {slink.name}
                         </Link>

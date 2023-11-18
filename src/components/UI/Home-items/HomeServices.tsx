@@ -8,12 +8,18 @@ import serviceLogo4 from "../../../assets/HomePageBannerImg/servicelogo4.png";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import Paragraph from "../Paragraph/Paragraph";
+import { delay, motion } from "framer-motion";
+import { fadeIn, textVariant } from "@/components/FramerMotion/Motion/motion";
 
 const HomeServiceComponent = () => {
+  const fadeInVariants = fadeIn("right", "spring", 0, 1.25);
   return (
     <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-xl mx-auto justify-items-center items-center sm:grid-cols-1  gap-5   extra-small-margin">
       {/* card one  */}
-      <div className=" w-80 h-72 lg:pr-3 group">
+      <motion.div
+        variants={fadeInVariants}
+        className=" w-80 h-72 lg:pr-3 group"
+      >
         <Image
           src={serviceLogo1}
           alt=""
@@ -21,7 +27,10 @@ const HomeServiceComponent = () => {
           width={undefined}
           height={undefined}
         />
-        <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md duration-300 overflow-hidden">
+        <motion.div
+          variants={textVariant(0)}
+          className="border border-gray-200 rounded-xl px-5 py-8 shadow-md duration-300 overflow-hidden"
+        >
           <h2 className="text-2xl font-bold mb-2 title">
             Amazing Value Every Day
           </h2>
@@ -39,11 +48,14 @@ const HomeServiceComponent = () => {
               width="30"
             />
           </Link>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
 
       {/* card two  */}
-      <div className="w-80 lg:pr-3  h-72 group overflow-hidden">
+      <motion.div
+        variants={fadeInVariants}
+        className="w-80 lg:pr-3  h-72 group overflow-hidden"
+      >
         <Image
           src={serviceLogo2}
           alt=""
@@ -70,10 +82,13 @@ const HomeServiceComponent = () => {
             />
           </Link>
         </div>
-      </div>
+      </motion.div>
 
       {/* card three  */}
-      <div className=" w-80 lg:pr-3 h-72 group overflow-hidden">
+      <motion.div
+        variants={fadeInVariants}
+        className=" w-80 lg:pr-3 h-72 group overflow-hidden"
+      >
         <Image
           src={serviceLogo3}
           alt=""
@@ -98,10 +113,13 @@ const HomeServiceComponent = () => {
             />
           </Link>
         </div>
-      </div>
+      </motion.div>
 
       {/* card four  */}
-      <div className="w-80 h-72 group overflow-hidden">
+      <motion.div
+        variants={fadeInVariants}
+        className="w-80 h-72 group overflow-hidden"
+      >
         <Image
           src={serviceLogo4}
           alt=""
@@ -128,7 +146,7 @@ const HomeServiceComponent = () => {
             />
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

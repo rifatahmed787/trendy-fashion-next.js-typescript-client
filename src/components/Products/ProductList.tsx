@@ -143,9 +143,9 @@ const ProductList = () => {
           <div className="pb-10">
             <div>
               {isLoading ? (
-                <>
+                <div className="mx-auto">
                   <ProductSkeleton />
-                </>
+                </div>
               ) : (
                 <div className=" mt-5 md:mt-0 w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
                   {!isError &&
