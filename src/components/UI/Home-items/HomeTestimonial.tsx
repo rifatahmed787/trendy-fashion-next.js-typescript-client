@@ -65,12 +65,12 @@ export default function TestimonialCarousel() {
         className="w-full h-full flex flex-col"
       >
         <SwiperSlide>
-          <div className="container px-5 md:px-10 py-10 mx-auto ">
+          <div className="container px-5 md:px-10 py-10 mx-auto w-11/12">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
-                <div className="h-full bg-gray-100 p-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
+                <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
                   {ICONS.koma_icon}
-                  <p className="leading-relaxed mb-6">
+                  <p className="leading-relaxed mb-5">
                     Synth chartreuse iPhone lomo cray raw denim brunch everyday
                     carry neutra before they sold out fixie 90's microdosing.
                     Tacos pinterest fanny pack venmo, post-ironic heirloom
@@ -105,12 +105,12 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="container px-5 md:px-10 py-10 mx-auto ">
+          <div className="container px-5 md:px-10 py-10 mx-auto w-11/12">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
-                <div className="h-full bg-gray-100 p-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
+                <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
                   {ICONS.koma_icon}
-                  <p className="leading-relaxed mb-6">
+                  <p className="leading-relaxed mb-5">
                     Synth chartreuse iPhone lomo cray raw denim brunch everyday
                     carry neutra before they sold out fixie 90's microdosing.
                     Tacos pinterest fanny pack venmo, post-ironic heirloom
@@ -145,12 +145,12 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="container px-5 md:px-10 py-10 mx-auto ">
+          <div className="container px-5 md:px-10 py-10 mx-auto w-11/12">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
-                <div className="h-full bg-gray-100 p-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
+                <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
                   {ICONS.koma_icon}
-                  <p className="leading-relaxed mb-6">
+                  <p className="leading-relaxed mb-5">
                     Synth chartreuse iPhone lomo cray raw denim brunch everyday
                     carry neutra before they sold out fixie 90's microdosing.
                     Tacos pinterest fanny pack venmo, post-ironic heirloom
@@ -185,12 +185,12 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="container px-5 md:px-10 py-10 mx-auto ">
+          <div className="container px-5 md:px-10 py-10 mx-auto w-11/12">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
-                <div className="h-full bg-gray-100 p-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
+                <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
                   {ICONS.koma_icon}
-                  <p className="leading-relaxed mb-6">
+                  <p className="leading-relaxed mb-5">
                     Synth chartreuse iPhone lomo cray raw denim brunch everyday
                     carry neutra before they sold out fixie 90's microdosing.
                     Tacos pinterest fanny pack venmo, post-ironic heirloom
@@ -225,8 +225,7 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
 
-        <div className="flex items-center justify-center gap-5 my-10 pr-5 md:pr-10">
-          {" "}
+        <div className="flex items-center justify-center gap-5 mb-5 pr-5 md:pr-10">
           <SwiperButtonPrev />
           <SwiperButtonNext />
         </div>

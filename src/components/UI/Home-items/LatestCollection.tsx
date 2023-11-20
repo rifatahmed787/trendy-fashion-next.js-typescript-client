@@ -104,7 +104,7 @@ const LatestCollection = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto"
+            className=" mx-auto"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
