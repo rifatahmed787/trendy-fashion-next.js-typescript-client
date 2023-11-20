@@ -87,7 +87,10 @@ const Navbar = () => {
             <Image
               width={50}
               height={50}
-              src="https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
+              src={
+                user?.avatar ||
+                "https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
+              }
               alt=""
               className="rounded-full mx-auto"
             />

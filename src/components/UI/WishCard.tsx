@@ -5,7 +5,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import Ratings from "./Rating/Rating";
 import { IWish } from "@/Types/wish";
-import { IProduct } from "@/Types/products";
 import { useAppSelector } from "@/Hooks/useRedux";
 import { useDeleteProductFromWishMutation } from "@/Redux/features/wishlist/wishApi";
 import useModal from "@/Hooks/useModal";
@@ -17,8 +16,9 @@ const WishCard = ({ product }: { product: IWish }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const { openModal } = useModal();
-  const products: IProduct | undefined = product?.productId as IProduct;
+
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
@@ -37,6 +37,7 @@ const WishCard = ({ product }: { product: IWish }) => {
       isSuccess,
     },
   ] = useDeleteProductFromWishMutation();
+  console.log(deleteProductFromWish, removeFromWishData);
 
   //wishListHandler
   const wishListHandler = (e: { stopPropagation: () => void }) => {
@@ -44,7 +45,7 @@ const WishCard = ({ product }: { product: IWish }) => {
     isLoggedIn
       ? deleteProductFromWish({
           id: product?.id,
-          productId: product?.id,
+          productId: product?.productId,
           userId: user?.id,
         })
       : openModal("login");
@@ -80,7 +81,7 @@ const WishCard = ({ product }: { product: IWish }) => {
                 ? "transform scale-110 opacity-80 duration-700"
                 : "transform-none opacity-100"
             }`}
-            src={products?.productImage[isHovered ? 1 : 0]}
+            src={product?.product.productImage[isHovered ? 1 : 0]}
             alt="product image"
           />
 
@@ -95,17 +96,19 @@ const WishCard = ({ product }: { product: IWish }) => {
               <span className="relative invisible ">Add To Cart</span>
             </button>
           </div>
-          <div className="absolute right-2 top-0">
-            <button onClick={wishListHandler}>
+          <div className="absolute right-2 top-2">
+            <button
+              onClick={wishListHandler}
+              className="bg-gray-200 rounded-full"
+            >
               {" "}
               {isRemoveWisLoading ? (
                 ICONS.button_loading_icon
               ) : (
                 <Icon
                   icon="material-symbols:delete"
-                  className="cursor-pointer p-1 text-red-600"
-                  width={25}
-                  height={64}
+                  className="cursor-pointer p-1 text-red-500 shadow-inner"
+                  width={30}
                 />
               )}
             </button>
@@ -125,18 +128,18 @@ const WishCard = ({ product }: { product: IWish }) => {
           </div>
         </div>
         <h2 className="mt-3 text-xl capitalize title">
-          {products?.productName}
+          {product?.product.productName}
         </h2>
 
         <div className="flex gap-5 items-center">
           <del className="text-sm text-red-700">$49</del>
           <Ratings
             starClassName="w-4 h-4 lg:w-5 lg:h-5"
-            ratings={products?.productRating || 0}
+            ratings={product?.product.productRating || 0}
           />
         </div>
         <p className="ml-1 mt-2 inline-block text-lg font-bold text-gray-700">
-          ${products?.productPrice}
+          ${product?.product.productPrice}
         </p>
       </div>
 

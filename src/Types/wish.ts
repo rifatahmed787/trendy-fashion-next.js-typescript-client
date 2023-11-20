@@ -2,7 +2,13 @@ import { IUser } from "./auth.types";
 import { IProduct } from "./products";
 
 export type IWish = {
-  id?: number;
+  id: number;
   productId: number | IProduct;
-  userId: string | IUser;
+  userId: number | IUser;
+  product: {
+    productImage: string[];
+    productName: string;
+    productRating: number;
+    productPrice: number;
+  };
 };

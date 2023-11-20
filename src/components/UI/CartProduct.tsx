@@ -9,6 +9,8 @@ import { useAppSelector } from "@/Hooks/useRedux";
 import useModal from "@/Hooks/useModal";
 import { get_error_messages } from "@/lib/Error_message";
 import ToastContainer from "./Toast";
+import ICONS from "../shared/Icons/AllIcons";
+import { useAddToCartMutation } from "@/Redux/features/cart/cartApi";
 const CartProduct = ({ product }: { product: IProduct }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { openModal } = useModal();
@@ -32,11 +34,32 @@ const CartProduct = ({ product }: { product: IProduct }) => {
     },
   ] = useAddProductInWishMutation();
 
+  const [
+    addProductInCart,
+    {
+      data: addToCart,
+      isLoading: cartIsLoading,
+      isError: cartIsError,
+      error: cartError,
+      isSuccess: cartIsSuccess,
+    },
+  ] = useAddToCartMutation();
+
   //wishListHandler
   const wishListHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn
       ? addProductInWish({
+          productId: product?.id,
+          userId: user?.id,
+        })
+      : openModal("login");
+  };
+
+  const addCardHandler = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? addProductInCart({
           productId: product?.id,
           userId: user?.id,
         })
@@ -56,6 +79,19 @@ const CartProduct = ({ product }: { product: IProduct }) => {
       setAlertMessages(addToWishData?.message);
     }
   }, [addToWishData?.message, error, isError, isSuccess]);
+  //error and success handlaing
+  useEffect(() => {
+    if (cartIsError && cartError && "data" in cartError) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      const error_messages = get_error_messages(cartError);
+      setAlertMessages(error_messages);
+    } else if (cartIsSuccess) {
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(addToCart?.message);
+    }
+  }, [addToCart?.message, cartError, cartIsError, cartIsSuccess]);
 
   return (
     <>
@@ -78,9 +114,16 @@ const CartProduct = ({ product }: { product: IProduct }) => {
           />
 
           <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
-            <button className="relative inline-flex items-center justify-center w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out button-group">
+            <button
+              onClick={addCardHandler}
+              className="relative inline-flex items-center justify-center w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out button-group"
+            >
               <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-y-5 bg-primary-200 first-span ease">
-                <Icon icon="mdi:cart-heart" width={20} />
+                {cartIsLoading ? (
+                  ICONS.button_loading_icon
+                ) : (
+                  <Icon icon="mdi:cart-heart" width={20} />
+                )}
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform second-span ease bg-gray-800 title">
                 Add To Cart
@@ -90,12 +133,15 @@ const CartProduct = ({ product }: { product: IProduct }) => {
           </div>
           <div className="absolute right-2 top-0">
             <button onClick={wishListHandler}>
-              {" "}
-              <Icon
-                icon="mdi:heart-outline"
-                className="cursor-pointer rounded-full p-1 hover:text-primary-100"
-                width={25}
-              />
+              {isAddToWisLoading ? (
+                ICONS.button_loading_icon
+              ) : (
+                <Icon
+                  icon="mdi:heart-outline"
+                  className="cursor-pointer rounded-full p-1 hover:text-primary-100"
+                  width={25}
+                />
+              )}
             </button>
             <Icon
               icon="iconamoon:restart-fill"

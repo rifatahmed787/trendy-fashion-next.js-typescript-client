@@ -73,36 +73,46 @@ const ProductAccordian = () => {
       )}
 
       {/* payment related accordian */}
-      <div className="faq-container">
-        <h1 className="text-lg md:text-2xl text-center font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
-          Payment related FAQ
-        </h1>
-        {PaymentAccordians?.map((payment: IAccordian) => (
-          <>
-            <div
-              className={`faq ${
-                activeIndex === payment?.question ? "active" : ""
-              }`}
-              key={payment?.question}
-            >
-              <h3 className="faq-title">Q. {payment?.question}</h3>
-              <p
-                className={`faq-text ${
-                  activeIndex === payment?.question ? "show" : ""
-                }`}
-              >
-                Ans. {payment?.answer}
-              </p>
-              <button
-                className="faq-toggle"
-                onClick={() => handleToggle(payment?.question)}
-              >
-                <Icon icon="ep:arrow-down" />
-              </button>
-            </div>
-          </>
-        ))}
-      </div>
+      {isLoading ? (
+        <>
+          <AccordianSkeleton />
+        </>
+      ) : (
+        <>
+          <div className="faq-container">
+            <h1 className="text-lg md:text-2xl text-center font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
+              Payment related FAQ
+            </h1>
+            {!isError &&
+              !error &&
+              PaymentAccordians?.map((payment: IAccordian) => (
+                <>
+                  <div
+                    className={`faq ${
+                      activeIndex === payment?.question ? "active" : ""
+                    }`}
+                    key={payment?.question}
+                  >
+                    <h3 className="faq-title">Q. {payment?.question}</h3>
+                    <p
+                      className={`faq-text ${
+                        activeIndex === payment?.question ? "show" : ""
+                      }`}
+                    >
+                      Ans. {payment?.answer}
+                    </p>
+                    <button
+                      className="faq-toggle"
+                      onClick={() => handleToggle(payment?.question)}
+                    >
+                      <Icon icon="ep:arrow-down" />
+                    </button>
+                  </div>
+                </>
+              ))}
+          </div>
+        </>
+      )}
     </div>
   );
 };

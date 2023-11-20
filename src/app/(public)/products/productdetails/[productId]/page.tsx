@@ -9,12 +9,10 @@ const ProductDetails = ({ params }: any) => {
   const productId = params?.productId;
   console.log(productId);
 
-  const {
-    data: product_details_data,
-    isLoading,
-    isError,
-    error,
-  } = useGetProductDetailsQuery(productId, { skip: !productId });
+  const { data: product_details_data, isLoading } = useGetProductDetailsQuery(
+    productId,
+    { skip: !productId }
+  );
 
   const product_details: IProduct = product_details_data?.data;
 

@@ -1,10 +1,10 @@
-import Cookies from "js-cookie";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import { logout } from "@/Redux/features/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 type AccountProps = {
   setAccountDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -13,10 +13,12 @@ type AccountProps = {
 const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   // handle logout
   const handleLogout = () => {
     dispatch(logout());
+    router.push("/");
   };
 
   return (
@@ -24,12 +26,15 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
       <div className="bg-gray-100">
         {/* user profile */}
         <div
-          className={`relative after:absolute after:content-normal after:w-full after:h-0.5 after:bg-primary-100 `}
+          className={`relative after:absolute after:content-normal after:w-full after:h-0.5 after:bg-primary-100 pt-1`}
         >
           <Image
             width={50}
             height={50}
-            src="https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
+            src={
+              user?.avatar ||
+              "https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
+            }
             alt=""
             className="rounded-full mx-auto"
           />
@@ -61,11 +66,11 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
           {/* shop */}
           <li>
             <Link
-              href="/cart"
+              href="/addtocart"
               className={`px-4 py-2 text-base w-full text-left text-gray-700  flex items-center gap-2 `}
             >
-              <Icon icon="tdesign:shop" width={20} />
-              Shop
+              <Icon icon="mdi:cart-outline" width={20} />
+              Cart
             </Link>
           </li>
 
