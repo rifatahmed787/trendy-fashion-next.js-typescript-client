@@ -37,7 +37,6 @@ const WishCard = ({ product }: { product: IWish }) => {
       isSuccess,
     },
   ] = useDeleteProductFromWishMutation();
-  console.log(deleteProductFromWish, removeFromWishData);
 
   //wishListHandler
   const wishListHandler = (e: { stopPropagation: () => void }) => {
@@ -45,7 +44,7 @@ const WishCard = ({ product }: { product: IWish }) => {
     isLoggedIn
       ? deleteProductFromWish({
           id: product?.id,
-          productId: product?.productId,
+          productId: product?.id,
           userId: user?.id,
         })
       : openModal("login");

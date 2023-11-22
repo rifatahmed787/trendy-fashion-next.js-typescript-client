@@ -1,13 +1,20 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import React, { useState } from "react";
-import Button from "../UI/Button";
+import React, { useEffect, useState } from "react";
 import { IProduct } from "@/Types/products";
 import Link from "next/link";
 import Ratings from "../UI/Rating/Rating";
 import ICONS from "../shared/Icons/AllIcons";
 import Image from "next/image";
+import { useAppSelector } from "@/Hooks/useRedux";
+import { useAddProductInWishMutation } from "@/Redux/features/wishlist/wishApi";
+import { useAddToCartMutation } from "@/Redux/features/cart/cartApi";
+import { get_error_messages } from "@/lib/Error_message";
+import useModal from "@/Hooks/useModal";
+import ToastContainer from "../UI/Toast";
+import AddReviewModal from "./AddReviewModal";
+import ReviewSection from "./ReviewSection";
 
 const ProductDetail = ({
   product_details,
@@ -15,6 +22,86 @@ const ProductDetail = ({
   product_details: IProduct | undefined;
 }) => {
   const [image, setImage] = useState(1);
+  const { openModal } = useModal();
+  // Alert State
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
+    "success"
+  );
+  const [AlertMessages, setAlertMessages] = useState("");
+
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+
+  // add in wish mutation hook
+  const [
+    addProductInWish,
+    {
+      data: addToWishData,
+      isLoading: isAddToWisLoading,
+      isError,
+      error,
+      isSuccess,
+    },
+  ] = useAddProductInWishMutation();
+
+  const [
+    addProductInCart,
+    {
+      data: addToCart,
+      isLoading: cartIsLoading,
+      isError: cartIsError,
+      error: cartError,
+      isSuccess: cartIsSuccess,
+    },
+  ] = useAddToCartMutation();
+
+  //wishListHandler
+  const wishListHandler = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? addProductInWish({
+          productId: product_details?.id,
+          userId: user?.id,
+        })
+      : openModal("login");
+  };
+
+  const addCardHandler = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? addProductInCart({
+          productId: product_details?.id,
+          userId: user?.id,
+        })
+      : openModal("login");
+  };
+
+  //error and success handlaing
+  useEffect(() => {
+    if (isError && error && "data" in error) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      const error_messages = get_error_messages(error);
+      setAlertMessages(error_messages);
+    } else if (isSuccess) {
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(addToWishData?.message);
+    }
+  }, [addToWishData?.message, error, isError, isSuccess]);
+
+  useEffect(() => {
+    if (cartIsError && cartError && "data" in cartError) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      const error_messages = get_error_messages(cartError);
+      setAlertMessages(error_messages);
+    } else if (cartIsSuccess) {
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(addToCart?.message);
+    }
+  }, [addToCart?.message, cartError, cartIsError, cartIsSuccess]);
 
   return (
     <>
@@ -147,19 +234,77 @@ const ProductDetail = ({
                 </span>
               </div>
               <div className="flex items-center">
-                <Button
-                  title="Add To Cart"
-                  icon=""
-                  className="bg-primary-100 px-3 py-2 rounded-lg text-black"
-                />
-                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                  {ICONS.heart_fill_icon}
+                <button
+                  onClick={addCardHandler}
+                  className="bg-primary-100 px-3 py-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold title text-lg">
+                      Add To Cart
+                    </span>
+                    {cartIsLoading ? (
+                      ICONS.button_loading_icon
+                    ) : (
+                      <Icon icon="mdi:cart-outline" width={20} />
+                    )}
+                  </div>
+                </button>
+                <button
+                  onClick={wishListHandler}
+                  className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4"
+                >
+                  {isAddToWisLoading
+                    ? ICONS.button_loading_icon
+                    : ICONS.heart_fill_icon}
                 </button>
               </div>
             </div>
+
+            <div className="py-4">
+              {user?.id || isLoggedIn ? (
+                <>
+                  {product_details && (
+                    <button
+                      className="flex items-center gap-2 px-3 py-2 text-[#211E52] font-semibold bg-primary-100 cursor-pointer"
+                      onClick={() => openModal("review")}
+                    >
+                      <span className="text-lg font-semibold title">
+                        Write A Review
+                      </span>
+                      {ICONS.chat_icon}
+                    </button>
+                  )}
+                </>
+              ) : (
+                <button
+                  className="flex items-center gap-2 px-3 py-2 text-black font-semibold bg-primary-100 cursor-pointer"
+                  onClick={() => openModal("login")}
+                >
+                  <span className="text-lg font-semibold title">
+                    Write A Review
+                  </span>
+                  {ICONS.chat_icon}
+                </button>
+              )}
+            </div>
+
+            {/* Review modal */}
+            <AddReviewModal product_details={product_details} />
+
+            <ReviewSection product_details={product_details} />
           </div>
         </div>
       </div>
+      {/* Toast */}
+      {isAlertOpen && (
+        <ToastContainer
+          type={AlertType}
+          messages={AlertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+          className="absolute  top-0 z-50 left-0 right-0 mx-auto flex justify-center"
+        />
+      )}
     </>
   );
 };

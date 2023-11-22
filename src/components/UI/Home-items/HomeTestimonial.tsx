@@ -61,6 +61,7 @@ export default function TestimonialCarousel() {
             spaceBetween: 20,
           },
         }}
+        loop={true}
         modules={[Navigation]}
         className="w-full h-full flex flex-col"
       >

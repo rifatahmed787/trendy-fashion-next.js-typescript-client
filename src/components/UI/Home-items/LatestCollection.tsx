@@ -15,6 +15,29 @@ import { useGetLatestProductsQuery } from "@/Redux/features/products/productApi"
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import WhiteButton from "@/components/Button/SecondaryButton";
 
+const SwiperButtonNext = () => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className="text-lg text-primary-100"
+      onClick={() => swiper.slideNext()}
+    >
+      {ICONS.arrow_long_right}
+    </button>
+  );
+};
+const SwiperButtonPrev = () => {
+  const swiper = useSwiper();
+  return (
+    <button
+      className="text-2xl text-primary-100"
+      onClick={() => swiper.slidePrev()}
+    >
+      {ICONS.arrow_long_left}
+    </button>
+  );
+};
+
 const LatestCollection = () => {
   const router = useRouter();
   const {
@@ -25,28 +48,6 @@ const LatestCollection = () => {
 
   const latest_products = latestProducts?.data;
 
-  const SwiperButtonNext = () => {
-    const swiper = useSwiper();
-    return (
-      <button
-        className="text-lg text-primary-100"
-        onClick={() => swiper.slideNext()}
-      >
-        {ICONS.arrow_long_right}
-      </button>
-    );
-  };
-  const SwiperButtonPrev = () => {
-    const swiper = useSwiper();
-    return (
-      <button
-        className="text-2xl text-primary-100"
-        onClick={() => swiper.slidePrev()}
-      >
-        {ICONS.arrow_long_left}
-      </button>
-    );
-  };
   return (
     <div className="my-10 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-8 md:gap-5 lg:gap-5 items-center">
@@ -74,7 +75,7 @@ const LatestCollection = () => {
           {/* <hr /> */}
           <Swiper
             slidesPerView={3}
-            spaceBetween={10}
+            spaceBetween={30}
             speed={1500}
             breakpoints={{
               340: {
@@ -98,13 +99,9 @@ const LatestCollection = () => {
               delay: 2000,
               disableOnInteraction: true,
             }}
-            navigation={{
-              prevEl: ".prev-button",
-              nextEl: ".next-button",
-            }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className=" mx-auto"
+            className="mx-auto"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">

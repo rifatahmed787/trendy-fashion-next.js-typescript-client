@@ -109,7 +109,7 @@ const HomeDealsComponent = () => {
           </h1>
           {/* <hr /> */}
           <Swiper
-            slidesPerView={4}
+            slidesPerView={3}
             spaceBetween={10}
             speed={1500}
             breakpoints={{
@@ -126,7 +126,7 @@ const HomeDealsComponent = () => {
                 spaceBetween: 40,
               },
               1024: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 50,
               },
             }}

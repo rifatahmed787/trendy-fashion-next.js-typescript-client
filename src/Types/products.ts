@@ -1,3 +1,5 @@
+import { IProductReview } from "./review";
+
 export interface IProduct {
   id?: number;
   productId: string;
@@ -14,4 +16,5 @@ export interface IProduct {
   age: string[];
   relatedProducts: string[];
   productGender: string;
+  productReviews: IProductReview[];
 }

@@ -44,21 +44,20 @@ const DetailsSkeleton = () => {
 
         {/* Right section with product details */}
         <div className="w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 px-5">
-          <h2 className="text-sm bg-gray-100 h-5 tracking-widest animate-pulse my-3"></h2>
-          <h1 className="bg-gray-100 text-3xl font-bold mb-1 title animate-pulse my-3"></h1>
-          <div className="flex mb-4 h-5 animate-pulse bg-gray-100">
-            <span className="flex items-center">
-              <Ratings starClassName="w-4 h-4 lg:w-5 lg:h-5" ratings={0} />
-              <span className="bg-gray-100 h-5 ml-3 font-semibold"></span>
-            </span>
-            {/* Social media icons */}
-          </div>
-          <p className="text-base h-1 animate-pulse"></p>
+          <div className="h-4 w-20 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+          <div className="h-8 w-1/2 bg-gray-300 rounded-md animate-pulse mb-2"></div>
+
+          <span className="flex items-center py-3">
+            <Ratings starClassName="w-4 h-4 lg:w-5 lg:h-5" ratings={0} />
+          </span>
+          {/* Social media icons */}
+
+          <div className="h-4 w-full bg-gray-300 rounded-md animate-pulse mb-2"></div>
 
           {/* Updated text elements */}
-          <p className="bg-gray-100 h-1 animate-pulse w-4/5 mt-3"></p>
-          <p className="bg-gray-100 h-1 animate-pulse w-3/5 mt-3"></p>
-          <p className="bg-gray-100 h-1 animate-pulse w-2/5 mt-3"></p>
+          <div className="h-4 w-full bg-gray-300 rounded-md animate-pulse mb-2"></div>
+          <div className="h-4 w-full bg-gray-300 rounded-md animate-pulse mb-2"></div>
+          <div className="h-4 w-full bg-gray-300 rounded-md animate-pulse mb-2"></div>
 
           {/* Color and Size selectors */}
           <div className="flex mt-6 h-5 animate-pulse items-center pb-5 border-b-2 border-gray-100 mb-5">

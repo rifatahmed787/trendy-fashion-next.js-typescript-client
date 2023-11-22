@@ -14,7 +14,7 @@ import { fadeIn, textVariant } from "@/components/FramerMotion/Motion/motion";
 const HomeServiceComponent = () => {
   const fadeInVariants = fadeIn("right", "spring", 0, 1.25);
   return (
-    <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-xl mx-auto justify-items-center items-center sm:grid-cols-1  gap-5   extra-small-margin">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-xl mx-auto justify-items-center items-center sm:grid-cols-1  gap-5  mt-3 md:mt-0 extra-small-margin">
       {/* card one  */}
       <motion.div
         variants={fadeInVariants}
