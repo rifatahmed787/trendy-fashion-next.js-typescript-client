@@ -14,11 +14,19 @@ const DetailsSkeleton = () => {
               {Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`h-64 md:h-80 animate-pulse rounded-lg bg-gray-100 mb-4 flex items-center justify-center ${
+                  className={`w-4/5 h-64 md:h-96 animate-pulse rounded-lg bg-gray-100 mb-4 flex items-center justify-center mx-auto ${
                     image === i + 1 ? "block" : "hidden"
                   }`}
                 >
-                  <span className="text-5xl"></span>
+                  <svg
+                    className="w-10 h-10 text-gray-300 "
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 18"
+                  >
+                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                  </svg>
                 </div>
               ))}
             </div>
@@ -28,13 +36,21 @@ const DetailsSkeleton = () => {
                 <div className="flex-1 px-2" key={i}>
                   <button
                     onClick={() => setImage(i + 1)}
-                    className={`focus:outline-none w-full rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center ${
+                    className={`focus:outline-none w-4/5 rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center mx-auto ${
                       image === i + 1
                         ? "ring-2 ring-gray-100 ring-inset animate-pulse"
                         : ""
                     }`}
                   >
-                    <span className="text-2xl"></span>
+                    <svg
+                      className="w-5 h-5 text-gray-300"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="currentColor"
+                      viewBox="0 0 20 18"
+                    >
+                      <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+                    </svg>
                   </button>
                 </div>
               ))}
