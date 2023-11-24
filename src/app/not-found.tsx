@@ -12,8 +12,9 @@ export default function NotFound() {
 
   return (
     <>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center min-h-screen">
         <div>
+          <h1 className="text-2xl font-bold title">404 Not Found</h1>
           <h2>Something went wrong!</h2>
           <Link href={"/"}>
             <button>Back To Home</button>

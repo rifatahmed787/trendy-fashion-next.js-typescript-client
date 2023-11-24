@@ -7,6 +7,14 @@ import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import { useEffect, useState } from "react";
 
+interface Product {
+  id: number;
+  quantity: number;
+  product: {
+    productPrice: number;
+  };
+}
+
 const Cart = () => {
   const {
     data: Products,
@@ -15,58 +23,51 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
-
+  const [cartData, setCartData] = useState<Product[]>([]);
   const [totalCost, setTotalCost] = useState(0);
   const [selectedShipping, setSelectedShipping] = useState("standard");
+
+  // Update cartData when Products changes
+  useEffect(() => {
+    if (cart_list_data) {
+      setCartData(cart_list_data);
+    }
+  }, [cart_list_data]);
 
   useEffect(() => {
     let newTotalCost = 0;
 
     // Calculate the total cost based on the current quantities
-    (cart_list_data || []).forEach(
-      (product: { product: { productPrice: number }; quantity: number }) => {
-        const itemCost =
-          (product.product?.productPrice || 0) * product.quantity;
-        newTotalCost += itemCost;
-      }
-    );
+    (cartData || []).forEach((product) => {
+      const itemCost = (product.product?.productPrice || 0) * product.quantity;
+      newTotalCost += itemCost;
+    });
 
     // Update the total cost state
     setTotalCost(newTotalCost || 0);
-  }, [cart_list_data]);
+  }, [cartData]);
 
   const updateQuantity = (productId: number, quantity: number) => {
-    setTotalCost(() => {
-      const updatedCart = (cart_list_data || []).map(
-        (product: {
-          id: number;
-          quantity: number;
-          product: { productPrice: number };
-        }) => {
-          if (product.id === productId) {
-            // Update the quantity for the specific product
-            return { ...product, quantity };
-          }
-          return product;
-        }
-      );
-
-      // Calculate total cost based on the updated quantities
-      const newTotalCost = updatedCart?.reduce(
-        (
-          acc: number,
-          product: { product: { productPrice: number }; quantity: number }
-        ) => {
-          const itemCost =
-            (product.product?.productPrice || 0) * product.quantity;
-          return acc + itemCost;
-        },
-        0
-      );
-
-      // Return the new total cost
-      return newTotalCost || 0;
+    const updatedCart = (cartData || []).map((product) => {
+      if (product.id === productId) {
+        // Update the quantity for the specific product
+        return { ...product, quantity };
+      }
+      return product;
     });
+
+    // Update the total cost state based on the updated cart
+    let newTotalCost = 0;
+    updatedCart.forEach((product) => {
+      const itemCost = (product.product?.productPrice || 0) * product.quantity;
+      newTotalCost += itemCost;
+    });
+
+    // Update the total cost state
+    setTotalCost(newTotalCost || 0);
+
+    // Update the cartData state
+    setCartData(updatedCart);
   };
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
