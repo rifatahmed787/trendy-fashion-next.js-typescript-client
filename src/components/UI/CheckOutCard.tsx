@@ -1,25 +1,26 @@
-// import { ICart } from "@/types/Cart";
-// import { IBook } from "@/types/Book";
+import { IWish } from "@/Types/wish";
+import Image from "next/image";
 
-// const CheckOutCard = ({ cart_book }: { cart_book?: ICart }) => {
-//   const book: IBook | undefined = cart_book?.book_id as IBook | undefined;
+const CheckOutCard = ({ product }: { product?: IWish }) => {
+  return (
+    <>
+      <div className="flex flex-col rounded-lg  sm:flex-row">
+        <Image
+          width={100}
+          height={100}
+          className="h-28 w-28 rounded-lg"
+          src={product?.product?.productImage[0] || ""}
+          alt="product image"
+        />
+        <div className="flex w-full flex-col px-4 py-4">
+          <span className="font-semibold">{product?.product?.productName}</span>
+          <p className="text-lg font-bold">
+            $ {product?.product?.productPrice}
+          </p>
+        </div>
+      </div>
+    </>
+  );
+};
 
-//   return (
-//     <>
-//       <div className="flex flex-col rounded-lg  sm:flex-row">
-//         <img
-//           className="m-2 h-24 w-28 rounded-md border object-cover object-center"
-//           src={book?.cover_image}
-//           alt=""
-//         />
-//         <div className="flex w-full flex-col px-4 py-4">
-//           <span className="font-semibold">{book?.title}</span>
-//           <span className="float-right text-gray-400">{book?.author}</span>
-//           <p className="text-lg font-bold">${book?.price}</p>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default CheckOutCard;
+export default CheckOutCard;

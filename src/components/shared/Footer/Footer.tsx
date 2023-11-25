@@ -11,7 +11,7 @@ const Footer = () => {
     return new Date().getFullYear();
   };
   return (
-    <footer className="bg-gray-100 relative before:absolute before:content-normal before:left-0 before:top-0 before:w-32 before:h-32 before:bg-primary-100 before:rounded-br-full">
+    <footer className="bg-gray-200 relative before:absolute before:content-normal before:left-0 before:top-0 before:w-32 before:h-32 before:bg-primary-100 before:rounded-br-full">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 ">
         {/* Top area: Blocks */}
         <div className="grid grid-cols-12 py-8 md:py-12 border-t border-gray-200 md:mx-10">
@@ -208,7 +208,7 @@ const Footer = () => {
                       />
                       <label
                         htmlFor="exampleFormControlInput1"
-                        className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate px-3 pt-2 peer-focus:pt-0 leading-[1.6] text-gray-400 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-focus:bg-white"
+                        className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate px-3 pt-2 peer-focus:pt-0 leading-[1.6] text-gray-400 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-gray-700 peer-focus:bg-gray-200"
                       >
                         Email address
                       </label>
