@@ -30,7 +30,7 @@ export const productsApi = apiSlice.injectEndpoints({
       query: (productID) => {
         return `/product/${productID}`;
       },
-      providesTags: ["product"],
+      providesTags: ["product", "reviews"],
     }),
 
     //Get All Filtering Items

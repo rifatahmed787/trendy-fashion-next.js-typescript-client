@@ -18,7 +18,11 @@ const CartCard = ({
 }) => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(() => {
+    // Get quantity from localStorage or default to 1
+    const storedQuantity = localStorage.getItem(`quantity_${product?.id}`);
+    return storedQuantity ? parseInt(storedQuantity, 10) : 1;
+  });
 
   const increaseQuantity = () => {
     setQuantity((prevQuantity) => {
@@ -35,6 +39,11 @@ const CartCard = ({
       });
     }
   };
+
+  useEffect(() => {
+    localStorage.setItem(`quantity_${product?.id}`, quantity.toString());
+  }, [quantity, product?.id]);
+
   // delete from cart mutation hook
   const [
     deleteProductFromCart,
