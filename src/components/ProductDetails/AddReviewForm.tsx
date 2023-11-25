@@ -10,7 +10,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { useAddProductReviewMutation } from "@/Redux/features/Review/reviewApi";
+import { useAddProductReviewMutation } from "@/Redux/features/review/reviewApi";
 import ToastContainer from "../UI/Toast";
 import ICONS from "../shared/Icons/AllIcons";
 import Button from "../UI/Button";

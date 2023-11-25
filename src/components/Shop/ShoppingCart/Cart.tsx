@@ -1,11 +1,19 @@
 "use client";
-import { useEffect, useState } from "react";
 import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
 import ShopSkeleton from "../ShopSkeleton/ShopSkeleton";
 import { IWish } from "@/Types/wish";
 import CartCard from "@/components/UI/CartCard";
 import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTotalCost,
+  setFinalTotalCost,
+  selectTotalCost,
+  selectFinalTotalCost,
+} from "@/Redux/features/cart/cartSlice";
+import { RootState } from "@/Redux/store";
 
 interface Product {
   id: number;
@@ -16,6 +24,12 @@ interface Product {
 }
 
 const Cart = () => {
+  const dispatch = useDispatch();
+  const totalCost = useSelector(selectTotalCost);
+  const finalTotalCost = useSelector(selectFinalTotalCost);
+
+  console.log("this is total cost", totalCost);
+  console.log("this is final total cost", finalTotalCost);
   const {
     data: Products,
     isError,
@@ -24,10 +38,8 @@ const Cart = () => {
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
   const [cartData, setCartData] = useState<Product[]>([]);
-  const [totalCost, setTotalCost] = useState(0);
   const [selectedShipping, setSelectedShipping] = useState("standard");
 
-  // Update cartData when Products changes
   useEffect(() => {
     if (cart_list_data) {
       setCartData(cart_list_data);
@@ -35,64 +47,50 @@ const Cart = () => {
   }, [cart_list_data]);
 
   useEffect(() => {
-    let newTotalCost = 0;
+    // Dispatch actions to update totalCost and finalTotalCost in the Redux store
+    dispatch(setTotalCost(totalCost));
+    dispatch(setFinalTotalCost(finalTotalCost));
+  }, [dispatch, totalCost, finalTotalCost]);
 
-    // Calculate the total cost based on the current quantities
+  useEffect(() => {
+    let newTotalCost = 0;
     (cartData || []).forEach((product) => {
       const itemCost = (product.product?.productPrice || 0) * product.quantity;
       newTotalCost += itemCost;
     });
 
-    // Update the total cost state
-    setTotalCost(newTotalCost || 0);
+    // Update the Redux store
+    dispatch(setTotalCost(newTotalCost || 0));
+  }, [dispatch, cartData]);
 
-    // Set total cost to localStorage
-    localStorage.setItem("totalCost", JSON.stringify(newTotalCost || 0));
-  }, [cartData]);
+  useEffect(() => {
+    const shippingCost =
+      selectedShipping === "expedited"
+        ? 10.0
+        : selectedShipping === "express"
+        ? 8.0
+        : 5.0;
+
+    const calculatedFinalTotalCost = totalCost + shippingCost;
+
+    // Update the Redux store
+    dispatch(setFinalTotalCost(calculatedFinalTotalCost));
+  }, [dispatch, totalCost, selectedShipping]);
 
   const updateQuantity = (productId: number, quantity: number) => {
     const updatedCart = (cartData || []).map((product) => {
       if (product.id === productId) {
-        // Update the quantity for the specific product
         return { ...product, quantity };
       }
       return product;
     });
 
-    // Update the total cost state based on the updated cart
-    let newTotalCost = 0;
-    updatedCart.forEach((product) => {
-      const itemCost = (product.product?.productPrice || 0) * product.quantity;
-      newTotalCost += itemCost;
-    });
-
-    // Update the total cost state
-    setTotalCost(newTotalCost || 0);
-
-    // Update the cartData state
     setCartData(updatedCart);
   };
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // Update the selected shipping option
     setSelectedShipping(e.target.value);
   };
-
-  // Calculate shipping cost based on the selected shipping option
-  const shippingCost =
-    selectedShipping === "expedited"
-      ? 10.0
-      : selectedShipping === "express"
-      ? 8.0
-      : 5.0;
-
-  // Calculate the final total cost including shipping
-  const finalTotalCost = totalCost + shippingCost;
-
-  // Set final total cost to localStorage
-  useEffect(() => {
-    localStorage.setItem("finalTotalCost", JSON.stringify(finalTotalCost));
-  }, [finalTotalCost]);
 
   return (
     <div className={`pb-10 pt-1`}>
