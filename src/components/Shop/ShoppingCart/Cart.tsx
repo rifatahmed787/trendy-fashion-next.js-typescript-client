@@ -1,11 +1,11 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
 import ShopSkeleton from "../ShopSkeleton/ShopSkeleton";
 import { IWish } from "@/Types/wish";
 import CartCard from "@/components/UI/CartCard";
 import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
-import { useEffect, useState } from "react";
 
 interface Product {
   id: number;
@@ -45,6 +45,9 @@ const Cart = () => {
 
     // Update the total cost state
     setTotalCost(newTotalCost || 0);
+
+    // Set total cost to localStorage
+    localStorage.setItem("totalCost", JSON.stringify(newTotalCost || 0));
   }, [cartData]);
 
   const updateQuantity = (productId: number, quantity: number) => {
@@ -85,6 +88,11 @@ const Cart = () => {
 
   // Calculate the final total cost including shipping
   const finalTotalCost = totalCost + shippingCost;
+
+  // Set final total cost to localStorage
+  useEffect(() => {
+    localStorage.setItem("finalTotalCost", JSON.stringify(finalTotalCost));
+  }, [finalTotalCost]);
 
   return (
     <div className={`pb-10 pt-1`}>
