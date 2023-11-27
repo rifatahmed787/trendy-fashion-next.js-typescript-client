@@ -1,48 +1,44 @@
 import useModal from "@/Hooks/useModal";
 import { useAppSelector } from "@/Hooks/useRedux";
-import { useRemoveCartMutation } from "@/Redux/features/cart/cartApi";
-import { IWish } from "@/Types/wish";
+import {
+  useRemoveCartMutation,
+  useUpdateCartMutation,
+} from "@/Redux/features/cart/cartApi";
 import { get_error_messages } from "@/lib/Error_message";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Ratings from "./Rating/Rating";
 import ICONS from "../shared/Icons/AllIcons";
 import ToastContainer from "./Toast";
+import { ICart } from "@/Types/cart";
 
-const CartCard = ({
-  product,
-  updateQuantity,
-}: {
-  product?: IWish;
-  updateQuantity: (id: number, quantity: number) => void;
-}) => {
+const CartCard = ({ product }: { product?: ICart }) => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
-  const [quantity, setQuantity] = useState(() => {
-    // Get quantity from localStorage or default to 1
-    const storedQuantity = localStorage.getItem(`quantity_${product?.id}`);
-    return storedQuantity ? parseInt(storedQuantity, 10) : 1;
-  });
+  const [quantity, setQuantity] = useState<number>(product?.quantity ?? 1);
+
+  const [updateCartMutation] = useUpdateCartMutation();
+
+  // Handle quantity change
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);
+
+    // Call the mutation with the updated quantity
+    updateCartMutation({
+      cartId: product?.id,
+      quantity: newQuantity,
+    });
+  };
 
   const increaseQuantity = () => {
-    setQuantity((prevQuantity) => {
-      updateQuantity(product?.id || 0, prevQuantity + 1);
-      return prevQuantity + 1;
-    });
+    handleQuantityChange(quantity + 1);
   };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity((prevQuantity) => {
-        updateQuantity(product?.id || 0, prevQuantity - 1);
-        return prevQuantity - 1;
-      });
+      handleQuantityChange(quantity - 1);
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem(`quantity_${product?.id}`, quantity.toString());
-  }, [quantity, product?.id]);
 
   // delete from cart mutation hook
   const [
@@ -90,7 +86,10 @@ const CartCard = ({
   }, [error, isError, isSuccess, removeFromCartData?.message]);
 
   return (
-    <div className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 ">
+    <div
+      className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 "
+      key={product?.id}
+    >
       <div className="flex ">
         <div className="">
           <Image

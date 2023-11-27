@@ -1,7 +1,7 @@
 import { IUser } from "./auth.types";
 import { IProduct } from "./products";
 
-export type IWish = {
+export type ICart = {
   id: number;
   productId: number | IProduct;
   userId: number | IUser;
@@ -12,4 +12,5 @@ export type IWish = {
     productPrice: number;
     quantity: number;
   };
+  quantity: number;
 };

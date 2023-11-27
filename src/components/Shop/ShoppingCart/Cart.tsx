@@ -1,35 +1,14 @@
 "use client";
 import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
 import ShopSkeleton from "../ShopSkeleton/ShopSkeleton";
-import { IWish } from "@/Types/wish";
 import CartCard from "@/components/UI/CartCard";
 import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setTotalCost,
-  setFinalTotalCost,
-  selectTotalCost,
-  selectFinalTotalCost,
-} from "@/Redux/features/cart/cartSlice";
-import { RootState } from "@/Redux/store";
 
-interface Product {
-  id: number;
-  quantity: number;
-  product: {
-    productPrice: number;
-  };
-}
+import { ICart } from "@/Types/cart";
 
 const Cart = () => {
-  const dispatch = useDispatch();
-  const totalCost = useSelector(selectTotalCost);
-  const finalTotalCost = useSelector(selectFinalTotalCost);
-
-  console.log("this is total cost", totalCost);
-  console.log("this is final total cost", finalTotalCost);
   const {
     data: Products,
     isError,
@@ -37,31 +16,9 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
-  const [cartData, setCartData] = useState<Product[]>([]);
+
   const [selectedShipping, setSelectedShipping] = useState("standard");
-
-  useEffect(() => {
-    if (cart_list_data) {
-      setCartData(cart_list_data);
-    }
-  }, [cart_list_data]);
-
-  useEffect(() => {
-    // Dispatch actions to update totalCost and finalTotalCost in the Redux store
-    dispatch(setTotalCost(totalCost));
-    dispatch(setFinalTotalCost(finalTotalCost));
-  }, [dispatch, totalCost, finalTotalCost]);
-
-  useEffect(() => {
-    let newTotalCost = 0;
-    (cartData || []).forEach((product) => {
-      const itemCost = (product.product?.productPrice || 0) * product.quantity;
-      newTotalCost += itemCost;
-    });
-
-    // Update the Redux store
-    dispatch(setTotalCost(newTotalCost || 0));
-  }, [dispatch, cartData]);
+  const [shippingCost, setShippingCost] = useState(0);
 
   useEffect(() => {
     const shippingCost =
@@ -70,23 +27,24 @@ const Cart = () => {
         : selectedShipping === "express"
         ? 8.0
         : 5.0;
+    setShippingCost(shippingCost);
+  }, [selectedShipping]);
 
-    const calculatedFinalTotalCost = totalCost + shippingCost;
+  // Calculate the total cost of products in the cart
+  const productsTotalCost =
+    cart_list_data?.reduce(
+      (
+        total: number,
+        product: {
+          product: { productPrice: number };
+          quantity: number;
+        }
+      ) => total + (product.product?.productPrice || 0) * product.quantity,
+      0
+    ) || 0;
 
-    // Update the Redux store
-    dispatch(setFinalTotalCost(calculatedFinalTotalCost));
-  }, [dispatch, totalCost, selectedShipping]);
-
-  const updateQuantity = (productId: number, quantity: number) => {
-    const updatedCart = (cartData || []).map((product) => {
-      if (product.id === productId) {
-        return { ...product, quantity };
-      }
-      return product;
-    });
-
-    setCartData(updatedCart);
-  };
+  // Calculate the total cost including shipping cost
+  const totalCostWithShipping = (productsTotalCost + shippingCost).toFixed(2);
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedShipping(e.target.value);
@@ -148,19 +106,18 @@ const Cart = () => {
                       {!isError &&
                         !error &&
                         cart_list_data?.length > 0 &&
-                        cart_list_data.map((product: IWish) => {
-                          return (
-                            <div
-                              key={product.id}
-                              className={`mt-8 cursor-pointer`}
-                            >
-                              <CartCard
-                                product={product}
-                                updateQuantity={updateQuantity}
-                              />
-                            </div>
-                          );
-                        })}
+                        [...cart_list_data]
+                          .sort((a: ICart, b: ICart) => a.id - b.id)
+                          .map((product: ICart) => {
+                            return (
+                              <div
+                                key={product.id}
+                                className={`mt-8 cursor-pointer`}
+                              >
+                                <CartCard product={product} />
+                              </div>
+                            );
+                          })}
                     </>
                   )}
                 </div>
@@ -193,7 +150,7 @@ const Cart = () => {
                   Items {cart_list_data?.length}
                 </span>
                 <span className="font-semibold text-sm">
-                  ${totalCost.toFixed(2)}
+                  ${productsTotalCost.toFixed(2)}
                 </span>
               </div>
               <div>
@@ -235,7 +192,7 @@ const Cart = () => {
               <div className="border-t mt-8">
                 <div className="flex font-semibold justify-between py-6 text-sm uppercase">
                   <span>Total cost</span>
-                  <span>${finalTotalCost.toFixed(2)}</span>
+                  <span>${totalCostWithShipping}</span>
                 </div>
                 <Link href="/checkout">
                   <button className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full">
