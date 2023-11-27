@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Modal from "../Modal/Modal";
-import ModalBody from "../Modal/ModalBody/ModalBody";
-import ModalHeader from "../Modal/ModalHeader/ModalHeader";
 import useModal from "@/Hooks/useModal";
 import { IProduct } from "@/Types/products";
 import {
@@ -10,7 +7,6 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { useAddProductReviewMutation } from "@/Redux/features/review/reviewApi";
 import ToastContainer from "../UI/Toast";
 import ICONS from "../shared/Icons/AllIcons";
 import Button from "../UI/Button";
@@ -18,6 +14,7 @@ import { get_error_messages } from "@/lib/Error_message";
 import TextArea from "../UI/Form-items/TextArea";
 import { useAppSelector } from "@/Hooks/useRedux";
 import RatingPicker from "../UI/Rating/RatingPicker";
+import { useAddProductReviewMutation } from "@/Redux/features/review/reviewApi";
 
 const AddReviewForm = ({
   product_details,
@@ -40,7 +37,6 @@ const AddReviewForm = ({
   });
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    console.log(data);
     try {
       await review({
         reviewerId: user?.id,
