@@ -27,7 +27,7 @@ export const cartApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: { quantity },
       }),
-      invalidatesTags: ["cart"],
+      invalidatesTags: ["cart", "products"],
     }),
 
     //remove from cart

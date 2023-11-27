@@ -13,6 +13,8 @@ import { useAddToCartMutation } from "@/Redux/features/cart/cartApi";
 import { get_error_messages } from "@/lib/Error_message";
 import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
+import AddReviewModal from "./AddReviewModal";
+import ReviewSection from "./ReviewSection";
 
 const ProductDetail = ({
   product_details,
@@ -264,7 +266,7 @@ const ProductDetail = ({
                   {product_details && (
                     <button
                       className="flex items-center gap-2 px-3 py-2 text-[#211E52] font-semibold bg-primary-100 cursor-pointer"
-                      // onClick={() => openModal("review")}
+                      onClick={() => openModal("review")}
                     >
                       <span className="text-lg font-semibold title">
                         Write A Review
@@ -287,9 +289,9 @@ const ProductDetail = ({
             </div>
 
             {/* Review modal */}
-            {/* <AddReviewModal product_details={product_details} />
+            <AddReviewModal product_details={product_details} />
 
-            <ReviewSection product_details={product_details} /> */}
+            <ReviewSection product_details={product_details} />
           </div>
         </div>
       </div>
