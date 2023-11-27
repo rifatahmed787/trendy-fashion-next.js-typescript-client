@@ -289,9 +289,9 @@ const ProductDetail = ({
             </div>
 
             {/* Review modal */}
-            <AddReviewModal product_details={product_details} />
+            {/* <AddReviewModal product_details={product_details} />
 
-            <ReviewSection product_details={product_details} />
+            <ReviewSection product_details={product_details} /> */}
           </div>
         </div>
       </div>
