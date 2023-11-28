@@ -75,7 +75,7 @@ const HomePageBanner = () => {
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
-                <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
+                <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
                   <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
@@ -84,7 +84,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-5">
+                  <div className="flex gap-3 md:gap-5">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -102,7 +102,7 @@ const HomePageBanner = () => {
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
-                <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
+                <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
                   <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
@@ -111,7 +111,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-5">
+                  <div className="flex gap-3 md:gap-5">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -129,7 +129,7 @@ const HomePageBanner = () => {
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
-                <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
+                <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
                   <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
@@ -138,7 +138,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-5">
+                  <div className="flex gap-3 md:gap-5">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -156,7 +156,7 @@ const HomePageBanner = () => {
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
-                <div className="absolute left-5 top-[30%] ml-14 w-[65%]">
+                <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
                   <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
                     Meet The Line of <br />
                     The Ladies Fashion
@@ -165,7 +165,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-5">
+                  <div className="flex gap-3 md:gap-5">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>

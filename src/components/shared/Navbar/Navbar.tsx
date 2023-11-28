@@ -124,7 +124,7 @@ const Navbar = () => {
     <>
       <nav className={navbarClasses}>
         <div className="flex items-center justify-between font-medium">
-          <div className="z-50 flex w-full justify-between p-1 md:w-auto">
+          <div className="z-50 flex w-full justify-between p-1 ml-3 md:ml-0 md:w-auto">
             <Link href="/">
               <Image
                 src={Logo}
@@ -169,7 +169,7 @@ const Navbar = () => {
           </ul>
 
           {user?.email && isLoggedIn ? (
-            <>{account}</>
+            <div className="hidden md:block">{account}</div>
           ) : (
             <>
               <div className="hidden md:block">

@@ -68,7 +68,7 @@ hero section
 }
 
 .modal-body {
-  @apply bg-white px-4 py-6 lg:px-10 xl:px-16 lg:py-8 max-h-screen overflow-y-scroll lg:scrollbar-hide  my-4 rounded-lg mx-4 lg:mx-auto max-w-[75rem]  2xl:max-w-[85rem];
+  @apply bg-white px-4 py-6 lg:px-10 xl:px-16 lg:py-8 max-h-screen overflow-y-scroll lg:scrollbar-hide  my-4 rounded-lg mx-4 lg:mx-auto max-w-[75rem] 2xl:max-w-[85rem];
 }
 
 /* ...........................
