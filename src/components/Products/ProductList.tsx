@@ -11,6 +11,7 @@ import Pagination from "../Pagination/Pagination";
 import ProductSkeleton from "./ProductSkeleton";
 import { useSelector } from "react-redux";
 import { selectSearch } from "@/Redux/features/products/searchSlice";
+import ICONS from "../shared/Icons/AllIcons";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
@@ -172,6 +173,7 @@ const ProductList = () => {
                           onClick={handleReload}
                           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
                         >
+                          {ICONS.refresh}
                           reload
                         </button>
                       </div>

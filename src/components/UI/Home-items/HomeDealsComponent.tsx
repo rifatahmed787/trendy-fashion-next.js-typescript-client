@@ -13,6 +13,7 @@ import { useGetBestSellerProductsQuery } from "@/Redux/features/products/product
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import CartProduct from "../CartProduct";
 import { IProduct } from "@/Types/products";
+import ICONS from "@/components/shared/Icons/AllIcons";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -175,6 +176,7 @@ const HomeDealsComponent = () => {
                         onClick={handleReload}
                         className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
                       >
+                        {ICONS.refresh}
                         reload
                       </button>
                     </div>

@@ -1,5 +1,6 @@
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Footer from "@/components/shared/Footer/Footer";
+import UserNavbar from "@/components/shared/Navbar/UserNavbar";
 import Sidebar from "@/components/shared/UserSidebar/Sidebar";
 
 export default function UserLayout({
@@ -9,8 +10,9 @@ export default function UserLayout({
 }) {
   return (
     <>
+      <UserNavbar />
       <Sidebar />
-      <div className="min-h-screen pt-[116px]">{children}</div>
+      <div className="min-h-screen pt-72">{children}</div>
       <ScrollToTop />
       <Footer />
     </>
