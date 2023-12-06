@@ -1,6 +1,6 @@
 import React from "react";
 import type { Metadata } from "next";
-import Sidebar from "@/components/shared/Sidebar/Sidebar";
+import Sidebar from "@/components/shared/UserSidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Dashboard",
