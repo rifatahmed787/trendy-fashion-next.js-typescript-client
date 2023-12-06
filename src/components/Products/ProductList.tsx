@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/jsx-key */
 "use client";
 import React, { useEffect, useState } from "react";
@@ -85,6 +86,10 @@ const ProductList = () => {
 
   const products_list_data = products?.data?.data;
 
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="mx-auto max-w-screen-2xl mt-10">
       <div
@@ -147,13 +152,31 @@ const ProductList = () => {
                   <ProductSkeleton />
                 </div>
               ) : (
-                <div className=" mt-5 md:mt-0 w-full   grid grid-cols-1   sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 px-10">
-                  {!isError &&
-                    !error &&
-                    products_list_data?.length > 0 &&
-                    products_list_data.map((product: IProduct) => {
-                      return <ProductCard key={product.id} product={product} />;
-                    })}
+                <div>
+                  {products_list_data?.length > 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 md:px-10">
+                      {" "}
+                      {!isError &&
+                        !error &&
+                        products_list_data.map((product: IProduct) => {
+                          return (
+                            <ProductCard key={product.id} product={product} />
+                          );
+                        })}
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex justify-center items-center gap-2 min-h-[50vh]">
+                        <h1>Can't Load the data! Please</h1>
+                        <button
+                          onClick={handleReload}
+                          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
+                        >
+                          reload
+                        </button>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
             </div>

@@ -131,6 +131,21 @@ const CartProduct = ({ product }: { product: IProduct }) => {
               <span className="relative invisible ">Add To Cart</span>
             </button>
           </div>
+          <div className="absolute left-2 top-2">
+            {product?.quantity > 0 ? (
+              <>
+                <h5 className="bg-primary-100 rounded-full px-2 py-0.5 font-semibold title">
+                  In Stock
+                </h5>
+              </>
+            ) : (
+              <>
+                <h5 className="bg-red-500 text-white rounded-full px-2 py-0.5 font-semibold title">
+                  Stock Out
+                </h5>
+              </>
+            )}
+          </div>
           <div className="absolute right-2 top-0">
             <button onClick={wishListHandler}>
               {isAddToWisLoading ? (
@@ -162,7 +177,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
         </h2>
 
         <div className="flex gap-5 items-center">
-          <del className="text-sm text-red-700">$49</del>
+          <del className="text-sm text-red-700">$ {product?.oldPrice}</del>
           <Ratings
             starClassName="w-4 h-4 lg:w-5 lg:h-5"
             ratings={product?.productRating || 0}

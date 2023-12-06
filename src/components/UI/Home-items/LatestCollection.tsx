@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
@@ -47,6 +48,10 @@ const LatestCollection = () => {
   } = useGetLatestProductsQuery({});
 
   const latest_products = latestProducts?.data;
+
+  const handleReload = () => {
+    window.location.reload();
+  };
 
   return (
     <div className="my-10 px-5 md:px-10">
@@ -111,13 +116,30 @@ const LatestCollection = () => {
               </div>
             ) : (
               <>
-                {latest_products?.map((product: IProduct) => {
-                  return (
-                    <SwiperSlide className="hover:z-50 " key={product.id}>
-                      <CartProduct product={product} />
-                    </SwiperSlide>
-                  );
-                })}
+                {latest_products?.length > 0 ? (
+                  <>
+                    {" "}
+                    {latest_products?.map((product: IProduct) => {
+                      return (
+                        <SwiperSlide className="hover:z-50 " key={product.id}>
+                          <CartProduct product={product} />
+                        </SwiperSlide>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-center items-center gap-2 min-h-[45vh]">
+                      <h1>Can't Load the data! Please</h1>{" "}
+                      <button
+                        onClick={handleReload}
+                        className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
+                      >
+                        reload
+                      </button>
+                    </div>
+                  </>
+                )}
               </>
             )}
 

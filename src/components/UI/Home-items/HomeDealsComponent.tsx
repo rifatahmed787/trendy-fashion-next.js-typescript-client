@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { Icon } from "@iconify/react";
 import { useRef } from "react";
@@ -43,6 +44,11 @@ const HomeDealsComponent = () => {
       swiperRef.current.swiper.slideNext();
     }
   };
+
+  const handleReload = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="my-10 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-7 md:gap-5 lg:gap-5">
@@ -61,13 +67,13 @@ const HomeDealsComponent = () => {
               </p>
             </div>
           </div>
-          <div className="relative my-7">
+          <div className="relative mt-7 mb-6">
             <Image
               width={300}
               height={64}
               src={image1}
               alt=""
-              className="h-64 w-full rounded-lg md:h-64"
+              className="h-64 w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-40 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -87,7 +93,7 @@ const HomeDealsComponent = () => {
               height={64}
               src={image2}
               alt=""
-              className="h-64 w-full rounded-lg md:h-56"
+              className="h-64 w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-40 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -150,13 +156,30 @@ const HomeDealsComponent = () => {
               </div>
             ) : (
               <>
-                {best_seller_products?.map((product: IProduct) => {
-                  return (
-                    <SwiperSlide className="hover:z-50 " key={product.id}>
-                      <CartProduct product={product} />
-                    </SwiperSlide>
-                  );
-                })}
+                {best_seller_products?.length > 0 ? (
+                  <>
+                    {" "}
+                    {best_seller_products?.map((product: IProduct) => {
+                      return (
+                        <SwiperSlide className="hover:z-50 " key={product.id}>
+                          <CartProduct product={product} />
+                        </SwiperSlide>
+                      );
+                    })}
+                  </>
+                ) : (
+                  <>
+                    <div className="flex justify-center items-center gap-2 min-h-[46vh]">
+                      <h1>Can't Load the data! Please</h1>{" "}
+                      <button
+                        onClick={handleReload}
+                        className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
+                      >
+                        reload
+                      </button>
+                    </div>
+                  </>
+                )}
               </>
             )}
 

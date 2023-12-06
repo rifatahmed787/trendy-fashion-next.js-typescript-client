@@ -59,7 +59,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
   );
   const [AlertMessages, setAlertMessages] = useState("");
 
-  //wishListHandler
+  //cart remove Handler
   const CartRemoveHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn

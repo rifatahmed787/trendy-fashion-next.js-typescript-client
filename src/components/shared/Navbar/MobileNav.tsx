@@ -129,11 +129,12 @@ const MobileNav = () => {
         {isMenuOpen && (
           <AnimatePresence>
             <motion.div
+              key="menu"
               initial={{ opacity: 0, maxHeight: 0 }}
               animate={{ opacity: 1, maxHeight: "500px" }}
-              exit={{ opacity: 0, maxHeight: "500px" }}
-              transition={{ duration: 0.5 }}
-              className={`absolute top-1 left-0 z-30 w-full pb-10 bg-gray-200 mt-8 overflow-y-auto
+              exit={{ opacity: 0, maxHeight: 0 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
+              className={`absolute top-1 left-0 z-30 w-full pb-10 bg-gray-100 mt-8 overflow-y-auto
              `}
             >
               <div className="shadow-sm hover:text-primary-100 mt-4 pl-5">

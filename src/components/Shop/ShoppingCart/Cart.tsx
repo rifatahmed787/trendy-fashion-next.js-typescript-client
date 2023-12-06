@@ -1,5 +1,8 @@
 "use client";
-import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
+import {
+  useClearCartMutation,
+  useGetCartProductsQuery,
+} from "@/Redux/features/cart/cartApi";
 import ShopSkeleton from "../ShopSkeleton/ShopSkeleton";
 import CartCard from "@/components/UI/CartCard";
 import Link from "next/link";
@@ -7,8 +10,28 @@ import BrandButton from "@/components/Button/PrimaryButton";
 import { useEffect, useState } from "react";
 
 import { ICart } from "@/Types/cart";
+import useModal from "@/Hooks/useModal";
+import { useAppSelector } from "@/Hooks/useRedux";
+import ToastContainer from "@/components/UI/Toast";
+import { get_error_messages } from "@/lib/Error_message";
+import ICONS from "@/components/shared/Icons/AllIcons";
 
 const Cart = () => {
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+  const { openModal } = useModal();
+  const [
+    clearCart,
+    {
+      data: clearCartData,
+      isLoading: isClearCartLoading,
+      isError: ClearcartIsError,
+      error: ClearcartError,
+      isSuccess,
+    },
+  ] = useClearCartMutation();
+
+  console.log(clearCart, clearCartData);
+
   const {
     data: Products,
     isError,
@@ -19,6 +42,12 @@ const Cart = () => {
 
   const [selectedShipping, setSelectedShipping] = useState("standard");
   const [shippingCost, setShippingCost] = useState(0);
+  // Alert State
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
+    "success"
+  );
+  const [AlertMessages, setAlertMessages] = useState("");
 
   useEffect(() => {
     const shippingCost =
@@ -49,6 +78,30 @@ const Cart = () => {
   const handleShippingChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedShipping(e.target.value);
   };
+
+  //clear cart handler
+  const ClearCartHandler = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation();
+    isLoggedIn
+      ? clearCart({
+          userId: user?.id,
+        })
+      : openModal("login");
+  };
+
+  //error and success handlaing
+  useEffect(() => {
+    if (ClearcartIsError && ClearcartError && "data" in ClearcartError) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      const error_messages = get_error_messages(ClearcartError);
+      setAlertMessages(error_messages);
+    } else if (isSuccess) {
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(clearCartData?.message);
+    }
+  }, [ClearcartError, ClearcartIsError, clearCartData?.message, isSuccess]);
 
   return (
     <div className={`pb-10 pt-1`}>
@@ -91,7 +144,7 @@ const Cart = () => {
                         ""
                       ) : (
                         <>
-                          <h1 className={`text-xl text-center font-bold `}>
+                          <h1 className={`text-xl text-center font-bold h-96`}>
                             Cart is <span className="text-primary">Empty!</span>
                           </h1>
                         </>
@@ -123,24 +176,35 @@ const Cart = () => {
                 </div>
               </div>
 
-              <Link
-                href="/products"
-                className="flex font-semibold text-primary text-sm mt-10"
-              >
-                <svg
-                  className="fill-current mr-2 text-primary w-4"
-                  viewBox="0 0 448 512"
-                >
-                  <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
-                </svg>
-                Continue Shopping
-              </Link>
+              <div className="flex justify-between items-center mt-10 max-h-full">
+                <Link href="/products" className="flex font-semibold text-sm">
+                  <svg className="fill-current mr-2 w-4" viewBox="0 0 448 512">
+                    <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                  </svg>
+                  Continue Shopping
+                </Link>
+                <div>
+                  {cart_list_data?.length > 0 ? (
+                    <>
+                      <button
+                        className="font-semibold hover:text-red-500 text-sm flex items-center pr-0 md:pr-12"
+                        onClick={ClearCartHandler}
+                      >
+                        Clear Cart
+                        {isClearCartLoading ? ICONS.button_loading_icon : ""}
+                      </button>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
             </div>
 
             {/* order summary starts from here */}
             <div
               id="summary"
-              className="w-11/12 lg:w-1/4 px-8 py-10 bg-gray-100"
+              className="w-11/12 lg:w-1/4 px-8 mx-auto py-10 bg-gray-100"
             >
               <h1 className="font-semibold text-2xl border-b pb-8">
                 Order Summary
@@ -173,7 +237,7 @@ const Cart = () => {
                   </option>
                 </select>
               </div>
-              <div className="py-10">
+              <div className="pt-10 pb-3">
                 <label
                   htmlFor="promo"
                   className="font-semibold inline-block mb-3 text-sm uppercase"
@@ -204,6 +268,16 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      {/* Toast */}
+      {isAlertOpen && (
+        <ToastContainer
+          type={AlertType}
+          messages={AlertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+          className="absolute  top-0 z-50 left-0 right-0 mx-auto flex justify-center"
+        />
+      )}
     </div>
   );
 };

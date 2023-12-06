@@ -54,7 +54,7 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
           {/* dashboard */}
           <li>
             <Link
-              href="#"
+              href="/userdashboard"
               className={`px-4 py-2 text-base w-full text-left text-gray-700  flex items-center gap-2`}
               onClick={() => setAccountDropdownOpen(false)}
             >

@@ -3,9 +3,9 @@
 const ContactForm = () => {
   return (
     <>
-      <div className="text-left py-16 max-w-screen-2xl mx-auto bg-image-contact h-80 relative mt-10">
+      <div className=" py-16 max-w-screen-2xl bg-image-contact h-80 relative mt-10">
         <span className="absolute top-0 left-0 inset-0 bg-black opacity-50"></span>
-        <div className="w-11/12 lg:w-full rounded-xl mx-auto absolute z-30">
+        <div className="w-11/12 lg:w-full rounded-xl mx-auto absolute z-30 ml-3 md:ml-0">
           <h2 className=" font-bold text-2xl lg:text-4xl text-center text-gray-200 title">
             Join our newsletter
           </h2>

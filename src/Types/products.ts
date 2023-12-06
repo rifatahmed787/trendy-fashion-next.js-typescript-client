@@ -10,6 +10,7 @@ export interface IProduct {
   productImage: string[];
   productSize: string[];
   productPrice: number;
+  oldPrice: number;
   productRating: number;
   productSpecification: string[];
   productCategory: string;
@@ -17,4 +18,5 @@ export interface IProduct {
   relatedProducts: string[];
   productGender: string;
   productReviews: IProductReview[];
+  quantity: number;
 }
