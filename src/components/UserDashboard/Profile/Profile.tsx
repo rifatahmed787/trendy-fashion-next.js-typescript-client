@@ -4,7 +4,7 @@ import React from "react";
 const Profile = () => {
   return (
     <div>
-      <div className="px-16 pb-16">
+      <div className="px-5 md:px-16 pb-16">
         <div className="p-8 bg-white shadow mt-24">
           <div className="relative">
             <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">

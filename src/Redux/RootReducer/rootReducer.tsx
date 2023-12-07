@@ -6,6 +6,7 @@ import searchReducer from "../features/products/searchSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import cartReducer from "../features/cart/cartSlice";
+import sidebarReducer from "../features/ui/sidebarSlice";
 
 const persistConfig = {
   key: "root",
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   ui: uiReducer,
   search: searchReducer,
   cart: persistReducer(persistConfig, cartReducer),
+  sidebar: sidebarReducer,
 });
 
 export default rootReducer;
