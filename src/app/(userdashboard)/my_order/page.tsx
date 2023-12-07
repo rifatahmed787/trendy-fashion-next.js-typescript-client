@@ -1,11 +1,12 @@
+import MyOrder from "@/components/UserDashboard/My-order/MyOrder";
 import React from "react";
 
-const MyOrder = () => {
+const MyOrders = () => {
   return (
     <div>
-      <h1>This is my order</h1>
+      <MyOrder />
     </div>
   );
 };
 
-export default MyOrder;
+export default MyOrders;

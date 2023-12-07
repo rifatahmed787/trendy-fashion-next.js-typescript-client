@@ -34,7 +34,7 @@ const Sidebar = () => {
       <aside
         onMouseEnter={() => setIsSidebarHovered(true)}
         onMouseLeave={() => setIsSidebarHovered(false)}
-        className={`fixed top-0 left-0 z-20  duration-500 h-screen transition-all sm:translate-x-0 ${
+        className={`fixed top-0 left-0 z-20 hidden md:block duration-500 h-screen transition-all sm:translate-x-0 ${
           isSidebarHovered ? "w-48" : "w-14"
         }`}
       >

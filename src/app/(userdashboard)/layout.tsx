@@ -12,7 +12,7 @@ export default function UserLayout({
     <>
       <UserNavbar />
       <Sidebar />
-      <div className="min-h-screen pt-72">{children}</div>
+      <div className="min-h-screen pt-24">{children}</div>
       <ScrollToTop />
       <Footer />
     </>
