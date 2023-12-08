@@ -1,6 +1,5 @@
 import React from "react";
 import type { Metadata } from "next";
-import Sidebar from "@/components/shared/UserSidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -8,12 +7,7 @@ export const metadata: Metadata = {
 };
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div>
-      <Sidebar />
-      {children}
-    </div>
-  );
+  return <div>{children}</div>;
 };
 
 export default DashboardLayout;
