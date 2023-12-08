@@ -1,11 +1,12 @@
+import Profile from "@/components/AdminDashboard/AdminProfile/Profile";
 import React from "react";
 
-const Profile = () => {
+const Profiles = () => {
   return (
     <div>
-      <h1>This is admin profile</h1>
+      <Profile />
     </div>
   );
 };
 
-export default Profile;
+export default Profiles;

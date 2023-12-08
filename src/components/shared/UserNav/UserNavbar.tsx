@@ -4,15 +4,15 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/Logo/trendy.svg";
-import NavLinks from "./NavLinks";
+import NavLinks from "../Navbar/NavLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import MobileNav from "./MobileNav";
+import MobileNav from "../Navbar/MobileNav";
 import useModal from "@/Hooks/useModal";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
-import Account from "./Account";
+import Account from "../Navbar/Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";

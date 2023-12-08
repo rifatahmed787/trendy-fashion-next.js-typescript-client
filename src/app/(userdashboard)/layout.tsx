@@ -1,7 +1,7 @@
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import Footer from "@/components/shared/Footer/Footer";
-import UserNavbar from "@/components/shared/Navbar/UserNavbar";
-import Sidebar from "@/components/shared/UserSidebar/Sidebar";
+import UserNavbar from "@/components/shared/UserNav/UserNavbar";
+import Sidebar from "@/components/shared/UserNav/Sidebar";
 
 export default function UserLayout({
   children,
