@@ -5,7 +5,7 @@ const Sidebar = () => {
   return (
     <>
       <aside
-        className={`fixed top-5 left-0 z-20 hidden md:block duration-500  transition-all sm:translate-x-0 ml-5 md:left-0 flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 py-4 px-6  h-[calc(100%-6vh)] border border-primary-100 rounded-xl `}
+        className={`fixed top-5 left-0 z-20 hidden md:block duration-500  transition-all sm:translate-x-0 ml-5 md:left-0 flex-row flex-nowrap overflow-hidden shadow-xl bg-white w-64 py-4 px-6  h-[calc(100%-6vh)] border border-primary-100 rounded-xl`}
       >
         <div className="h-full px-3 py-4 overflow-y-auto">
           <div className="flex-col items-stretch min-h-full flex-nowrap px-0 relative">
@@ -18,7 +18,7 @@ const Sidebar = () => {
               <ul className="flex-col min-w-full flex list-none">
                 <li className="rounded-lg mb-4">
                   <Link
-                    href="/"
+                    href="/dashboard/profile"
                     className="flex items-center gap-4 text-sm text-gray-700 font-light px-4 py-3 rounded-lg"
                   >
                     {ICONS.home}
