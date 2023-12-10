@@ -144,7 +144,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
         <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center">
           $ {product?.product?.productPrice}
         </span>
-        <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center">
+        <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center ml-5">
           $ {((product?.product?.productPrice || 1) * quantity).toFixed(2)}
         </span>
       </div>

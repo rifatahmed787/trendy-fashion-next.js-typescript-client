@@ -15,6 +15,7 @@ import { useAppSelector } from "@/Hooks/useRedux";
 import ToastContainer from "@/components/UI/Toast";
 import { get_error_messages } from "@/lib/Error_message";
 import ICONS from "@/components/shared/Icons/AllIcons";
+import { useCreatePaymentMutation } from "@/Redux/features/payment/paymentApi";
 
 const Cart = () => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
@@ -30,7 +31,7 @@ const Cart = () => {
     },
   ] = useClearCartMutation();
 
-  console.log(clearCart, clearCartData);
+  const [createPayment] = useCreatePaymentMutation();
 
   const {
     data: Products,
@@ -87,6 +88,24 @@ const Cart = () => {
           userId: user?.id,
         })
       : openModal("login");
+  };
+
+  // payment handle
+  const handlePaymentClick = async () => {
+    try {
+      const result = await createPayment({});
+
+      if ("data" in result) {
+        // Redirect the user to the obtained URL
+        window.location.href = result.data.session.url;
+      } else if ("error" in result) {
+        console.error("Error creating payment:", result.error);
+        // Handle error, show a message, etc.
+      }
+    } catch (error) {
+      console.error("Unexpected error creating payment:", error);
+      // Handle unexpected error, show a message, etc.
+    }
   };
 
   //error and success handlaing
@@ -258,11 +277,14 @@ const Cart = () => {
                   <span>Total cost</span>
                   <span>${totalCostWithShipping}</span>
                 </div>
-                <Link href="/checkout">
-                  <button className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full">
+                <div>
+                  <button
+                    onClick={() => handlePaymentClick()}
+                    className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
+                  >
                     Checkout
                   </button>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
