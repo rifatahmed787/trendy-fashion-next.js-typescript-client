@@ -16,10 +16,12 @@ import ToastContainer from "@/components/UI/Toast";
 import { get_error_messages } from "@/lib/Error_message";
 import ICONS from "@/components/shared/Icons/AllIcons";
 import { useCreatePaymentMutation } from "@/Redux/features/payment/paymentApi";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
+  const router = useRouter();
   const [
     clearCart,
     {
@@ -92,20 +94,8 @@ const Cart = () => {
 
   // payment handle
   const handlePaymentClick = async () => {
-    try {
-      const result = await createPayment({});
-
-      if ("data" in result) {
-        // Redirect the user to the obtained URL
-        window.location.href = result.data.session.url;
-      } else if ("error" in result) {
-        console.error("Error creating payment:", result.error);
-        // Handle error, show a message, etc.
-      }
-    } catch (error) {
-      console.error("Unexpected error creating payment:", error);
-      // Handle unexpected error, show a message, etc.
-    }
+    const result = await createPayment({}).unwrap();
+    router.push(result.session.url);
   };
 
   //error and success handlaing
