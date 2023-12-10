@@ -279,7 +279,7 @@ const Cart = () => {
                 </div>
                 <div>
                   <button
-                    onClick={() => handlePaymentClick()}
+                    onClick={handlePaymentClick}
                     className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
                   >
                     Checkout
