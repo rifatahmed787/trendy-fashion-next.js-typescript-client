@@ -3,7 +3,7 @@ export interface IUser {
   email?: string;
   username: string;
   hasVerifiedEmail?: boolean;
-  role?: "admin" | "user";
+  role?: "ADMIN" | "USER";
   avatar: string;
   phoneNumber?: string;
   location?: string;

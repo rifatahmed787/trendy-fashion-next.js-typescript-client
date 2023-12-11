@@ -214,7 +214,7 @@ const ProductDetail = ({
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
+                      strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth="2"
                       className="w-4 h-4"
