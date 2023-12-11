@@ -95,7 +95,7 @@ const Cart = () => {
   // payment handle
   const handlePaymentClick = async () => {
     const result = await createPayment({}).unwrap();
-    router.push(result.session.url);
+    router.push(result.data.url);
   };
 
   //error and success handlaing

@@ -3,9 +3,9 @@ import ICONS from "../../shared/Icons/AllIcons";
 
 const MyOrder = () => {
   return (
-    <div className="container px-4 mx-auto">
+    <div className="container px-4 md:px-0 pl-0 md:pl-8 mx-auto">
       <div className="flex flex-col">
-        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6">
           <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
             <div className="overflow-hidden border border-gray-200  md:rounded-lg">
               <table className="min-w-full divide-y divide-gray-200 ">
@@ -13,12 +13,12 @@ const MyOrder = () => {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-500 "
                     >
                       <div className="flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 "
+                          className="text-blue-500 border-gray-300 rounded  "
                         />
                         <button className="flex items-center gap-x-2">
                           <span>Invoice</span>
@@ -29,28 +29,28 @@ const MyOrder = () => {
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
                     >
                       Date
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
                     >
                       Payment
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
                     >
                       Email
                     </th>
 
                     <th
                       scope="col"
-                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                      className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-500 "
                     >
                       Status
                     </th>
@@ -66,7 +66,7 @@ const MyOrder = () => {
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 "
+                          className="text-blue-500 border-gray-300 rounded  "
                         />
 
                         <span>#3066</span>
@@ -107,7 +107,7 @@ const MyOrder = () => {
                           <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                             Arthur Melo
                           </h2>
-                          <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
+                          <p className="text-xs font-normal text-gray-600 ">
                             authurmelo@example.com
                           </p>
                         </div>
@@ -134,7 +134,7 @@ const MyOrder = () => {
                       <div className="inline-flex items-center gap-x-3">
                         <input
                           type="checkbox"
-                          className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 "
+                          className="text-blue-500 border-gray-300 rounded  "
                         />
 
                         <span>#3065</span>
@@ -175,7 +175,7 @@ const MyOrder = () => {
                           <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
                             Andi Lane
                           </h2>
-                          <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
+                          <p className="text-xs font-normal text-gray-600 ">
                             andi@example.com
                           </p>
                         </div>
