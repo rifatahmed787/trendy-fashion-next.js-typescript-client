@@ -29,6 +29,7 @@ export const apiSlice = createApi({
     "cart",
     "reviews",
     "payment",
+    "order",
   ],
 
   endpoints: () => ({}),
