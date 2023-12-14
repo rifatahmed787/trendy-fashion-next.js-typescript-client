@@ -8,7 +8,7 @@ export const userApi = apiSlice.injectEndpoints({
         const query = args ? ParamSerialization(args) : "";
         return `/user/userinfo?${query}`;
       },
-      providesTags: ["profile"],
+      providesTags: ["profile", "user"],
     }),
 
     postAddress: builder.mutation({
