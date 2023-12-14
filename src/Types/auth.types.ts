@@ -74,3 +74,13 @@ export interface IGetUserDetailsRes {
   email: string;
   avatar: string;
 }
+
+export interface IAddress {
+  id: number;
+  street_address: string;
+  city: string;
+  postal_code: string;
+  country: string;
+  phone_number: string;
+  district_name: string;
+}

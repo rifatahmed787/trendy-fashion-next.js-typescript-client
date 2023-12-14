@@ -63,7 +63,6 @@ const SignUpForm = () => {
         console.error("Error uploading file:", error);
       }
     }
-    console.log(avatar);
 
     try {
       await register({

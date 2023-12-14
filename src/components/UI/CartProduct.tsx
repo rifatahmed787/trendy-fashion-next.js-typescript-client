@@ -131,7 +131,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
               <span className="relative invisible ">Add To Cart</span>
             </button>
           </div>
-          <div className="absolute left-2 top-2">
+          <div className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm">
             {product?.quantity > 0 ? (
               <>
                 <h5 className="bg-primary-100 rounded-full px-2 py-0.5 font-semibold title">
