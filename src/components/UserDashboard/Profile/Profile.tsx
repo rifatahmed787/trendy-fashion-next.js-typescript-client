@@ -7,6 +7,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 import EditProfile from "./EditProfile";
+import PostAddress from "./PostAddress";
 
 const Profile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
@@ -18,7 +19,16 @@ const Profile = () => {
       <div className="px-5 pl-5 md:pl-20 pb-16">
         {isEditMode ? (
           // Edit mode
-          <EditProfile users_data={users_data} setIsEditMode={setIsEditMode} />
+          <>
+            {users_data?.address ? (
+              <EditProfile
+                users_data={users_data}
+                setIsEditMode={setIsEditMode}
+              />
+            ) : (
+              <PostAddress setIsEditMode={setIsEditMode} />
+            )}
+          </>
         ) : (
           // View mode
           <>

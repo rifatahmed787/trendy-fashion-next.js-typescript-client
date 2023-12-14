@@ -107,7 +107,7 @@ const EditProfile = ({
     }
   }, [AddressError, addressIError, addressIsSuccess]);
   return (
-    <div>
+    <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="px-5 pl-5 md:pl-20 pt-10">
           <div className=" mt-24">
@@ -318,7 +318,7 @@ const EditProfile = ({
           />
         )}
       </form>
-    </div>
+    </>
   );
 };
 

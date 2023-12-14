@@ -95,9 +95,11 @@ const MyOrder = () => {
                       ""
                     ) : (
                       <>
-                        <h1 className={`text-xl text-center font-bold`}>
-                          Your order is{" "}
-                          <span className="text-primary-100">Empty!</span>
+                        <h1
+                          className={`text-xl font-bold flex justify-center items-center min-h-[50vh]`}
+                        >
+                          Your order is
+                          <span className="text-primary-100 pl-2">Empty!</span>
                         </h1>
                       </>
                     )}
