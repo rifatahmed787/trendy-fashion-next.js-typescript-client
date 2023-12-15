@@ -133,7 +133,7 @@ const HomeDealsComponent = () => {
                 spaceBetween: 40,
               },
               1024: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 50,
               },
             }}
@@ -208,7 +208,7 @@ const HomeDealsComponent = () => {
               backgroundImage:
                 'url("https://res.cloudinary.com/dztlowlu0/image/upload/e_improve:outdoor/be5sspn2qkqwraisfvkd.jpg")',
             }}
-            className="relative h-96 rounded-lg bg-cover bg-center"
+            className="relative h-[412px] rounded-lg bg-cover bg-center"
           >
             <span className="absolute inset-0 rounded-lg bg-black opacity-20"></span>
             <div className="gird absolute grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
