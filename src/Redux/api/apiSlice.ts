@@ -6,6 +6,7 @@ export const apiSlice = createApi({
   reducerPath: "apis",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://trendy-fashion-server.vercel.app/api/v1",
+
     // baseUrl: "http://localhost:5000/api/v1",
 
     prepareHeaders(headers, { getState }) {
