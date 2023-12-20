@@ -87,7 +87,7 @@ const SignUpForm = () => {
       setAlertMessages(error_messages);
     } else if (isRegisterSuccess) {
       setAlertType("success");
-      toast.success("Signed up successfully");
+      toast.success("Signed up successfully", { id: "okay" });
       onClose();
     }
   }, [isRegisterError, isRegisterSuccess, onClose, registerError]);

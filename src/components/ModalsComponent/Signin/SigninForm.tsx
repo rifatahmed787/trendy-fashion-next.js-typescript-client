@@ -52,7 +52,7 @@ const SignInForm = () => {
       const error_messages = get_error_messages(error);
       setAlertMessages(error_messages);
     } else if (isSuccess) {
-      toast.success("Logged in successfully");
+      toast.success("Logged in successfully", { id: "okay" });
       onClose();
     }
   }, [error, isError, isSuccess, onClose]);
