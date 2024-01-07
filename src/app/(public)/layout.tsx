@@ -1,8 +1,8 @@
-import TopNavbar from "@/components/shared/Navbar/TopNavbar";
 import Navbar from "@/components/shared/Navbar/Navbar";
 import Footer from "@/components/shared/Footer/Footer";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import WeChatWhatsApp from "@/components/WhatsAppChat/WeChatWhatsApp";
+import TopNav from "@/components/shared/Navbar/TopNav";
 
 export default function GroupLayout({
   children,
@@ -11,9 +11,9 @@ export default function GroupLayout({
 }) {
   return (
     <>
-      <TopNavbar />
+      <TopNav />
       <Navbar />
-      <div className="min-h-screen pt-[116px]">{children}</div>
+      <div className="min-h-screen pt-[125px]">{children}</div>
       <WeChatWhatsApp />
       <ScrollToTop />
       <Footer />

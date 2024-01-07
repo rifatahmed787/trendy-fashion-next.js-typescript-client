@@ -117,22 +117,34 @@ const Navbar = () => {
     </>
   );
 
-  const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-16 ${
-    isNavbarVisible
-      ? "translate-y-0 top-0 md:top-[73px]"
-      : "-translate-y-auto top-auto py-2"
+  const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-10 ${
+    isNavbarVisible ? "translate-y-0 top-[34px]" : "-translate-y-full top-auto"
   } bg-white shadow-sm`;
+
   return (
     <>
       <nav className={navbarClasses}>
-        <div className="flex items-center justify-between font-medium mx-auto max-w-screen-xl">
+        <div className="flex items-center justify-between font-medium">
+          <div className="z-50 flex w-full justify-between p-1 ml-3 md:ml-0 md:w-auto">
+            <Link href="/">
+              <Image
+                src={Logo}
+                alt="logo"
+                className="w-16 h-16 md:cursor-pointer"
+                width={undefined}
+              />
+            </Link>
+          </div>
           <ul className="hidden items-center gap-10 md:flex ">
+            <div className="mx-10">
+              <ProductSearchbar />
+            </div>
             <li>
               <Link
                 href="/"
-                className={`inline-block hover:border-b-primary-200 py-4 ${
+                className={`inline-block hover:border-b-primary-200 ${
                   pathname === "/"
-                    ? "border-b-2 border-b-primary-200 px-2  text-primary-100 "
+                    ? "border-b-2 border-b-primary-200 px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
               >
@@ -143,77 +155,36 @@ const Navbar = () => {
             <li>
               <Link
                 href="/products"
-                className={`inline-block hover:border-b-primary-200 py-4 ${
+                className={`inline-block hover:border-b-primary-200 ${
                   pathname === "/products"
-                    ? "border-b-2 border-b-primary-200 px-2  text-primary-100  "
+                    ? "border-b-2 border-b-primary-200 px-2 py-[26px] text-black "
                     : "text-[#181818]"
                 }`}
               >
                 Products
               </Link>
             </li>
+
             {/* dropdown navlinks */}
             <NavLinks />
           </ul>
 
           {user?.email && isLoggedIn ? (
-            <div className="flex items-center gap-2">
-              <div className="hidden md:block">
-                <ul className="flex items-center gap-2 py-4">
-                  {/* wishlist */}
-                  <li>
-                    <Link
-                      href="/wishlist"
-                      className={`px-2 py-2 w-full flex items-center gap-2 bg-white shadow-md rounded-md`}
-                    >
-                      <Icon
-                        icon="streamline:interface-favorite-heart-reward-social-rating-media-heart-it-like-favorite-love"
-                        width={22}
-                        className={`${
-                          pathname === "/wishlist" ? "text-primary-100" : ""
-                        }`}
-                      />
-                    </Link>
-                  </li>
-                  {/* Cart */}
-                  <li className="mx-2">
-                    <Link
-                      href="/addtocart"
-                      className={`px-2 py-2  w-full  flex items-center gap-2 bg-white shadow-md rounded-md`}
-                    >
-                      <Icon
-                        icon="mdi:cart-outline"
-                        width={22}
-                        className={`${
-                          pathname === "/addtocart" ? "text-primary-100" : ""
-                        }`}
-                      />
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-              <div className="hidden md:block">{account}</div>
-            </div>
+            <div className="hidden md:block">{account}</div>
           ) : (
             <>
               <div className="hidden md:block">
-                <div className="flex items-center px-3 rounded-md bg-primary-100 text-black font-inter">
+                <div className="flex gap-4">
                   <button
                     onClick={(e) => {
                       e.preventDefault();
                       openModal("login");
                     }}
+                    className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 flex items-center gap-1"
+                    type="button"
                   >
-                    SignIn
-                  </button>
-                  <span className="bg-white w-0.5 h-8 rotate-[30deg] mx-2"></span>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      openModal("register");
-                    }}
-                  >
-                    SignUp
+                    {ICONS.profile}
+                    Signin
                   </button>
                 </div>
               </div>
