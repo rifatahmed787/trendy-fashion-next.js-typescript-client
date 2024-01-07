@@ -11,13 +11,13 @@ const Footer = () => {
     return new Date().getFullYear();
   };
   return (
-    <footer className="bg-gray-200 relative before:absolute before:content-normal before:left-0 before:top-0 before:w-32 before:h-32 before:bg-primary-100 before:rounded-br-full z-30">
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 ">
+    <footer className="bg-primary-100 z-30">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 bg-white rounded-tl-[200px] md:rounded-tl-[300px] relative after:content-normal after:absolute after:w-11/12 after:h-1 after:top-0  after:bg-primary-100">
         {/* Top area: Blocks */}
         <div className="grid grid-cols-12 py-8 md:py-12 border-t border-gray-200 md:mx-10">
           {/* 1st block */}
           <div className="col-span-12 md:col-span-3">
-            <div className="mb-2 flex justify-center">
+            <div className="mb-2 flex justify-center z-10">
               {/* Logo */}
               <Link href="/" className="inline-block" aria-label="Cruip">
                 <Image
@@ -25,7 +25,7 @@ const Footer = () => {
                   alt=""
                   width={undefined}
                   height={undefined}
-                  className="w-20 "
+                  className="w-40"
                 />
               </Link>
             </div>
@@ -250,10 +250,10 @@ const Footer = () => {
           <div className="text-sm text-gray-600 mr-4">
             Made by{" "}
             <a
-              className="text-primary-100 hover:underline"
+              className="text-primary-100 hover:underline font-semibold"
               href="https://cruip.com/"
             >
-              Trendy-Fashion {getCurrentYear()}
+              trendy-fashion {getCurrentYear()}
             </a>
             . All rights reserved.
           </div>
