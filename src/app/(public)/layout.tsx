@@ -13,7 +13,7 @@ export default function GroupLayout({
     <>
       <TopNav />
       <Navbar />
-      <div className="min-h-screen pt-[125px]">{children}</div>
+      <div className="min-h-screen pt-24 md:pt-[125px]">{children}</div>
       <WeChatWhatsApp />
       <ScrollToTop />
       <Footer />

@@ -15,7 +15,7 @@ import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
-import "./Navbar.css"
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -122,20 +122,20 @@ const Navbar = () => {
       : "-translate-y-auto top-auto py-3"
   } bg-white shadow-sm`;
   return (
-    <>
+    <div>
       <nav className={navbarClasses}>
         <div className="flex items-center justify-between font-medium mx-auto max-w-screen-2xl">
           <ul className="hidden items-center gap-10 md:flex ">
-            <li className={`${isNavbarVisible ? "hidden":"block"}`}>
-            <Link href="/">
-              <Image
-                src={Logo}
-                alt="logo"
-                className="w-14 md:cursor-pointer"
-                width={undefined}
-                height={undefined}
-              />
-            </Link>
+            <li className={`${isNavbarVisible ? "hidden" : "block"}`}>
+              <Link href="/">
+                <Image
+                  src={Logo}
+                  alt="logo"
+                  className="w-14 md:cursor-pointer"
+                  width={undefined}
+                  height={undefined}
+                />
+              </Link>
             </li>
             <li>
               <Link
@@ -229,14 +229,13 @@ const Navbar = () => {
               </div>
             </>
           )}
-
-          {/* Mobile navbar */}
-          <ul className={`fixed z-50 w-full md:hidden`}>
-            <MobileNav />
-          </ul>
         </div>
       </nav>
-    </>
+      {/* Mobile navbar */}
+      <ul>
+        <MobileNav />
+      </ul>
+    </div>
   );
 };
 

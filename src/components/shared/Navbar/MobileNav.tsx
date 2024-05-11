@@ -12,6 +12,7 @@ import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFil
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
+import Logo from "../../../assets/Logo/trendy.svg";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -94,38 +95,53 @@ const MobileNav = () => {
 
   return (
     <>
-      <div className="fixed z-50 w-full transition py-3 duration-500 lg:hidden pr-5">
-        <div className="flex justify-end relative">
-          <button
-             className="w-10 h-6 absolute top-4  right-2 z-50 flex flex-col items-center justify-between"
-            onClick={toggleMenu}
-          >
-            {/*hamburger menu span one*/}
-            <span
-              className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
-                isMenuOpen
-                  ? "rotate-45 translate-y-2.5 duration-300"
-                  : "translate-y-0 duration-300"
-              }`}
-            ></span>
+      <div className="fixed z-50 w-full md:hidden bg-white py-5">
+     
+          <div className="flex justify-between items-center px-5">
+            <div>
+              <Link href="/">
+                <Image
+                  src={Logo}
+                  alt="logo"
+                  className="w-14 md:cursor-pointer"
+                  width={undefined}
+                  height={undefined}
+                />
+              </Link>
+            </div>
+            <div className="flex justify-end">
+              <button
+                className="w-10 h-6 flex  absolute top-9  z-50 flex-col items-center justify-between"
+                onClick={toggleMenu}
+              >
+                {/*hamburger menu span one*/}
+                <span
+                  className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
+                    isMenuOpen
+                      ? "rotate-45 translate-y-2.5 duration-300"
+                      : "translate-y-0 duration-300"
+                  }`}
+                ></span>
 
-            {/*hamburger menu span two*/}
-            <span
-              className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
-                isMenuOpen ? "opacity-0" : ""
-              }`}
-            ></span>
+                {/*hamburger menu span two*/}
+                <span
+                  className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
+                    isMenuOpen ? "opacity-0" : ""
+                  }`}
+                ></span>
 
-            {/*hamburger menu span three*/}
-            <span
-              className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
-                isMenuOpen
-                  ? "-rotate-45 -translate-y-2.5 duration-300"
-                  : "translate-y-0 duration-300"
-              }`}
-            ></span>
-          </button>
-        </div>
+                {/*hamburger menu span three*/}
+                <span
+                  className={`h-1 w-4/5 bg-primary-100 rounded-2xl ${
+                    isMenuOpen
+                      ? "-rotate-45 -translate-y-2.5 duration-300"
+                      : "translate-y-0 duration-300"
+                  }`}
+                ></span>
+              </button>
+            </div>
+          </div>
+       
         {isMenuOpen && (
           <AnimatePresence>
             <motion.div
@@ -134,7 +150,7 @@ const MobileNav = () => {
               animate={{ opacity: 1, maxHeight: "500px" }}
               exit={{ opacity: 0, maxHeight: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className={`absolute top-1 left-0 z-30 w-full pb-10 bg-gray-100 mt-8 overflow-y-auto
+              className={`absolute top-[94px] left-0 z-30 w-full pb-10 bg-gray-100 overflow-y-auto
              `}
             >
               <div className="shadow-sm hover:text-primary-100 mt-4 pl-5">
