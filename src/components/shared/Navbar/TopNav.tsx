@@ -37,7 +37,7 @@ const TopNav = () => {
 
   return (
     <div className={headerClasses}>
-      <div className="flex items-center justify-between font-medium mx-auto max-w-screen-xl">
+      <div className="flex items-center justify-between font-medium mx-auto max-w-screen-2xl">
         <div className="flex justify-center">
           <div className="z-50 flex w-full justify-between p-1 ml-3 md:ml-0 md:w-auto">
             <Link href="/">

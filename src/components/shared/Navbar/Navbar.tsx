@@ -10,13 +10,12 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
-import ProductSearchbar from "@/components/Products/ProductSearchbar";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
-import ICONS from "../Icons/AllIcons";
+import "./Navbar.css"
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -120,19 +119,30 @@ const Navbar = () => {
   const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-16 ${
     isNavbarVisible
       ? "translate-y-0 top-0 md:top-[73px]"
-      : "-translate-y-auto top-auto py-2"
+      : "-translate-y-auto top-auto py-3"
   } bg-white shadow-sm`;
   return (
     <>
       <nav className={navbarClasses}>
-        <div className="flex items-center justify-between font-medium mx-auto max-w-screen-xl">
+        <div className="flex items-center justify-between font-medium mx-auto max-w-screen-2xl">
           <ul className="hidden items-center gap-10 md:flex ">
+            <li className={`${isNavbarVisible ? "hidden":"block"}`}>
+            <Link href="/">
+              <Image
+                src={Logo}
+                alt="logo"
+                className="w-14 md:cursor-pointer"
+                width={undefined}
+                height={undefined}
+              />
+            </Link>
+            </li>
             <li>
               <Link
                 href="/"
-                className={`inline-block hover:border-b-primary-200 py-4 ${
+                className={`inline-block py-4 menu-item ${
                   pathname === "/"
-                    ? "border-b-2 border-b-primary-200 px-2  text-primary-100 "
+                    ? "active px-2  text-primary-100 "
                     : "text-[#181818]"
                 }`}
               >
@@ -143,9 +153,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/products"
-                className={`inline-block hover:border-b-primary-200 py-4 ${
+                className={`inline-block py-4 menu-item ${
                   pathname === "/products"
-                    ? "border-b-2 border-b-primary-200 px-2  text-primary-100  "
+                    ? "active px-2  text-primary-100  "
                     : "text-[#181818]"
                 }`}
               >

@@ -93,11 +93,11 @@ const MobileNav = () => {
   );
 
   return (
-    <div>
-      <div className="fixed w-full transition duration-500 lg:hidden pr-2">
+    <>
+      <div className="fixed z-50 w-full transition py-3 duration-500 lg:hidden pr-5">
         <div className="flex justify-end relative">
           <button
-            className="w-10 h-6 absolute right-2 -top-2.5 z-10 flex flex-col justify-between"
+             className="w-10 h-6 absolute top-4  right-2 z-50 flex flex-col items-center justify-between"
             onClick={toggleMenu}
           >
             {/*hamburger menu span one*/}
@@ -201,7 +201,7 @@ const MobileNav = () => {
           </AnimatePresence>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
