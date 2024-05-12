@@ -8,7 +8,7 @@ interface ParagraphProps {
 
 const Paragraph: React.FC<ParagraphProps> = ({ children, className }) => {
   return (
-    <article className={`leading-6 text-[14px] font-sans ${className}`}>
+    <article className={`leading-6 text-[14px] font-italic ${className}`}>
       {children}
     </article>
   );

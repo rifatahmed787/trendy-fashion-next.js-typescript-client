@@ -9,8 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
-        serif: ["Playfair Display", "serif"],
+        primary:["Petrona", "serif"],
+        secondary:['Amiri', "serif"],
+        tertiary:["Open Sans", "sans-serif"],
+        italic:['Didot eText W01 Italic',]
       },
       colors: {
         gray: {

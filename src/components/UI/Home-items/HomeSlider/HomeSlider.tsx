@@ -76,7 +76,7 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
+                  <h1 className="font-bold font md:text-[35px] lg:text-[50px] font-italic">
                     Meet The Line of <br />
                     The Ladies Fashion
                   </h1>
