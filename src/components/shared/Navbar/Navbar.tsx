@@ -163,7 +163,7 @@ const Navbar = () => {
               </Link>
             </li>
             {/* dropdown navlinks */}
-            <NavLinks />
+            <NavLinks previousScroll={previousScroll}/>
           </ul>
 
           {user?.email && isLoggedIn ? (

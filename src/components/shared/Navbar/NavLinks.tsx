@@ -5,7 +5,7 @@ import { links } from "./MyLinks";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 
-const NavLinks = () => {
+const NavLinks = ({previousScroll}:any) => {
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
   // const router = useRouter();
@@ -36,7 +36,7 @@ const NavLinks = () => {
             </h1>
             {link.submenu && (
               <div>
-                <div className="absolute top-[45px] hidden group-hover:md:block hover:md:block ">
+                <div className={`absolute  hidden group-hover:md:block hover:md:block ${previousScroll? "top-4/5":"top-3/4"}`}>
                   <div className="pb-3 bg-white">
                     <div
                       className="w-4 h-4 left-3 absolute 
