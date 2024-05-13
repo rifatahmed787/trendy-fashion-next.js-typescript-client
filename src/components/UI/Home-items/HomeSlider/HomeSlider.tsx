@@ -49,7 +49,7 @@ const HomePageBanner = () => {
   };
   return (
     <>
-      <div className="grid grid-cols-1 gap-0 md:grid-cols-3 md:gap-5">
+      <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 md:gap-5">
         <div className="group col-span-2">
           <Swiper
             autoplay={{
@@ -71,12 +71,12 @@ const HomePageBanner = () => {
                 <Image
                   src={bannerImage1}
                   alt=""
-                  className="h-[50vh] md:h-[100vh] w-full"
+                  className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
                     Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
@@ -84,7 +84,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-3 md:gap-5">
+                  <div className="flex gap-3 md:gap-5 pt-3">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -98,12 +98,12 @@ const HomePageBanner = () => {
                 <Image
                   src={bannerImage2}
                   alt=""
-                  className="h-[50vh] md:h-[100vh] w-full"
+                  className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
                     Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
@@ -111,7 +111,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-3 md:gap-5">
+                  <div className="flex gap-3 md:gap-5 pt-3">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -125,12 +125,12 @@ const HomePageBanner = () => {
                 <Image
                   src={bannerImage3}
                   alt=""
-                  className="h-[50vh] md:h-[100vh] w-full"
+                  className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
                     Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
@@ -138,7 +138,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-3 md:gap-5">
+                  <div className="flex gap-3 md:gap-5 pt-3">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -152,12 +152,12 @@ const HomePageBanner = () => {
                 <Image
                   src={bannerImage4}
                   alt=""
-                  className="h-[50vh] md:h-[100vh] w-full"
+                  className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
                   width={undefined}
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
                     Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
@@ -165,7 +165,7 @@ const HomePageBanner = () => {
                     Fashion is very important. It is life-enhancing and, <br />{" "}
                     like everything that gives pleasure, it is worth doing well.
                   </Paragraph>
-                  <div className="flex gap-3 md:gap-5">
+                  <div className="flex gap-3 md:gap-5 pt-3">
                     <BrandButton text="Click Collection" icon="" />
                     <WhiteButton text="Buy Now" />
                   </div>
@@ -176,13 +176,13 @@ const HomePageBanner = () => {
             {/* slider button */}
             <div className="mt-5 flex items-center justify-center gap-3 text-center">
               <button
-                className="prev-button absolute left-0 top-[35%] md:top-[50%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                className="prev-button absolute left-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
                 onClick={goPrevButton}
               >
                 <Icon icon="ep:arrow-left-bold" />
               </button>
               <button
-                className="next-button absolute right-0 top-[35%] md:top-[50%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                className="next-button absolute right-3 md:right-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
                 onClick={goNextButton}
               >
                 <Icon icon="ep:arrow-right-bold" />
@@ -195,26 +195,26 @@ const HomePageBanner = () => {
           <Image
             src={rightImage}
             alt=""
-            className="hidden w-full md:block md:h-[100vh] lg:block lg:h-[100vh]"
+            className="w-full block md:hidden md:h-[60vh] lg:block lg:h-[100vh]"
             width={undefined}
           />
           <Image
             src={rightImage1}
             alt=""
-            className="h-[50vh] w-full block md:hidden"
+            className="h-[50vh] md:h-[70vh] w-full block lg:hidden"
             width={undefined}
           />
           <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
             <div className="flex items-center justify-center text-center text-white">
               <div className="mx-auto">
-                <h3 className="text-[12px] font-bold uppercase title">
+                <h3 className="text-[12px] font-bold uppercase font-primary">
                   All products
                 </h3>
-                <h1 className="font-smeibold my-2 text-[26px] uppercase title">
+                <h1 className="font-smeibold my-2 text-[26px] uppercase font-secondary">
                   Product Sale
                 </h1>
                 <h4>15 NOV - 25 NOV</h4>
-                <Link href="/" className="mt-3 underline">
+                <Link href="/" className="mt-3 underline font-tertiary">
                   See More Products
                 </Link>
               </div>
