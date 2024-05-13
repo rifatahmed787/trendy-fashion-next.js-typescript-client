@@ -76,8 +76,8 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold font md:text-[35px] lg:text-[50px] font-italic">
-                    Meet The Line of <br />
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                    Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
                   <Paragraph className="my-5">
@@ -103,8 +103,8 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
-                    Meet The Line of <br />
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                    Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
                   <Paragraph className="my-5">
@@ -130,8 +130,8 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
-                    Meet The Line of <br />
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                    Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
                   <Paragraph className="my-5">
@@ -157,8 +157,8 @@ const HomePageBanner = () => {
                 />
                 <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
                 <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
-                  <h1 className="font-bold md:text-[35px] lg:text-[50px] title">
-                    Meet The Line of <br />
+                  <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] font-primary">
+                    Meet The Line Of <br />
                     The Ladies Fashion
                   </h1>
                   <Paragraph className="my-5">

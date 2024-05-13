@@ -9,10 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        primary:["Petrona", "serif"],
-        secondary:['Amiri', "serif"],
-        tertiary:["Open Sans", "sans-serif"],
-        italic:['Didot eText W01 Italic',]
+        primary:['var(--font-petrona)'],
+        secondary:['var(--font-amiri)'],
+        tertiary:['var(--font-open-sans)'],
       },
       colors: {
         gray: {

@@ -20,7 +20,7 @@ const Button = ({
   icon,
 }: IButton) => {
   const default_styles =
-    "  px-10 py-3  flex items-center justify-center gap-3 text-black text-center font-inter  text-base  md:text-lg font-bold title";
+    "  px-10 py-3  flex items-center justify-center gap-3 text-black text-center font-primary  text-base  md:text-lg font-bold title";
   return (
     <button
       type={type ?? "button"}
