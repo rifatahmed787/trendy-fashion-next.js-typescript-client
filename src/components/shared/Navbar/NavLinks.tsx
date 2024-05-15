@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { links } from "./MyLinks";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
 
 const NavLinks = ({previousScroll}:any) => {
   const [heading, setHeading] = useState("");
@@ -34,8 +35,9 @@ const NavLinks = ({previousScroll}:any) => {
                 <Icon icon="ep:arrow-down" />
               </span>
             </h1>
-            {link.submenu && (
-              <div>
+            
+            <MegamenuMotion submenu={link.submenu }>
+            <>
                 <div className={`absolute  hidden group-hover:md:block hover:md:block ${previousScroll? "top-4/5":"top-3/4"}`}>
                   <div className="pb-3 bg-white">
                     <div
@@ -66,8 +68,8 @@ const NavLinks = ({previousScroll}:any) => {
                     ))}
                   </div>
                 </div>
-              </div>
-            )}
+              </>
+            </MegamenuMotion>
           </div>
 
           {/* Mobile menus */}
