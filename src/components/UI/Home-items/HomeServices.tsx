@@ -1,155 +1,81 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
-import Image from "next/image";
+
 import serviceLogo1 from "../../../assets/HomePageBannerImg/servicelogo1.png";
 import serviceLogo2 from "../../../assets/HomePageBannerImg/servicelogo2.png";
 import serviceLogo3 from "../../../assets/HomePageBannerImg/servicelogo3.png";
 import serviceLogo4 from "../../../assets/HomePageBannerImg/servicelogo4.png";
-import Link from "next/link";
-import { Icon } from "@iconify/react";
-import Paragraph from "../Paragraph/Paragraph";
-import { delay, motion } from "framer-motion";
-import { fadeIn, textVariant } from "@/components/FramerMotion/Motion/motion";
+import useInView from "@/Hooks/useInView";
+import LeftToRight from "../Framer-motion/LeftToRight";
+import BottomToTop from "../Framer-motion/BottomToTop";
+import RightToLeft from "../Framer-motion/RightToLeft";
+import ServiceCard from "../ServiceCard";
 
 const HomeServiceComponent = () => {
-  const fadeInVariants = fadeIn("right", "spring", 0, 1.25);
+  const { ref: ref1, isInView: isInView1 } = useInView();
+  const { ref: ref2, isInView: isInView2 } = useInView();
+  const { ref: ref3, isInView: isInView3 } = useInView();
+  const { ref: ref4, isInView: isInView4 } = useInView();
+
   return (
-    <section>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-2xl mx-auto justify-items-center items-center sm:grid-cols-1  gap-5  mt-5 extra-small-margin">
-        {/* card one  */}
-        <motion.div
-          variants={fadeInVariants}
-          className=" w-80 h-72 group"
-        >
-          <Image
-            src={serviceLogo1}
-            alt=""
-            className="w-14 -mb-7 group-hover:translate-x-32 transition-transform ease-out duration-700"
-            width={undefined}
-            height={undefined}
-          />
-          <motion.div
-            variants={textVariant(0)}
-            className="border border-gray-200 rounded-xl px-5 py-8 shadow-md duration-300 overflow-hidden"
-          >
-            <h2 className="text-2xl font-bold mb-2 title">
-              Amazing Value Every Day
-            </h2>
-            <Paragraph className="py-3 text-gray-400">
-              Items prices that fit your budget
-            </Paragraph>
-            <Link
-              href="/accordian"
-              className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
-            >
-              <p className="text-xl font-semibold pr-2 ">Read more </p>
-              <Icon
-                icon="material-symbols:arrow-right-alt"
-                className="mt-1 lg:ml-3 md:ml-24 sm:ml-40 carditem-icon-margin"
-                width="30"
+    <section className="px-5 md:px-10">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-2xl mx-auto justify-items-center items-center sm:grid-cols-1 gap-5 mt-5 extra-small-margin">
+        
+        <div ref={ref1}>
+          {isInView1 && (
+            <LeftToRight>
+              <ServiceCard
+                imageSrc={serviceLogo1}
+                title="Amazing Value Every Day"
+                description="Items prices that fit your budget"
+                link="/accordian"
+                linkText="Read more"
               />
-            </Link>
-          </motion.div>
-        </motion.div>
+            </LeftToRight>
+          )}
+        </div>
 
-        {/* card two  */}
-        <motion.div
-          variants={fadeInVariants}
-          className="w-80 lg:pr-3  h-72 group overflow-hidden"
-        >
-          <Image
-            src={serviceLogo2}
-            alt=""
-            className="w-14 -mb-7 group-hover:translate-x-32 transition-transform ease-out duration-700"
-            width={undefined}
-            height={undefined}
-          />
-          <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-            <h2 className="text-2xl font-bold mb-2 title">
-              Successful Customer Service
-            </h2>
-            <Paragraph className="text-gray-400">
-              We work with a focus on 100% customer satisfaction.
-            </Paragraph>
-            <Link
-              href="/accordian"
-              className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
-            >
-              <p className="text-xl font-semibold pr-2">Read more </p>
-              <Icon
-                icon="material-symbols:arrow-right-alt"
-                className="mt-1 lg:ml-3 md:ml-24 sm:ml-40 carditem-icon-margin"
-                width="30"
+        <div ref={ref2}>
+          {isInView2 && (
+            <BottomToTop>
+              <ServiceCard
+                imageSrc={serviceLogo2}
+                title="Successful Customer Service"
+                description="We work with a focus on 100% customer satisfaction."
+                link="/accordian"
+                linkText="Read more"
               />
-            </Link>
-          </div>
-        </motion.div>
+            </BottomToTop>
+          )}
+        </div>
 
-        {/* card three  */}
-        <motion.div
-          variants={fadeInVariants}
-          className=" w-80 lg:pr-3 h-72 group overflow-hidden"
-        >
-          <Image
-            src={serviceLogo3}
-            alt=""
-            className="w-14 -mb-7 group-hover:translate-x-32 transition-transform ease-out duration-700"
-            width={undefined}
-            height={undefined}
-          />
-          <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-            <h2 className="text-2xl font-bold mb-2 title">
-              All Payment Methods
-            </h2>
-            <Paragraph className="text-gray-400 py-7">
-              Don't bother with payment details.
-            </Paragraph>
-            <Link
-              href="/accordian"
-              className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
-            >
-              <p className="text-xl font-semibold mr-2">Read more </p>
-              <Icon
-                icon="material-symbols:arrow-right-alt"
-                className="mt-1 lg:ml-3 md:ml-24 sm:ml-40 carditem-icon-margin"
-                width="30"
+        <div ref={ref3}>
+          {isInView3 && (
+            <BottomToTop>
+              <ServiceCard
+                imageSrc={serviceLogo3}
+                title="All Payment Methods"
+                description="Don't bother with payment details."
+                link="/accordian"
+                linkText="Read more"
               />
-            </Link>
-          </div>
-        </motion.div>
+            </BottomToTop>
+          )}
+        </div>
 
-        {/* card four  */}
-        <motion.div
-          variants={fadeInVariants}
-          className="w-80 h-72 group overflow-hidden"
-        >
-          <Image
-            src={serviceLogo4}
-            alt=""
-            className="w-14 -mb-7 group-hover:translate-x-32 transition-transform ease-out duration-700"
-            width={undefined}
-            height={undefined}
-          />
-          <div className="border border-gray-200 rounded-xl px-5 py-8 shadow-md hover:border-brand duration-300">
-            <h2 className="text-2xl font-bold mb-2 title">
-              Completely Free Shipping Service
-            </h2>
-            <Paragraph className="text-gray-400 py-3">
-              Items prices that fit your budget
-            </Paragraph>
-            <Link
-              href="/accordian"
-              className="flex  items-center mt-5 -translate-x-32 group-hover:translate-x-0.5 duration-500"
-            >
-              <p className="text-xl font-semibold mr-2">Read more </p>
-              <Icon
-                icon="material-symbols:arrow-right-alt"
-                className="mt-1 lg:ml-3 md:ml-24 sm:ml-40 carditem-icon-margin"
-                width="30"
+        <div ref={ref4}>
+          {isInView4 && (
+            <RightToLeft>
+              <ServiceCard
+                imageSrc={serviceLogo4}
+                title="Completely Free Shipping Service"
+                description="Items prices that fit your budget"
+                link="/accordian"
+                linkText="Read more"
               />
-            </Link>
-          </div>
-        </motion.div>
+            </RightToLeft>
+          )}
+        </div>
+
       </div>
     </section>
   );

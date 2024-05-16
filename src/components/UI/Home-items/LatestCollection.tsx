@@ -55,7 +55,7 @@ const LatestCollection = () => {
 
   return (
     <div className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-8 md:gap-5 lg:gap-5 items-center">
+      <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-8 md:gap-5 lg:gap-5 items-center max-w-screen-2xl mx-auto">
         <div className="col-span-3 mb-5 mt-7">
           <Image
             width={undefined}
