@@ -16,6 +16,8 @@ import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
 import "./Navbar.css";
+import ICONS from "../Icons/AllIcons";
+
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -140,30 +142,36 @@ const Navbar = () => {
             <li>
               <Link
                 href="/"
-                className={`inline-block py-4 menu-item ${
+                className={`inline-block py-3 menu-item ${
                   pathname === "/"
                     ? "active px-2  text-primary-100 "
                     : "text-[#181818]"
                 }`}
               >
-                Home
+                <span className="flex items-center gap-1 font-secondary text-lg">
+                  {ICONS.home}
+                  Home
+                </span>
               </Link>
             </li>
 
             <li>
               <Link
                 href="/products"
-                className={`inline-block py-4 menu-item ${
+                className={`inline-block py-4 menu-item font-tertiary ${
                   pathname === "/products"
                     ? "active px-2  text-primary-100  "
                     : "text-[#181818]"
                 }`}
               >
-                Products
+                <span className="flex items-center gap-1 font-secondary text-lg">
+                  {ICONS.product}
+                  Products
+                </span>
               </Link>
             </li>
             {/* dropdown navlinks */}
-            <NavLinks previousScroll={previousScroll}/>
+            <NavLinks previousScroll={previousScroll} />
           </ul>
 
           {user?.email && isLoggedIn ? (

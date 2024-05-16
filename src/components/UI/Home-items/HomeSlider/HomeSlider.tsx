@@ -192,7 +192,7 @@ const HomePageBanner = () => {
                   <h3 className="text-[12px] font-bold uppercase font-primary">
                     All products
                   </h3>
-                  <h1 className="font-smeibold my-2 text-[26px] uppercase font-secondary">
+                  <h1 className="font-smeibold my-2 text-[26px] uppercase font-primary">
                     Product Sale
                   </h1>
                   <h4>15 NOV - 25 NOV</h4>

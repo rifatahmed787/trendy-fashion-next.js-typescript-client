@@ -16,7 +16,7 @@ const NavLinks = ({previousScroll}:any) => {
         <div key={link.name}>
           <div className=" text-left md:cursor-pointer group">
             <h1
-              className={`md:py-4 py-2 flex justify-between items-center md:pr-0 pr-5 group hover:text-primary-100`}
+              className={`md:py-4 py-2 flex justify-between items-center text-lg text-secondary group hover:text-primary-100`}
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
                 setSubHeading("");
