@@ -9,9 +9,9 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        primary:['var(--font-petrona)'],
-        secondary:['var(--font-amiri)'],
-        tertiary:['var(--font-open-sans)'],
+        primary:["Petrona", "serif"],
+        secondary:["Amiri", "serif"],
+        tertiary:["Open Sans", "sans-serif"],
       },
       colors: {
         gray: {

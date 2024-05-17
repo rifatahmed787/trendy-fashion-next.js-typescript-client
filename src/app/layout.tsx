@@ -5,23 +5,6 @@ import { Toaster } from "react-hot-toast";
 import Providers from "./lib/Providers";
 import RenderModal from "@/components/ModalsComponent/Index";
 
-const petrona = Petrona({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-petrona',
-})
-const open_sans = Open_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-open-sans',
-})
- 
-const amiri = Amiri({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-amiri',
-  weight: "400"
-})
 
 export const metadata: Metadata = {
   title: "Trendy Fashion",
@@ -34,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${petrona.variable} ${open_sans.variable} ${amiri.variable}`}>
+    <html lang="en">
       <body>
         <Providers>
           <div className="min-h-screen">{children}</div>
