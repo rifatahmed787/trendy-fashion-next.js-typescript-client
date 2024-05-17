@@ -14,6 +14,7 @@ import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import Logo from "../../../assets/Logo/trendy.svg";
 import SidebarSlide from "@/components/UI/Framer-motion/SidebarSlide";
+import ICONS from "../Icons/AllIcons";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -159,7 +160,10 @@ const MobileNav = () => {
                           : "text-[#181818]"
                       }`}
                     >
-                      Home
+                      <span className="flex items-center gap-1 font-primary text-lg font-bold">
+                        {ICONS.home}
+                        Home
+                      </span>
                     </Link>
                   </li>
 
@@ -172,7 +176,10 @@ const MobileNav = () => {
                           : "text-[#181818]"
                       }`}
                     >
-                      Products
+                      <span className="flex items-center gap-1 font-primary text-lg font-bold">
+                        {ICONS.product}
+                        Products
+                      </span>
                     </Link>
                   </li>
 
@@ -191,7 +198,7 @@ const MobileNav = () => {
                             e.preventDefault();
                             openModal("login");
                           }}
-                          className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
+                          className="text-gray-900 font-primary font-bold bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700 flex items-center gap-1"
                           type="button"
                         >
                           <Icon icon="mdi:user" width={25} />

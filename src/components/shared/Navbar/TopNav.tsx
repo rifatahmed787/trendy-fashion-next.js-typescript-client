@@ -59,7 +59,7 @@ const TopNav = () => {
             <div className="text-primary-100 bg-white p-1 shadow-md rounded-md">
               {ICONS.mobile}
             </div>
-            <p className="flex flex-col text-base font-secondary">
+            <p className="flex flex-col text-base font-bold font-secondary">
               <span>Call Us</span>
               <span className="text-gray-400 tracking-widest">
                 {" "}

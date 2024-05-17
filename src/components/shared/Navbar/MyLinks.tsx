@@ -91,7 +91,7 @@ export const links = [
 
   // page section
   {
-    name: "Page",
+    name: "Pages",
     submenu: true,
     sublinks: [
       {

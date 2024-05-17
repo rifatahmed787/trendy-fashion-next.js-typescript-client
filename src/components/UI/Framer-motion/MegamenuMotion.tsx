@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type MegamenuMotionProps = {
   children: React.ReactNode;
-  submenu:Boolean
 };
 
-const MegamenuMotion: React.FC<MegamenuMotionProps> = ({ children, submenu }) => {
+const MegamenuMotion: React.FC<MegamenuMotionProps> = ({ children }) => {
   return (
     <AnimatePresence>
-      <motion.div
-         initial={false}
-         animate={{ x: submenu ? 0 : "100%" }}
-         transition={{duration: 0.5 }}
-       
+       <motion.div
+         initial={{ y: 100, opacity: 0 }}
+         animate={{ y: 0, opacity: 1 }}
+         exit={{ y: 100, opacity: 0 }}
+         transition={{ duration: 0.6 }}
       >
         {children}
       </motion.div>

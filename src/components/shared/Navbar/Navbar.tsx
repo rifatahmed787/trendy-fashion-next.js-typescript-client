@@ -17,6 +17,7 @@ import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
 import "./Navbar.css";
 import ICONS from "../Icons/AllIcons";
+import ProductSearchbar from "@/components/Products/ProductSearchbar";
 
 
 const Navbar = () => {
@@ -148,7 +149,7 @@ const Navbar = () => {
                     : "text-[#181818]"
                 }`}
               >
-                <span className="flex items-center gap-1 font-secondary text-lg">
+                <span className="flex items-center gap-1 font-primary text-lg font-bold">
                   {ICONS.home}
                   Home
                 </span>
@@ -158,13 +159,13 @@ const Navbar = () => {
             <li>
               <Link
                 href="/products"
-                className={`inline-block py-4 menu-item font-tertiary ${
+                className={`inline-block py-3 menu-item ${
                   pathname === "/products"
                     ? "active px-2  text-primary-100  "
                     : "text-[#181818]"
                 }`}
               >
-                <span className="flex items-center gap-1 font-secondary text-lg">
+                <span className="flex items-center gap-1 font-primary text-lg font-bold">
                   {ICONS.product}
                   Products
                 </span>
@@ -173,7 +174,9 @@ const Navbar = () => {
             {/* dropdown navlinks */}
             <NavLinks previousScroll={previousScroll} />
           </ul>
-
+          <div className={`${isNavbarVisible ? "hidden" : "block"}`}>
+          <ProductSearchbar />
+        </div>
           {user?.email && isLoggedIn ? (
             <div className="flex items-center gap-2">
               <div className="hidden md:block">
@@ -215,12 +218,13 @@ const Navbar = () => {
           ) : (
             <>
               <div className="hidden md:block">
-                <div className="flex items-center px-3 rounded-md bg-primary-100 text-black font-inter">
+                <div className="flex items-center px-3 rounded-md bg-primary-100 text-black">
                   <button
                     onClick={(e) => {
                       e.preventDefault();
                       openModal("login");
                     }}
+                    className="font-primary font-bold text-lg"
                   >
                     SignIn
                   </button>
@@ -230,6 +234,7 @@ const Navbar = () => {
                       e.preventDefault();
                       openModal("register");
                     }}
+                    className="font-primary font-bold text-lg"
                   >
                     SignUp
                   </button>
