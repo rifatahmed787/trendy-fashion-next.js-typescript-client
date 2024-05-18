@@ -19,7 +19,7 @@ const HomeServiceComponent = () => {
 
   return (
     <section className="px-5 md:px-10">
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 max-w-screen-2xl mx-auto justify-items-center items-center sm:grid-cols-1 gap-5 mt-5 extra-small-margin">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  max-w-screen-2xl mx-auto justify-items-center items-center  gap-5 mt-5">
         
         <div ref={ref1}>
           {(isInView1 || hasAnimated1) && (

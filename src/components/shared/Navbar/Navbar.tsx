@@ -19,7 +19,6 @@ import "./Navbar.css";
 import ICONS from "../Icons/AllIcons";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 
-
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
@@ -174,9 +173,9 @@ const Navbar = () => {
             {/* dropdown navlinks */}
             <NavLinks previousScroll={previousScroll} />
           </ul>
-          <div className={`${isNavbarVisible ? "hidden" : "block"}`}>
-          <ProductSearchbar />
-        </div>
+          <div className={`${isNavbarVisible ? "hidden" : "hidden lg:block"}`}>
+            <ProductSearchbar />
+          </div>
           {user?.email && isLoggedIn ? (
             <div className="flex items-center gap-2">
               <div className="hidden md:block">

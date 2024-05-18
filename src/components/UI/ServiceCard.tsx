@@ -3,6 +3,7 @@ import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import Paragraph from "./Paragraph/Paragraph";
+import SubTitle from "./SubTitle/SubTitle";
 
 type ServiceCardProps = {
   imageSrc: StaticImageData;
@@ -24,7 +25,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   
 
   return (
-    <div className={`w-11/12 md:w-full group overflow-hidden ${className}`}>
+    <div className={` w-11/12 md:w-full group overflow-hidden ${className}`}>
       <Image
         src={imageSrc}
         alt=""
@@ -33,7 +34,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         height={undefined}
       />
       <div className="border border-gray-200 hover:border-primary-100 duration-500 h-60 rounded-xl px-5 py-8 shadow-md overflow-hidden">
-        <h2 className="text-2xl font-bold mb-2 title">{title}</h2>
+        <SubTitle SubTitle={title}/>
         <Paragraph className="py-3 text-gray-400">{description}</Paragraph>
         <Link
           href={link}

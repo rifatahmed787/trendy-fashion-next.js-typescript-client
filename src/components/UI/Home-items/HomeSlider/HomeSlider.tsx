@@ -11,6 +11,7 @@ import bannerImage1 from "../../../../assets/HomePageBannerImg/slider1.jpg";
 import bannerImage2 from "../../../../assets/HomePageBannerImg/slider2.jpg";
 import bannerImage3 from "../../../../assets/HomePageBannerImg/slider3.jpg";
 import bannerImage4 from "../../../../assets/HomePageBannerImg/slider4.jpg";
+import bannerImage5 from "../../../../assets/HomePageBannerImg/slider5.jpg";
 import rightImage from "../../../../assets/HomePageBannerImg/righslider.jpg";
 import rightImage1 from "../../../../assets/HomePageBannerImg/rightslider1.jpg";
 
@@ -23,6 +24,7 @@ import RightToLeft from "../../Framer-motion/RightToLeft";
 import ZoomIn from "../../Framer-motion/ZoomIn";
 import BottomToTop from "../../Framer-motion/BottomToTop";
 import FadeIn from "../../Framer-motion/FadeIn";
+import Title from "../../Title/Title";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -39,18 +41,28 @@ const images = [
   {
     id: 1,
     img: bannerImage1,
+    title:"Discover Trendy Fashion at Unbeatable Prices Today",
+    paragraph:""
   },
   {
     id: 2,
     img: bannerImage2,
+    title:"Exclusive Deals on Latest Tech Gadgets Now"
   },
   {
     id: 3,
     img: bannerImage3,
+    title:"Upgrade Your Home with Stylish Furniture Collections",
   },
   {
     id: 4,
     img: bannerImage4,
+    title:"Shop Premium Beauty Products for Glowing Skin",
+  },
+  {
+    id: 5,
+    img: bannerImage5,
+    title:"Find Unique Gifts for Every Occasion Here",
   },
 ];
 
@@ -110,10 +122,11 @@ const HomePageBanner = () => {
                       {activeIndex === index && (
                         <>
                           <RightToLeft>
-                            <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
-                              Meet The Line Of <br />
-                              The Ladies Fashion
-                            </h1>
+                        
+                            <Title
+                              title={image?.title}
+                            />
+                         
                           </RightToLeft>
 
                           <ZoomIn>
@@ -134,10 +147,11 @@ const HomePageBanner = () => {
                       )}
                       {activeIndex !== index && (
                         <div>
-                          <h1 className="font-bold text-2xl md:text-[35px] lg:text-[50px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary">
-                            Meet The Line Of <br />
-                            The Ladies Fashion
-                          </h1>
+                          <div>
+                          <Title
+                              title={image.title}
+                            />
+                          </div>
                           <Paragraph className="my-5">
                             Fashion is very important. It is life-enhancing and,{" "}
                             <br /> like everything that gives pleasure, it is
