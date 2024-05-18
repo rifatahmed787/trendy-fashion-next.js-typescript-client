@@ -41,28 +41,27 @@ const images = [
   {
     id: 1,
     img: bannerImage1,
-    title:"Discover Trendy Fashion at Unbeatable Prices Today",
-    paragraph:""
+    title: "Discover Trendy Fashion at Unbeatable Prices Today",
   },
   {
     id: 2,
     img: bannerImage2,
-    title:"Exclusive Deals on Latest Tech Gadgets Now"
+    title: "Exclusive Deals on Latest Tech Gadgets Now",
   },
   {
     id: 3,
     img: bannerImage3,
-    title:"Upgrade Your Home with Stylish Furniture Collections",
+    title: "Upgrade Your Home with Stylish Furniture Collections",
   },
   {
     id: 4,
     img: bannerImage4,
-    title:"Shop Premium Beauty Products for Glowing Skin",
+    title: "Shop Premium Beauty Products for Glowing Skin",
   },
   {
     id: 5,
     img: bannerImage5,
-    title:"Find Unique Gifts for Every Occasion Here",
+    title: "Find Unique Gifts for Every Occasion Here",
   },
 ];
 
@@ -122,11 +121,7 @@ const HomePageBanner = () => {
                       {activeIndex === index && (
                         <>
                           <RightToLeft>
-                        
-                            <Title
-                              title={image?.title}
-                            />
-                         
+                            <Title title={image?.title} />
                           </RightToLeft>
 
                           <ZoomIn>
@@ -148,9 +143,7 @@ const HomePageBanner = () => {
                       {activeIndex !== index && (
                         <div>
                           <div>
-                          <Title
-                              title={image.title}
-                            />
+                            <Title title={image.title} />
                           </div>
                           <Paragraph className="my-5">
                             Fashion is very important. It is life-enhancing and,{" "}

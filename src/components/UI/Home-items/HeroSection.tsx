@@ -4,22 +4,22 @@ import { textVariant } from "@/components/FramerMotion/Motion/motion";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
+import Paragraph from "../Paragraph/Paragraph";
+import SubTitle from "../SubTitle/SubTitle";
 
 const HeroSection = () => {
   return (
-    <div>
-      <div className="hero-section">
+    <section>
+      <div className="hero-section max-w-screen-2xl mx-auto">
         <motion.div variants={textVariant(0.5)} className="py-20 px-10">
-          <p className="uppercase">Premium quality</p>
+          <Paragraph className="md:text-[18px] lg:text-[20px]">Premium quality</Paragraph>
 
-          <h1 className="title text-2xl md:text-5xl uppercase font-bold py-5 lg:w-1/2">
-            The best Product in the city.
-          </h1>
-          <p className="lg:w-1/2">
+          <SubTitle SubTitle="The best Product in the city." className="py-7 md:text-[30px] lg:text-[40px] text-gray-700"/>
+          <Paragraph className="lg:w-1/2">
             Centuries before the advent of cloths, stationary served a highly
             practical purpose as efficient. High quality product served alway.
             This is our main goal to see happy the customer.
-          </p>
+          </Paragraph>
           <div className="mt-10">
             <Link href={"/products"}>
               <WhiteButton text="Shop Now" />
@@ -27,7 +27,7 @@ const HeroSection = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 

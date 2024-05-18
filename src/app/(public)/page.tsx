@@ -17,9 +17,9 @@ export default function Home() {
       <LatestCollection />
       <HeroSection />
       <HomeDealsComponent />
-      <HomeSuperComponent />
+      {/* <HomeSuperComponent /> */}
       <HomeSectionComponent />
-      <EcommerceStats />
+      {/* <EcommerceStats /> */}
       <TestimonialCarousel />
       <ContactForm />
     </div>

@@ -15,6 +15,8 @@ import CartProduct from "../CartProduct";
 import { useGetLatestProductsQuery } from "@/Redux/features/products/productApi";
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import WhiteButton from "@/components/Button/SecondaryButton";
+import SubTitle from "../SubTitle/SubTitle";
+import Paragraph from "../Paragraph/Paragraph";
 
 const SwiperButtonNext = () => {
   const swiper = useSwiper();
@@ -54,26 +56,27 @@ const LatestCollection = () => {
   };
 
   return (
-    <div className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 md:grid-cols-8 md:gap-5 lg:gap-5 items-center max-w-screen-2xl mx-auto">
+    <section className="my-10 px-5 lg:px-10">
+      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 md:gap-5 lg:gap-5 items-center max-w-screen-2xl mx-auto">
         <div className="col-span-3 mb-5 mt-7">
           <Image
             width={undefined}
             height={undefined}
             src={image}
             alt=""
-            className="w-11/12 md:w-full rounded-lg mx-auto"
+            className="w-11/12 lg:w-full rounded-lg mx-auto"
           />
         </div>
 
-        <div className="col-span-5 ">
+        <div className="col-span-5">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
-            <h1 className=" ml-5 text-2xl font-bold relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:bottom-0 after:w-44 after:h-0.5 mb-5 title">
-              Latest Collections
-            </h1>
+            <SubTitle
+              SubTitle="Latest Collections"
+              className="relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:-bottom-2 after:w-11/12 after:h-[3px]"
+            />
             <Button
               title="All Products"
-              className="px-2 md:px-4 py-1 md:py-2 bg-primary-100 text-gray-800 rounded-lg"
+              className="px-4 py-2 bg-primary-100 rounded-lg uppercase"
               onClickHandler={() => router.push("/products")}
             />
           </div>
@@ -130,7 +133,7 @@ const LatestCollection = () => {
                 ) : (
                   <>
                     <div className="flex justify-center items-center gap-2 min-h-[45vh]">
-                      <h1>Can't Load the data! Please</h1>{" "}
+                      <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}
                         className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
@@ -151,19 +154,20 @@ const LatestCollection = () => {
             </div>
           </Swiper>
           <div className="latest-product-super px-5 mt-5 py-3">
-            <h5 className="py-3 title font-bold text-lg md:text-xl">
+            <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
               Top Quality of Product Store !
-            </h5>
-            <h1 className="text-xl md:text-3xl font-bold title pb-3 text-white">
-              Find your Exciting Products at Our Trendy Shop.
-            </h1>
-            <div className="pb-3">
+            </Paragraph>
+            <SubTitle
+              SubTitle="Find your Exciting Products at Our Trendy Shop."
+              className="text-white"
+            />
+            <div className="py-5">
               <WhiteButton text="Buy Now" />
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

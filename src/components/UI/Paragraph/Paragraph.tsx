@@ -1,3 +1,4 @@
+import { cn } from "@/lib/Utils";
 import React, { ReactNode } from "react";
 
 // Define the interface for the props
@@ -8,7 +9,7 @@ interface ParagraphProps {
 
 const Paragraph: React.FC<ParagraphProps> = ({ children, className }) => {
   return (
-    <article className={`leading-6 text-[14px] font-tertiary ${className}`}>
+    <article className={cn("leading-6 text-[14px] font-semibold font-tertiary", className)}>
       {children}
     </article>
   );
