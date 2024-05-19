@@ -9,6 +9,18 @@
 body{
   overflow-x: hidden;
 }
+
+@layer components {
+  .nav-hover-effect {
+    @apply hover:scale-105 duration-500;
+  }
+  .mainNav-hover-effect {
+    @apply relative before:absolute before:md:w-full before:h-[3px] 
+    before:bottom-0 before:left-0 before:bg-primary-200 
+    before:hover:scale-x-100 before:scale-x-0
+    before:transition before:ease-in-out before:duration-300;
+  }
+}
 /* ------------------------
 hero section
 ---------------------------*/

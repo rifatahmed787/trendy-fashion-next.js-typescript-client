@@ -142,13 +142,13 @@ const Navbar = () => {
             <li>
               <Link
                 href="/"
-                className={`inline-block py-3 menu-item ${
+                className={`inline-block py-3  mainNav-hover-effect ${
                   pathname === "/"
-                    ? "active px-2  text-primary-100 "
+                    ? "active  text-primary-100 "
                     : "text-[#181818]"
                 }`}
               >
-                <span className="flex items-center gap-1 font-primary text-lg font-bold">
+                <span className="flex items-center gap-1 font-primary text-lg font-bold ">
                   {ICONS.home}
                   Home
                 </span>
@@ -158,9 +158,9 @@ const Navbar = () => {
             <li>
               <Link
                 href="/products"
-                className={`inline-block py-3 menu-item ${
+                className={`inline-block py-3 mainNav-hover-effect ${
                   pathname === "/products"
-                    ? "active px-2  text-primary-100  "
+                    ? "active   text-primary-100  "
                     : "text-[#181818]"
                 }`}
               >
