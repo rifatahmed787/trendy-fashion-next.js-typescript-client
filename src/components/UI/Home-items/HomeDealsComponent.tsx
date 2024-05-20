@@ -55,7 +55,7 @@ const HomeDealsComponent = () => {
 
   return (
     <section className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 md:gap-5 lg:gap-5 max-w-screen-2xl mx-auto">
+      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 md:gap-5 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
         <div className="col-span-2 mb-5 mt-7">
           <div className="my-2 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
@@ -175,7 +175,7 @@ const HomeDealsComponent = () => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 min-h-[60vh]">
+                    <div className="flex justify-center items-center gap-2 py-16">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}

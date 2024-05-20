@@ -42,7 +42,7 @@ export default function TestimonialCarousel() {
     <section>
       <div className="pt-16 pb-5">
       
-        <Title title="What Our Client Say" className="text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/3 before:-bottom-2 before:bg-primary-100 before:h-1 uppercase"/>
+        <Title title="What Our Client Say" className="text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/3 lg:before:w-1/4 before:-bottom-2 before:bg-primary-100 before:h-1 uppercase"/>
       </div>
       <Swiper
         slidesPerView={"auto"}
@@ -108,7 +108,7 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className=" px-5 md:px-10 py-10 mx-auto w-11/12 lg:w-full">
+          <div className="py-10 mx-auto w-11/12 lg:w-full">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
                 <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">
@@ -148,7 +148,7 @@ export default function TestimonialCarousel() {
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className=" px-5 md:px-10 py-10 mx-auto w-11/12 lg:w-full">
+          <div className=" py-10 mx-auto w-11/12 lg:w-full">
             <div className="flex flex-wrap -m-4">
               <div className="p-4 w-full">
                 <div className="h-full bg-gray-100 px-8 pt-8 relative before:absolute before:content-normal before:bg-primary-100 before:w-10 before:h-10 before:left-0 before:top-0 before:rounded-br-full rounded border-r-4 border-primary-100 after:absolute after:content-normal after:bg-primary-100 after:w-10 after:h-10 after:left-0 after:bottom-0 after:rounded-tr-full">

@@ -14,8 +14,6 @@ import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
-import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
-import "./Navbar.css";
 import ICONS from "../Icons/AllIcons";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 
@@ -104,7 +102,7 @@ const Navbar = () => {
           />
         </div>
 
-        <AnimatedFilter isVisible={accountDropdownOpen}>
+       
           {accountDropdownOpen && (
             <ul
               className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
@@ -113,7 +111,7 @@ const Navbar = () => {
               <Account setAccountDropdownOpen={setAccountDropdownOpen} />
             </ul>
           )}
-        </AnimatedFilter>
+       
       </div>
     </>
   );

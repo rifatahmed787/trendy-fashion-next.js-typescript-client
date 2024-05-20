@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import useModal from "@/Hooks/useModal";
 import { usePathname } from "next/navigation";
-import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
@@ -81,7 +80,7 @@ const MobileNav = () => {
           />
         </div>
 
-        <AnimatedFilter isVisible={accountDropdownOpen}>
+        
           {accountDropdownOpen && (
             <ul
               className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
@@ -90,7 +89,7 @@ const MobileNav = () => {
               <Account setAccountDropdownOpen={setAccountDropdownOpen} />
             </ul>
           )}
-        </AnimatedFilter>
+        
       </div>
     </>
   );

@@ -111,13 +111,13 @@ const HomePageBanner = () => {
                       <Image
                         src={image?.img}
                         alt=""
-                        className="h-[50vh] md:h-[60vh] lg:h-[90vh] w-full"
+                        className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
                         width={undefined}
                       />
                     </>
 
-                    <span className="absolute top-0 bg-black left-0 opacity-50 inset-0"></span>
-                    <div className="absolute left-5 top-[20%] md:top-[25%] ml-14 w-[65%]">
+                    <span className="absolute top-0 bg-black left-0 opacity-60 inset-0"></span>
+                    <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
                       {activeIndex === index && (
                         <>
                           <RightToLeft>
@@ -164,13 +164,13 @@ const HomePageBanner = () => {
               {/* slider button */}
               <div className="mt-5 flex items-center justify-center gap-3 text-center">
                 <button
-                  className="prev-button absolute left-0 top-[40%]   z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                  className="prev-button absolute left-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goPrevButton}
                 >
                   <Icon icon="ep:arrow-left-bold" />
                 </button>
                 <button
-                  className="next-button absolute right-3 md:right-0 top-[40%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                  className="next-button absolute right-3 md:right-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goNextButton}
                 >
                   <Icon icon="ep:arrow-right-bold" />
@@ -183,7 +183,7 @@ const HomePageBanner = () => {
             <Image
               src={rightImage}
               alt=""
-              className="w-full hidden lg:block lg:h-[90vh]"
+              className="w-full hidden lg:block lg:h-[100vh]"
               width={undefined}
             />
             <Image
@@ -192,7 +192,7 @@ const HomePageBanner = () => {
               className="h-[50vh] md:h-[70vh] w-full block lg:hidden"
               width={undefined}
             />
-            <span className="absolute top-0 bg-black left-0 opacity-50 inset-0 h-[50vh] md:h-[70vh] lg:h-[90vh]"></span>
+            <span className="absolute top-0 bg-black left-0 opacity-50 inset-0 h-[50vh] md:h-[70vh] lg:h-[100vh]"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
               <div className="flex items-center justify-center text-center text-white">
                 <div className="mx-auto">

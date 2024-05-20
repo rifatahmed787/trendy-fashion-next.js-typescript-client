@@ -22,10 +22,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   linkText,
   className,
 }) => {
-  
-
   return (
-    <div className={` w-11/12 md:w-full group overflow-hidden ${className}`}>
+    <div className={`group overflow-hidden ${className}`}>
       <Image
         src={imageSrc}
         alt=""

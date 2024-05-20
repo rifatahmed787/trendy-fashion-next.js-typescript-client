@@ -21,7 +21,7 @@ const HomeServiceComponent = () => {
     <section className="px-5 md:px-10">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  max-w-screen-2xl mx-auto justify-items-center items-center  gap-5 mt-5">
         
-        <div ref={ref1}>
+        <div ref={ref1} className="w-[90%] md:min-w-[95%] lg:min-w-full">
           {(isInView1 || hasAnimated1) && (
             <LeftToRight>
               <ServiceCard
@@ -35,7 +35,7 @@ const HomeServiceComponent = () => {
           )}
         </div>
 
-        <div ref={ref2}>
+        <div ref={ref2} className="w-[90%] md:min-w-[95%] lg:min-w-full">
           {(isInView2 || hasAnimated2) && (
             <BottomToTop>
               <ServiceCard
@@ -49,7 +49,7 @@ const HomeServiceComponent = () => {
           )}
         </div>
 
-        <div ref={ref3}>
+        <div ref={ref3} className="w-[90%] md:min-w-[95%] lg:min-w-full">
           {(isInView3 || hasAnimated3) && (
             <BottomToTop>
               <ServiceCard
@@ -63,7 +63,7 @@ const HomeServiceComponent = () => {
           )}
         </div>
 
-        <div ref={ref4}>
+        <div ref={ref4} className="w-[90%] md:min-w-[95%] lg:min-w-full">
           {(isInView4 || hasAnimated4) && (
             <RightToLeft>
               <ServiceCard

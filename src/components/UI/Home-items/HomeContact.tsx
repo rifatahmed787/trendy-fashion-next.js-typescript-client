@@ -1,31 +1,41 @@
-/* eslint-disable react/no-unescaped-entities */
+
+import Link from "next/link";
+import hero from "../../../assets/HomePageBannerImg/BannerImage2.jpg"
+import { FaArrowRight } from "react-icons/fa6";
+import Image from "next/image";
 
 const ContactForm = () => {
   return (
-    <>
-      <div className=" py-16 max-w-screen-2xl bg-image-contact h-80 relative mt-10">
-        <span className="absolute top-0 left-0 inset-0 bg-black opacity-50"></span>
-        <div className="w-11/12 lg:w-full rounded-xl mx-auto absolute z-30 ml-3 md:ml-0">
-          <h2 className=" font-bold text-2xl lg:text-4xl text-center text-gray-200 title">
-            Join our newsletter
-          </h2>
-
-          <p className="text-base font-bold text-gray-300 text-center py-3">
-            Let's talk about what you need to know!!!
-          </p>
-          <div className="flex justify-center items-center py-5">
-            <input
-              className="shadow-inner rounded px-3 text-md lg:text-lg focus:border-primary-100 focus:outline-none focus:shadow-outline  border-2 border-primary-100 w-full lg:w-1/3 py-3 input-width"
-              placeholder="Enter your email"
-              type="text"
-            />
-            <button className="flex items-center -ml-[130px] lg:-ml-[140px] px-3 lg:px-5 shadow-lg bg-primary-100 font-bold text-sm rounded py-2 lg:py-3  text-brand uppercase shake">
-              Newsletter
-            </button>
+    <div>
+      <div className="max-w-screen-2xl mx-auto bg-white relative">
+       <Image src={hero} alt="" className="w-full h-[450px] md:h-[823px] bg-cover"/>
+        <div className="absolute top-10 md:top-16 left-7  md:left-16">
+          <div className="w-11/12 md:w-[642px] h-auto md:h-[398px] bg-white flex flex-col justify-center px-10 py-5">
+            <h2 className="text-xl md:text-[38px] font-Otomanopee_One leading-normal md:leading-[55.02px] font-normal w-auto md:w-[350px]">
+              ALL-NATURAL MADE WITH LOVE
+            </h2>
+            <p className="text-base md:text-[28px] font-bold font-petrona pt-5 leading-[31.58px]">
+              Its long-lasting fragnance is exquisite and has a striking appeal
+              Its long-lasting is exquisite and has a striking appeal Its long-
+              lasting fragnance is exquisite and has a Its long-lasting is.
+            </p>
+          </div>
+          <div className="flex justify-end w-11/12 md:w-[642px]">
+            <Link href={"/"} className="">
+              <button className="relative w-[120px] md:w-[249px] h-10 md:h-[74px] ">
+                <p className="absolute left-0 right-0 top-0 bottom-0 z-10  flex justify-center items-center gap-2 text-white">
+                  <span className="text-sm md:text-[28px] font-petrona font-black">
+                    SHOP NOW
+                  </span>
+                  <FaArrowRight className="text-base md:text-2xl" />
+                </p>
+                <div className="absolute inset-0 bg-[#6C066E] opacity-50"></div>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

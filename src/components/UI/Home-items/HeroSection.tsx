@@ -1,6 +1,5 @@
 "use client";
 import WhiteButton from "@/components/Button/SecondaryButton";
-import { textVariant } from "@/components/FramerMotion/Motion/motion";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import React from "react";
@@ -11,10 +10,10 @@ const HeroSection = () => {
   return (
     <section>
       <div className="hero-section max-w-screen-2xl mx-auto">
-        <motion.div variants={textVariant(0.5)} className="py-20 px-10">
+        <div className="py-20 px-10">
           <Paragraph className="md:text-[18px] lg:text-[20px]">Premium quality</Paragraph>
 
-          <SubTitle SubTitle="The best Product in the city." className="py-7 md:text-[30px] lg:text-[40px] text-gray-700"/>
+          <SubTitle SubTitle="The best Product in the city." className="py-7 md:text-[30px] lg:text-[50px] text-gray-700"/>
           <Paragraph className="lg:w-1/2">
             Centuries before the advent of cloths, stationary served a highly
             practical purpose as efficient. High quality product served alway.
@@ -25,7 +24,7 @@ const HeroSection = () => {
               <WhiteButton text="Shop Now" />
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
