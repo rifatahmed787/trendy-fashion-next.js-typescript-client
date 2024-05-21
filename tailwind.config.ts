@@ -35,7 +35,7 @@ const config: Config = {
           600: "#010105",
         },
         primary: {
-          100: "#FFC50F",
+          100: "#FFA801",
           200: "#FAC213",
           300: "#da9100",
         },
@@ -50,6 +50,9 @@ const config: Config = {
           new1: "#211E52",
           new2: "#AA7B2F",
         },
+      },
+      boxShadow: {
+        'custom': '30px 30px 20px #D0D0DD, -40px -40px 38px #FFA801',
       },
       animation: {
         "slide-in": "slide-in 0.5s forwards",
