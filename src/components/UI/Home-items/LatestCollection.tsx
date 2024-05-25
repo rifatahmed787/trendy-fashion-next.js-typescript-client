@@ -64,11 +64,11 @@ const LatestCollection = () => {
             height={undefined}
             src={image}
             alt=""
-            className="w-11/12 lg:w-full rounded-lg mx-auto"
+            className="w-11/12 md:w-full rounded-lg mx-auto"
           />
         </div>
 
-        <div className="col-span-5">
+        <div className="col-span-5 px-0 md:px-10">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
             <SubTitle
               SubTitle="Latest Collections"
