@@ -4,7 +4,7 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/Logo/trendy.svg";
-import NavLinks from "../Navbar/NavLinks";
+import NavLinks from "../Navbar/MegaLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";

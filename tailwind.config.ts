@@ -39,6 +39,12 @@ const config: Config = {
           200: "#FAC213",
           300: "#da9100",
         },
+        secondary: {
+          100: "#ffeac3",
+          200: "#ffe1a9",
+          300: "#ffd990",
+          400: "#ffd076",
+        },
         footer: "#CFF1FF",
         button: "#05072F",
         background: "#39BFE1",

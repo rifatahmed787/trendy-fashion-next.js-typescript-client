@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import NavLinks from "./NavLinks";
+import NavLinks from "./MegaLinks";
 import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";

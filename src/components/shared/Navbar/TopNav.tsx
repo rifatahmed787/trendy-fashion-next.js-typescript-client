@@ -6,6 +6,9 @@ import Link from "next/link";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 import Image from "next/image";
 import ICONS from "../Icons/AllIcons";
+import Marquee from "react-fast-marquee";
+import Paragraph from "@/components/UI/Paragraph/Paragraph";
+import cart from "../../../assets/icon/cart.png"
 
 const TopNav = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -51,7 +54,20 @@ const TopNav = () => {
             </Link>
           </div>
         </div>
-        <div>
+        <div className="w-1/2 flex items-center">
+          {ICONS.cart_one}
+          <Marquee
+            direction="left"
+            autoFill={true}
+            pauseOnClick={true}
+            // speed="40"
+           
+          >
+           <Paragraph className="font-normal text-primary-100 font-primary">
+            hello dear customer
+           </Paragraph>
+          </Marquee>
+          <div>
           <a
             href="tel:+8801752555788"
             className="border-brand flex items-center gap-1"
@@ -68,6 +84,8 @@ const TopNav = () => {
             </p>
           </a>
         </div>
+        </div>
+       
         <div>
           <ProductSearchbar />
         </div>

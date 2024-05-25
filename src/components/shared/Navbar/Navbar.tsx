@@ -4,7 +4,7 @@
 import { Icon } from "@iconify/react";
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/Logo/trendy.svg";
-import NavLinks from "./NavLinks";
+import NavLinks from "./MegaLinks";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
@@ -16,6 +16,7 @@ import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import ICONS from "../Icons/AllIcons";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
+import { NavItems } from "./NavLinks";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -102,19 +103,19 @@ const Navbar = () => {
           />
         </div>
 
-       
-          {accountDropdownOpen && (
-            <ul
-              className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <Account setAccountDropdownOpen={setAccountDropdownOpen} />
-            </ul>
-          )}
-       
+        {accountDropdownOpen && (
+          <ul
+            className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <Account setAccountDropdownOpen={setAccountDropdownOpen} />
+          </ul>
+        )}
       </div>
     </>
   );
+
+
 
   const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-16 ${
     isNavbarVisible
@@ -137,37 +138,28 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            <li>
-              <Link
-                href="/"
-                className={`inline-block py-3  mainNav-hover-effect ${
-                  pathname === "/"
-                    ? "active  text-primary-100 "
-                    : "text-[#181818]"
-                }`}
-              >
-                <span className="flex items-center gap-1 font-primary text-lg font-bold ">
-                  {ICONS.home}
-                  Home
-                </span>
-              </Link>
-            </li>
+            {NavItems?.map((item) => (
+              <>
+                {" "}
+                <li>
+                  <Link
+                    key={item.ref}
+                    href={item?.ref}
+                    className={`inline-block py-3  mainNav-hover-effect ${
+                      pathname === item.ref
+                        ? "active  text-primary-100 "
+                        : "text-[#181818]"
+                    }`}
+                  >
+                    <span className="flex items-center gap-1 font-primary text-lg font-bold ">
+                      {item.icon}
+                      {item.value}
+                    </span>
+                  </Link>
+                </li>
+              </>
+            ))}
 
-            <li>
-              <Link
-                href="/products"
-                className={`inline-block py-3 mainNav-hover-effect ${
-                  pathname === "/products"
-                    ? "active   text-primary-100  "
-                    : "text-[#181818]"
-                }`}
-              >
-                <span className="flex items-center gap-1 font-primary text-lg font-bold">
-                  {ICONS.product}
-                  Products
-                </span>
-              </Link>
-            </li>
             {/* dropdown navlinks */}
             <NavLinks previousScroll={previousScroll} />
           </ul>

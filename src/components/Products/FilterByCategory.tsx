@@ -3,7 +3,8 @@ import CheckBox from "../UI/Check-box/Checkbox";
 import { useGetUniqueFilteringItemsQuery } from "@/Redux/features/products/productApi";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
-import AnimatedFilter from "../FramerMotion/AnimatedFilter/AnimatedFilter";
+import AnimatedFilter from "../UI/Framer-motion/AnimatedFilter";
+
 
 type IFilterProduct = {
   filter: {
