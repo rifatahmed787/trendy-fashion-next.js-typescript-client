@@ -8,7 +8,7 @@ import Image from "next/image";
 import ICONS from "../Icons/AllIcons";
 import Marquee from "react-fast-marquee";
 import Paragraph from "@/components/UI/Paragraph/Paragraph";
-import cart from "../../../assets/icon/cart.png"
+import cart from "../../../assets/icon/cart.png";
 
 const TopNav = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -61,31 +61,36 @@ const TopNav = () => {
             autoFill={true}
             pauseOnClick={true}
             // speed="40"
-           
           >
-           <Paragraph className="font-normal text-primary-100 font-primary">
-            hello dear customer
-           </Paragraph>
+            <Paragraph className="font-normal text-primary-100 text-base">
+              <strong>Promotional Offers: </strong>Get 20% off on your first
+              order! Use code WELCOME20 at checkout.{" "}
+              <strong>Free Shipping: </strong>Enjoy free shipping on orders over
+              $50. Shop now and save! <strong>Customer Service: </strong>Chat
+              with us live for any assistance you need.{" "}
+              <strong>Special Features: </strong> Browse our curated collections
+              for the best picks of the season.
+            </Paragraph>
           </Marquee>
           <div>
-          <a
-            href="tel:+8801752555788"
-            className="border-brand flex items-center gap-1"
-          >
-            <div className="text-primary-100 bg-white p-1 shadow-md rounded-md">
-              {ICONS.mobile}
-            </div>
-            <p className="flex flex-col text-base font-bold font-secondary">
-              <span>Call Us</span>
-              <span className="text-gray-400 tracking-widest">
-                {" "}
-                +8801945518927
-              </span>
-            </p>
-          </a>
+            <a
+              href="tel:+8801752555788"
+              className="border-brand flex items-center gap-1"
+            >
+              <div className="text-primary-100 bg-white p-1 shadow-md rounded-md">
+                {ICONS.mobile}
+              </div>
+              <p className="flex flex-col text-base font-bold font-secondary">
+                <span>Call Us</span>
+                <span className="text-gray-400 tracking-widest">
+                  {" "}
+                  +8801945518927
+                </span>
+              </p>
+            </a>
+          </div>
         </div>
-        </div>
-       
+
         <div>
           <ProductSearchbar />
         </div>
