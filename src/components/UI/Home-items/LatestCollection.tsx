@@ -76,7 +76,7 @@ const LatestCollection = () => {
             />
             <Button
               title="All Products"
-              className="px-4 py-2 bg-primary-100 rounded-lg uppercase"
+              className="px-4 py-2 bg-primary-100 text-white rounded-lg uppercase"
               onClickHandler={() => router.push("/products")}
             />
           </div>

@@ -15,7 +15,8 @@ import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "../Navbar/Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
-import AnimatedFilter from "@/components/FramerMotion/AnimatedFilter/AnimatedFilter";
+import AnimatedFilter from "@/components/UI/Framer-motion/AnimatedFilter";
+
 
 const UserNavbar = () => {
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);

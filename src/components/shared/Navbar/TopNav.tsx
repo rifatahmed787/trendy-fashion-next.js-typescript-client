@@ -62,7 +62,7 @@ const TopNav = () => {
             pauseOnClick={true}
             // speed="40"
           >
-            <Paragraph className="font-normal text-primary-100 text-base">
+            <Paragraph className="font-normal text-gray-700 text-base">
               <strong>Promotional Offers: </strong>Get 20% off on your first
               order! Use code WELCOME20 at checkout.{" "}
               <strong>Free Shipping: </strong>Enjoy free shipping on orders over

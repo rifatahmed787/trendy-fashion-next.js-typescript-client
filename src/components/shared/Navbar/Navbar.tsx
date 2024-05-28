@@ -207,7 +207,7 @@ const Navbar = () => {
           ) : (
             <>
               <div className="hidden md:block">
-                <div className="flex items-center px-3 rounded-md bg-primary-100 text-black">
+                <div className="flex items-center px-3 rounded-md bg-primary-100 text-white">
                   <button
                     onClick={(e) => {
                       e.preventDefault();
