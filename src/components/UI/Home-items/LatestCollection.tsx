@@ -56,9 +56,9 @@ const LatestCollection = () => {
   };
 
   return (
-    <section className="my-10 lg:px-10">
+    <section className="my-16 px-5 md:px-0">
       <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
-        <div className="col-span-3 mb-5 flex px-0 md:px-10 lg:px-0">
+        <div className="col-span-3  flex px-0 md:px-10 lg:px-0">
           <Image
             width={undefined}
             height={undefined}
@@ -69,7 +69,7 @@ const LatestCollection = () => {
           />
         </div>
 
-        <div className="col-span-5 px-0 md:px-10 py-5">
+        <div className="col-span-5 px-0 md:px-10 mt-10 lg:mt-0">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
             <SubTitle
               SubTitle="Latest Collections"
@@ -107,9 +107,9 @@ const LatestCollection = () => {
               delay: 2000,
               disableOnInteraction: true,
             }}
-            loop={true}
+            // loop={true}
             modules={[Navigation, Autoplay]}
-            className="mx-auto my-16"
+            className="mx-auto my-10"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
@@ -121,13 +121,19 @@ const LatestCollection = () => {
               <>
                 {latest_products?.length > 0 ? (
                   <>
-                    {latest_products?.map((product: IProduct) => {
-                      return (
-                        <SwiperSlide className="hover:z-50" key={product.id}>
-                          <CartProduct product={product} />
-                        </SwiperSlide>
-                      );
-                    })}
+                    {latest_products?.slice(0, 20).map((product: IProduct) => (
+                      <SwiperSlide className="hover:z-50" key={product.id}>
+                        <CartProduct product={product} />
+                      </SwiperSlide>
+                    ))}
+                    {latest_products?.length > 21 && (
+                      <SwiperSlide
+                        className="hover:z-50 my-auto"
+                        key="view-all-products"
+                      >
+                       <Button title="View All" icon={ICONS.small_right_arrow}/>
+                      </SwiperSlide>
+                    )}
                   </>
                 ) : (
                   <div className="flex justify-center items-center gap-2 min-h-[45vh]">
@@ -167,3 +173,6 @@ const LatestCollection = () => {
 };
 
 export default LatestCollection;
+function setShowButton(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}

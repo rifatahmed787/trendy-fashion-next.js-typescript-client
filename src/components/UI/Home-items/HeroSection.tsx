@@ -8,7 +8,7 @@ import SubTitle from "../SubTitle/SubTitle";
 
 const HeroSection = () => {
   return (
-    <section>
+    <section className="mb-16">
       <div className="hero-section max-w-screen-2xl mx-auto">
         <div className="py-20 px-10">
           <Paragraph className="md:text-[18px] lg:text-[20px]">Premium quality</Paragraph>

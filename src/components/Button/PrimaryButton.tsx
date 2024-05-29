@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 type BrandButton = {
   text: ReactNode;
-  icon: ReactNode;
+  icon?: ReactNode;
 };
 const BrandButton = ({ text, icon }: BrandButton) => {
   return (

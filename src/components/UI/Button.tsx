@@ -4,7 +4,7 @@ import { cn } from "@/lib/Utils";
 
 type IButton = {
   title: string;
-  className: string;
+  className?: string;
   type?: "button" | "submit" | "reset";
   isDisabled?: boolean;
   onClickHandler?: () => void;

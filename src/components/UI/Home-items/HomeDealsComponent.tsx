@@ -56,7 +56,7 @@ const HomeDealsComponent = () => {
   return (
     <section className="my-10 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
-        <div className="col-span-2 mb-5 mt-7">
+        <div className="col-span-2 mb-5">
           <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
               SubTitle="2nd shopping surprise campaign!"
@@ -152,7 +152,7 @@ const HomeDealsComponent = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto  w-[100%] my-12"
+            className="mySwiper mx-auto  w-[100%] my-9"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
