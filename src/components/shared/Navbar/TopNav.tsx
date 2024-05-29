@@ -34,7 +34,7 @@ const TopNav = () => {
     };
   }, [handleScroll, previousScroll]);
 
-  const headerClasses = `fixed top-0 py-2 bg-white z-40 w-full border-b border-gray-200 transition-transform duration-300 md:px-16 hidden md:block ${
+  const headerClasses = `fixed top-0 py-2 bg-white z-40 w-full border-b border-gray-200 transition-transform duration-300 md:px-5 lg:px-10 hidden md:block ${
     isHeaderVisible ? "translate-y-0" : "-translate-y-auto"
   }`;
 

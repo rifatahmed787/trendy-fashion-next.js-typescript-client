@@ -2,7 +2,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Logo from "../../../assets/Logo/trendy.svg";
 import NavLinks from "./MegaLinks";
 import Link from "next/link";
@@ -14,20 +14,20 @@ import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import Account from "./Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
-import ICONS from "../Icons/AllIcons";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 import { NavItems } from "./NavLinks";
+import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
   const [accountDropdownOpen, setAccountDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const accountDropdownRef = useRef(null);
 
   useEffect(() => {
     const userCookie = Cookies.get("user");
@@ -103,21 +103,21 @@ const Navbar = () => {
           />
         </div>
 
-        {accountDropdownOpen && (
-          <ul
-            className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
-            onClick={() => setIsMenuOpen(false)}
+        <MegamenuMotion isDropdownOpen={accountDropdownOpen}>
+          <div
+            ref={accountDropdownRef}
+            className={`dropdown-menu ${
+              accountDropdownOpen && "border-t-2 border-primary-100"
+            } absolute right-0 left-auto w-48 z-50 shadow-lg divide-y-2 `}
           >
             <Account setAccountDropdownOpen={setAccountDropdownOpen} />
-          </ul>
-        )}
+          </div>
+        </MegamenuMotion>
       </div>
     </>
   );
 
-
-
-  const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-16 ${
+  const navbarClasses = `fixed z-40 border-b w-full border-gray-200 transition-transform duration-300 mx-0 md:px-5 lg:px-10 ${
     isNavbarVisible
       ? "translate-y-0 top-0 md:top-[73px]"
       : "-translate-y-auto top-auto py-3"

@@ -3,19 +3,22 @@ import { motion, AnimatePresence } from "framer-motion";
 
 type MegamenuMotionProps = {
   children: React.ReactNode;
+  isDropdownOpen: boolean;
 };
 
-const MegamenuMotion: React.FC<MegamenuMotionProps> = ({ children }) => {
+const MegamenuMotion: React.FC<MegamenuMotionProps> = ({ children, isDropdownOpen }) => {
   return (
     <AnimatePresence>
-       <motion.div
-         initial={{ y: 100, opacity: 0 }}
-         animate={{ y: 0, opacity: 1 }}
-         exit={{ y: 100, opacity: 0 }}
-         transition={{ duration: 0.6 }}
-      >
-        {children}
-      </motion.div>
+      {isDropdownOpen && (
+        <motion.div
+          initial={{ y: 100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 100, opacity: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {children}
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };

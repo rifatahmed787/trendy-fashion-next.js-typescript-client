@@ -53,14 +53,14 @@ const NavLinks = ({ previousScroll }: any) => {
               </span>
             </h1>
 
-            {isPageOpen && heading === link.name && (
+           
               <div
                 ref={dropdownRef}
                 className={`absolute hidden md:block ${previousScroll ? "top-4/5" : "top-[80%]"}`}
                 onMouseEnter={() => setIsPageOpen(true)}
                 onMouseLeave={handleMouseLeave}
               >
-                <MegamenuMotion>
+                <MegamenuMotion isDropdownOpen={isPageOpen && heading === link.name}>
                   <div className="pb-3">
                     <div className="w-4 h-4 left-3 absolute mt-1 bg-gray-100 rotate-45"></div>
                   </div>
@@ -83,7 +83,7 @@ const NavLinks = ({ previousScroll }: any) => {
                   </div>
                 </MegamenuMotion>
               </div>
-            )}
+           
           </div>
 
           {/* Mobile menus */}

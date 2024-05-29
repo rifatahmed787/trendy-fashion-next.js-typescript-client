@@ -56,9 +56,9 @@ const LatestCollection = () => {
   };
 
   return (
-    <section className="my-16 px-5 md:px-0">
+    <section className="my-16 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
-        <div className="col-span-3  flex px-0 md:px-10 lg:px-0">
+        <div className="col-span-3  flex px-0  ">
           <Image
             width={undefined}
             height={undefined}
@@ -69,7 +69,7 @@ const LatestCollection = () => {
           />
         </div>
 
-        <div className="col-span-5 px-0 md:px-10 mt-10 lg:mt-0">
+        <div className="col-span-5 px-0 mt-10 lg:mt-0">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
             <SubTitle
               SubTitle="Latest Collections"
