@@ -55,9 +55,9 @@ const HomeDealsComponent = () => {
 
   return (
     <section className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 md:gap-5 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
+      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
         <div className="col-span-2 mb-5 mt-7">
-          <div className="my-2 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
+          <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
               SubTitle="2nd shopping surprise campaign!"
               className="py-5 text-center"
@@ -76,7 +76,7 @@ const HomeDealsComponent = () => {
               height={64}
               src={image1}
               alt=""
-              className="h-72 w-full rounded-lg"
+              className="h-full lg:h-72 w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-50 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -97,7 +97,7 @@ const HomeDealsComponent = () => {
               height={64}
               src={image2}
               alt=""
-              className="h-72 w-full rounded-lg"
+              className="h-full lg:h-72 w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-50 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -152,7 +152,7 @@ const HomeDealsComponent = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto mt-5 w-[100%] minh"
+            className="mySwiper mx-auto  w-[100%] my-12"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
@@ -175,7 +175,7 @@ const HomeDealsComponent = () => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 py-16">
+                    <div className="flex justify-center items-center gap-2 min-h-[50vh]">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}

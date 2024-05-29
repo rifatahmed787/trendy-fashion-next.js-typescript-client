@@ -13,8 +13,8 @@ const HeroSection = () => {
         <div className="py-20 px-10">
           <Paragraph className="md:text-[18px] lg:text-[20px]">Premium quality</Paragraph>
 
-          <SubTitle SubTitle="The best Product in the city." className="py-7 md:text-[30px] lg:text-[50px] text-gray-700"/>
-          <Paragraph className="lg:w-1/2">
+          <SubTitle SubTitle="The best Product in the city." className="py-7 md:text-[30px] lg:text-[50px] text-gray-100"/>
+          <Paragraph className="lg:w-1/2 text-gray-700">
             Centuries before the advent of cloths, stationary served a highly
             practical purpose as efficient. High quality product served alway.
             This is our main goal to see happy the customer.

@@ -56,19 +56,20 @@ const LatestCollection = () => {
   };
 
   return (
-    <section className="my-10 px-5 lg:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 md:gap-5 lg:gap-5 items-center max-w-screen-2xl mx-auto">
-        <div className="col-span-3 mb-5 mt-7">
+    <section className="my-10 lg:px-10">
+      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
+        <div className="col-span-3 mb-5 flex px-0 md:px-10 lg:px-0">
           <Image
             width={undefined}
             height={undefined}
             src={image}
             alt=""
-            className="w-11/12 md:w-full rounded-lg mx-auto"
+            className="w-11/12 lg:w-full rounded-lg mx-auto "
+            style={{ flexGrow: 1 }}
           />
         </div>
 
-        <div className="col-span-5 px-0 md:px-10">
+        <div className="col-span-5 px-0 md:px-10 py-5">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
             <SubTitle
               SubTitle="Latest Collections"
@@ -80,7 +81,6 @@ const LatestCollection = () => {
               onClickHandler={() => router.push("/products")}
             />
           </div>
-          {/* <hr /> */}
           <Swiper
             slidesPerView={3}
             spaceBetween={30}
@@ -109,7 +109,7 @@ const LatestCollection = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mx-auto"
+            className="mx-auto my-16"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
@@ -121,33 +121,28 @@ const LatestCollection = () => {
               <>
                 {latest_products?.length > 0 ? (
                   <>
-                    {" "}
                     {latest_products?.map((product: IProduct) => {
                       return (
-                        <SwiperSlide className="hover:z-50 " key={product.id}>
+                        <SwiperSlide className="hover:z-50" key={product.id}>
                           <CartProduct product={product} />
                         </SwiperSlide>
                       );
                     })}
                   </>
                 ) : (
-                  <>
-                    <div className="flex justify-center items-center gap-2 min-h-[45vh]">
-                      <Paragraph>Can't Load the data! Please</Paragraph>
-                      <button
-                        onClick={handleReload}
-                        className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
-                      >
-                        {ICONS.refresh}
-                        reload
-                      </button>
-                    </div>
-                  </>
+                  <div className="flex justify-center items-center gap-2 min-h-[45vh]">
+                    <Paragraph>Can't Load the data! Please</Paragraph>
+                    <button
+                      onClick={handleReload}
+                      className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
+                    >
+                      {ICONS.refresh}
+                      reload
+                    </button>
+                  </div>
                 )}
               </>
             )}
-
-            {/* swiper button */}
             <div className="flex items-center justify-end gap-5 pr-5 mt-3">
               <SwiperButtonPrev />
               <SwiperButtonNext />
@@ -155,7 +150,7 @@ const LatestCollection = () => {
           </Swiper>
           <div className="latest-product-super px-5 mt-5 py-3">
             <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
-              Top Quality of Product Store !
+              Top Quality of Product Store!
             </Paragraph>
             <SubTitle
               SubTitle="Find your Exciting Products at Our Trendy Shop."
