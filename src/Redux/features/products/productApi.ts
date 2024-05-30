@@ -10,19 +10,19 @@ export const productsApi = apiSlice.injectEndpoints({
         const query = args ? ParamSerialization(args) : "";
         return `/product/allproducts?${query}`;
       },
-      providesTags: ["products"],
+      providesTags: ["products", "wishlist"],
     }),
 
     //Get latest-ten
     getLatestProducts: builder.query({
       query: () => `/product/latest-ten`,
-      providesTags: ["latest_products"],
+      providesTags: ["latest_products","wishlist"],
     }),
 
     //get best seller products
     getBestSellerProducts: builder.query({
       query: () => `/product/best-seller`,
-      providesTags: ["best_seller"],
+      providesTags: ["best_seller", "wishlist"],
     }),
 
     //Get  product details
@@ -30,7 +30,7 @@ export const productsApi = apiSlice.injectEndpoints({
       query: (productID) => {
         return `/product/${productID}`;
       },
-      providesTags: ["product", "reviews"],
+      providesTags: ["product", "reviews", "wishlist"],
     }),
 
     //Get All Filtering Items

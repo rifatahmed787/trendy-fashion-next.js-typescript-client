@@ -1,3 +1,4 @@
+"use client"
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,20 +6,31 @@ import BrandButton from "@/components/Button/PrimaryButton";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";
 import { logout } from "@/Redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import ToastContainer from "@/components/UI/Toast";
 
 type AccountProps = {
   setAccountDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertType, setAlertType] = useState<"success" | "error" | "warning">(
+    "success"
+  );
+  const [alertMessages, setAlertMessages] = useState('');
   const { user } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  // handle logout
   const handleLogout = () => {
     dispatch(logout());
-    router.push("/");
+    setAlertMessages('Successfully logged out');
+    setAlertType('success');
+    setIsAlertOpen(true);
+    setTimeout(() => {
+      router.push('/');
+    }, 2000); 
   };
 
   return (
@@ -121,6 +133,14 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
           Log out
         </button>
       </div>
+      {isAlertOpen && (
+        <ToastContainer
+          type={alertType}
+          messages={alertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+        />
+      )}
     </>
   );
 };

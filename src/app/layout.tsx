@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Petrona, Amiri, Open_Sans } from 'next/font/google';
-import { Toaster } from "react-hot-toast";
 import Providers from "./lib/Providers";
 import RenderModal from "@/components/ModalsComponent/Index";
 
@@ -21,7 +20,6 @@ export default function RootLayout({
       <body>
         <Providers>
           <div className="min-h-screen">{children}</div>
-          <Toaster />
           <RenderModal />
         </Providers>
       </body>
