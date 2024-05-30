@@ -155,6 +155,7 @@ const SignInForm = () => {
           messages={alertMessages}
           isAlertOpen={isAlertOpen}
           setIsAlertOpen={setIsAlertOpen}
+          className="bottom-3"
         />
       )}
     </>
