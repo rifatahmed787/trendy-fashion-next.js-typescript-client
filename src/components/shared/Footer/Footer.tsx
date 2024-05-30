@@ -74,12 +74,12 @@ const Footer = () => {
           {/* Bottom area */}
           <div className="md:flex flex-row-reverse md:items-center md:justify-between py-4 md:py-8 border-t border-gray-200 md:mx-10 relative before:absolute before:content-normal before:top-0 before:left-0 before:w-full before:h-0.5 before:bg-primary-100">
             {/* Social links */}
-            <div className="mr-0 lg:mr-16">
+            <div className="mr-5 md:mr-16">
               <SocialIcons />
             </div>
 
             {/* Copyrights note */}
-            <div className="text-sm text-gray-600 mr-4 lg:ml-10">
+            <div className="text-sm text-gray-600 mr-4 ml-10">
               Made by{" "}
               <a
                 className="text-primary-100 hover:underline font-semibold"

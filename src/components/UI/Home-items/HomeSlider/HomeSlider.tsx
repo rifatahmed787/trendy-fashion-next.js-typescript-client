@@ -87,7 +87,7 @@ const HomePageBanner = () => {
   return (
     <>
       <FadeIn>
-        <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 md:gap-5 max-w-screen-2xl mx-auto">
+        <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 lg:gap-5 max-w-screen-2xl mx-auto">
           <div className="group col-span-2">
             <Swiper
               onSlideChange={(swiper) => handleSlideChange(swiper)}
