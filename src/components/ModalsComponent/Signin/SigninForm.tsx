@@ -49,7 +49,7 @@ const SignInForm = () => {
     } else if (isSuccess) {
       setIsAlertOpen(true);
       setAlertType("success");
-      setAlertMessages(loginData?.message);
+      setAlertMessages(loginData?.message ?? "Login successful");
     }
   }, [error, isError, isSuccess, loginData?.message]);
   if (isSuccess) {
