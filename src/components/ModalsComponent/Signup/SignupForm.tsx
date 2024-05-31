@@ -88,7 +88,7 @@ const SignUpForm = () => {
     } else if (isRegisterSuccess) {
       setIsAlertOpen(true);
       setAlertType("success");
-      setAlertMessages(registerData?.message);
+      setAlertMessages(registerData?.message ?? "Registered Successfully");
     }
   }, [
     isRegisterError,
