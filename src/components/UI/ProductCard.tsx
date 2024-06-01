@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 import { IProduct } from "@/Types/products";
 import Ratings from "./Rating/Rating";
@@ -18,9 +17,13 @@ import { IoIosHeart } from "react-icons/io";
 import { LuHeart } from "react-icons/lu";
 import { IoEyeOutline } from "react-icons/io5";
 import { GoGitCompare } from "react-icons/go";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const ProductCard = ({ product }: { product: IProduct }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [wishHover, setWishHover] = useState(false);
+  const [compareHover, setCompareHover] = useState(false);
+  const [detailsHover, setDetailsHover] = useState(false);
   const { openModal } = useModal();
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -135,7 +138,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                 {cartIsLoading ? (
                   ICONS.button_loading_icon
                 ) : (
-                  <Icon icon="mdi:cart-heart" width={20} />
+                  <MdOutlineShoppingCart className="text-2xl"/>
                 )}
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform second-span ease bg-gray-800 title">
@@ -174,15 +177,39 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                         (item: { productId: number | undefined }) =>
                           item.productId === product.id
                       ) ? (
-                        <IoIosHeart
-                          onClick={wishListHandler}
-                          className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] text-primary-200 hover:text-primary-100"
-                        />
+                        <div className="flex items-center gap-1 relative">
+                          {wishHover && (
+                            <p className=" absolute top-0 bottom-0 flex items-center right-9 ">
+                              <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                                WishList
+                              </span>
+                              <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                            </p>
+                          )}
+                          <IoIosHeart
+                            onMouseEnter={() => setWishHover(true)}
+                            onMouseLeave={() => setWishHover(false)}
+                            onClick={wishListHandler}
+                            className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] text-primary-200 hover:text-primary-100"
+                          />
+                        </div>
                       ) : (
-                        <LuHeart
-                          onClick={wishListHandler}
-                          className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] hover:text-primary-100"
-                        />
+                        <div className="flex items-center gap-1 relative">
+                          {wishHover && (
+                            <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                              <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                                WishList
+                              </span>
+                              <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                            </p>
+                          )}
+                          <LuHeart
+                            onMouseEnter={() => setWishHover(true)}
+                            onMouseLeave={() => setWishHover(false)}
+                            onClick={wishListHandler}
+                            className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] hover:text-primary-100"
+                          />
+                        </div>
                       )}
                     </>
                   )}
@@ -190,12 +217,42 @@ const ProductCard = ({ product }: { product: IProduct }) => {
               )}
             </button>
 
-            <Link href={"/"}>
-              <GoGitCompare className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0" />
-            </Link>
-            <Link href={`/products/productdetails/${product?.id}`}>
-              <IoEyeOutline className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0" />
-            </Link>
+            <div className="flex items-center gap-1 relative">
+              {compareHover && (
+                <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                    Compare
+                  </span>
+                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                </p>
+              )}
+              <Link href={"/"}>
+                <GoGitCompare
+                  onMouseEnter={() => setCompareHover(true)}
+                  onMouseLeave={() => setCompareHover(false)}
+                  className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                />
+              </Link>
+            </div>
+            <div className="flex items-center gap-1 relative">
+              {detailsHover && (
+                <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                    Details
+                  </span>
+                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                </p>
+              )}
+              <Link href={"/"}>
+                <Link href={`/products/productdetails/${product?.id}`}>
+                  <IoEyeOutline
+                    onMouseEnter={() => setDetailsHover(true)}
+                    onMouseLeave={() => setDetailsHover(false)}
+                    className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                  />
+                </Link>
+              </Link>
+            </div>
           </div>
         </div>
         <h2 className="mt-3 text-xl capitalize title">

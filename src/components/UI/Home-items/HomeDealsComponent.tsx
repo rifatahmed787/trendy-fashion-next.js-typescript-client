@@ -152,7 +152,7 @@ const HomeDealsComponent = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto  w-[100%] my-9"
+            className="mySwiper mx-auto  w-[100%] my-6"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
@@ -167,7 +167,7 @@ const HomeDealsComponent = () => {
                     {" "}
                     {best_seller_products?.map((product: IProduct) => {
                       return (
-                        <SwiperSlide className="hover:z-50 " key={product.id}>
+                        <SwiperSlide className="hover:z-50 min-h-[50vh]" key={product.id}>
                           <CartProduct product={product} />
                         </SwiperSlide>
                       );

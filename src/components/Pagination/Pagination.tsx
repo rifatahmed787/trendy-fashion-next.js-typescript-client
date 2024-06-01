@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useMemo } from "react";
+import {  useMemo } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 interface IPaginationProps {
   isLoading?: boolean;
+  total:number;
   totalPage: number;
   pageSize: number;
   currentPage: number;
@@ -17,11 +18,12 @@ interface IPaginationProps {
 
 export default function Pagination({
   isLoading,
+  total,
   pageSize = 1,
   totalPage = 1,
   currentPage = 1,
   paginationOption = 5,
-  pageSizeOptions = [5, 10, 15],
+  pageSizeOptions = [10, 15, 20, 25, 30, 35, 40, 45, 50],
   handleSelectPage,
   handleNextPage,
   handlePreviousPage,
@@ -53,12 +55,12 @@ export default function Pagination({
   }, [totalPage, currentPage, paginationOption]);
 
   return (
-    <div className="flex justify-center gap-5 md:gap-10 items-center my-5 md:my-10 ">
-      <span className="text-gray-600 text-lg hidden lg:block">
-        Showing {pageSize * currentPage} out of {pageSize * totalPage}
+    <div className="flex justify-center gap-5 md:gap-10 items-center my-5 md:my-10 px-3">
+      <span className="text-gray-600 text-sm md:text-lg">
+        Showing {total} out of {pageSize * totalPage}
       </span>
       <div className="flex items-center space-x-2">
-        <span className="text-gray-600 text-lg hidden lg:block">Show:</span>
+        <span className="text-gray-600 text-sm md:text-lg">Show:</span>
         <select
           value={pageSize}
           onChange={(e) => handlePageSizeChange?.(parseInt(e.target.value))}
@@ -71,7 +73,7 @@ export default function Pagination({
           ))}
         </select>
       </div>
-      <div className="flex space-x-4 mx-auto lg:mx-0">
+      <div className="flex items-center space-x-4 mx-auto lg:mx-0">
         <button
           disabled={currentPage === 1 || isLoading}
           onClick={() => handlePreviousPage?.(currentPage - 1)}
@@ -86,7 +88,7 @@ export default function Pagination({
             onClick={() => handleSelectPage?.(paginationPageNumber)}
             className={`disabled:cursor-not-allowed px-2 ${
               paginationPageNumber === currentPage
-                ? "p-[1px] rounded-full bg-primary-100 text-white"
+                ? "w-7 h-7 rounded-full bg-primary-100 text-white"
                 : ""
             }`}
           >

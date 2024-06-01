@@ -1,5 +1,4 @@
 "use client";
-import { Icon } from "@iconify/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -11,10 +10,16 @@ import useModal from "@/Hooks/useModal";
 import { get_error_messages } from "@/lib/Error_message";
 import ICONS from "../shared/Icons/AllIcons";
 import ToastContainer from "./Toast";
+import { IoEyeOutline } from "react-icons/io5";
+import { GoGitCompare } from "react-icons/go";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const WishCard = ({ product }: { product: IWish }) => {
   const [isHovered, setIsHovered] = useState(false);
-
+  const [compareHover, setCompareHover] = useState(false);
+  const [detailsHover, setDetailsHover] = useState(false);
+  const [deleteHover, setDeleteHover] = useState(false);
   const { openModal } = useModal();
 
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
@@ -87,7 +92,7 @@ const WishCard = ({ product }: { product: IWish }) => {
           <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
             <button className="relative inline-flex items-center justify-center w-full py-2 overflow-hidden font-medium text-white transition duration-300 ease-out button-group">
               <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-y-5 bg-primary-200 first-span ease">
-                <Icon icon="mdi:cart-heart" width={20} />
+                <MdOutlineShoppingCart className="text-2xl"/>
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform second-span ease bg-gray-800 title">
                 Add To Cart
@@ -96,34 +101,69 @@ const WishCard = ({ product }: { product: IWish }) => {
             </button>
           </div>
           <div className="absolute right-2 top-2">
-            <button
-              onClick={wishListHandler}
-              className="bg-gray-200 rounded-full"
-            >
-              {" "}
-              {isRemoveWisLoading ? (
-                ICONS.button_loading_icon
-              ) : (
-                <Icon
-                  icon="material-symbols:delete"
-                  className="cursor-pointer p-1 text-red-500 shadow-inner"
-                  width={30}
-                />
+            <div className="flex items-center gap-1 relative">
+              {deleteHover && (
+                <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                    Delete
+                  </span>
+                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                </p>
               )}
-            </button>
+              <button
+                onClick={wishListHandler}
+                className="bg-gray-200 rounded-full"
+                onMouseEnter={() => setDeleteHover(true)}
+                onMouseLeave={() => setDeleteHover(false)}
+              >
+                {" "}
+                {isRemoveWisLoading ? (
+                  ICONS.button_loading_icon
+                ) : (
+                  <RiDeleteBin6Line
+                   
+                    className="cursor-pointer text-3xl p-1 text-red-500 shadow-inner"
+                  />
+                )}
+              </button>
+            </div>
 
-            <Icon
-              icon="iconamoon:restart-fill"
-              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-primary-100 group-hover:translate-x-0"
-              width={25}
-            />
-            <Link href={`/products/productdetails/${product?.id}`}>
-              <Icon
-                icon="basil:eye-outline"
-                className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
-                width={25}
-              />
-            </Link>
+            <div className="flex items-center gap-1 relative">
+              {compareHover && (
+                <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                    Compare
+                  </span>
+                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                </p>
+              )}
+              <Link href={"/"}>
+                <GoGitCompare
+                  onMouseEnter={() => setCompareHover(true)}
+                  onMouseLeave={() => setCompareHover(false)}
+                  className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                />
+              </Link>
+            </div>
+            <div className="flex items-center gap-1 relative">
+              {detailsHover && (
+                <p className=" absolute top-0 bottom-0 flex items-center right-9">
+                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
+                    Details
+                  </span>
+                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                </p>
+              )}
+              <Link href={"/"}>
+                <Link href={`/products/productdetails/${product?.id}`}>
+                  <IoEyeOutline
+                    onMouseEnter={() => setDetailsHover(true)}
+                    onMouseLeave={() => setDetailsHover(false)}
+                    className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                  />
+                </Link>
+              </Link>
+            </div>
           </div>
         </div>
         <h2 className="mt-3 text-xl capitalize title">

@@ -15,6 +15,7 @@ import ICONS from "../shared/Icons/AllIcons";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
+  
   const router = useRouter();
   const searchTerm = useSelector(selectSearch);
   // Pagination state
@@ -59,6 +60,7 @@ const ProductList = () => {
   const handlePreviousPage = () => {
     setPagination((prev) => ({ ...prev, currentPage: prev.currentPage - 1 }));
   };
+
   const handlePageSizeChange = (newPageSize: number) => {
     setPagination({ pageSize: newPageSize, currentPage: 1, totalPage: 1 });
   };
@@ -69,6 +71,7 @@ const ProductList = () => {
     setPagination((prev) => ({
       ...prev,
       totalPage: newTotalPage > 0 ? newTotalPage : 1,
+      total: totalProducts,
     }));
   }, [products, pagination.pageSize]);
 
@@ -167,7 +170,13 @@ const ProductList = () => {
                     </div>
                   ) : (
                     <>
-                      <div className="flex justify-center items-center gap-2 min-h-[50vh]">
+                      {searchTerm && (
+                        <div className="flex justify-center items-center gap-2 min-h-[50vh]">
+                          <p className="text-base md:text-lg font-tertiary font-semibold">No products match your search.</p>
+                        </div>
+                      )}
+                      {
+                        isError || error &&  <div className="flex justify-center items-center gap-2 min-h-[50vh]">
                         <h1>Can't Load the data! Please</h1>
                         <button
                           onClick={handleReload}
@@ -177,6 +186,7 @@ const ProductList = () => {
                           reload
                         </button>
                       </div>
+                      }
                     </>
                   )}
                 </div>
@@ -187,10 +197,10 @@ const ProductList = () => {
           {/* Pagination component */}
           <div className="mx-auto max-w-screen-2xl mt-10">
             <Pagination
+              total={products?.data?.meta?.total ?? 0}
               totalPage={pagination.totalPage}
               pageSize={pagination.pageSize}
               currentPage={pagination.currentPage}
-              pageSizeOptions={[5, 10, 15, 20, 25, 30, 35, 40, 45, 50]}
               handleSelectPage={handleSelectPage}
               handleNextPage={handleNextPage}
               handlePreviousPage={handlePreviousPage}

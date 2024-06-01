@@ -69,7 +69,7 @@ const TopNav = () => {
               $50. Shop now and save! <strong>Customer Service: </strong>Chat
               with us live for any assistance you need.{" "}
               <strong>Special Features: </strong> Browse our curated collections
-              for the best picks of the season.
+              for the best picks of the season. -
             </Paragraph>
           </Marquee>
           <div>
