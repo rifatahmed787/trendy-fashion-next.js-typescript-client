@@ -15,4 +15,5 @@ export type ITextInput = {
   right?: React.ReactNode;
   rightIcon?: React.ReactNode;
   errorMessage?: string | null;
+  disabled?:boolean;
 };

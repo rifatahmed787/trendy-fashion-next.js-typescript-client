@@ -15,6 +15,7 @@ const TextInput = ({
   id,
   rightIcon,
   errorMessage,
+  disabled
 }: ITextInput) => {
   const [isFocused, setIsFocused] = React.useState(false);
   const [inputType, setInputType] = React.useState(type);
@@ -72,6 +73,7 @@ const TextInput = ({
         required={required ?? false}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        disabled={disabled ?? false}
       />
       {isPassword && !rightIcon ? (
         <PasswordToggler

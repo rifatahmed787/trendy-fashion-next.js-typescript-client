@@ -152,7 +152,7 @@ const HomeDealsComponent = () => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto  w-[100%] my-6"
+            className="mySwiper mx-auto  w-[100%] my-9"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">
@@ -167,7 +167,7 @@ const HomeDealsComponent = () => {
                     {" "}
                     {best_seller_products?.map((product: IProduct) => {
                       return (
-                        <SwiperSlide className="hover:z-50 min-h-[50vh]" key={product.id}>
+                        <SwiperSlide className="hover:z-50" key={product.id}>
                           <CartProduct product={product} />
                         </SwiperSlide>
                       );
@@ -175,7 +175,7 @@ const HomeDealsComponent = () => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 min-h-[50vh]">
+                    <div className="flex justify-center items-center gap-2 min-h-[45vh]">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}
