@@ -56,7 +56,7 @@ const HomeDealsComponent = () => {
   return (
     <section className="my-10 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
-        <div className="col-span-2 mb-5">
+        <div className="col-span-2">
           <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
               SubTitle="2nd shopping surprise campaign!"
@@ -91,7 +91,7 @@ const HomeDealsComponent = () => {
               </div>
             </div>
           </div>
-          <div className="relative mb-7">
+          <div className="relative">
             <Image
               width={300}
               height={64}
@@ -218,7 +218,7 @@ const HomeDealsComponent = () => {
             <span className="absolute inset-0 rounded-lg bg-black opacity-40"></span>
 
             <div className="gird absolute grid-cols-1 md:grid-cols-2 ">
-              <div className="w-[100%]  text-[#e7e7e7] md:w-[50%] lg:w-[50%] ml-10 pt-16">
+              <div className="  text-[#e7e7e7] w-[50%] ml-10 pt-16">
                 <Paragraph className="text-lg">Kids Fashion</Paragraph>
                 <SubTitle
                   SubTitle="Let Our Future Be Stylish"

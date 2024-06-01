@@ -39,8 +39,8 @@ const SwiperButtonPrev = () => {
 
 export default function TestimonialCarousel() {
   return (
-    <section>
-      <div className="max-w-screen-2xl mx-auto px-5 md:px-10">
+    <section className="px-5 md:px-10">
+      <div className="max-w-screen-2xl mx-auto">
         <div className="pt-16 pb-5">
           <Title
             title="Client Reviews"
@@ -61,7 +61,7 @@ export default function TestimonialCarousel() {
               spaceBetween: 30,
             },
             1024: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 40,
             },
           }}

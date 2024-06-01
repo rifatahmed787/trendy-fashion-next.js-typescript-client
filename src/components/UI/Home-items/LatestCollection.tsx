@@ -65,7 +65,7 @@ const LatestCollection = () => {
             src={image}
             alt=""
             className="w-11/12 lg:w-full rounded-lg mx-auto "
-            style={{ flexGrow: 1 }}
+            
           />
         </div>
 
@@ -154,7 +154,7 @@ const LatestCollection = () => {
               <SwiperButtonNext />
             </div>
           </Swiper>
-          <div className="latest-product-super px-5 mt-5 py-3">
+          <div className="latest-product-super px-5 py-[50px]">
             <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
               Top Quality of Product Store!
             </Paragraph>
@@ -173,6 +173,4 @@ const LatestCollection = () => {
 };
 
 export default LatestCollection;
-function setShowButton(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}
+

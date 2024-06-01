@@ -149,7 +149,7 @@ const WishCard = ({ product }: { product: IWish }) => {
           messages={AlertMessages}
           isAlertOpen={isAlertOpen}
           setIsAlertOpen={setIsAlertOpen}
-          className="absolute  top-0 z-50 left-0 right-0 mx-auto flex justify-center"
+          className=" "
         />
       )}
     </>

@@ -4,13 +4,20 @@ import Image from "next/image";
 import { IProduct } from "@/Types/products";
 import Ratings from "./Rating/Rating";
 import Link from "next/link";
-import { useAddProductInWishMutation } from "@/Redux/features/wishlist/wishApi";
+import {
+  useAddProductInWishMutation,
+  useGetWishListQuery,
+} from "@/Redux/features/wishlist/wishApi";
 import ToastContainer from "./Toast";
 import { get_error_messages } from "@/lib/Error_message";
 import { useAppSelector } from "@/Hooks/useRedux";
 import useModal from "@/Hooks/useModal";
 import ICONS from "../shared/Icons/AllIcons";
 import { useAddToCartMutation } from "@/Redux/features/cart/cartApi";
+import { IoIosHeart } from "react-icons/io";
+import { LuHeart } from "react-icons/lu";
+import { IoEyeOutline } from "react-icons/io5";
+import { GoGitCompare } from "react-icons/go";
 
 const ProductCard = ({ product }: { product: IProduct }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -22,6 +29,11 @@ const ProductCard = ({ product }: { product: IProduct }) => {
   );
   const [AlertMessages, setAlertMessages] = useState("");
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+
+  const { data: wishProducts, isLoading: wishProductLoading } =
+    useGetWishListQuery({});
+
+  const wish_list_data = wishProducts?.data;
 
   // add in wish mutation hook
   const [
@@ -147,31 +159,42 @@ const ProductCard = ({ product }: { product: IProduct }) => {
               </>
             )}
           </div>
-          <div className="absolute right-2 top-0">
+          <div className="absolute right-2 top-2">
             <button onClick={wishListHandler}>
-              {" "}
               {isAddToWisLoading ? (
                 ICONS.button_loading_icon
               ) : (
-                <Icon
-                  icon="mdi:heart-outline"
-                  className="cursor-pointer rounded-full p-1 hover:text-primary-100"
-                  width={35}
-                />
+                <>
+                  {wishProductLoading ? (
+                    ICONS.button_loading_icon
+                  ) : (
+                    <>
+                      {wish_list_data &&
+                      wish_list_data.some(
+                        (item: { productId: number | undefined }) =>
+                          item.productId === product.id
+                      ) ? (
+                        <IoIosHeart
+                          onClick={wishListHandler}
+                          className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] text-primary-200 hover:text-primary-100"
+                        />
+                      ) : (
+                        <LuHeart
+                          onClick={wishListHandler}
+                          className="cursor-pointer text-3xl p-1 rounded-full bg-[#ececec] hover:text-primary-100"
+                        />
+                      )}
+                    </>
+                  )}
+                </>
               )}
             </button>
 
-            <Icon
-              icon="iconamoon:restart-fill"
-              className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-200 hover:text-primary-100 group-hover:translate-x-0"
-              width={28}
-            />
+            <Link href={"/"}>
+              <GoGitCompare className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0" />
+            </Link>
             <Link href={`/products/productdetails/${product?.id}`}>
-              <Icon
-                icon="basil:eye-outline"
-                className="my-2 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
-                width={28}
-              />
+              <IoEyeOutline className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0" />
             </Link>
           </div>
         </div>

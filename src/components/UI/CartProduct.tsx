@@ -34,7 +34,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
     useGetWishListQuery({});
 
   const wish_list_data = wishProducts?.data;
-  console.log(wish_list_data);
+ 
 
   // add in wish mutation hook
   const [

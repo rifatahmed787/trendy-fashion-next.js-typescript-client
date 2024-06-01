@@ -30,8 +30,8 @@ export default function ToastContainer({
 
   return (
     <div className={cn(
-      "absolute top-10 left-0 right-0 mx-auto flex justify-center z-[1050]",
-      "lg:top-auto lg:bottom-10 lg:right-10 lg:left-auto lg:mx-0 lg:justify-end",
+      "fixed top-10 left-0 right-0 mx-auto flex justify-center z-[1050]",
+      "fixed lg:top-auto lg:bottom-10 lg:right-10 lg:left-auto lg:mx-0 lg:justify-end",
       className
     )}>
       {/* Success */}
