@@ -9,6 +9,7 @@ type FileInputProps = {
   required?: boolean;
   id?: string;
   htmlFor?: string;
+  disabled?: boolean;
 };
 
 const FileInput = ({
@@ -28,6 +29,7 @@ const FileInput = ({
           type="file"
           className={className}
           required={required ?? false}
+          disabled={required ?? false}
           placeholder={placeholder}
           onChange={onChange}
         />
