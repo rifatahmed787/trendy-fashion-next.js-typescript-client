@@ -30,7 +30,7 @@ const Profile = () => {
     {}
   );
   const users_data: IProfile = users?.data;
-  console.log(users_data);
+ 
   const { control, handleSubmit, reset } = useForm();
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
@@ -54,13 +54,14 @@ const Profile = () => {
   const [
     addressData,
     {
+      data:updateSuccess,
       isLoading: addressLoading,
       isError: addressIError,
       error: AddressError,
       isSuccess: addressIsSuccess,
     },
   ] = useEditUserMutation();
-  const [uploader] = useUploderMutation();
+  const [uploader, {isLoading:uploadLoading}] = useUploderMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     let avatar = users_data?.avatar || ""; 
@@ -109,9 +110,11 @@ const Profile = () => {
       const error_messages = get_error_messages(AddressError);
       setAlertMessages(error_messages);
     } else if (addressIsSuccess) {
+      setIsAlertOpen(true)
       setAlertType("success");
+      setAlertMessages(updateSuccess?.message ?? "Updated successfully");
     }
-  }, [AddressError, addressIError, addressIsSuccess]);
+  }, [AddressError, addressIError, addressIsSuccess, updateSuccess?.message]);
 
   const handleEditClick = () => {
     setEditMode(true);
@@ -146,9 +149,9 @@ const Profile = () => {
                               alt="profile"
                               width={150}
                               height={150}
-                              className="object-cover relative mx-auto rounded-full flex items-center justify-center"
+                              className="object-cover w-40 h-40 md:w-48 md:h-48 relative mx-auto rounded-full flex items-center justify-center"
                             />
-                            <BiEditAlt className="text-xl text-center text-white absolute w-7 h-7 p-1 rounded-full bg-primary-100 right-1/3 bottom-2" />
+                            <BiEditAlt className="text-xl text-center text-white absolute w-7 h-7 p-1 rounded-full bg-primary-100 right-1/3 bottom-0" />
                           </div>
                         ) : (
                           <div className="">
@@ -158,7 +161,7 @@ const Profile = () => {
                                 alt="profile"
                                 width={150}
                                 height={150}
-                                className="object-cover relative mx-auto rounded-full shadow-xl  flex items-center justify-center"
+                                className="object-cover w-40 h-40 md:w-48 md:h-48 relative mx-auto rounded-full shadow-xl  flex items-center justify-center"
                               />
                             ) : (
                               <div className="w-28 h-28 bg-indigo-100 mx-auto p-2 rounded-full flex items-center justify-center text-indigo-500">
@@ -166,7 +169,7 @@ const Profile = () => {
                               </div>
                             )}
 
-                            <BiEditAlt className="text-xl text-center text-white absolute w-7 h-7 p-1 rounded-full bg-primary-100 right-1/3 bottom-2" />
+                            <BiEditAlt className="text-xl text-center text-white absolute w-7 h-7 p-1 rounded-full bg-primary-100 right-1/3 bottom-0" />
                           </div>
                         )}
                       </div>
@@ -177,7 +180,7 @@ const Profile = () => {
                         currentFile={file}
                         placeholder=""
                         required={false}
-                        className=" w-40 h-40 rounded-full duration-500 cursor-pointer absolute left-[20%] top-1/3 opacity-0 "
+                        className=" w-40 h-40 rounded-full duration-500 cursor-pointer absolute left-[20%] top-[40%] opacity-0 "
                         disabled={!editMode}
                       />}
 
@@ -196,7 +199,7 @@ const Profile = () => {
                             name="firstName"
                             control={control}
                             defaultValue={
-                              users_data?.username?.split(" ")[0] || ""
+                              users_data?.username?.split(" ")[0] || "Not found"
                             }
                             render={({ field }) => (
                               <TextInput
@@ -217,7 +220,7 @@ const Profile = () => {
                             name="lastName"
                             control={control}
                             defaultValue={
-                              users_data?.username?.split(" ")[1] || ""
+                              users_data?.username?.split(" ")[1] || "Not found"
                             }
                             render={({ field }) => (
                               <TextInput
@@ -261,7 +264,7 @@ const Profile = () => {
                           <Controller
                             name="phone_number"
                             control={control}
-                            defaultValue={users_data?.address?.phone_number}
+                            defaultValue={users_data?.address?.phone_number || "Not found"}
                             render={({ field }) => (
                               <TextInput
                                 type="text"
@@ -303,7 +306,7 @@ const Profile = () => {
                           <Controller
                             name="district_name"
                             control={control}
-                            defaultValue={users_data?.address?.district_name}
+                            defaultValue={users_data?.address?.district_name || "Not found"}
                             render={({ field }) => (
                               <TextInput
                                 type="text"
@@ -324,7 +327,7 @@ const Profile = () => {
                           <Controller
                             name="city"
                             control={control}
-                            defaultValue={users_data?.address?.city}
+                            defaultValue={users_data?.address?.city || "Not found"}
                             render={({ field }) => (
                               <TextInput
                                 type="text"
@@ -344,7 +347,7 @@ const Profile = () => {
                           <Controller
                             name="street_address"
                             control={control}
-                            defaultValue={users_data?.address?.street_address}
+                            defaultValue={users_data?.address?.street_address || "Not found"}
                             render={({ field }) => (
                               <TextInput
                                 type="text"
@@ -363,7 +366,7 @@ const Profile = () => {
                           <Controller
                             name="postal_code"
                             control={control}
-                            defaultValue={users_data?.address?.postal_code}
+                            defaultValue={users_data?.address?.postal_code || "Not found"}
                             render={({ field }) => (
                               <TextInput
                                 type="text"
@@ -400,11 +403,11 @@ const Profile = () => {
                                   title="Save"
                                   className="bg-primary-100 w-full text-base font-medium rounded text-white"
                                   icon={
-                                    addressLoading
+                                    addressLoading || uploadLoading
                                       ? ICONS.button_loading_icon
                                       : undefined
                                   }
-                                  isDisabled={addressLoading}
+                                  isDisabled={addressLoading || uploadLoading}
                                 />
                               </div>
                             )}

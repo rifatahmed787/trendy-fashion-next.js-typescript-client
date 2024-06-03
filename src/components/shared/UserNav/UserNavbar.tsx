@@ -16,6 +16,7 @@ import Account from "../Navbar/Account";
 import Cookies from "js-cookie";
 import { login } from "@/Redux/features/auth/authSlice";
 import AnimatedFilter from "@/components/UI/Framer-motion/AnimatedFilter";
+import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
 
 
 const UserNavbar = () => {
@@ -80,7 +81,7 @@ const UserNavbar = () => {
           />
         </div>
 
-        <AnimatedFilter isVisible={accountDropdownOpen}>
+        <MegamenuMotion isDropdownOpen={accountDropdownOpen}>
           {accountDropdownOpen && (
             <ul
               className={`dropdown-menu border-t-2 border-primary-100 absolute right-0 left-auto w-48 z-50 shadow-lg duration-300 ease-in-out divide-y-2 `}
@@ -88,7 +89,7 @@ const UserNavbar = () => {
               <Account setAccountDropdownOpen={setAccountDropdownOpen} />
             </ul>
           )}
-        </AnimatedFilter>
+        </MegamenuMotion>
       </div>
     </>
   );
