@@ -8,6 +8,7 @@ import { logout } from "@/Redux/features/auth/authSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ToastContainer from "@/components/UI/Toast";
+import { FaBorderAll } from "react-icons/fa";
 
 type AccountProps = {
   setAccountDropdownOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +36,7 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
 
   return (
     <>
-      <div className="bg-gray-100">
+      <div className="bg-gray-50">
         {/* user profile */}
         <div
           className={`relative after:absolute after:content-normal after:w-full after:h-0.5 after:bg-primary-100 pt-1`}
@@ -48,7 +49,7 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
               "https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
             }
             alt=""
-            className="rounded-full mx-auto"
+            className="rounded-full mx-auto w-12 h-12"
           />
 
           <h2 className={`text-lg font-bold text-center my-1`}>
@@ -71,7 +72,17 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
               onClick={() => setAccountDropdownOpen(false)}
             >
               <Icon icon="material-symbols:dashboard-outline" width={20} />
-              Dashboard
+              Manage Account
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/my_order"
+              className={`px-4 py-2 text-base w-full text-left text-gray-700  flex items-center gap-2`}
+              onClick={() => setAccountDropdownOpen(false)}
+            >
+              <FaBorderAll className="text-lg"/>
+             My Orders
             </Link>
           </li>
 

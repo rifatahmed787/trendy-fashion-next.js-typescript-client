@@ -93,7 +93,7 @@ const Navbar = () => {
                 "https://res.cloudinary.com/dztlowlu0/image/upload/v1700031261/avatar_ylo9mt.png"
               }
               alt=""
-              className="rounded-full mx-auto"
+              className="rounded-full mx-auto w-12 h-12"
             />
           </span>
           <Icon

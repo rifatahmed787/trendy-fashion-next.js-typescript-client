@@ -10,15 +10,16 @@
   },
   "dependencies": {
     "@iconify/react": "^4.1.1",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@reduxjs/toolkit": "^1.9.6",
     "@types/js-cookie": "^3.0.4",
-    "clsx": "^2.0.0",
-    "flowbite": "^1.8.1",
-    "flowbite-react": "^0.6.4",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "framer-motion": "^10.16.4",
     "iconsax-react": "^0.0.8",
     "js-cookie": "^3.0.5",
     "jwt-decode": "^4.0.0",
+    "lucide-react": "^0.383.0",
     "moment": "^2.29.4",
     "next": "latest",
     "next-auth": "^4.24.5",
@@ -38,7 +39,9 @@
     "redux-persist": "^6.0.0",
     "sharp": "^0.33.4",
     "swiper": "^10.3.1",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "tailwind-merge": "^2.3.0",
+    "tailwind-scrollbar-hide": "^1.1.7",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "latest",

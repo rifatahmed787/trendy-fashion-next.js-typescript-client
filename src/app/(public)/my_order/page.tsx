@@ -1,7 +1,7 @@
 import MyOrder from "@/components/UserDashboard/My-order/MyOrder";
 import React from "react";
 
-const MyOrders = () => {
+const Orders = () => {
   return (
     <div>
       <MyOrder />
@@ -9,4 +9,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default Orders;

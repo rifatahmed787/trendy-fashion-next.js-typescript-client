@@ -1,6 +1,5 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Petrona, Amiri, Open_Sans } from 'next/font/google';
 import Providers from "./lib/Providers";
 import RenderModal from "@/components/ModalsComponent/Index";
 

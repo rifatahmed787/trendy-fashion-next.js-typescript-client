@@ -26,7 +26,7 @@ export const userApi = apiSlice.injectEndpoints({
         method: "PATCH",
         body: { ...data },
       }),
-      invalidatesTags: ["profile"],
+      invalidatesTags: ["profile", "user"],
     }),
   }),
 });
