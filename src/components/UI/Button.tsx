@@ -19,12 +19,11 @@ const Button = ({
   onClickHandler,
   icon,
 }: IButton) => {
-  const default_styles =
-    "px-10 py-3  flex items-center justify-center gap-3 text-gray-800 text-center font-primary text-sm md:text-base  lg:text-lg font-bold";
+
   return (
     <button
       type={type ?? "button"}
-      className={cn(default_styles, className)}
+      className={cn("px-10 py-3  flex items-center justify-center gap-3 text-gray-800 text-center font-primary text-sm md:text-base  lg:text-lg font-bold", className)}
       disabled={isDisabled ?? false}
       onClick={() => onClickHandler && onClickHandler()}
     >
