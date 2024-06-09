@@ -18,7 +18,7 @@ const WhiteButton = ({ text, onClick, icon, className }: BrandButton) => {
       >
         <span className="absolute w-0 h-0 transition-all duration-500 ease-out bg-[#faf5e6] rounded-full group-hover:w-56 group-hover:h-56"></span>
         <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg"></span>
-        <span className="relative uppercase text-xs md:text-sm w-20 flex">
+        <span className="relative uppercase text-xs md:text-sm flex">
           {text} {icon}
         </span>
       </button>

@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
+    unoptimized:true,
     domains: [
       "res.cloudinary.com",
       "f8g8b9p5.rocketcdn.me",

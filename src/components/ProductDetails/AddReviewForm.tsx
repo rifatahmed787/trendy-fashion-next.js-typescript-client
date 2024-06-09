@@ -107,7 +107,7 @@ const AddReviewForm = ({
             type="submit"
             title="Submit"
             className=" bg-primary-100 w-full 
-                          text-base font-medium rounded my-10"
+                          text-base font-semibold font-secondary text-white rounded my-10"
             icon={isLoading ? ICONS.button_loading_icon : undefined}
             isDisabled={isLoading}
           />
@@ -118,7 +118,7 @@ const AddReviewForm = ({
               messages={AlertMessages}
               isAlertOpen={isAlertOpen}
               setIsAlertOpen={setIsAlertOpen}
-              className="absolute top-10 z-50 left-0 right-0 mx-auto flex justify-center"
+              className="bottom-3"
             />
           )}
         </form>

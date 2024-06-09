@@ -15,7 +15,7 @@ export default function ModalHeader({
       {...rest}
     >
       {title ? (
-        <h1 className="text-2xl lg:text-[2rem] font-bold ">{title}</h1>
+        <h1 className="text-2xl lg:text-[2rem] font-bold font-primary">{title}</h1>
       ) : null}
       <button
         onClick={onClose}

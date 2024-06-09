@@ -8,13 +8,13 @@ const DetailsSkeleton = () => {
     <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Left section with product images */}
-        <div className="flex flex-col md:flex-row -mx-4">
-          <div className="md:flex-1 px-4">
+        <div className="mt-8">
+          <div className="">
             <div className="rounded-lg mb-4">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`w-4/5 h-64 md:h-96 animate-pulse rounded-lg bg-gray-100 mb-4 flex items-center justify-center mx-auto ${
+                  className={` animate-pulse  bg-gray-100 w-[95%] h-[300px] md:h-[400px] border flex items-center justify-center mx-auto ${
                     image === i + 1 ? "block" : "hidden"
                   }`}
                 >
@@ -31,12 +31,12 @@ const DetailsSkeleton = () => {
               ))}
             </div>
 
-            <div className="flex -mx-2 mb-4">
+            <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div className="flex-1 px-2" key={i}>
                   <button
                     onClick={() => setImage(i + 1)}
-                    className={`focus:outline-none w-4/5 rounded-lg h-24 md:h-32 bg-gray-100 flex items-center justify-center mx-auto ${
+                    className={`focus:outline-none rounded-lg cursor-pointer w-16 h-16 md:w-24 md:h-24 bg-gray-100 flex items-center justify-center mx-auto ${
                       image === i + 1
                         ? "ring-2 ring-gray-100 ring-inset animate-pulse"
                         : ""
