@@ -138,27 +138,30 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            {NavItems?.map((item) => (
-              <>
-                {" "}
-                <li>
-                  <Link
+            
+             
+                  {NavItems?.map((item) => {
+                const isSelected = pathname === item?.ref;
+                return (
+                  <li
                     key={item.ref}
-                    href={item?.ref}
-                    className={`inline-block py-3  mainNav-hover-effect ${
-                      pathname === item.ref
-                        ? "active  text-primary-100 "
-                        : "text-[#181818]"
+                    className={`${
+                      isSelected
+                        ? "border-b-[3px] border-primary-100 text-primary-100"
+                        : "mainNav-hover-effect"
                     }`}
                   >
-                    <span className="flex items-center gap-1 font-primary text-lg font-bold ">
-                      {item.icon}
-                      {item.value}
-                    </span>
-                  </Link>
-                </li>
-              </>
-            ))}
+                    <Link href={item?.ref} className={`font-bold py-2 `}>
+                      <div className="flex group cursor-pointer items-center">
+                        <span>{item?.value}</span>
+                      </div>
+                    </Link>
+                  </li>
+                );
+              })}
+
+             
+          
 
             {/* dropdown navlinks */}
             <NavLinks previousScroll={previousScroll} />

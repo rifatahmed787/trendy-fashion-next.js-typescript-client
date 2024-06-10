@@ -25,6 +25,7 @@ import ZoomIn from "../../Framer-motion/ZoomIn";
 import BottomToTop from "../../Framer-motion/BottomToTop";
 import FadeIn from "../../Framer-motion/FadeIn";
 import Title from "../../Title/Title";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -164,16 +165,16 @@ const HomePageBanner = () => {
               {/* slider button */}
               <div className="mt-5 flex items-center justify-center gap-3 text-center">
                 <button
-                  className="prev-button absolute left-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                  className="prev-button absolute -translate-x-full group-hover:translate-x-1 -left-10 group-hover:left-0 md:group-hover:left-2 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-500 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goPrevButton}
                 >
-                  <Icon icon="ep:arrow-left-bold" />
+                 <IoIosArrowBack className="text-xl md:text-2xl"/>
                 </button>
                 <button
-                  className="next-button absolute right-3 md:right-0 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-300 group-hover:bg-[#ffffffcb] group-hover:text-black"
+                  className="next-button absolute translate-x-full group-hover:-translate-x-1 -right-10 group-hover:right-0 md:group-hover:right-2 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-500 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goNextButton}
                 >
-                  <Icon icon="ep:arrow-right-bold" />
+                  <IoIosArrowForward className="text-xl md:text-2xl"/>
                 </button>
               </div>
             </Swiper>
