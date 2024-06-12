@@ -3,14 +3,15 @@ import React, { ReactNode } from "react";
 
 // Define the interface for the props
 interface TitleProps {
-  title:string,
+  title: string;
   className?: string;
 }
 
 const Title: React.FC<TitleProps> = ({ title, className }) => {
   return (
-    <h1 className={cn("font-bold text-2xl md:text-[35px] lg:text-[45px] leading-[35px] md:leading-[50px] lg:leading-[60px] font-primary", className)}>
+    <h1 className={cn("uppercase text-2xl md:text-2xl lg:text-4xl font-bold font-primary relative inline-block group", className)}>
       {title}
+      <span className="heading-underline"></span>
     </h1>
   );
 };

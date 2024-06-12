@@ -39,13 +39,11 @@ const SwiperButtonPrev = () => {
 
 export default function TestimonialCarousel() {
   return (
-    <section className="px-5 md:px-10">
+    <section className="px-5 md:px-10 group pt-16">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="pt-16 pb-5">
+        <div className="text-center">
           <Title
-            title="Client Reviews"
-            className="text-center font-semibold relative  before:content-normal before:absolute before:w-1/2 md:before:w-1/3 lg:before:w-1/4 before:-bottom-2 before:bg-primary-100 before:h-1 uppercase"
-          />
+            title="Client Reviews"/>
         </div>
         <Swiper
           slidesPerView={"auto"}
