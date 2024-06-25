@@ -17,6 +17,7 @@ import ICONS from "@/components/shared/Icons/AllIcons";
 import SubTitle from "../SubTitle/SubTitle";
 import BrandButton from "@/components/Button/PrimaryButton";
 import Paragraph from "../Paragraph/Paragraph";
+import Heading from "../Heading/Heading";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -115,10 +116,12 @@ const HomeDealsComponent = () => {
         </div>
 
         <div className="col-span-5">
+         <div className="w-1/2 mx-auto"><Heading Heading="Deals of the week" className="block lg:hidden mt-16 text-center"/></div>
           <SubTitle
             SubTitle="Deals of the Week"
-            className="relative after:absolute after:content-normal text-center lg:text-left after:bg-primary-100 after:left-0 after:-bottom-2 after:w-full after:h-[3px]"
+            className="relative hidden lg:block after:absolute after:content-normal text-center lg:text-left after:bg-primary-100 after:left-0 after:-bottom-2 after:w-full after:h-[3px]"
           />
+          
           {/* <hr /> */}
           <Swiper
             slidesPerView={3}

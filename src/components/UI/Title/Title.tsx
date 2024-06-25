@@ -9,10 +9,9 @@ interface TitleProps {
 
 const Title: React.FC<TitleProps> = ({ title, className }) => {
   return (
-    <h1 className={cn("uppercase text-2xl md:text-2xl lg:text-4xl font-bold font-primary relative inline-block group", className)}>
+    <h2 className={cn("uppercase text-xl md:text-3xl lg:text-5xl leading-normal md:leading-[55.02px] font-bold font-primary relative inline-block group", className)}>
       {title}
-      <span className="heading-underline"></span>
-    </h1>
+    </h2>
   );
 };
 

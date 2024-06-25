@@ -10,9 +10,9 @@ import "swiper/css/navigation";
 import ICONS from "@/components/shared/Icons/AllIcons";
 
 import Image from "next/image";
-import Title from "../Title/Title";
 import Paragraph from "../Paragraph/Paragraph";
 import SubTitle from "../SubTitle/SubTitle";
+import Heading from "../Heading/Heading";
 
 const SwiperButtonNext = () => {
   const swiper = useSwiper();
@@ -42,8 +42,7 @@ export default function TestimonialCarousel() {
     <section className="px-5 md:px-10 group pt-16">
       <div className="max-w-screen-2xl mx-auto">
         <div className="text-center">
-          <Title
-            title="Client Reviews"/>
+         <Heading Heading="Client Reviews"/>
         </div>
         <Swiper
           slidesPerView={"auto"}

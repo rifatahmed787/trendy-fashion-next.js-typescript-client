@@ -118,7 +118,7 @@ const HomePageBanner = () => {
                     </>
 
                     <span className="absolute top-0 bg-black left-0 opacity-60 inset-0"></span>
-                    <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-[65%]">
+                    <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-3/4">
                       {activeIndex === index && (
                         <>
                           <RightToLeft>

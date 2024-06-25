@@ -17,6 +17,7 @@ import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import WhiteButton from "@/components/Button/SecondaryButton";
 import SubTitle from "../SubTitle/SubTitle";
 import Paragraph from "../Paragraph/Paragraph";
+import Heading from "../Heading/Heading";
 
 const SwiperButtonNext = () => {
   const swiper = useSwiper();
@@ -71,10 +72,8 @@ const LatestCollection = () => {
 
         <div className="col-span-5 px-0 mt-10 lg:mt-0">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
-            <SubTitle
-              SubTitle="Latest Collections"
-              className="relative after:absolute after:content-normal after:bg-primary-100 after:left-0 after:-bottom-2 after:w-11/12 after:h-[3px]"
-            />
+          
+            <Heading Heading="Latest Collections" />
             <Button
               title="All Products"
               className="px-4 py-2 bg-primary-100 text-white rounded-lg uppercase"
