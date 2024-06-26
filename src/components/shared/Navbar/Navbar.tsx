@@ -17,6 +17,8 @@ import { login } from "@/Redux/features/auth/authSlice";
 import ProductSearchbar from "@/components/Products/ProductSearchbar";
 import { NavItems } from "./NavLinks";
 import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
+import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
+import { useGetWishListQuery } from "@/Redux/features/wishlist/wishApi";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -28,6 +30,9 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const accountDropdownRef = useRef(null);
+
+  const { data: Products } = useGetCartProductsQuery({});
+  const { data: products } = useGetWishListQuery({});
 
   useEffect(() => {
     const userCookie = Cookies.get("user");
@@ -138,30 +143,26 @@ const Navbar = () => {
                 />
               </Link>
             </li>
-            
-             
-                  {NavItems?.map((item) => {
-                const isSelected = pathname === item?.ref;
-                return (
-                  <li
-                    key={item.ref}
-                    className={`${
-                      isSelected
-                        ? "border-b-[3px] border-primary-100 text-primary-100"
-                        : "mainNav-hover-effect"
-                    }`}
-                  >
-                    <Link href={item?.ref} className={`font-bold py-2 `}>
-                      <div className="flex group cursor-pointer items-center">
-                        <span>{item?.value}</span>
-                      </div>
-                    </Link>
-                  </li>
-                );
-              })}
 
-             
-          
+            {NavItems?.map((item) => {
+              const isSelected = pathname === item?.ref;
+              return (
+                <li
+                  key={item.ref}
+                  className={`${
+                    isSelected
+                      ? "border-b-[3px] border-primary-100 text-primary-100"
+                      : "mainNav-hover-effect"
+                  }`}
+                >
+                  <Link href={item?.ref} className={`font-bold py-2 `}>
+                    <div className="flex group cursor-pointer items-center">
+                      <span>{item?.value}</span>
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
 
             {/* dropdown navlinks */}
             <NavLinks previousScroll={previousScroll} />
@@ -174,7 +175,7 @@ const Navbar = () => {
               <div className="hidden md:block">
                 <ul className="flex items-center gap-2 py-4">
                   {/* wishlist */}
-                  <li>
+                  <li className="relative">
                     <Link
                       href="/wishlist"
                       className={`px-2 py-2 w-full flex items-center gap-2 bg-white shadow-md rounded-md`}
@@ -186,10 +187,13 @@ const Navbar = () => {
                           pathname === "/wishlist" ? "text-primary-100" : ""
                         }`}
                       />
+                       <p className="text-lg text-primary-100 absolute -top-4 right-0">
+                        {products?.data?.length ?? 0}
+                      </p>
                     </Link>
                   </li>
                   {/* Cart */}
-                  <li className="mx-2">
+                  <li className="mx-2 relative">
                     <Link
                       href="/addtocart"
                       className={`px-2 py-2  w-full  flex items-center gap-2 bg-white shadow-md rounded-md`}
@@ -201,6 +205,9 @@ const Navbar = () => {
                           pathname === "/addtocart" ? "text-primary-100" : ""
                         }`}
                       />
+                      <p className="text-lg text-primary-100 absolute -top-4 right-0">
+                        {Products?.data?.length ?? 0}
+                      </p>
                     </Link>
                   </li>
                 </ul>
