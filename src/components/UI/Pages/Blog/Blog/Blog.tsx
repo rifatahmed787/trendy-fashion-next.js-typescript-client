@@ -5,14 +5,15 @@ import Image from "next/image";
 const Blog = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 mx-16 py-16">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3 mx-16 pb-16">
         <div className="w-4/5 h-full  relative">
-          <div className="pb-24 bg-white py-4 px-4 border-8 border-primary-100 rounded-3xl h-full shadow-2xl">
+          <div className="pb-24 bg-white border-8 border-primary-100 rounded-lg h-full overflow-hidden shadow-2xl">
             <Image
-              width={undefined}
-              height={undefined}
+              width={100}
+              height={100}
+              quality={100}
               src={image}
-              className="w-64 h-64 "
+              className="w-full h-64 bg-cover hover:scale-105 duration-500 "
               alt=""
             />
 
@@ -25,7 +26,9 @@ const Blog = () => {
               >
                 <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
               </svg>
-              <p className="text-lg font-semibold">This is my first blog</p>
+              <p className="text-lg font-semibold font-secondary">
+                This is my first blog
+              </p>
             </div>
           </div>
 
@@ -34,9 +37,13 @@ const Blog = () => {
               <div className="bg-primary-100 py-4 px-6 rounded-lg w-full ">
                 <p className=" text-lg font-semibold pb-2">Author</p>
                 <div className="flex  space-x-2">
-                  <img
+                  <Image
+                    width={100}
+                    height={100}
+                    quality={100}
                     src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
                     className="w-8 h-8 rounded-full border-2 border-white"
+                    alt="blog-image"
                   />
                   <div>
                     <h5 className="text-xs font-semibold">Md Rifat</h5>
