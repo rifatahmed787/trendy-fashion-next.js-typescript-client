@@ -1,23 +1,15 @@
 import React from "react";
-import faq from "../../../assets/BannerImg/accordian.jpg";
-import Image from "next/image";
 import ProductAccordian from "@/components/UI/Pages/Accordian/ProductAccordian";
+import Heading from "@/components/UI/Heading/Heading";
 
 const Faq = () => {
   return (
-    <div>
-      <Image
-        src={faq}
-        width={undefined}
-        height={undefined}
-        alt="accordian"
-        className="h-[40vh] md:h-[60vh]"
-      />
-
-      <div className="my-10">
+    <section>
+      <div className="my-10 max-w-screen-2xl mx-auto">
+        <div className="text-center py-10"><Heading Heading="FAQ" /></div>
         <ProductAccordian />
       </div>
-    </div>
+    </section>
   );
 };
 

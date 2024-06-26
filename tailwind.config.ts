@@ -60,6 +60,8 @@ const config: Config = {
       boxShadow: {
         'custom': '30px 30px 20px #D0D0DD, -40px -40px 38px #FFA801',
         'custom-primary': "0px 0px 50px 10px rgba(227, 230, 236, 0.8)",
+        "custom-secondary":"0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem white",
+        "custom-tertiary":"0 0rem 2rem 0 rgba(0, 0, 0, 0.196)"
       },
       animation: {
         "slide-in": "slide-in 0.5s forwards",

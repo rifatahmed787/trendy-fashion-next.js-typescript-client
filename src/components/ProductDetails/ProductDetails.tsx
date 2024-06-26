@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-import { Navigation, Thumbs } from "swiper/modules"; // Change the import
+import { Navigation, Thumbs } from "swiper/modules";
 import "swiper/css";
 type Swiper = any;
 export default function App() {

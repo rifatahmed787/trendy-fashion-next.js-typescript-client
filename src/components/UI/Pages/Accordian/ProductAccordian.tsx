@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 import React, { useState } from "react";
 import { Icon } from "@iconify/react";
@@ -30,7 +31,7 @@ const ProductAccordian = () => {
   );
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center">
+    <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center ">
       {isLoading ? (
         <>
           <AccordianSkeleton />
@@ -39,9 +40,9 @@ const ProductAccordian = () => {
         <>
           {" "}
           <div className="faq-container">
-            <h1 className="text-lg md:text-2xl text-center font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
-              Product related FAQ
-            </h1>
+            <h3 className="text-lg md:text-2xl font-primary text-center font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
+              Product related FAQ's
+            </h3>
             {!isError &&
               !error &&
               ProductAccordians?.map((accordian: IAccordian) => (
@@ -51,9 +52,9 @@ const ProductAccordian = () => {
                       activeIndex === accordian?.question ? "active" : ""
                     }`}
                   >
-                    <h3 className="faq-title">Q. {accordian?.question}</h3>
+                    <h3 className="faq-title font-bold font-secondary text-xl">Q. {accordian?.question}</h3>
                     <p
-                      className={`faq-text ${
+                      className={`faq-text font-primary ${
                         activeIndex === accordian?.question ? "show" : ""
                       }`}
                     >
@@ -80,9 +81,9 @@ const ProductAccordian = () => {
       ) : (
         <>
           <div className="faq-container">
-            <h1 className="text-lg md:text-2xl text-center font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
-              Payment related FAQ
-            </h1>
+            <h3 className="text-lg md:text-2xl text-center font-primary font-semibold py-5 relative  before:content-normal before:absolute before:w-full before:left-0 before:bottom-0 before:bg-primary-100 before:h-0.5">
+              Payment related FAQ's
+            </h3>
             {!isError &&
               !error &&
               PaymentAccordians?.map((payment: IAccordian) => (
@@ -93,9 +94,9 @@ const ProductAccordian = () => {
                     }`}
                     key={payment?.question}
                   >
-                    <h3 className="faq-title">Q. {payment?.question}</h3>
+                    <h3 className="faq-title font-secondary font-bold text-xl ">Q. {payment?.question}</h3>
                     <p
-                      className={`faq-text ${
+                      className={`faq-text font-primary ${
                         activeIndex === payment?.question ? "show" : ""
                       }`}
                     >
