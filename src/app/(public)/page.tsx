@@ -4,7 +4,7 @@ import HeroSection from "@/components/UI/Home-items/HeroSection";
 import ContactForm from "@/components/UI/Home-items/HomeContact";
 import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
 import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
-import HomePageBanner from "@/components/UI/Home-items/HomeSlider/HomeSlider";
+import HomePageBanner from "@/components/UI/Home-items/HomeSlider";
 import HomeSuperComponent from "@/components/UI/Home-items/HomeSuperComponent";
 import TestimonialCarousel from "@/components/UI/Home-items/HomeTestimonial";
 import LatestCollection from "@/components/UI/Home-items/LatestCollection";

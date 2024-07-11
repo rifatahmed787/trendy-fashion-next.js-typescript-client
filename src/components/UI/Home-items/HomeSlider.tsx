@@ -1,30 +1,28 @@
 "use client";
 
-import { Icon } from "@iconify/react";
 import { useRef, useState } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import "./Slider.module.css";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import bannerImage1 from "../../../../assets/HomePageBannerImg/slider1.jpg";
-import bannerImage2 from "../../../../assets/HomePageBannerImg/slider2.jpg";
-import bannerImage3 from "../../../../assets/HomePageBannerImg/slider3.jpg";
-import bannerImage4 from "../../../../assets/HomePageBannerImg/slider4.jpg";
-import bannerImage5 from "../../../../assets/HomePageBannerImg/slider5.jpg";
-import rightImage from "../../../../assets/HomePageBannerImg/righslider.jpg";
-import rightImage1 from "../../../../assets/HomePageBannerImg/rightslider1.jpg";
+import bannerImage1 from "../../../assets/HomePageBannerImg/slider1.jpg";
+import bannerImage2 from "../../../assets/HomePageBannerImg/slider2.jpg";
+import bannerImage3 from "../../../assets/HomePageBannerImg/slider3.jpg";
+import bannerImage4 from "../../../assets/HomePageBannerImg/slider4.jpg";
+import bannerImage5 from "../../../assets/HomePageBannerImg/slider5.jpg";
+import rightImage from "../../../assets/HomePageBannerImg/righslider.jpg";
+import rightImage1 from "../../../assets/HomePageBannerImg/rightslider1.jpg";
 
-import Paragraph from "../../Paragraph/Paragraph";
+import Paragraph from "../Paragraph/Paragraph";
 import Image from "next/image";
 import Link from "next/link";
 import BrandButton from "@/components/Button/PrimaryButton";
 import WhiteButton from "@/components/Button/SecondaryButton";
-import RightToLeft from "../../Framer-motion/RightToLeft";
-import ZoomIn from "../../Framer-motion/ZoomIn";
-import BottomToTop from "../../Framer-motion/BottomToTop";
-import FadeIn from "../../Framer-motion/FadeIn";
-import Title from "../../Title/Title";
+import RightToLeft from "../Framer-motion/RightToLeft";
+import ZoomIn from "../Framer-motion/ZoomIn";
+import BottomToTop from "../Framer-motion/BottomToTop";
+import FadeIn from "../Framer-motion/FadeIn";
+import Title from "../Title/Title";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 type Swiper = {
@@ -88,12 +86,12 @@ const HomePageBanner = () => {
   return (
     <>
       <FadeIn>
-        <div className="grid grid-cols-1 gap-0 lg:grid-cols-3 lg:gap-5 ">
-          <div className="group col-span-2">
+        <div className="grid grid-cols-1 gap-0 lg:grid-cols-4 lg:gap-5 ">
+          <div className="group col-span-3">
             <Swiper
               onSlideChange={(swiper) => handleSlideChange(swiper)}
               autoplay={{
-                delay: 33000,
+                delay: 5500,
                 disableOnInteraction: true,
               }}
               navigation={{
@@ -102,12 +100,16 @@ const HomePageBanner = () => {
               }}
               loop={true}
               modules={[Navigation, Autoplay]}
-              className="mySwiper mx-auto w-[100%]"
+              className="mx-auto w-[100%] h-[50vh] md:h-[60vh] lg:h-[80vh] swiper-scale-effect"
               speed={1500}
+              effect="fade"
+              fadeEffect={{
+                crossFade: true,
+              }}
             >
               {images?.map((image, index) => (
-                <SwiperSlide className="bg-[#EEEEEE] " key={image?.id}>
-                  <div className="relative text-white">
+                <SwiperSlide className="bg-[#EEEEEE] swiper-slide" key={image?.id}>
+                  <div className="relative text-white swiper-slide-cover">
                     <>
                       <Image
                         src={image?.img}
@@ -118,7 +120,7 @@ const HomePageBanner = () => {
                     </>
 
                     <span className="absolute top-0 bg-black left-0 opacity-60 inset-0"></span>
-                    <div className="absolute left-5 top-[20%] md:top-[30%] ml-14 w-3/4">
+                    <div className="absolute left-5 md:left-16 top-[16%] ml-14 w-3/4">
                       {activeIndex === index && (
                         <>
                           <RightToLeft>
@@ -168,13 +170,13 @@ const HomePageBanner = () => {
                   className="prev-button absolute -translate-x-full group-hover:translate-x-1 -left-10 group-hover:left-0 md:group-hover:left-2 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-500 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goPrevButton}
                 >
-                 <IoIosArrowBack className="text-xl md:text-2xl"/>
+                  <IoIosArrowBack className="text-xl md:text-2xl" />
                 </button>
                 <button
                   className="next-button absolute translate-x-full group-hover:-translate-x-1 -right-10 group-hover:right-0 md:group-hover:right-2 top-[40%] md:top-[45%]  z-50 mx-2 rounded-full bg-[#ffffff27] p-4 text-white duration-500 group-hover:bg-[#ffffffcb] group-hover:text-black"
                   onClick={goNextButton}
                 >
-                  <IoIosArrowForward className="text-xl md:text-2xl"/>
+                  <IoIosArrowForward className="text-xl md:text-2xl" />
                 </button>
               </div>
             </Swiper>
@@ -184,16 +186,17 @@ const HomePageBanner = () => {
             <Image
               src={rightImage}
               alt=""
-              className="w-full hidden lg:block lg:h-[100vh]"
+              className="w-full hidden lg:block lg:h-[80vh]"
               width={undefined}
             />
+            <span className="hidden lg:block absolute top-0 bg-black left-0 opacity-50 inset-0 lg:h-[80vh]"></span>
             <Image
               src={rightImage1}
               alt=""
               className="h-[50vh] md:h-[70vh] w-full block lg:hidden"
               width={undefined}
             />
-            <span className="absolute top-0 bg-black left-0 opacity-50 inset-0 h-[50vh] md:h-[70vh] lg:h-[100vh]"></span>
+            <span className="block lg:hidden absolute top-0 bg-black left-0 opacity-50 inset-0 h-[50vh] md:h-[70vh]"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
               <div className="flex items-center justify-center text-center text-white">
                 <div className="mx-auto">

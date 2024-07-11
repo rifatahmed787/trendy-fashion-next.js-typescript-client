@@ -60,6 +60,48 @@ body{
   height: 200px;
 } */
 
+
+/* ------------------------
+   swiper css start
+--------------------------*/
+.swiper-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.swiper-slide {
+  background-color: #fcfcfc;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: #fcfcfc;
+  font-size: 24px;
+}
+
+.swiper-slide-cover {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: transparent no-repeat 50% 50% / cover;
+}
+.swiper-scale-effect .swiper-slide-cover {
+  transition-timing-function: linear;
+  transition-duration: 20s;
+  transform: scale(1);
+}
+
+.swiper-scale-effect .swiper-slide-active .swiper-slide-cover {
+  transform:scale(1.2);
+}
+/* ------------------------
+   swiper css end
+--------------------------*/
+
 /* ------------------------
 hero section
 ---------------------------*/
