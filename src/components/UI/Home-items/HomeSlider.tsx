@@ -90,7 +90,7 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
                         <Image
                           src={slider?.img}
                           alt="slider"
-                          className="w-full object-cover"
+                          className="w-full h-full object-cover"
                           width={100}
                           height={100}
                           quality={100}
@@ -99,13 +99,11 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
                       </>
 
                       <span className="absolute top-0 bg-black left-0 opacity-20 inset-0"></span>
-                      <div className="absolute left-5 md:left-16 top-[16%] ml-14 w-3/4">
+                      <div className="absolute left-5 md:left-16 top-[10%] md:top-[16%] ml-10 lg:ml-14 w-3/4">
                         {activeIndex === index && (
                           <>
                             <RightToLeft>
-                              <div className="w-11/12">
-                                <Title title={slider?.title} />
-                              </div>
+                              <Title title={slider?.title} />
                             </RightToLeft>
 
                             <ZoomIn>
@@ -124,7 +122,7 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
                         )}
                         {activeIndex !== index && (
                           <div>
-                            <div className="w-full lg:w-11/12">
+                            <div>
                               <Title title={slider?.title} />
                             </div>
                             <Paragraph className="my-5 w-full lg:w-4/6">
