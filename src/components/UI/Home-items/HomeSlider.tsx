@@ -5,11 +5,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import bannerImage1 from "../../../assets/HomePageBannerImg/slider1.jpg";
-import bannerImage2 from "../../../assets/HomePageBannerImg/slider2.jpg";
-import bannerImage3 from "../../../assets/HomePageBannerImg/slider3.jpg";
-import bannerImage4 from "../../../assets/HomePageBannerImg/slider4.jpg";
-import bannerImage5 from "../../../assets/HomePageBannerImg/slider5.jpg";
 import rightImage from "../../../assets/HomePageBannerImg/righslider.jpg";
 import rightImage1 from "../../../assets/HomePageBannerImg/rightslider1.jpg";
 
@@ -24,6 +19,8 @@ import BottomToTop from "../Framer-motion/BottomToTop";
 import FadeIn from "../Framer-motion/FadeIn";
 import Title from "../Title/Title";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useGetSliderQuery } from "@/Redux/features/slider/sliderApi";
+import { ISlider } from "@/Types/slider";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -36,37 +33,13 @@ type SwiperRef = {
   swiper?: Swiper;
 };
 
-const images = [
-  {
-    id: 1,
-    img: bannerImage1,
-    title: "Discover Trendy Fashion at Unbeatable Prices Today",
-  },
-  {
-    id: 2,
-    img: bannerImage2,
-    title: "Exclusive Deals on Latest Tech Gadgets Now",
-  },
-  {
-    id: 3,
-    img: bannerImage3,
-    title: "Upgrade Your Home with Stylish Furniture Collections",
-  },
-  {
-    id: 4,
-    img: bannerImage4,
-    title: "Shop Premium Beauty Products for Glowing Skin",
-  },
-  {
-    id: 5,
-    img: bannerImage5,
-    title: "Find Unique Gifts for Every Occasion Here",
-  },
-];
-
-const HomePageBanner = () => {
+type HomePageBannerProps = {
+  sliders: ISlider[];
+};
+const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
+
 
   const handleSlideChange = (swiper: SwiperClass) => {
     setActiveIndex(swiper.realIndex);
@@ -86,7 +59,7 @@ const HomePageBanner = () => {
   return (
     <>
       <FadeIn>
-        <div className="grid grid-cols-1 gap-0 lg:grid-cols-4 lg:gap-5 ">
+        <div className="grid grid-cols-1 gap-0 lg:grid-cols-4 lg:gap-2">
           <div className="group col-span-3">
             <Swiper
               onSlideChange={(swiper) => handleSlideChange(swiper)}
@@ -107,62 +80,65 @@ const HomePageBanner = () => {
                 crossFade: true,
               }}
             >
-              {images?.map((image, index) => (
-                <SwiperSlide className="bg-[#EEEEEE] swiper-slide" key={image?.id}>
-                  <div className="relative text-white swiper-slide-cover">
-                    <>
-                      <Image
-                        src={image?.img}
-                        alt=""
-                        className="h-[50vh] md:h-[60vh] lg:h-[100vh] w-full"
-                        width={undefined}
-                      />
-                    </>
+              {sliders?.length > 0 &&
+                sliders?.map((slider, index: number) => (
+                  <SwiperSlide
+                    className="bg-[#EEEEEE] swiper-slide"
+                    key={slider?.id}
+                  >
+                    <div className="relative text-white swiper-slide-cover">
+                      <>
+                        <Image
+                          src={slider?.img}
+                          alt="slider"
+                          className="w-full object-cover"
+                          width={100}
+                          height={100}
+                          quality={100}
+                          priority={true}
+                        />
+                      </>
 
-                    <span className="absolute top-0 bg-black left-0 opacity-60 inset-0"></span>
-                    <div className="absolute left-5 md:left-16 top-[16%] ml-14 w-3/4">
-                      {activeIndex === index && (
-                        <>
-                          <RightToLeft>
-                            <Title title={image?.title} />
-                          </RightToLeft>
+                      <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
+                      <div className="absolute left-5 md:left-16 top-[16%] ml-14 w-3/4">
+                        {activeIndex === index && (
+                          <>
+                            <RightToLeft>
+                              <Title title={slider?.title} />
+                            </RightToLeft>
 
-                          <ZoomIn>
-                            <Paragraph className="my-5">
-                              Fashion is very important. It is life-enhancing
-                              and, <br /> like everything that gives pleasure,
-                              it is worth doing well.
+                            <ZoomIn>
+                              <Paragraph className="my-5 w-full lg:w-4/6">
+                                {slider?.des}
+                              </Paragraph>
+                            </ZoomIn>
+
+                            <BottomToTop>
+                              <div className="flex gap-3 md:gap-5 pt-3">
+                                <BrandButton text="Click Collection" icon="" />
+                                <WhiteButton text="Buy Now" />
+                              </div>
+                            </BottomToTop>
+                          </>
+                        )}
+                        {activeIndex !== index && (
+                          <div>
+                            <div>
+                              <Title title={slider?.title} />
+                            </div>
+                            <Paragraph className="my-5 w-full lg:w-4/6">
+                              {slider?.des}
                             </Paragraph>
-                          </ZoomIn>
-
-                          <BottomToTop>
                             <div className="flex gap-3 md:gap-5 pt-3">
                               <BrandButton text="Click Collection" icon="" />
                               <WhiteButton text="Buy Now" />
                             </div>
-                          </BottomToTop>
-                        </>
-                      )}
-                      {activeIndex !== index && (
-                        <div>
-                          <div>
-                            <Title title={image.title} />
                           </div>
-                          <Paragraph className="my-5">
-                            Fashion is very important. It is life-enhancing and,{" "}
-                            <br /> like everything that gives pleasure, it is
-                            worth doing well.
-                          </Paragraph>
-                          <div className="flex gap-3 md:gap-5 pt-3">
-                            <BrandButton text="Click Collection" icon="" />
-                            <WhiteButton text="Buy Now" />
-                          </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </SwiperSlide>
-              ))}
+                  </SwiperSlide>
+                ))}
 
               {/* slider button */}
               <div className="mt-5 flex items-center justify-center gap-3 text-center">
@@ -221,3 +197,6 @@ const HomePageBanner = () => {
 };
 
 export default HomePageBanner;
+
+
+

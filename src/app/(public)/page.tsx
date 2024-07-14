@@ -1,18 +1,36 @@
-import EcommerceStats from "@/components/Countup/Countup";
-import HomeSectionComponent from "@/components/UI/Home-items/BackgroundSection";
-import HeroSection from "@/components/UI/Home-items/HeroSection";
-import ContactForm from "@/components/UI/Home-items/HomeContact";
-import HomeDealsComponent from "@/components/UI/Home-items/HomeDealsComponent";
-import HomeServiceComponent from "@/components/UI/Home-items/HomeServices";
-import HomePageBanner from "@/components/UI/Home-items/HomeSlider";
-import HomeSuperComponent from "@/components/UI/Home-items/HomeSuperComponent";
-import TestimonialCarousel from "@/components/UI/Home-items/HomeTestimonial";
-import LatestCollection from "@/components/UI/Home-items/LatestCollection";
 
-export default function Home() {
+import HomePageBanner from '@/components/UI/Home-items/HomeSlider';
+import HomeSectionComponent from '@/components/UI/Home-items/BackgroundSection';
+import HeroSection from '@/components/UI/Home-items/HeroSection';
+import ContactForm from '@/components/UI/Home-items/HomeContact';
+import HomeDealsComponent from '@/components/UI/Home-items/HomeDealsComponent';
+import HomeServiceComponent from '@/components/UI/Home-items/HomeServices';
+import HomeSuperComponent from '@/components/UI/Home-items/HomeSuperComponent';
+import TestimonialCarousel from '@/components/UI/Home-items/HomeTestimonial';
+import LatestCollection from '@/components/UI/Home-items/LatestCollection';
+
+
+const fetchSliders = async () => {
+  try {
+    const response = await fetch('https://trendy-fashion-server.vercel.app/api/v1/slider', {
+      next: { revalidate: 10 } 
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching sliders:', error);
+    return []; 
+  }
+};
+
+export default async function Home() {
+  const sliders = await fetchSliders();
+
   return (
     <div>
-      <HomePageBanner />
+      <HomePageBanner sliders={sliders?.data} />
       <HomeServiceComponent />
       <LatestCollection />
       <HeroSection />
