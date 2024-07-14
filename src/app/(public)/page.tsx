@@ -8,7 +8,13 @@ import HomeServiceComponent from '@/components/UI/Home-items/HomeServices';
 import HomeSuperComponent from '@/components/UI/Home-items/HomeSuperComponent';
 import TestimonialCarousel from '@/components/UI/Home-items/HomeTestimonial';
 import LatestCollection from '@/components/UI/Home-items/LatestCollection';
+import { Metadata } from 'next';
 
+
+export const metadata: Metadata = {
+  title: "Trendy Fashion / home",
+  description: "This is home page. Latest product, hero section, deals of the week",
+};
 
 const fetchSliders = async () => {
   try {

@@ -40,7 +40,6 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
 
-
   const handleSlideChange = (swiper: SwiperClass) => {
     setActiveIndex(swiper.realIndex);
   };
@@ -99,12 +98,14 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
                         />
                       </>
 
-                      <span className="absolute top-0 bg-black left-0 opacity-40 inset-0"></span>
+                      <span className="absolute top-0 bg-black left-0 opacity-20 inset-0"></span>
                       <div className="absolute left-5 md:left-16 top-[16%] ml-14 w-3/4">
                         {activeIndex === index && (
                           <>
                             <RightToLeft>
-                              <Title title={slider?.title} />
+                              <div className="w-11/12">
+                                <Title title={slider?.title} />
+                              </div>
                             </RightToLeft>
 
                             <ZoomIn>
@@ -123,7 +124,7 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
                         )}
                         {activeIndex !== index && (
                           <div>
-                            <div>
+                            <div className="w-full lg:w-11/12">
                               <Title title={slider?.title} />
                             </div>
                             <Paragraph className="my-5 w-full lg:w-4/6">
@@ -197,6 +198,3 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
 };
 
 export default HomePageBanner;
-
-
-
