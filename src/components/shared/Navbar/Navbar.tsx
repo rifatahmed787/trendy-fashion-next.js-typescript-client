@@ -3,7 +3,7 @@
 
 import { Icon } from "@iconify/react";
 import { useEffect, useRef, useState } from "react";
-import Logo from "../../../assets/Logo/trendy.svg";
+import Logo from "../../../assets/Logo/2 (1).png";
 import NavLinks from "./MegaLinks";
 import Link from "next/link";
 import Image from "next/image";
