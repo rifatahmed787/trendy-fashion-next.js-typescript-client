@@ -30,13 +30,28 @@ const fetchSliders = async () => {
     return []; 
   }
 };
+const fetchSlidersHero = async () => {
+  try {
+    const response = await fetch('https://trendy-fashion-server.vercel.app/api/v1/slider_hero', {
+      next: { revalidate: 10 } 
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching sliders:', error);
+    return []; 
+  }
+};
 
 export default async function Home() {
   const sliders = await fetchSliders();
+  const sliderHero=await fetchSlidersHero();
 
   return (
     <div>
-      <HomePageBanner sliders={sliders?.data} />
+      <HomePageBanner sliders={sliders?.data} hero={sliderHero.data}/>
       <HomeServiceComponent />
       <LatestCollection />
       <HeroSection />

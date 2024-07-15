@@ -5,8 +5,6 @@ import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
-import rightImage from "../../../assets/HomePageBannerImg/righslider.jpg";
-import rightImage1 from "../../../assets/HomePageBannerImg/rightslider1.jpg";
 
 import Paragraph from "../Paragraph/Paragraph";
 import Image from "next/image";
@@ -19,8 +17,8 @@ import BottomToTop from "../Framer-motion/BottomToTop";
 import FadeIn from "../Framer-motion/FadeIn";
 import Title from "../Title/Title";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useGetSliderQuery } from "@/Redux/features/slider/sliderApi";
-import { ISlider } from "@/Types/slider";
+import { ISlider, ISliderHero } from "@/Types/slider";
+import { formatDateRange } from "@/components/DateTimeFormat/DateFormat";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -35,8 +33,12 @@ type SwiperRef = {
 
 type HomePageBannerProps = {
   sliders: ISlider[];
+  hero: ISliderHero[];
 };
-const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
+
+
+
+const HomePageBanner = ({ sliders, hero }: HomePageBannerProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const swiperRef = useRef<SwiperRef>(null);
 
@@ -55,6 +57,7 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
       swiperRef.current.swiper.slideNext();
     }
   };
+
   return (
     <>
       <FadeIn>
@@ -158,36 +161,47 @@ const HomePageBanner = ({ sliders }: HomePageBannerProps) => {
           </div>
 
           <div className="relative">
-            <Image
-              src={rightImage}
-              alt=""
-              className="w-full hidden lg:block lg:h-[80vh]"
-              width={undefined}
-            />
-            <span className="hidden lg:block absolute top-0 bg-black left-0 opacity-50 inset-0 lg:h-[80vh]"></span>
-            <Image
-              src={rightImage1}
-              alt=""
-              className="h-[50vh] md:h-[70vh] w-full block lg:hidden"
-              width={undefined}
-            />
-            <span className="block lg:hidden absolute top-0 bg-black left-0 opacity-50 inset-0 h-[50vh] md:h-[70vh]"></span>
-            <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
-              <div className="flex items-center justify-center text-center text-white">
-                <div className="mx-auto">
-                  <h3 className="text-[12px] font-bold uppercase font-primary">
-                    All products
-                  </h3>
-                  <h1 className="font-smeibold my-2 text-[26px] uppercase font-primary">
-                    Product Sale
-                  </h1>
-                  <h4>15 NOV - 25 NOV</h4>
-                  <Link href="/" className="mt-3 underline font-tertiary">
-                    See More Products
-                  </Link>
+            {hero?.length > 0 &&
+              hero?.map((slideHero) => (
+                <div key={slideHero.id}>
+                  <Image
+                    src={slideHero.lgImg}
+                    alt=""
+                    className="w-full hidden lg:block lg:h-[80vh]"
+                    width={100}
+                    height={100}
+                    priority={true}
+                    quality={100}
+                  />
+                  <span className="hidden lg:block absolute top-0 bg-black left-0 opacity-50 inset-0 lg:h-[80vh]"></span>
+                  <Image
+                    src={slideHero.smImg}
+                    alt=""
+                    className="h-[50vh] md:h-[70vh] w-full block lg:hidden"
+                    width={100}
+                    height={100}
+                    priority={true}
+                    quality={100}
+                  />
+                  <span className="block lg:hidden absolute top-0 bg-black left-0 opacity-20 inset-0 h-[50vh] md:h-[70vh]"></span>
+                  <div className="absolute bottom-0 flex h-full w-full items-end justify-center pb-14 opacity-100 transition-all">
+                    <div className="flex items-center justify-center text-center text-white">
+                      <div className="mx-auto">
+                        <p className="text-[12px] font-bold uppercase font-primary">
+                          {slideHero.subTitle}
+                        </p>
+                        <h3 className="font-smeibold my-2 text-[26px] uppercase font-primary">
+                          {slideHero.title}
+                        </h3>
+                        <p>{formatDateRange(slideHero.startDate, slideHero.endDate)}</p>
+                        <Link href="/" className="mt-3 underline font-tertiary">
+                          See More Products
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              ))}
           </div>
         </div>
       </FadeIn>
