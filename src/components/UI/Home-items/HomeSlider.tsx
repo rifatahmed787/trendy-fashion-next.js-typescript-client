@@ -75,7 +75,7 @@ const HomePageBanner = ({ sliders, hero }: HomePageBannerProps) => {
               }}
               loop={true}
               modules={[Navigation, Autoplay]}
-              className="mx-auto w-[100%] h-[50vh] md:h-[60vh] lg:h-[80vh] swiper-scale-effect"
+              className="mx-auto w-[100%] h-[50vh] md:h-[60vh] lg:h-[80vh] xl:h-[90vh] swiper-scale-effect"
               speed={1500}
               effect="fade"
               fadeEffect={{
@@ -167,7 +167,7 @@ const HomePageBanner = ({ sliders, hero }: HomePageBannerProps) => {
                   <Image
                     src={slideHero.lgImg}
                     alt=""
-                    className="w-full hidden lg:block lg:h-[80vh]"
+                    className="w-full hidden lg:block  lg:h-[80vh] xl:h-[90vh]"
                     width={100}
                     height={100}
                     priority={true}

@@ -9,7 +9,6 @@ import React from "react";
 
 const ProductDetails = ({ params }: any) => {
   const productId = params?.productId;
-  console.log(productId);
 
   const { data: product_details_data, isLoading } = useGetProductDetailsQuery(
     productId,

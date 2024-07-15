@@ -1,83 +1,41 @@
 "use client";
-
-import serviceLogo1 from "../../../assets/HomePageBannerImg/servicelogo1.png";
-import serviceLogo2 from "../../../assets/HomePageBannerImg/servicelogo2.png";
-import serviceLogo3 from "../../../assets/HomePageBannerImg/servicelogo3.png";
-import serviceLogo4 from "../../../assets/HomePageBannerImg/servicelogo4.png";
 import useInView from "@/Hooks/useInView";
-import LeftToRight from "../Framer-motion/LeftToRight";
 import BottomToTop from "../Framer-motion/BottomToTop";
-import RightToLeft from "../Framer-motion/RightToLeft";
-
 import ServiceCard from "../ServiceCard";
+import { useGetServiceQuery } from "@/Redux/features/service/serviceApi";
+import ServiceSkeleton from "@/components/Skeleton/ServiceSkeleton";
+import { IService } from "@/Types/service";
 
 const HomeServiceComponent = () => {
-  const { ref: ref1, isInView: isInView1, hasAnimated: hasAnimated1 } = useInView();
-  const { ref: ref2, isInView: isInView2, hasAnimated: hasAnimated2 } = useInView();
-  const { ref: ref3, isInView: isInView3, hasAnimated: hasAnimated3 } = useInView();
-  const { ref: ref4, isInView: isInView4, hasAnimated: hasAnimated4 } = useInView();
+  const { ref, isInView, hasAnimated } = useInView();
+  const { data: services, isError, error, isLoading } = useGetServiceQuery({});
 
   return (
-    <section className="px-5 md:px-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4  max-w-screen-2xl mx-auto justify-items-center items-center  gap-5 mt-5">
-        
-        <div ref={ref1} className="w-[90%] md:min-w-[95%] lg:min-w-full">
-          {(isInView1 || hasAnimated1) && (
-            <LeftToRight>
-              <ServiceCard
-                imageSrc={serviceLogo1}
-                title="Amazing Value Every Day"
-                description="Items prices that fit your budget"
-                link="/accordian"
-                linkText="Read more"
-              />
-            </LeftToRight>
-          )}
+    <section className="px-5 md:px-10" ref={ref}>
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-screen-2xl mx-auto justify-items-center items-center gap-5 mt-5">
+          <ServiceSkeleton />
+          <ServiceSkeleton />
+          <ServiceSkeleton />
+          <ServiceSkeleton />
         </div>
-
-        <div ref={ref2} className="w-[90%] md:min-w-[95%] lg:min-w-full">
-          {(isInView2 || hasAnimated2) && (
-            <BottomToTop>
-              <ServiceCard
-                imageSrc={serviceLogo2}
-                title="Successful Customer Service"
-                description="We work with a focus on 100% customer satisfaction."
-                link="/accordian"
-                linkText="Read more"
-              />
-            </BottomToTop>
-          )}
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-screen-2xl mx-auto justify-items-center items-center gap-5 mt-5">
+          {!isError &&
+            services?.data?.length > 0 &&
+            services.data.map((service: IService, index: number) => (
+              <div className="w-[90%] md:min-w-[95%] lg:min-w-full" key={service.id}>
+                {(isInView || hasAnimated) ? (
+                  <BottomToTop>
+                    <ServiceCard service={service} />
+                  </BottomToTop>
+                ) : (
+                  <ServiceCard service={service} />
+                )}
+              </div>
+            ))}
         </div>
-
-        <div ref={ref3} className="w-[90%] md:min-w-[95%] lg:min-w-full">
-          {(isInView3 || hasAnimated3) && (
-            <BottomToTop>
-              <ServiceCard
-                imageSrc={serviceLogo3}
-                title="All Payment Methods"
-                description="Don't bother with payment details."
-                link="/accordian"
-                linkText="Read more"
-              />
-            </BottomToTop>
-          )}
-        </div>
-
-        <div ref={ref4} className="w-[90%] md:min-w-[95%] lg:min-w-full">
-          {(isInView4 || hasAnimated4) && (
-            <RightToLeft>
-              <ServiceCard
-                imageSrc={serviceLogo4}
-                title="Completely Free Shipping Service"
-                description="Items prices that fit your budget"
-                link="/accordian"
-                linkText="Read more"
-              />
-            </RightToLeft>
-          )}
-        </div>
-
-      </div>
+      )}
     </section>
   );
 };
