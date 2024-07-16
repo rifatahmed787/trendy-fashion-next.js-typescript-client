@@ -2,13 +2,13 @@
 import useInView from "@/Hooks/useInView";
 import BottomToTop from "../Framer-motion/BottomToTop";
 import ServiceCard from "../ServiceCard";
-import { useGetServiceQuery } from "@/Redux/features/service/serviceApi";
+import { useGetServicesQuery } from "@/Redux/features/service/serviceApi";
 import ServiceSkeleton from "@/components/Skeleton/ServiceSkeleton";
 import { IService } from "@/Types/service";
 
 const HomeServiceComponent = () => {
   const { ref, isInView, hasAnimated } = useInView();
-  const { data: services, isError, error, isLoading } = useGetServiceQuery({});
+  const { data: services, isError, error, isLoading } = useGetServicesQuery({});
 
   return (
     <section className="px-5 md:px-10" ref={ref}>

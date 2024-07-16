@@ -1,17 +1,16 @@
-import { IService } from '@/Types/service';
-import React from 'react';
+import React from "react";
+import { IService } from "@/Types/service";
 
-interface IServiceProps{
-    service_details:IService
-}
+const HomeServiceDetails = ({ service_details }: { service_details: IService }) => {
+  return (
+    <div key={service_details.id}>
+        <div className="">
 
-const HomeServiceDetails: React.FC<IServiceProps> = ({service_details}) => {
-    console.log(service_details)
-    return (
-        <div className='mt-72'>
-            <p className='text-black text-4xl'>{service_details.value}</p>
         </div>
-    );
+      <h2>{service_details.value}</h2>
+      <p>{service_details.service}</p>
+    </div>
+  );
 };
 
 export default HomeServiceDetails;
