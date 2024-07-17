@@ -102,20 +102,6 @@ body{
    swiper css end
 --------------------------*/
 
-/* ------------------------
-hero section
----------------------------*/
-.hero-section {
-  background-image: url("../assets/HomePageBannerImg/sectiontwo.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  /* background-color: #3e5263; */
-  /* font-family: "Montserrat", sans-serif; */
-}
-
-
-
 
 /* -----------------------------
 ---------home dealsComponent css----
