@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
-import { Icon } from "@iconify/react";
+import { MdArrowRight } from "react-icons/md";
+import { IoIosArrowBack } from "react-icons/io";
+import { IoIosArrowForward } from "react-icons/io";
 import { useRef } from "react";
 import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
-import image1 from "../.../../../../assets/HomePageBannerImg/2.png";
-import image2 from "../.../../../../assets/HomePageBannerImg/2148418766.jpg";
 import { useGetBestSellerProductsQuery } from "@/Redux/features/products/productApi";
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
 import CartProduct from "../CartProduct";
@@ -18,6 +18,7 @@ import SubTitle from "../SubTitle/SubTitle";
 import BrandButton from "@/components/Button/PrimaryButton";
 import Paragraph from "../Paragraph/Paragraph";
 import Heading from "../Heading/Heading";
+import { IDeal } from "@/Types/deal";
 
 type Swiper = {
   swiper: Swiper | null;
@@ -29,7 +30,10 @@ type Swiper = {
 type SwiperRef = {
   swiper?: Swiper;
 };
-const HomeDealsComponent = () => {
+type dealSectionProps = {
+  deal_section: IDeal[];
+};
+const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
   const swiperRef = useRef<SwiperRef>(null);
 
   const { data: bestProducts, isLoading } = useGetBestSellerProductsQuery({});
@@ -56,18 +60,18 @@ const HomeDealsComponent = () => {
 
   return (
     <section className="my-10 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 min-h-[60vh] max-w-screen-2xl mx-auto">
+      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 h-auto max-w-screen-2xl mx-auto">
         <div className="col-span-2">
           <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
-              SubTitle="2nd shopping surprise campaign!"
+              SubTitle={deal_section[0].campaign}
               className="py-5 text-center"
             />
 
             <div className="flex justify-center py-3">
               <BrandButton
                 text="Check Products"
-                icon={<Icon width={20} icon="ic:baseline-arrow-right" />}
+                icon={<MdArrowRight className="text-2xl" />}
               />
             </div>
           </div>
@@ -75,11 +79,11 @@ const HomeDealsComponent = () => {
             <Image
               width={300}
               height={64}
-              src={image1}
+              src={deal_section[0].smImgOne}
               alt=""
               className="h-full lg:h-72 w-full rounded-lg"
             />
-            <span className="absolute inset-0 top-0 left-0 bg-black opacity-50 rounded-lg"></span>
+            <span className="absolute inset-0 top-0 left-0 bg-black opacity-20 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
               <div className="flex items-center justify-center text-center text-primary-100">
                 <div className="mx-auto">
@@ -96,17 +100,17 @@ const HomeDealsComponent = () => {
             <Image
               width={300}
               height={64}
-              src={image2}
+              src={deal_section[0].smImgTwo}
               alt=""
               className="h-full lg:h-72 w-full rounded-lg"
             />
-            <span className="absolute inset-0 top-0 left-0 bg-black opacity-50 rounded-lg"></span>
+            <span className="absolute inset-0 top-0 left-0 bg-black opacity-20 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
               <div className="text-center text-gray-900">
                 <div className="mx-auto">
                   <BrandButton text="Buy Now" icon="" />
                   <SubTitle
-                    SubTitle="Free Shipping On Over $50"
+                    SubTitle={deal_section[0].shipping}
                     className="text-gray-300 pt-3"
                   />
                 </div>
@@ -116,12 +120,17 @@ const HomeDealsComponent = () => {
         </div>
 
         <div className="col-span-5">
-         <div className="w-1/2 mx-auto"><Heading Heading="Deals of the week" className="block lg:hidden mt-16 text-center"/></div>
+          <div className="w-1/2 mx-auto">
+            <Heading
+              Heading="Deals of the week"
+              className="block lg:hidden mt-16 text-center"
+            />
+          </div>
           <SubTitle
             SubTitle="Deals of the Week"
             className="relative hidden lg:block after:absolute after:content-normal text-center lg:text-left after:bg-primary-100 after:left-0 after:-bottom-2 after:w-full after:h-[3px]"
           />
-          
+
           {/* <hr /> */}
           <Swiper
             slidesPerView={3}
@@ -178,7 +187,7 @@ const HomeDealsComponent = () => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 min-h-[45vh]">
+                    <div className="flex justify-center items-center gap-2 h-[300px]">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}
@@ -199,13 +208,13 @@ const HomeDealsComponent = () => {
                 className="prev-button absolute left-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 duration-300 hover:bg-primary-100 text-black"
                 onClick={goPrevButton}
               >
-                <Icon icon="ep:arrow-left-bold" />
+                <IoIosArrowBack className="text-2xl" />
               </button>
               <button
                 className="next-button absolute right-0 top-[30%] z-50 mx-2 rounded-full bg-[#ffffff27] p-4 duration-300 hover:bg-primary-100 text-black"
                 onClick={goNextButton}
               >
-                <Icon icon="ep:arrow-right-bold" />
+                <IoIosArrowForward className="text-2xl" />
               </button>
             </div>
           </Swiper>
@@ -213,12 +222,11 @@ const HomeDealsComponent = () => {
           {/* section down kids fashion picture */}
           <div
             style={{
-              backgroundImage:
-                'url("https://res.cloudinary.com/dztlowlu0/image/upload/e_improve:outdoor/be5sspn2qkqwraisfvkd.jpg")',
+              backgroundImage: `url(${deal_section[0].lgImg})`,
             }}
             className="relative h-[415px] rounded-lg bg-cover bg-center"
           >
-            <span className="absolute inset-0 rounded-lg bg-black opacity-40"></span>
+            <span className="absolute inset-0 rounded-lg bg-black opacity-30"></span>
 
             <div className="gird absolute grid-cols-1 md:grid-cols-2 ">
               <div className="  text-[#e7e7e7] w-[50%] ml-10 pt-16">
