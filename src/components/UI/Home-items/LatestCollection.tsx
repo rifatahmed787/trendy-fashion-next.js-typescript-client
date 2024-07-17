@@ -7,10 +7,9 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import Image from "next/image";
 import ICONS from "@/components/shared/Icons/AllIcons";
-import image from "../../../assets/HomePageBannerImg/homeslide.png";
 import Button from "../Button";
 import { useRouter } from "next/navigation";
-import { IProduct } from "@/Types/products";
+import { ILatestHero, IProduct } from "@/Types/products";
 import CartProduct from "../CartProduct";
 import { useGetLatestProductsQuery } from "@/Redux/features/products/productApi";
 import CardSkeleton from "@/components/Skeleton/CardSkeleton";
@@ -42,7 +41,11 @@ const SwiperButtonPrev = () => {
   );
 };
 
-const LatestCollection = () => {
+interface latestCollectionProps {
+  latestHero: ILatestHero[];
+}
+
+const LatestCollection = ({ latestHero }: latestCollectionProps) => {
   const router = useRouter();
   const {
     data: latestProducts,
@@ -57,22 +60,20 @@ const LatestCollection = () => {
   };
 
   return (
-    <section className="my-16 px-5 md:px-10">
-      <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
-        <div className="col-span-3  flex px-0  ">
+    <section className="my-16 px-5 md:px-10 group">
+      <div className="my-5 grid grid-cols-1 gap-0 h-auto lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
+        <div className="col-span-2  flex px-0  ">
           <Image
-            width={undefined}
-            height={undefined}
-            src={image}
-            alt=""
-            className="w-11/12 lg:w-full rounded-lg mx-auto "
-            
+            width={100}
+            height={100}
+            src={latestHero[0].imgOne}
+            alt={latestHero[0].title}
+            className="w-11/12 lg:w-full object-cover rounded-lg mx-auto h-"
           />
         </div>
 
-        <div className="col-span-5 px-0 mt-10 lg:mt-0">
+        <div className="col-span-6 px-0 mt-10 lg:mt-0">
           <div className="flex flex-col md:flex-row justify-between gap-5 items-center mb-5">
-          
             <Heading Heading="Latest Collections" />
             <Button
               title="All Products"
@@ -130,12 +131,15 @@ const LatestCollection = () => {
                         className="hover:z-50 my-auto"
                         key="view-all-products"
                       >
-                       <Button title="View All" icon={ICONS.small_right_arrow}/>
+                        <Button
+                          title="View All"
+                          icon={ICONS.small_right_arrow}
+                        />
                       </SwiperSlide>
                     )}
                   </>
                 ) : (
-                  <div className="flex justify-center items-center gap-2 min-h-[45vh]">
+                  <div className="flex justify-center items-center gap-2 min-h-[50vh]">
                     <Paragraph>Can't Load the data! Please</Paragraph>
                     <button
                       onClick={handleReload}
@@ -153,16 +157,22 @@ const LatestCollection = () => {
               <SwiperButtonNext />
             </div>
           </Swiper>
-          <div className="latest-product-super px-5 py-[50px]">
-            <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
-              Top Quality of Product Store!
-            </Paragraph>
-            <SubTitle
-              SubTitle="Find your Exciting Products at Our Trendy Shop."
-              className="text-white"
+          <div className="relative">
+            <Image
+              width={100}
+              height={100}
+              src={latestHero[0].imgTwo}
+              alt={latestHero[0].title}
+              className="w-full h-[200px] lg:h-full rounded-md mx-auto "
             />
-            <div className="py-5">
-              <WhiteButton text="Buy Now" />
+            <div className="px-5 absolute left-5 top-8 z-20">
+              <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
+                {latestHero[0].subTitle}
+              </Paragraph>
+              <SubTitle SubTitle={latestHero[0].title} className="text-white" />
+              <div className="py-5">
+                <WhiteButton text="Buy Now" />
+              </div>
             </div>
           </div>
         </div>
@@ -172,4 +182,3 @@ const LatestCollection = () => {
 };
 
 export default LatestCollection;
-

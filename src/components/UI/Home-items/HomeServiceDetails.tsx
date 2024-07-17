@@ -12,7 +12,7 @@ const HomeServiceDetails = ({
   return (
     <div
       key={service_details.id}
-      className="w-11/12 lg:w-4/5 -mt-10 mx-auto bg-white shadow-custom-primary"
+      className="w-11/12 lg:w-4/5 -mt-10 mx-auto bg-white shadow-custom-tertiary"
     >
       <Image
         src={service_details.img}

@@ -20,3 +20,12 @@ export interface IProduct {
   productReviews: IProductReview[];
   quantity: number;
 }
+
+
+export interface ILatestHero{
+id:number;
+title:string;
+subTitle:string;
+imgOne:string;
+imgTwo:string;
+}
