@@ -187,7 +187,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 h-[300px]">
+                    <div className="flex justify-center items-center gap-2 h-[302px]">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}
