@@ -13,11 +13,11 @@ const FooterHero = () => {
           className="w-full h-[450px] md:h-[600px] lg:h-full bg-cover"
         />
         <div className="absolute top-10 md:top-16 left-7  md:left-16">
-          <div className="w-[95%] md:w-[642px] h-auto md:h-[398px] bg-white  flex flex-col justify-center px-10 py-5">
+          <div className="w-[95%] md:w-[642px] h-auto md:h-[398px] backdrop-blur-sm bg-white/70  flex flex-col justify-center px-10 py-5">
             <h2 className="text-xl md:text-[38px] font-secondary leading-normal md:leading-[55.02px] font-normal w-auto md:w-[350px]">
               ALL-NATURAL MADE WITH LOVE
             </h2>
-            <p className="text-base md:text-base font-bold font-tertiary pt-5 text-gray-700 leading-[31.58px]">
+            <p className="text-base md:text-base font-bold font-tertiary pt-5 text-gray-500 leading-[31.58px]">
               Our platform offers a curated collection of the latest and most
               chic apparel, accessories, and footwear to elevate your wardrobe.
               Step into the world of cutting-edge fashion and discover your next favorite look today!

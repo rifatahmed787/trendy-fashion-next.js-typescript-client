@@ -1,5 +1,5 @@
 "use client";
-import { Icon } from "@iconify/react";
+import { IoMdArrowDropright } from "react-icons/io";
 import Paragraph from "../Paragraph/Paragraph";
 import SubTitle from "../SubTitle/SubTitle";
 
@@ -37,11 +37,7 @@ const HomeSectionComponent = () => {
                 <button>
                   <Paragraph className="mt-7 flex w-64 items-center justify-center border-2  px-1 py-2 text-center text-[12px] font-bold text-white duration-200 hover:bg-primary-100 hover:duration-500 hover:text-black">
                     View all products{" "}
-                    <Icon
-                      icon="ic:baseline-arrow-right"
-                      width={22}
-                      className="ml-5"
-                    />
+                    <IoMdArrowDropright className="text-2xl"/>
                   </Paragraph>
                 </button>
               </div>
