@@ -13,10 +13,10 @@ const HomeSectionComponent = () => {
         }}
         className="relative h-96 bg-cover bg-center max-w-screen-2xl mx-auto"
       >
-        <div className="absolute inset-0 bg-black opacity-50 "></div>
+        <div className="absolute inset-0 bg-black opacity-40 "></div>
         <div className="absolute bottom-0 left-0 right-0 top-0  flex items-center justify-center">
           <div className="flex w-full md:w-4/5 lg:w-1/2 items-center justify-center text-[#e7e7e7] ">
-            <div className="mx-4 border rounded-md py-10 px-5 backdrop-blur-sm bg-white/100">
+            <div className="mx-4 border rounded-md py-5 md:py-10 px-5 backdrop-blur-sm bg-white/10">
               <div className="flex items-center justify-center">
                 <Paragraph className=" w-32 rounded-full bg-primary-100 p-1 text-center font-semibold text-black">
                   NEW SEASON

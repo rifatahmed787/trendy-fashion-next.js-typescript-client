@@ -32,7 +32,7 @@ const FooterHero = () => {
                   </span>
                   <FaArrowRight className="text-base md:text-2xl group-hover:translate-x-1 duration-500" />
                 </p>
-                <div className="absolute inset-0 bg-primary-100 opacity-50"></div>
+                <div className="absolute inset-0 bg-primary-100 opacity-70"></div>
               </button>
             </Link>
           </div>
