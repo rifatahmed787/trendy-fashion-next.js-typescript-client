@@ -3,7 +3,7 @@ import hero from "../../../assets/HomePageBannerImg/hero.jpg";
 import { FaArrowRight } from "react-icons/fa6";
 import Image from "next/image";
 
-const ContactForm = () => {
+const FooterHero = () => {
   return (
     <section className="mt-16">
       <div className="max-w-screen-2xl mx-auto relative">
@@ -42,4 +42,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default FooterHero;

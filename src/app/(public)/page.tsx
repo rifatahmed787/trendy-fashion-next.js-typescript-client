@@ -1,14 +1,14 @@
 
 import HomePageBanner from '@/components/UI/Home-items/HomeSlider';
-import HomeSectionComponent from '@/components/UI/Home-items/BackgroundSection';
+import HomeSectionComponent from '@/components/UI/Home-items/SeasonUpdate';
 import HeroSection from '@/components/UI/Home-items/HeroSection';
-import ContactForm from '@/components/UI/Home-items/HomeContact';
 import HomeDealsComponent from '@/components/UI/Home-items/HomeDealsComponent';
 import HomeServiceComponent from '@/components/UI/Home-items/HomeServices';
 import HomeSuperComponent from '@/components/UI/Home-items/HomeSuperComponent';
 import TestimonialCarousel from '@/components/UI/Home-items/HomeTestimonial';
 import LatestCollection from '@/components/UI/Home-items/LatestCollection';
 import { Metadata } from 'next';
+import FooterHero from '@/components/UI/Home-items/FooterHero';
 
 
 export const metadata: Metadata = {
@@ -105,7 +105,7 @@ export default async function Home() {
       <HomeSectionComponent />
       {/* <EcommerceStats /> */}
       <TestimonialCarousel />
-      <ContactForm />
+      <FooterHero/>
     </div>
   );
 }
