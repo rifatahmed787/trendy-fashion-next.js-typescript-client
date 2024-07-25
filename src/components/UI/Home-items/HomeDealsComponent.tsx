@@ -59,7 +59,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
   };
 
   return (
-    <section className="my-10 px-5 md:px-10">
+    <section className="my-16 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 lg:grid-cols-7 lg:gap-5 h-auto max-w-screen-2xl mx-auto">
         <div className="col-span-2">
           <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">

@@ -24,6 +24,10 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
     minutes: 0,
     seconds: 0,
   });
+  const [className, setClassName] = useState("block");
+  const onOfferModalClick = () => {
+    setClassName("hidden");
+  };
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -42,16 +46,24 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
       };
 
       setTimeLeft(timeLeft);
+
+      if (
+        timeLeft.days === 0 &&
+        timeLeft.hours === 0 &&
+        timeLeft.minutes === 0 &&
+        timeLeft.seconds === 0
+      ) {
+        setClassName("hidden");
+      }
     };
 
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
-
     return () => clearInterval(timer);
   }, [offer]);
 
   return (
-    <section className="px-5 md:px-10">
+    <section className={`px-5 md:px-10 ${className}`}>
       <div className="relative max-w-screen-2xl mx-auto mt-16">
         <Image
           width={100}
@@ -94,9 +106,9 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
           </Link>
         </div>
         <div className="absolute right-5 top-5 cursor-pointer">
-          <h5>
+          <button onClick={onOfferModalClick}>
             <RxCross2 className="text-2xl md:text-4xl" />
-          </h5>
+          </button>
         </div>
       </div>
     </section>
