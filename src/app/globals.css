@@ -102,6 +102,32 @@ body{
    swiper css end
 --------------------------*/
 
+/* ----------offer modal css----- */
+.moving-border {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  background: #111;
+  padding: 4px;
+}
+.moving-border::before,
+.moving-border::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  z-index: -1;
+  background: linear-gradient(var(--angle), 
+  #FFA801,  #C3F2FF, #b00);
+  animation: rotate 10s linear infinite;
+}
+.moving-border::after {
+  filter: blur(10px);
+}
+@keyframes rotate {
+  0%     { --angle: 0deg; }
+  100%   { --angle: 360deg;
+  }
+}
 
 /* -----------------------------
 ---------home dealsComponent css----
