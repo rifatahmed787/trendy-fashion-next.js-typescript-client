@@ -9,6 +9,7 @@ import TestimonialCarousel from '@/components/UI/Home-items/HomeTestimonial';
 import LatestCollection from '@/components/UI/Home-items/LatestCollection';
 import { Metadata } from 'next';
 import FooterHero from '@/components/UI/Home-items/FooterHero';
+import HomeModal from '@/components/UI/Home-items/HomeModal';
 
 
 export const metadata: Metadata = {
@@ -33,6 +34,20 @@ const fetchSliders = async () => {
 const fetchSlidersHero = async () => {
   try {
     const response = await fetch('https://trendy-fashion-server.vercel.app/api/v1/slider_hero', {
+      next: { revalidate: 10 } 
+    });
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching sliders:', error);
+    return []; 
+  }
+};
+const fetchOfferModal = async () => {
+  try {
+    const response = await fetch('https://trendy-fashion-server.vercel.app/api/v1/modal', {
       next: { revalidate: 10 } 
     });
     if (!response.ok) {
@@ -90,6 +105,7 @@ const fetchDealSection = async () => {
 export default async function Home() {
   const sliders = await fetchSliders();
   const sliderHero=await fetchSlidersHero();
+  const offerModal=await fetchOfferModal();
   const latestHero=await fetchLatestHero();
   const heroSection=await fetchHeroSection();
   const dealSection=await fetchDealSection();
@@ -98,6 +114,7 @@ export default async function Home() {
     <div>
       <HomePageBanner sliders={sliders?.data} hero={sliderHero?.data}/>
       <HomeServiceComponent />
+      <HomeModal offer={offerModal.data}/>
       <LatestCollection latestHero={latestHero?.data}/>
       <HeroSection hero_section={heroSection?.data}/>
       <HomeDealsComponent deal_section={dealSection?.data}/>

@@ -1,6 +1,10 @@
+import { IOffer } from '@/Types/offerModal';
 import React from 'react'
 
-const HomeModal = () => {
+type HomeOfferModalProps = {
+  offer: IOffer[]
+};
+const HomeModal = ({offer}:HomeOfferModalProps) => {
   return (
     <div>HomeModal</div>
   )

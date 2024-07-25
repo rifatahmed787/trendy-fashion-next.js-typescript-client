@@ -5,7 +5,7 @@ import Heading from "../../Heading/Heading";
 const Map = () => {
   return (
     <section className="bg-white my-10">
-      <div className="overflow-hidden max-w-screen-2xl">
+      <div className="overflow-hidden max-w-screen-2xl mx-auto">
         <div className="py-10 text-center">
         <Heading Heading="Find Us On Map"/>
         </div>
