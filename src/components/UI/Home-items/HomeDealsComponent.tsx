@@ -164,7 +164,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
             }}
             loop={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper mx-auto  w-[100%] my-9"
+            className="mySwiper mx-auto  w-[100%] mt-9"
           >
             {isLoading ? (
               <div className="flex items-center gap-10">

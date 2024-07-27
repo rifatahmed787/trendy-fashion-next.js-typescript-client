@@ -41,7 +41,7 @@ export default function TestimonialCarousel() {
   return (
     <section className="px-5 md:px-10 group pt-16">
       <div className="max-w-screen-2xl mx-auto">
-        <div className="text-center">
+        <div className="text-center my-5">
          <Heading Heading="Client Reviews"/>
         </div>
         <Swiper

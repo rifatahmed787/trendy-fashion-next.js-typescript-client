@@ -1,24 +1,44 @@
 import { IProductReview } from "./review";
 
+interface ProductCategory {
+  id: number;
+  categoryName: string;
+}
+
+interface ProductType {
+  id: number;
+  typeName: string;
+}
+
 export interface IProduct {
-  id?: number;
+  id: number;
   productId: string;
   productName: string;
+  brandName: string;
   productDetails: string;
-  productColor: string[];
-  productQuality: string;
-  productImage: string[];
-  productSize: string[];
-  productPrice: number;
+  productColors: string[];
+  productQualities: string[];
+  productImages: string[];
+  productSizes: string[];
   oldPrice: number;
+  productPrice: number;
   productRating: number;
-  productSpecification: string[];
-  productCategory: string;
-  age: string[];
-  relatedProducts: string[];
+  productSpecifications: string[];
+  tags: string[];
+  category_id: number;
+  type_id: number;
+  newArrival: boolean;
+  stockOut: boolean;
+  productQuantity: number;
+  bestSelling: boolean;
+  productVerified: boolean;
   productGender: string;
+  ages: string[];
+  buyerId: string | null;
+  createdAt: string;
   productReviews: IProductReview[];
-  quantity: number;
+  productCategory: ProductCategory;
+  productType: ProductType;
 }
 
 

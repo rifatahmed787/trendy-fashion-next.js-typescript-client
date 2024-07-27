@@ -60,7 +60,7 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
   };
 
   return (
-    <section className="my-16 px-5 md:px-10 group">
+    <section className="my-16 px-5 md:px-10">
       <div className="my-5 grid grid-cols-1 gap-0 h-auto lg:grid-cols-8 lg:gap-5 items-stretch max-w-screen-2xl mx-auto">
         <div className="col-span-2  flex px-0  ">
           <Image
@@ -68,7 +68,7 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
             height={100}
             src={latestHero[0].imgOne}
             alt={latestHero[0].title}
-            className="w-11/12 lg:w-full object-cover rounded-lg mx-auto h-"
+            className="w-11/12 lg:w-full object-cover rounded-lg mx-auto"
           />
         </div>
 
