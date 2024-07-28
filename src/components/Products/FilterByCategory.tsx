@@ -9,12 +9,14 @@ import AnimatedFilter from "../UI/Framer-motion/AnimatedFilter";
 type IFilterProduct = {
   filter: {
     productGender: any;
-    productCategory: string;
+    categoryName: string;
+    typeName:string;
   };
   setFilter: React.Dispatch<
     React.SetStateAction<{
       productName: string;
-      productCategory: string;
+      categoryName: string;
+      typeName:string;
       productGender: string;
       search: string;
     }>
@@ -35,7 +37,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
   const { all_gender = [], all_category = [] } = uniqueFilter?.data?.data || {};
 
   const uniqueCategory: string[] = (all_category as string[]).flatMap(
-    (productCategory: string) => productCategory.split(", ")
+    (categoryName: string) => categoryName.split(", ")
   );
 
   const uniqueGender: string[] = (all_gender as string[]).flatMap(
@@ -44,20 +46,20 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
 
   useEffect(() => {
     // Set default filter category if not present
-    if (!filter.productCategory) {
+    if (!filter.categoryName) {
       setFilter((prevFilter) => ({
         ...prevFilter,
-        productCategory: "",
+        categoryName: "",
       }));
     }
-  }, [filter.productCategory, setFilter]);
+  }, [filter.categoryName, setFilter]);
 
   // Handle filter change
   const handleFilterChange = (category: string) => {
-    const newCategory = filter.productCategory === category ? "" : category;
+    const newCategory = filter.categoryName === category ? "" : category;
     setFilter((prevFilter) => ({
       ...prevFilter,
-      productCategory: newCategory,
+      categoryName: newCategory,
     }));
 
     // Update search params and route
@@ -89,10 +91,10 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
     setIsAllProducts(!isAllProducts);
 
     if (isAllProducts) {
-      // Reset the productCategory filter when showing all products
+      // Reset the categoryName filter when showing all products
       setFilter((prevFilter) => ({
         ...prevFilter,
-        productCategory: "",
+        categoryName: "",
       }));
       // Update search params and route
       router.push(`/products`);
@@ -128,12 +130,12 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
             <div className="mt-2 flex items-center">
               <CheckBox
                 id="all-products"
-                checked={!filter.productCategory}
+                checked={!filter.categoryName}
                 onChange={() => {
                   // Toggle all products selection
                   setFilter((prevFilter) => ({
                     ...prevFilter,
-                    productCategory: prevFilter.productCategory
+                    categoryName: prevFilter.categoryName
                       ? ""
                       : uniqueCategory.join(", "),
                   }));
@@ -177,7 +179,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
               <div key={category} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={category}
-                  checked={filter.productCategory.includes(category)}
+                  checked={filter.categoryName.includes(category)}
                   onChange={() => handleFilterChange(category)}
                 />
                 <h1 className="font-medium leading-none text-gray-700">

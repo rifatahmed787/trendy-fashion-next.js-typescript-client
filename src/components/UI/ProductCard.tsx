@@ -120,13 +120,13 @@ const ProductCard = ({ product }: { product: IProduct }) => {
           <Image
             width={300}
             height={64}
-            className={`h-52 w-full object-cover transition-transform duration-500 ${
+            className={`h-52 w-full object-contain transition-transform duration-500 ${
               isHovered
                 ? "transform scale-110 opacity-80 duration-700"
                 : "transform-none opacity-100"
             }`}
-            src={product?.productImage[isHovered ? 1 : 0]}
-            alt="product image"
+            src={product?.productImages[isHovered ? 1 : 0]}
+            alt={product?.productName}
           />
 
           <div className="absolute -bottom-10 flex w-full transition-all duration-300 group-hover:bottom-0 ">
@@ -138,7 +138,7 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                 {cartIsLoading ? (
                   ICONS.button_loading_icon
                 ) : (
-                  <MdOutlineShoppingCart className="text-2xl"/>
+                  <MdOutlineShoppingCart className="text-2xl" />
                 )}
               </span>
               <span className="absolute flex items-center justify-center w-full h-full text-white transition-all duration-300 transform second-span ease bg-gray-800 title">
@@ -148,16 +148,16 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             </button>
           </div>
           <div className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm">
-            {product?.quantity > 0 ? (
+            {product?.stockOut ? (
               <>
                 <h5 className="bg-primary-100 rounded-full px-2 py-0.5 font-semibold title">
-                  In Stock
+                  Stock Out
                 </h5>
               </>
             ) : (
               <>
                 <h5 className="bg-red-500 text-white rounded-full px-2 py-0.5 font-semibold title">
-                  Stock Out
+                  In Stock
                 </h5>
               </>
             )}
@@ -178,14 +178,18 @@ const ProductCard = ({ product }: { product: IProduct }) => {
                           item.productId === product.id
                       ) ? (
                         <div className="flex items-center gap-1 relative">
-                          {wishHover && (
-                            <p className=" absolute top-0 bottom-0 flex items-center right-9 ">
-                              <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
-                                WishList
-                              </span>
-                              <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
-                            </p>
-                          )}
+                          <p
+                            className={`absolute z-10 top-0 bottom-0 flex items-center ${
+                              wishHover
+                                ? "-translate-x-0 duration-500 right-8"
+                                : "translate-x-full mr-14"
+                            }`}
+                          >
+                            <span className="text-sm  text-gray-50  bg-primary-100 pl-2 pr-4 py-0.5">
+                              WishList
+                            </span>
+                            <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+                          </p>
                           <IoIosHeart
                             onMouseEnter={() => setWishHover(true)}
                             onMouseLeave={() => setWishHover(false)}
@@ -218,14 +222,18 @@ const ProductCard = ({ product }: { product: IProduct }) => {
             </button>
 
             <div className="flex items-center gap-1 relative">
-              {compareHover && (
-                <p className=" absolute top-0 bottom-0 flex items-center right-9">
-                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
-                    Compare
-                  </span>
-                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
-                </p>
-              )}
+              <p
+                className={`absolute z-10 top-0 bottom-0 flex items-center ${
+                  compareHover
+                    ? "-translate-x-0 duration-500 right-8"
+                    : "translate-x-full mr-14"
+                }`}
+              >
+                <span className="text-sm  text-gray-50  bg-primary-100 pl-2 pr-4 py-0.5">
+                  Compare
+                </span>
+                <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+              </p>
               <Link href={"/"}>
                 <GoGitCompare
                   onMouseEnter={() => setCompareHover(true)}
@@ -235,22 +243,25 @@ const ProductCard = ({ product }: { product: IProduct }) => {
               </Link>
             </div>
             <div className="flex items-center gap-1 relative">
-              {detailsHover && (
-                <p className=" absolute top-0 bottom-0 flex items-center right-9">
-                  <span className="text-sm  text-black  bg-gray-300 px-3 py-0.5">
-                    Details
-                  </span>
-                  <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
-                </p>
-              )}
-              <Link href={"/"}>
-                <Link href={`/products/productdetails/${product?.id}`}>
-                  <IoEyeOutline
-                    onMouseEnter={() => setDetailsHover(true)}
-                    onMouseLeave={() => setDetailsHover(false)}
-                    className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
-                  />
-                </Link>
+              <p
+                className={`absolute z-10 top-0 bottom-0 flex items-center ${
+                  detailsHover
+                    ? "-translate-x-0 duration-500 right-8"
+                    : "translate-x-full mr-12"
+                }`}
+              >
+                <span className="text-sm  text-gray-50  bg-primary-100 pl-2 pr-4 py-0.5">
+                  Details
+                </span>
+                <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
+              </p>
+
+              <Link href={`/products/productdetails/${product?.id}`}>
+                <IoEyeOutline
+                  onMouseEnter={() => setDetailsHover(true)}
+                  onMouseLeave={() => setDetailsHover(false)}
+                  className="my-2 text-3xl translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 hover:text-primary-100 group-hover:translate-x-0"
+                />
               </Link>
             </div>
           </div>

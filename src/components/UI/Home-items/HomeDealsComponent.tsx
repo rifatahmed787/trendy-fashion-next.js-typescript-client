@@ -81,7 +81,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
               height={64}
               src={deal_section[0].smImgOne}
               alt=""
-              className="h-full lg:h-72 w-full rounded-lg"
+              className="h-full lg:h-[293px] w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-20 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -102,7 +102,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
               height={64}
               src={deal_section[0].smImgTwo}
               alt=""
-              className="h-full lg:h-72 w-full rounded-lg"
+              className="h-full lg:h-[293px] w-full rounded-lg"
             />
             <span className="absolute inset-0 top-0 left-0 bg-black opacity-20 rounded-lg"></span>
             <div className="absolute  bottom-0 flex h-full w-full items-end justify-center  pb-14 opacity-100 transition-all">
@@ -187,7 +187,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
                   </>
                 ) : (
                   <>
-                    <div className="flex justify-center items-center gap-2 h-[302px]">
+                    <div className="flex justify-center items-center gap-2 h-[348px]">
                       <Paragraph>Can't Load the data! Please</Paragraph>
                       <button
                         onClick={handleReload}

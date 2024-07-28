@@ -149,13 +149,13 @@ const CartProduct = ({ product }: { product: IProduct }) => {
           <div className="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-black text-center text-sm">
             {product?.stockOut ? (
               <>
-                <h5 className="bg-primary-100 rounded-full px-2 py-0.5 font-semibold title">
+                <h5 className="bg-red-500 text-white rounded-full px-2 py-0.5 font-semibold title">
                   Stock Out
                 </h5>
               </>
             ) : (
               <>
-                <h5 className="bg-red-500 text-white rounded-full px-2 py-0.5 font-semibold title">
+                <h5 className="bg-primary-100 text-white rounded-full px-2 py-0.5 font-semibold title">
                   In Stock
                 </h5>
               </>
@@ -189,12 +189,14 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                             </span>
                             <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
                           </p>
-                          <IoIosHeart
-                            onMouseEnter={() => setWishHover(true)}
-                            onMouseLeave={() => setWishHover(false)}
-                            onClick={wishListHandler}
-                            className="cursor-pointer z-20 text-xl p-1 rounded-full bg-primary-100 text-gray-200 hover:text-gray-50"
-                          />
+                          <p className="p-1  z-20 rounded-full bg-primary-100 text-gray-200 hover:text-gray-50">
+                            <IoIosHeart
+                              onMouseEnter={() => setWishHover(true)}
+                              onMouseLeave={() => setWishHover(false)}
+                              onClick={wishListHandler}
+                              className="cursor-pointer text-xl "
+                            />
+                          </p>
                         </div>
                       ) : (
                         <div className="flex items-center gap-1 relative">
@@ -211,12 +213,14 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                             <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
                           </p>
 
-                          <LuHeart
-                            onMouseEnter={() => setWishHover(true)}
-                            onMouseLeave={() => setWishHover(false)}
-                            onClick={wishListHandler}
-                            className="cursor-pointer text-xl p-1 z-20 rounded-full bg-[#ececec] text-primary-100"
-                          />
+                          <p className="p-1 z-20 rounded-full bg-[#ececec] text-primary-100">
+                            <LuHeart
+                              onMouseEnter={() => setWishHover(true)}
+                              onMouseLeave={() => setWishHover(false)}
+                              onClick={wishListHandler}
+                              className="cursor-pointer text-xl "
+                            />
+                          </p>
                         </div>
                       )}
                     </>
@@ -239,11 +243,14 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                 <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
               </p>
 
-              <Link href={"/"}>
+              <Link
+                href={"/"}
+                className="relative z-20  cursor-pointer rounded-full bg-[#ececec] my-2  p-1 translate-x-10 duration-300 text-primary-100 group-hover:translate-x-0"
+              >
                 <GoGitCompare
                   onMouseEnter={() => setCompareHover(true)}
                   onMouseLeave={() => setCompareHover(false)}
-                  className="my-2 text-xl relative z-20 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 text-primary-100 group-hover:translate-x-0"
+                  className="text-xl"
                 />
               </Link>
             </div>
@@ -261,21 +268,24 @@ const CartProduct = ({ product }: { product: IProduct }) => {
                 <span className="w-4 h-4 bg-gray-300 rotate-45 -ml-2"></span>
               </p>
 
-              <Link href={`/products/productdetails/${product?.id}`}>
+              <Link
+                href={`/products/productdetails/${product?.id}`}
+                className="my-2 relative z-20 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 text-primary-100 group-hover:translate-x-0"
+              >
                 <IoEyeOutline
                   onMouseEnter={() => setDetailsHover(true)}
                   onMouseLeave={() => setDetailsHover(false)}
-                  className="my-2 relative text-xl z-20 translate-x-10 cursor-pointer rounded-full bg-[#ececec] p-1 duration-300 text-primary-100 group-hover:translate-x-0"
+                  className=" text-xl"
                 />
               </Link>
             </div>
           </div>
         </div>
-        <h4 className="mt-2 text-2xl font-secondary capitalize text-primary-100">
+        <h4 className="mt-2 pl-3 text-2xl font-secondary capitalize text-primary-100">
           {product?.productName}
         </h4>
 
-        <div className="flex gap-5 items-center mt-2">
+        <div className="flex gap-5 items-center mt-2 pl-3">
           <del className="text-base font-semibold text-red-700">
             $ {product?.oldPrice}
           </del>
@@ -284,7 +294,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
             ratings={product?.productRating || 0}
           />
         </div>
-        <p className="ml-1 inline-block text-lg font-bold text-gray-700">
+        <p className="pl-3 inline-block text-lg font-bold text-gray-700">
           ${product?.productPrice}
         </p>
       </div>

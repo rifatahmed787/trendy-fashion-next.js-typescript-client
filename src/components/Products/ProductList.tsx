@@ -5,13 +5,13 @@ import React, { useEffect, useState } from "react";
 import FilterByCategory from "./FilterByCategory";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useGetProductsQuery } from "@/Redux/features/products/productApi";
-import ProductCard from "../UI/ProductCard";
 import { IProduct } from "@/Types/products";
 import Pagination from "../Pagination/Pagination";
 import ProductSkeleton from "./ProductSkeleton";
 import { useSelector } from "react-redux";
 import { selectSearch } from "@/Redux/features/products/searchSlice";
 import ICONS from "../shared/Icons/AllIcons";
+import CartProduct from "../UI/CartProduct";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
@@ -27,7 +27,8 @@ const ProductList = () => {
   // filter state and effect
   const [filter, setFilter] = useState({
     productName: "",
-    productCategory: "",
+    categoryName: "",
+    typeName:"",
     productGender: "",
     search: "",
   });
@@ -41,7 +42,8 @@ const ProductList = () => {
     page: pagination.currentPage,
     limit: pagination.pageSize,
     productName: filter.productName,
-    productCategory: filter.productCategory,
+    categoryName: filter.categoryName,
+    typeName:filter.typeName,
     productGender: filter.productGender,
     searchTerm: searchTerm,
   });
@@ -78,7 +80,8 @@ const ProductList = () => {
   useEffect(() => {
     const tempSearchParams = {
       productName: searchParams.get("productName") ?? "",
-      productCategory: searchParams.get("productCategory") ?? "",
+      categoryName: searchParams.get("categoryName") ?? "",
+      typeName:searchParams.get("typeName") ?? "",
       productGender: searchParams.get("productGender") ?? "",
       search: searchParams.get("search") ?? "",
     };
@@ -158,13 +161,13 @@ const ProductList = () => {
               ) : (
                 <div>
                   {products_list_data?.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 px-5 md:px-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-5 px-5 md:px-10">
                       {" "}
                       {!isError &&
                         !error &&
                         products_list_data.map((product: IProduct) => {
                           return (
-                            <ProductCard key={product.id} product={product} />
+                            <CartProduct key={product.id} product={product} />
                           );
                         })}
                     </div>
