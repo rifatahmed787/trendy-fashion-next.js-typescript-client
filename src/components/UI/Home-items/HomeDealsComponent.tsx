@@ -167,7 +167,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
             className="mySwiper mx-auto  w-[100%] mt-9"
           >
             {isLoading ? (
-              <div className="flex items-center gap-10">
+              <div className="flex items-center gap-10 h-[348px]">
                 <CardSkeleton />
                 <CardSkeleton />
                 <CardSkeleton />
