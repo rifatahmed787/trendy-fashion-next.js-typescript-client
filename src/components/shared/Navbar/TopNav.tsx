@@ -9,11 +9,12 @@ import ICONS from "../Icons/AllIcons";
 import Marquee from "react-fast-marquee";
 import Paragraph from "@/components/UI/Paragraph/Paragraph";
 import cart from "../../../assets/icon/cart.png";
+import { useTheme } from "next-themes";
 
 const TopNav = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [previousScroll, setPreviousScroll] = useState(0);
-
+  const { theme} = useTheme();
   const handleScroll = () => {
     const currentScroll = window.scrollY;
 
@@ -36,7 +37,7 @@ const TopNav = () => {
 
   const headerClasses = `fixed top-0 py-2 bg-white z-40 w-full border-b border-gray-200 transition-transform duration-300 md:px-5 lg:px-10 hidden md:block ${
     isHeaderVisible ? "translate-y-0" : "-translate-y-auto"
-  }`;
+  } ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`;
 
   return (
     <div className={headerClasses}>
@@ -62,7 +63,7 @@ const TopNav = () => {
             pauseOnClick={true}
             // speed="40"
           >
-            <Paragraph className="font-normal text-gray-700 text-base">
+            <Paragraph className={`font-normal  text-base theme === 'dark' ? 'bg-gray-100' : 'text-gray-700'`}>
               <strong>Promotional Offers: </strong>Get 20% off on your first
               order! Use code WELCOME20 at checkout.{" "}
               <strong>Free Shipping: </strong>Enjoy free shipping on orders over

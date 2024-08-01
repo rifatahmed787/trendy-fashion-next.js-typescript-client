@@ -5,13 +5,14 @@ import ICONS from "../shared/Icons/AllIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { selectSearch, setSearch } from "@/Redux/features/products/searchSlice";
 import { useRouter } from "next/navigation";
+import { useTheme } from "next-themes";
 
 const ProductSearchbar = () => {
   const dispatch = useDispatch();
   const searchValue = useSelector(selectSearch);
   const [searchKey, setSearchKey] = useState("");
   const router = useRouter();
-
+  const { theme} = useTheme();
   useEffect(() => {
     setSearchKey(searchValue);
   }, [searchValue]);
@@ -29,10 +30,10 @@ const ProductSearchbar = () => {
         currentValue={searchKey}
         onChange={(e) => setSearchKey(e.target.value)}
         required={true}
-        className="pr-10 md:pr-20 bg-white h-10"
+        className={`pr-10 md:pr-20 h-10 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`}
       />
       <button
-        className=" text-black h-10 px-2 py-1  rounded-r-md  hover:text-white hover:bg-primary-100 duration-300 -ml-10 z-10"
+        className={`h-10 px-2 py-1  rounded-r-md  hover:text-white hover:bg-primary-100 duration-300 -ml-10 z-10 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}
         onClick={handleFilterValue}
       >
         {ICONS.Search_Icon}

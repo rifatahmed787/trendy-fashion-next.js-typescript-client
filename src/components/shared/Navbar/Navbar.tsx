@@ -19,6 +19,8 @@ import { NavItems } from "./NavLinks";
 import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
 import { useGetCartProductsQuery } from "@/Redux/features/cart/cartApi";
 import { useGetWishListQuery } from "@/Redux/features/wishlist/wishApi";
+import { ModeToggle } from "@/components/DarkModeContext/Mode-toggle";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
@@ -28,7 +30,7 @@ const Navbar = () => {
   const { openModal } = useModal();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
-  const router = useRouter();
+  const { theme} = useTheme();
   const accountDropdownRef = useRef(null);
 
   const { data: Products } = useGetCartProductsQuery({});
@@ -126,7 +128,7 @@ const Navbar = () => {
     isNavbarVisible
       ? "translate-y-0 top-0 md:top-[73px]"
       : "-translate-y-auto top-auto py-3"
-  } bg-white shadow-sm`;
+  } ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} shadow-sm`;
   return (
     <div>
       <nav className={navbarClasses}>
@@ -142,7 +144,9 @@ const Navbar = () => {
                   height={undefined}
                 />
               </Link>
+              
             </li>
+            
 
             {NavItems?.map((item) => {
               const isSelected = pathname === item?.ref;
@@ -217,6 +221,8 @@ const Navbar = () => {
           ) : (
             <>
               <div className="hidden md:block">
+              <div className="flex justify-center gap-5">
+              <ModeToggle/>
                 <div className="flex items-center px-3 rounded-md bg-primary-100 text-white">
                   <button
                     onClick={(e) => {
@@ -238,6 +244,7 @@ const Navbar = () => {
                     SignUp
                   </button>
                 </div>
+              </div>
               </div>
             </>
           )}
