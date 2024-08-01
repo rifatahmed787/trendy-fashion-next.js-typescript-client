@@ -15,14 +15,25 @@ import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
 import AddReviewModal from "./AddReviewModal";
 import ReviewSection from "./ReviewSection";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../UI/DropdownMenu/Dropdown";
 
 const ProductDetail = ({
   product_details,
 }: {
   product_details: IProduct | undefined;
 }) => {
+  console.log("product details", product_details);
   const [largeImage, setLargeImage] = useState<string | undefined>(
-    product_details?.productImage ? product_details.productImage[0] : undefined
+    product_details?.productImages
+      ? product_details.productImages[0]
+      : undefined
   );
   const { openModal } = useModal();
   // Alert State
@@ -79,8 +90,8 @@ const ProductDetail = ({
   };
 
   useEffect(() => {
-    if (product_details?.productImage) {
-      setLargeImage(product_details.productImage[0]);
+    if (product_details?.productImages) {
+      setLargeImage(product_details.productImages[0]);
     }
   }, [product_details]);
 
@@ -116,28 +127,27 @@ const ProductDetail = ({
       <div className=" my-10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="mt-8">
-            <div className="w-[95%] h-[300px] md:h-[400px] border mx-auto">
+            <div className="w-[95%] h-[300px] md:h-[500px] border rounded-lg mx-auto">
               <Image
-                className="h-full w-full rounded-lg bg-cover mx-auto"
+                className="h-full w-full rounded-lg bg-contain mx-auto"
                 src={
                   largeImage ||
-                  (product_details?.productImage
-                    ? product_details.productImage[0]
+                  (product_details?.productImages
+                    ? product_details.productImages[0]
                     : "")
                 }
                 alt={`${product_details?.productName}`}
                 width={100}
                 height={100}
                 quality={100}
-                loading="lazy"
                 unoptimized={false}
               />
             </div>
 
-            {product_details?.productImage &&
-            product_details.productImage.length > 1 ? (
+            {product_details?.productImages &&
+            product_details.productImages.length > 1 ? (
               <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
-                {product_details.productImage.slice(0, 4).map((img, index) => (
+                {product_details.productImages.slice(0, 4).map((img, index) => (
                   <div key={index}>
                     <Image
                       onClick={() => setLargeImage(img)}
@@ -218,10 +228,24 @@ const ProductDetail = ({
                 <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
               </div>
               <div className="flex ml-6 items-center">
-                <span className="mr-3">Size</span>
-                <div className="relative">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    {(product_details?.productSizes?.length ?? 0) > 1
+                      ? "Sizes"
+                      : "Size"}
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuLabel>All Sizes</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    {product_details?.productSizes?.map((size, index) => (
+                      <DropdownMenuItem key={index}>{size}</DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+
+                {/* <div className="relative">
                   <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-none text-base pl-3 pr-10">
-                    {product_details?.productSize?.map((size, index) => (
+                    {product_details?.productSizes?.map((size, index) => (
                       <option key={index}>{size}</option>
                     ))}
                   </select>
@@ -238,7 +262,7 @@ const ProductDetail = ({
                       <path d="M6 9l6 6 6-6"></path>
                     </svg>
                   </span>
-                </div>
+                </div> */}
               </div>
             </div>
 

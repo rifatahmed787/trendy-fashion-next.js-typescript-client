@@ -8,10 +8,10 @@ import "swiper/css/grid";
 import "swiper/css/navigation";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import ICONS from "../shared/Icons/AllIcons";
-import Button from "../UI/Button";
 import CartProduct from "../UI/CartProduct";
 import CardSkeleton from "../Skeleton/CardSkeleton";
 import Paragraph from "../UI/Paragraph/Paragraph";
+import { Button } from "../UI/Button";
 const SwiperButtonNext = () => {
   const swiper = useSwiper();
   return (
@@ -41,7 +41,7 @@ const RelatedProduct = ({
 }) => {
   const { data: products, isLoading } = useGetProductsQuery({});
   const filterProducts = products?.data?.data?.filter(
-    (pro: IProduct) => pro.productCategory === product_details?.productCategory
+    (pro: IProduct) => pro.productType.typeName === product_details?.productType.typeName
   );
   const handleReload = () => {
     window.location.reload();
@@ -99,7 +99,7 @@ const RelatedProduct = ({
                     className="hover:z-50 my-auto"
                     key="view-all-products"
                   >
-                    <Button title="View All" icon={ICONS.small_right_arrow} />
+                    <Button title="View All" icon={ICONS.small_right_arrow} >View All</Button>
                   </SwiperSlide>
                 )}
               </>

@@ -13,13 +13,13 @@ import Modal from "@/components/Modal/Modal";
 import ModalBody from "@/components/Modal/ModalBody/ModalBody";
 import ModalHeader from "@/components/Modal/ModalHeader/ModalHeader";
 import CheckBox from "@/components/UI/Check-box/Checkbox";
-import Button from "@/components/UI/Button";
 import loginlogo from "../../../assets/login/login.jpg";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { get_error_messages } from "@/lib/Error_message";
 import { ILoginArgs } from "@/Types/auth.types";
 import ToastContainer from "@/components/UI/Toast";
+import { Button } from "@/components/UI/Button";
 
 const SignInForm = () => {
   const { isOpen, onClose, openModal } = useModal();
@@ -132,7 +132,7 @@ const SignInForm = () => {
                   className="bg-primary-100 w-full text-base font-medium rounded text-white"
                   icon={isLoading ? ICONS.button_loading_icon : undefined}
                   isDisabled={isLoading}
-                />
+                >Sign In</Button>
               </div>
             </form>
           </div>

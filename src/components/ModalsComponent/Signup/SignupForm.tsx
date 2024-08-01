@@ -5,8 +5,6 @@ import {
   SubmitHandler,
   FieldValues,
 } from "react-hook-form";
-
-import Button from "@/components/UI/Button";
 import FileInput from "@/components/UI/Form-items/FileInput";
 import TextInput from "@/components/UI/Form-items/TextInput";
 import ToastContainer from "@/components/UI/Toast";
@@ -22,6 +20,7 @@ import Image from "next/image";
 import CheckBox from "@/components/UI/Check-box/Checkbox";
 import { useUploderMutation } from "@/Redux/features/upload/uploadApi";
 import { useUserRegisterMutation } from "@/Redux/features/auth/authApi";
+import { Button } from "@/components/UI/Button";
 
 const SignUpForm = () => {
   const { control, handleSubmit } = useForm();
@@ -190,7 +189,7 @@ const SignUpForm = () => {
                     />
                   )}
                 />
-                <FileInput
+                {/* <FileInput
                   label=""
                   onChange={(selectedFile) => {
                     setFile(selectedFile);
@@ -201,7 +200,7 @@ const SignUpForm = () => {
                   id="image"
                   htmlFor="image"
                   currentValue=""
-                />
+                /> */}
               </div>
 
               <div className="flex items-center justify-between py-6">
@@ -223,7 +222,7 @@ const SignUpForm = () => {
 					          text-base font-medium rounded text-white"
                 icon={isLoading ? ICONS.button_loading_icon : undefined}
                 isDisabled={isLoading}
-              />
+              >Sign UP</Button>
             </form>
           </div>
           <div className="flex justify-center py-4">

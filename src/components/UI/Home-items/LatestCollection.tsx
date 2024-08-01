@@ -7,7 +7,6 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import Image from "next/image";
 import ICONS from "@/components/shared/Icons/AllIcons";
-import Button from "../Button";
 import { useRouter } from "next/navigation";
 import { ILatestHero, IProduct } from "@/Types/products";
 import CartProduct from "../CartProduct";
@@ -17,6 +16,7 @@ import WhiteButton from "@/components/Button/SecondaryButton";
 import SubTitle from "../SubTitle/SubTitle";
 import Paragraph from "../Paragraph/Paragraph";
 import Heading from "../Heading/Heading";
+import { Button } from "../Button";
 
 const SwiperButtonNext = () => {
   const swiper = useSwiper();
@@ -78,8 +78,8 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
             <Button
               title="All Products"
               className="px-4 py-2 bg-primary-100 text-white rounded-lg uppercase"
-              onClickHandler={() => router.push("/products")}
-            />
+              onClick={() => router.push("/products")}
+            >All Products</Button>
           </div>
           <Swiper
             slidesPerView={3}
@@ -134,7 +134,8 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
                         <Button
                           title="View All"
                           icon={ICONS.small_right_arrow}
-                        />
+                          variant="secondary"
+                        >View All</Button>
                       </SwiperSlide>
                     )}
                   </>
