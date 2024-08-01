@@ -15,14 +15,7 @@ import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
 import AddReviewModal from "./AddReviewModal";
 import ReviewSection from "./ReviewSection";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../UI/DropdownMenu/Dropdown";
+import { MultiSelect } from "../UI/MultiSelector/MultiSelect";
 
 const ProductDetail = ({
   product_details,
@@ -36,6 +29,8 @@ const ProductDetail = ({
       : undefined
   );
   const { openModal } = useModal();
+
+  
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
@@ -44,7 +39,13 @@ const ProductDetail = ({
   const [AlertMessages, setAlertMessages] = useState("");
 
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-
+  // color options
+  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>([]);
+  const colorOptions =
+    product_details?.productColors?.map((color) => ({
+      label: color,
+      value: color,
+    })) || [];
   // add in wish mutation hook
   const [
     addProductInWish,
@@ -228,20 +229,15 @@ const ProductDetail = ({
                 <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
               </div>
               <div className="flex ml-6 items-center">
-                <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    {(product_details?.productSizes?.length ?? 0) > 1
-                      ? "Sizes"
-                      : "Size"}
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>All Sizes</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {product_details?.productSizes?.map((size, index) => (
-                      <DropdownMenuItem key={index}>{size}</DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+              <MultiSelect
+                  options={colorOptions}
+                  onValueChange={setColorSelectedOptions}
+                  defaultValue={colorSelectedOptions}
+                  placeholder="Select Colors"
+                  // variant="inverted"
+                  animation={1}
+                  maxCount={3}
+                />
 
                 {/* <div className="relative">
                   <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-none text-base pl-3 pr-10">

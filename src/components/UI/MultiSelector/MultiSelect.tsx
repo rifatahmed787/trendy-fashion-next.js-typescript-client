@@ -11,7 +11,6 @@ import {
 import { cn } from "@/lib/Utils";
 import { Popover, PopoverContent, PopoverTrigger } from "../Popover";
 import { Badge } from "../Badge";
-import BrandButton from "@/components/Button/PrimaryButton";
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "../Command";
 import { Button } from "../Button";
 
@@ -273,7 +272,7 @@ export const MultiSelect = React.forwardRef<
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className="w-auto p-0"
+          className="w-auto p-0 bg-gray-100"
           align="start"
           onEscapeKeyDown={() => setIsPopoverOpen(false)}
         >
@@ -295,7 +294,7 @@ export const MultiSelect = React.forwardRef<
                       "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
                       selectedValues.length === options.length
                         ? "bg-primary text-primary-foreground"
-                        : "opacity-50 [&_svg]:invisible"
+                        : "opacity-50 border-black [&_svg]:invisible"
                     )}
                   >
                     <CheckIcon className="h-4 w-4" />
@@ -315,7 +314,7 @@ export const MultiSelect = React.forwardRef<
                           "mr-2 flex h-4 w-4 items-center justify-center rounded-sm border border-primary",
                           isSelected
                             ? "bg-primary text-primary-foreground"
-                            : "opacity-50 [&_svg]:invisible"
+                            : "opacity-50 border-black [&_svg]:invisible"
                         )}
                       >
                         <CheckIcon className="h-4 w-4" />
@@ -356,7 +355,7 @@ export const MultiSelect = React.forwardRef<
             </CommandList>
           </Command>
         </PopoverContent>
-        {animation > 0 && selectedValues.length > 0 && (
+        {/* {animation > 0 && selectedValues.length > 0 && (
           <WandSparkles
             className={cn(
               "cursor-pointer my-2 text-foreground bg-background w-3 h-3",
@@ -364,7 +363,7 @@ export const MultiSelect = React.forwardRef<
             )}
             onClick={() => setIsAnimating(!isAnimating)}
           />
-        )}
+        )} */}
       </Popover>
     );
   }
