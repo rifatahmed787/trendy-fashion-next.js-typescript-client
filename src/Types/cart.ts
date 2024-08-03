@@ -6,11 +6,13 @@ export type ICart = {
   productId: number | IProduct;
   userId: number | IUser;
   product: {
-    productImage: string[];
+    productImages: string[];
     productName: string;
     productRating: number;
     productPrice: number;
     quantity: number;
+    productColor: string[];
+    productSize:string[];
   };
   quantity: number;
 };

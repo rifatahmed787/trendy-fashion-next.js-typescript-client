@@ -68,8 +68,8 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
         <Image
           width={100}
           height={100}
-          src={offer[0].img}
-          alt={offer[0].categoryName}
+          src={offer[0]?.img}
+          alt={offer[0].productCategory.categoryName}
           className="w-full h-[400px] md:h-[350px] rounded-md mx-auto"
         />
         <div className="absolute left-1/3 top-1/4 md:top-1/2 z-20">
@@ -88,7 +88,7 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
 
           <div className="absolute pt-4 top-1/4 left-0 right-0 z-10 flex justify-center">
             <SubTitle
-              SubTitle={`On ${offer[0].categoryName}`}
+              SubTitle={`On ${offer[0].productCategory.categoryName}`}
               className=" text-white "
             />
           </div>

@@ -14,6 +14,7 @@ import { login } from "@/Redux/features/auth/authSlice";
 import Logo from "../../../assets/Logo/trendy.svg";
 import SidebarSlide from "@/components/UI/Framer-motion/SidebarSlide";
 import ICONS from "../Icons/AllIcons";
+import { useTheme } from "next-themes";
 
 const MobileNav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ const MobileNav = () => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal } = useModal();
   const pathname = usePathname();
+  const {theme}=useTheme()
   const dispatch = useAppDispatch();
   const toggleMenu = () => {
     setIsMenuOpen((prevIsMenuOpen) => !prevIsMenuOpen);
@@ -96,7 +98,7 @@ const MobileNav = () => {
 
   return (
     <>
-      <div className="fixed z-50 w-full md:hidden bg-white py-5">
+      <div className={`fixed z-50 w-full md:hidden py-5 ${theme==="dark"?"bg-gray-900":"bg-white"}`}>
         <div className="flex justify-between items-center px-5">
           <div>
             <Link href="/">

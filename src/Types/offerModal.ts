@@ -1,8 +1,13 @@
+interface ICategory{
+    id:number
+    categoryName:string
+}
+
 export interface IOffer{
     id:number;
     img:string;
     percent:number;
-    categoryName:string;
+    productCategory:ICategory
     startTime:string;
     endTime:string;
 }

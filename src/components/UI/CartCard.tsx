@@ -96,7 +96,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
             width={100}
             height={100}
             className="h-28 w-28"
-            src={product?.product?.productImage[0] || ""}
+            src={product?.product?.productImages[0] || ""}
             alt="product image"
           />
         </div>

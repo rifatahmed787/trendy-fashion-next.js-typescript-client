@@ -57,7 +57,7 @@ export default function Pagination({
   return (
     <div className="flex justify-center gap-5 md:gap-10 items-center my-5 md:my-10 px-3">
       <span className="text-gray-600 text-sm md:text-lg">
-        Showing {total} out of {pageSize * totalPage}
+        Showing {pageSize} out of {total}
       </span>
       <div className="flex items-center space-x-2">
         <span className="text-gray-600 text-sm md:text-lg">Show:</span>

@@ -29,7 +29,6 @@ const ProductDetail = ({
 }: {
   product_details: IProduct | undefined;
 }) => {
-  console.log("product details", product_details);
   const [largeImage, setLargeImage] = useState<string | undefined>(
     product_details?.productImages
       ? product_details.productImages[0]
@@ -37,7 +36,6 @@ const ProductDetail = ({
   );
   const { openModal } = useModal();
 
-  
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
@@ -46,13 +44,32 @@ const ProductDetail = ({
   const [AlertMessages, setAlertMessages] = useState("");
 
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+  const [color, setColor]=useState<string[]>([])
+  const [size, setSize]=useState<string[]>([])
+
   // color options
-  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>([]);
+  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>(
+    []
+  );
   const colorOptions =
     product_details?.productColors?.map((color) => ({
       label: color,
       value: color,
     })) || [];
+  // sizes options
+  const [sizesSelectedOptions, setSizesSelectedOptions] = useState<string[]>(
+    []
+  );
+  const sizesOptions =
+    product_details?.productSizes?.map((size) => ({
+      label: size,
+      value: size,
+    })) || [];
+
+  useEffect(() => {
+    setColor( colorSelectedOptions);
+    setSize(sizesSelectedOptions);
+  }, [colorSelectedOptions, sizesSelectedOptions]);
   // add in wish mutation hook
   const [
     addProductInWish,
@@ -76,8 +93,6 @@ const ProductDetail = ({
     },
   ] = useAddToCartMutation();
 
-
-  
   //wishListHandler
   const wishListHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
@@ -89,12 +104,15 @@ const ProductDetail = ({
       : openModal("login");
   };
 
+  console.log("clor size", color, size)
   const addCardHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn
       ? addProductInCart({
           productId: product_details?.id,
           userId: user?.id,
+          productSize:size,
+          productColor:color
         })
       : openModal("login");
   };
@@ -230,25 +248,29 @@ const ProductDetail = ({
             <p className="text-base font-secondary">
               {product_details?.productDetails}
             </p>
-            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
-              <div className="flex">
-                <span className="mr-3">Color</span>
-                <button className="border-2 border-gray-300 rounded-full w-6 h-6 focus:outline-none"></button>
-                <button className="border-2 border-gray-300 ml-1 bg-gray-700 rounded-full w-6 h-6 focus:outline-none"></button>
-                <button className="border-2 border-gray-300 ml-1 bg-indigo-500 rounded-full w-6 h-6 focus:outline-none"></button>
-              </div>
-              <div className="flex ml-6 items-center">
+            <div className="flex gap-5 mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
               <MultiSelect
-                  options={colorOptions}
-                  onValueChange={setColorSelectedOptions}
-                  defaultValue={colorSelectedOptions}
-                  placeholder="Select Colors"
-                  variant="inverted"
-                  animation={1}
-                  maxCount={3}
-                />
-
-              </div>
+                options={colorOptions}
+                onValueChange={(selectedColors) =>
+                  setColorSelectedOptions(selectedColors)
+                }
+                defaultValue={colorSelectedOptions}
+                placeholder="Select Colors"
+                variant="inverted"
+                animation={1}
+                maxCount={10}
+              />
+              <MultiSelect
+                options={sizesOptions}
+                onValueChange={(selectedSizes) =>
+                  setSizesSelectedOptions(selectedSizes)
+                }
+                defaultValue={sizesSelectedOptions}
+                placeholder="Select Sizes"
+                variant="inverted"
+                animation={1}
+                maxCount={10}
+              />
             </div>
 
             <div className="flex justify-between">

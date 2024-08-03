@@ -7,12 +7,14 @@ import Link from "next/link";
 import MegamenuMotion from "@/components/UI/Framer-motion/MegamenuMotion";
 import ICONS from "../Icons/AllIcons";
 import { megaLinks } from "./NavLinks";
+import { useTheme } from "next-themes";
 
 const NavLinks = ({ previousScroll }: any) => {
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
   const [isPageOpen, setIsPageOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const {theme}=useTheme()
 
   const handleMouseEnter = (linkName: React.SetStateAction<string>) => {
     setHeading(linkName);
@@ -62,9 +64,9 @@ const NavLinks = ({ previousScroll }: any) => {
               >
                 <MegamenuMotion isDropdownOpen={isPageOpen && heading === link.name}>
                   <div className="pb-3">
-                    <div className="w-4 h-4 left-3 absolute mt-1 bg-gray-100 rotate-45"></div>
+                    <div className={`w-4 h-4 left-3 absolute mt-1 rotate-45 ${theme==="dark"?"bg-gray-900":"bg-gray-100"}`}></div>
                   </div>
-                  <div className="bg-gray-100 p-5">
+                  <div className={`p-5 ${theme==="dark"?"bg-gray-900":"bg-slate-100"}`}>
                     {link?.sublinks?.map((mysublinks) => (
                       <div key={mysublinks.Head}>
                         <h1 className="text-lg font-primary font-bold py-2">
