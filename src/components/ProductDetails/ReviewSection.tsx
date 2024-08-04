@@ -5,12 +5,17 @@ import React from "react";
 import Ratings from "../UI/Rating/Rating";
 import SubTitle from "../UI/SubTitle/SubTitle";
 import Paragraph from "../UI/Paragraph/Paragraph";
+import ICONS from "../shared/Icons/AllIcons";
+import { useAppSelector } from "@/Hooks/useRedux";
+import useModal from "@/Hooks/useModal";
 
 const ReviewSection = ({
   product_details,
 }: {
   product_details: IProduct | undefined;
 }) => {
+  const { user, isLoggedIn } = useAppSelector((state) => state.auth);
+  const { openModal } = useModal();
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);
     return date.toLocaleString();
@@ -18,12 +23,13 @@ const ReviewSection = ({
 
   return (
     <div className="relative h-[450px] overflow-auto">
-      {product_details?.productReviews && product_details.productReviews.length > 0 ? (
+      {product_details?.productReviews &&
+      product_details.productReviews.length > 0 ? (
         <>
           {product_details.productReviews.map((review: IProductReview) => (
             <div
               key={review.id}
-              className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md "
+              className="container flex flex-col w-full max-w-6xl p-6 mx-auto divide-y rounded-md "
             >
               <div className="flex space-x-4">
                 <div>
@@ -54,10 +60,37 @@ const ReviewSection = ({
           ))}
         </>
       ) : (
-        <div className="flex justify-center items-center h-[450px]">
+        <div className="flex flex-col gap-10 justify-center items-center h-[450px]">
           <SubTitle SubTitle="No Review Available" />
         </div>
       )}
+      <div className="p-6">
+        {user?.id || isLoggedIn ? (
+          <>
+            {product_details && (
+              <button
+                className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
+                onClick={() => openModal("review")}
+              >
+                <span className="text-base md:text-lg font-secondary text-white font-semibold ">
+                  Write A Review
+                </span>
+                {ICONS.chat_icon}
+              </button>
+            )}
+          </>
+        ) : (
+          <button
+            className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
+            onClick={() => openModal("login")}
+          >
+            <span className="text-base md:text-lg font-secondary  font-semibold">
+              Write A Review
+            </span>
+            {ICONS.chat_icon}
+          </button>
+        )}
+      </div>
     </div>
   );
 };

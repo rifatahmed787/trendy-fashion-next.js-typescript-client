@@ -15,6 +15,7 @@ import { useAppSelector } from "@/Hooks/useRedux";
 import RatingPicker from "../UI/Rating/RatingPicker";
 import { useAddProductReviewMutation } from "@/Redux/features/review/reviewApi";
 import { Button } from "../UI/Button";
+import Paragraph from "../UI/Paragraph/Paragraph";
 
 const AddReviewForm = ({
   product_details,
@@ -22,7 +23,11 @@ const AddReviewForm = ({
   product_details: IProduct | undefined;
 }) => {
   const { onClose } = useModal();
-  const { control, handleSubmit } = useForm();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
 
   const [review, { data: reviewData, isLoading, isSuccess, isError, error }] =
@@ -57,7 +62,7 @@ const AddReviewForm = ({
     }
   };
 
-  //error and success handlaing
+  // Error and success handling
   useEffect(() => {
     if (isError && error && "data" in error) {
       setIsAlertOpen(true);
@@ -91,6 +96,7 @@ const AddReviewForm = ({
             name="reviewText"
             control={control}
             defaultValue=""
+            rules={{ required: "Please write something" }}
             render={({ field }) => (
               <TextArea
                 label="Write your review!"
@@ -102,6 +108,11 @@ const AddReviewForm = ({
               />
             )}
           />
+          {errors.reviewText && (
+            <Paragraph className="text-red-500 text-sm">
+              {(errors.reviewText.message as string) || "Please write something"}
+            </Paragraph>
+          )}
 
           <Button
             type="submit"
@@ -110,7 +121,7 @@ const AddReviewForm = ({
                           text-base font-semibold font-secondary text-white rounded my-10"
             icon={isLoading ? ICONS.button_loading_icon : undefined}
             isDisabled={isLoading}
-          />
+          >Submit</Button>
 
           {isAlertOpen && (
             <ToastContainer

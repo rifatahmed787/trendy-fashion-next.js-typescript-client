@@ -307,34 +307,6 @@ const ProductDetail = ({
               </div>
             </div>
 
-            <div className="py-4">
-              {user?.id || isLoggedIn ? (
-                <>
-                  {product_details && (
-                    <button
-                      className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
-                      onClick={() => openModal("review")}
-                    >
-                      <span className="text-base md:text-lg font-secondary text-white font-semibold ">
-                        Write A Review
-                      </span>
-                      {ICONS.chat_icon}
-                    </button>
-                  )}
-                </>
-              ) : (
-                <button
-                  className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
-                  onClick={() => openModal("login")}
-                >
-                  <span className="text-base md:text-lg font-secondary  font-semibold">
-                    Write A Review
-                  </span>
-                  {ICONS.chat_icon}
-                </button>
-              )}
-            </div>
-
             {/* Review modal */}
             <AddReviewModal product_details={product_details} />
           </div>
