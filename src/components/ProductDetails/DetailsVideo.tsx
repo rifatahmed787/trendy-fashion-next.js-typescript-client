@@ -8,7 +8,7 @@ const DetailsVideo = ({
   product_details: IProduct | undefined;
 }) => {
   return (
-    <div className="relative h-[450px] overflow-auto">
+    <div className="relative h-[450px] overflow-auto custom-scrollbar">
       <div className="container flex flex-col w-full max-w-6xl p-6 mx-auto divide-y rounded-md ">
         {product_details?.video ? (
           <video

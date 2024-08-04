@@ -8,6 +8,7 @@ import Paragraph from "../UI/Paragraph/Paragraph";
 import ICONS from "../shared/Icons/AllIcons";
 import { useAppSelector } from "@/Hooks/useRedux";
 import useModal from "@/Hooks/useModal";
+import Dropdown from "../UI/Dropdown";
 
 const ReviewSection = ({
   product_details,
@@ -22,7 +23,7 @@ const ReviewSection = ({
   };
 
   return (
-    <div className="relative h-[450px] overflow-auto">
+    <div className="relative h-[450px] overflow-auto custom-scrollbar">
       {product_details?.productReviews &&
       product_details.productReviews.length > 0 ? (
         <>
@@ -31,26 +32,29 @@ const ReviewSection = ({
               key={review.id}
               className="container flex flex-col w-full max-w-6xl p-6 mx-auto divide-y rounded-md "
             >
-              <div className="flex space-x-4">
-                <div>
-                  <Image
-                    width={20}
-                    height={20}
-                    src={review?.reviewer?.avatar}
-                    alt=""
-                    className="object-cover w-12 h-12 rounded-full "
-                  />
+              <div className="flex items-center justify-between">
+                <div className="flex space-x-4">
+                  <div>
+                    <Image
+                      width={20}
+                      height={20}
+                      src={review?.reviewer?.avatar}
+                      alt=""
+                      className="object-cover w-12 h-12 rounded-full "
+                    />
+                  </div>
+                  <div>
+                    <Ratings
+                      starClassName="w-4 h-4 lg:w-5 lg:h-5"
+                      ratings={review?.rating || 0}
+                    />
+                    <h4 className="font-bold">{review?.reviewer?.username}</h4>
+                    <span className="text-xs ">
+                      {formatTimestamp(review.createdAt)}
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <Ratings
-                    starClassName="w-4 h-4 lg:w-5 lg:h-5"
-                    ratings={review?.rating || 0}
-                  />
-                  <h4 className="font-bold">{review?.reviewer?.username}</h4>
-                  <span className="text-xs ">
-                    {formatTimestamp(review.createdAt)}
-                  </span>
-                </div>
+                {user?.id && isLoggedIn && <Dropdown />}
               </div>
 
               <div className="p-4 space-y-2 text-sm ">
@@ -64,21 +68,18 @@ const ReviewSection = ({
           <SubTitle SubTitle="No Review Available" />
         </div>
       )}
-      <div className="p-6">
-        {user?.id || isLoggedIn ? (
-          <>
-            {product_details && (
-              <button
-                className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
-                onClick={() => openModal("review")}
-              >
-                <span className="text-base md:text-lg font-secondary text-white font-semibold ">
-                  Write A Review
-                </span>
-                {ICONS.chat_icon}
-              </button>
-            )}
-          </>
+
+      <div className="sticky bottom-0 bg-white p-6 w-full">
+        {user?.id && isLoggedIn ? (
+          <button
+            className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
+            onClick={() => openModal("review")}
+          >
+            <span className="text-base md:text-lg font-secondary text-white font-semibold ">
+              Write A Review
+            </span>
+            {ICONS.chat_icon}
+          </button>
         ) : (
           <button
             className="flex items-center gap-2 px-3 py-2 text-white font-semibold bg-primary-100 cursor-pointer"
