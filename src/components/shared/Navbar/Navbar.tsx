@@ -30,7 +30,7 @@ const Navbar = () => {
   const { openModal } = useModal();
   const pathname = usePathname();
   const dispatch = useAppDispatch();
-  const { theme} = useTheme();
+  const { theme } = useTheme();
   const accountDropdownRef = useRef(null);
 
   const { data: Products } = useGetCartProductsQuery({});
@@ -128,7 +128,7 @@ const Navbar = () => {
     isNavbarVisible
       ? "translate-y-0 top-0 md:top-[73px]"
       : "-translate-y-auto top-auto py-3"
-  } ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} shadow-sm`;
+  } ${theme === "dark" ? "bg-gray-900" : "bg-white"} shadow-sm`;
   return (
     <div>
       <nav className={navbarClasses}>
@@ -144,9 +144,7 @@ const Navbar = () => {
                   height={undefined}
                 />
               </Link>
-              
             </li>
-            
 
             {NavItems?.map((item) => {
               const isSelected = pathname === item?.ref;
@@ -176,6 +174,11 @@ const Navbar = () => {
           </div>
           {user?.email && isLoggedIn ? (
             <div className="flex items-center gap-2">
+              <div
+                className={`mx-2 bg-white shadow-md rounded-md`}
+              >
+                <ModeToggle />
+              </div>
               <div className="hidden md:block">
                 <ul className="flex items-center gap-2 py-4">
                   {/* wishlist */}
@@ -191,7 +194,7 @@ const Navbar = () => {
                           pathname === "/wishlist" ? "text-primary-100" : ""
                         }`}
                       />
-                       <p className="text-lg text-primary-100 absolute -top-4 right-0">
+                      <p className="text-lg text-primary-100 absolute -top-4 right-0">
                         {products?.data?.length ?? 0}
                       </p>
                     </Link>
@@ -221,30 +224,30 @@ const Navbar = () => {
           ) : (
             <>
               <div className="hidden md:block">
-              <div className="flex justify-center gap-5">
-              <ModeToggle/>
-                <div className="flex items-center px-3 rounded-md bg-primary-100 text-white">
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      openModal("login");
-                    }}
-                    className="font-primary font-bold text-lg"
-                  >
-                    SignIn
-                  </button>
-                  <span className="bg-white w-0.5 h-8 rotate-[30deg] mx-2"></span>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      openModal("register");
-                    }}
-                    className="font-primary font-bold text-lg"
-                  >
-                    SignUp
-                  </button>
+                <div className="flex justify-center gap-5">
+                  <ModeToggle />
+                  <div className="flex items-center px-3 rounded-md bg-primary-100 text-white">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal("login");
+                      }}
+                      className="font-primary font-bold text-lg"
+                    >
+                      SignIn
+                    </button>
+                    <span className="bg-white w-0.5 h-8 rotate-[30deg] mx-2"></span>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal("register");
+                      }}
+                      className="font-primary font-bold text-lg"
+                    >
+                      SignUp
+                    </button>
+                  </div>
                 </div>
-              </div>
               </div>
             </>
           )}
