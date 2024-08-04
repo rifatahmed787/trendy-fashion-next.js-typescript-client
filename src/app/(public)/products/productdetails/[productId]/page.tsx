@@ -2,6 +2,7 @@
 import { useGetProductDetailsQuery } from "@/Redux/features/products/productApi";
 import { IProduct } from "@/Types/products";
 import DetailsSkeleton from "@/components/ProductDetails/DetailsSkeleton";
+import DetailsTab from "@/components/ProductDetails/DetailsTab";
 import ProductDetail from "@/components/ProductDetails/ProductDetail";
 import RelatedProduct from "@/components/ProductDetails/RelatedProduct";
 import Heading from "@/components/UI/Heading/Heading";
@@ -30,6 +31,9 @@ const ProductDetails = ({ params }: any) => {
             </div>
           </div>
         )}
+        <div className="max-w-[1170px] mx-auto pt-16">
+          <DetailsTab product_details={product_details}/>
+        </div>
 
         <div className="max-w-[1170px] mx-auto pt-16">
           <Heading Heading="Related Products " />

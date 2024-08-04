@@ -14,8 +14,8 @@ import { get_error_messages } from "@/lib/Error_message";
 import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
 import AddReviewModal from "./AddReviewModal";
-import ReviewSection from "./ReviewSection";
 import { MultiSelect } from "../UI/MultiSelector/MultiSelect";
+
 
 // const FormSchema = z.object({
 //   frameworks: z
@@ -35,6 +35,8 @@ const ProductDetail = ({
       : undefined
   );
   const { openModal } = useModal();
+
+  console.log(product_details)
 
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
@@ -104,7 +106,6 @@ const ProductDetail = ({
       : openModal("login");
   };
 
-  console.log("clor size", color, size)
   const addCardHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn
@@ -173,9 +174,9 @@ const ProductDetail = ({
             </div>
 
             {product_details?.productImages &&
-            product_details.productImages.length > 1 ? (
+            product_details?.productImages.length > 1 ? (
               <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
-                {product_details.productImages.slice(0, 4).map((img, index) => (
+                {product_details?.productImages.slice(0, 4).map((img, index) => (
                   <div key={index}>
                     <Image
                       onClick={() => setLargeImage(img)}
@@ -336,8 +337,6 @@ const ProductDetail = ({
 
             {/* Review modal */}
             <AddReviewModal product_details={product_details} />
-
-            <ReviewSection product_details={product_details} />
           </div>
         </div>
       </div>

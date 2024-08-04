@@ -33,6 +33,7 @@ export interface IProduct {
   bestSelling: boolean;
   productVerified: boolean;
   productGender: string;
+  video: string;
   ages: string[];
   buyerId: string | null;
   createdAt: string;
