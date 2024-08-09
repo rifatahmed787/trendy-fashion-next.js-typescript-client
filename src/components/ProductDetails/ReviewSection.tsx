@@ -1,8 +1,7 @@
-"client";
+import React, { useCallback, useEffect, useState } from "react";
 import { IProduct } from "@/Types/products";
 import { IProductReview } from "@/Types/review";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
 import Ratings from "../UI/Rating/Rating";
 import SubTitle from "../UI/SubTitle/SubTitle";
 import Paragraph from "../UI/Paragraph/Paragraph";
@@ -16,21 +15,23 @@ import {
 } from "@/Redux/features/review/reviewApi";
 import { get_error_messages } from "@/lib/Error_message";
 import ToastContainer from "../UI/Toast";
-import DeleteModal from "../UI/DeleteModal";
+import Modal from "../Modal/Modal";
+import ModalBody from "../Modal/ModalBody/ModalBody";
+import ModalHeader from "../Modal/ModalHeader/ModalHeader";
+import { Button } from "../UI/Button";
 
 const ReviewSection = ({
   product_details,
 }: {
   product_details: IProduct | undefined;
 }) => {
-  // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
     "success"
   );
   const [AlertMessages, setAlertMessages] = useState("");
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  const { openModal, onClose } = useModal();
+  const { openModal, onClose, isOpen } = useModal();
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);
     return date.toLocaleString();
@@ -47,6 +48,7 @@ const ReviewSection = ({
     },
   ] = useUpdateReviewMutation();
 
+  const [reviewIdToDelete, setReviewIdToDelete] = useState<number | null>(null);
   const [
     deleteReview,
     {
@@ -58,14 +60,19 @@ const ReviewSection = ({
     },
   ] = useDeleteReviewMutation();
 
-  const reviewDeleteHandler = (e: { stopPropagation: () => void }) => {
+  const reviewDeleteHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    deleteReview({
-      id: product_details?.id,
-    });
+    console.log("clicked")
+    if (reviewIdToDelete) {
+      deleteReview(reviewIdToDelete);
+    }
   };
 
-  //error and success handlaing
+  const openDeleteModal = (reviewId: number) => {
+    setReviewIdToDelete(reviewId);
+    openModal("delete");
+  };
+
   useEffect(() => {
     if (isDeleteError && deleteError && "data" in deleteError) {
       setIsAlertOpen(true);
@@ -76,9 +83,16 @@ const ReviewSection = ({
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(deleteData?.message);
-      onClose()
+      onClose();
     }
-  }, [deleteData?.message, deleteError, isDeleteError, isDeleteSuccess, onClose]);
+  }, [
+    deleteData?.message,
+    deleteError,
+    isDeleteError,
+    isDeleteSuccess,
+    onClose,
+  ]);
+
   useEffect(() => {
     if (isUpdateError && updateError && "data" in updateError) {
       setIsAlertOpen(true);
@@ -97,7 +111,7 @@ const ReviewSection = ({
       {product_details?.productReviews &&
       product_details.productReviews.length > 0 ? (
         <>
-          {product_details.productReviews.map((review: IProductReview) => (
+          {product_details?.productReviews?.map((review: IProductReview) => (
             <div
               key={review.id}
               className="container flex flex-col w-full max-w-6xl p-6 mx-auto divide-y rounded-md "
@@ -130,11 +144,39 @@ const ReviewSection = ({
                       <p className="cursor-pointer py-1.5 font-semibold font-secondary">
                         Edit
                       </p>
-                      <p onClick={() => openModal("delete")} className="cursor-pointer py-1.5 font-semibold font-secondary">
+                      <p
+                        onClick={() => openDeleteModal(review.id)}
+                        className="cursor-pointer py-1.5 font-semibold font-secondary"
+                      >
                         Delete
                       </p>
                     </Dropdown>
-                    {product_details && <DeleteModal deleteHandler={reviewDeleteHandler} Loading={isDeleteLoading} />}
+                    <Modal isOpen={isOpen("delete")} onClose={onClose}>
+                      <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+                        <ModalHeader title="Delete" onClose={onClose} />
+                        <Paragraph className="text-center">
+                          Are you sure you want to delete this <b>review</b>?
+                        </Paragraph>
+                        <div className="pt-5 flex justify-center items-center gap-3">
+                          <Button
+                            className="border border-primary-100"
+                            onClick={onClose}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={reviewDeleteHandler} 
+                            className="bg-red-500 text-white"
+                            icon={
+                              isDeleteLoading ? ICONS.button_loading_icon : undefined
+                            }
+                            isDisabled={isDeleteLoading}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </ModalBody>
+                    </Modal>
                   </>
                 )}
               </div>

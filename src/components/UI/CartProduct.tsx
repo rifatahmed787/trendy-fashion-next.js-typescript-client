@@ -282,7 +282,7 @@ const CartProduct = ({ product }: { product: IProduct }) => {
           </div>
         </div>
         <h4 className="mt-2 pl-3 text-2xl font-secondary capitalize text-primary-100">
-          {product?.productName.slice(0, 15)}..
+          {product?.productName.slice(0, 16)}..
         </h4>
 
         <div className="flex gap-5 items-center mt-2 pl-3">

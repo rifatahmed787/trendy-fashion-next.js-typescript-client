@@ -18,7 +18,7 @@ const DetailsVideo = ({
           />
         ) : (
           <div className="flex justify-center items-center h-[450px]">
-            <SubTitle SubTitle="No Review Available" />
+            <SubTitle SubTitle="No Video Available" />
           </div>
         )}
       </div>

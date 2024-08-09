@@ -23,8 +23,8 @@ export const reviewApi = apiSlice.injectEndpoints({
 
     
     deleteReview: builder.mutation({
-      query: (id) => ({
-        url: `/reviews/${id}`,
+      query: (reviewId) => ({
+        url: `/reviews/${reviewId}`,
         method: "DELETE",
       }),
       invalidatesTags: ["reviews", "products"],

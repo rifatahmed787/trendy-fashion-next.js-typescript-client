@@ -36,7 +36,6 @@ const ProductDetail = ({
   );
   const { openModal } = useModal();
 
-  console.log(product_details)
 
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
