@@ -1,7 +1,7 @@
 import { useUploderMutation } from "@/Redux/features/upload/uploadApi";
 import { useEditUserMutation } from "@/Redux/features/user/userApi";
 import { IProfile } from "@/Types/profile";
-import Button from "@/components/UI/Button";
+import { Button } from "@/components/UI/Button";
 import TextInput from "@/components/UI/Form-items/TextInput";
 import FileInput from "@/components/UI/Form-items/UpdateFileInput";
 import ToastContainer from "@/components/UI/Toast";
@@ -305,7 +305,7 @@ const EditProfile = ({
             className="bg-primary-100 text-base font-medium rounded px-5 py-1.5"
             icon={addressLoading ? ICONS.button_loading_icon : undefined}
             isDisabled={addressLoading}
-          />
+          >Submit</Button>
         </div>
 
         {isAlertOpen && (

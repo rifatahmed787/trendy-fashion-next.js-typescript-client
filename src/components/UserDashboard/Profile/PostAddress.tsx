@@ -1,5 +1,5 @@
 import { usePostAddressMutation } from "@/Redux/features/user/userApi";
-import Button from "@/components/UI/Button";
+import { Button } from "@/components/UI/Button";
 import TextInput from "@/components/UI/Form-items/TextInput";
 import ToastContainer from "@/components/UI/Toast";
 import ICONS from "@/components/shared/Icons/AllIcons";
@@ -193,7 +193,7 @@ const PostAddress = ({
             className="bg-primary-100 text-base font-medium rounded px-5 py-1.5"
             icon={addressLoading ? ICONS.button_loading_icon : undefined}
             isDisabled={addressLoading}
-          />
+          >Submit</Button>
         </div>
 
         {isAlertOpen && (

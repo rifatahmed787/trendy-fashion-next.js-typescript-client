@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import "./Contact.module.css";
 import Image from "next/image";
 import TextInput from "../../Form-items/TextInput";
-import Button from "../../Button";
+
 import {
   useForm,
   Controller,
@@ -20,6 +20,7 @@ import { MdEmail, MdLocationPin } from "react-icons/md";
 import { FaInstagram, FaPhone } from "react-icons/fa";
 import { FiFacebook, FiTwitter, FiYoutube } from "react-icons/fi";
 import SocialIcons from "@/components/shared/SocialIcons/SocialIcons";
+import { Button } from "../../Button";
 
 const Contact = () => {
   const { control, handleSubmit } = useForm();
@@ -150,7 +151,7 @@ const Contact = () => {
                   type="submit"
                   title="Submit"
                   className="text-lg font-open_sans py-2 bg-white rounded-lg font-semibold hover:bg-primary-100 hover:text-white border-2 hover:border-white duration-500"
-                />
+                >Submit</Button>
               </div>
             </form>
           </div>

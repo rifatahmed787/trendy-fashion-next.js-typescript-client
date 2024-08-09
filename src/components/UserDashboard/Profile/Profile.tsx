@@ -7,7 +7,6 @@ import {
 } from "@/Redux/features/user/userApi";
 import { IProfile } from "@/Types/profile";
 import BrandButton from "@/components/Button/PrimaryButton";
-import Button from "@/components/UI/Button";
 import TextInput from "@/components/UI/Form-items/TextInput";
 import FileInput from "@/components/UI/Form-items/UpdateFileInput";
 import ToastContainer from "@/components/UI/Toast";
@@ -23,6 +22,7 @@ import {
   useForm,
 } from "react-hook-form";
 import SkeletonProfile from "./Skeleton";
+import { Button } from "@/components/UI/Button";
 
 const Profile = () => {
   const [editMode, setEditMode] = useState(false);
@@ -408,7 +408,7 @@ const Profile = () => {
                                       : undefined
                                   }
                                   isDisabled={addressLoading || uploadLoading}
-                                />
+                                >Submit</Button>
                               </div>
                             )}
                           </div>
