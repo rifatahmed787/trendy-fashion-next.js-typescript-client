@@ -102,7 +102,8 @@ const AddReviewForm = ({
           />
           {errors.reviewText && (
             <Paragraph className="text-red-500 text-sm">
-              {(errors.reviewText.message as string) || "Please write something"}
+              {(errors.reviewText.message as string) ||
+                "Please write something"}
             </Paragraph>
           )}
 
@@ -113,20 +114,20 @@ const AddReviewForm = ({
                           text-base font-semibold font-secondary text-white rounded my-10"
             icon={isLoading ? ICONS.button_loading_icon : undefined}
             isDisabled={isLoading}
-          >Submit</Button>
-
-       
+          >
+            Submit
+          </Button>
         </form>
-        {isAlertOpen && (
-            <ToastContainer
-              type={AlertType}
-              messages={AlertMessages}
-              isAlertOpen={isAlertOpen}
-              setIsAlertOpen={setIsAlertOpen}
-              className="bottom-3"
-            />
-          )}
       </div>
+      {isAlertOpen && (
+        <ToastContainer
+          type={AlertType}
+          messages={AlertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+          className="bottom-3"
+        />
+      )}
     </>
   );
 };
