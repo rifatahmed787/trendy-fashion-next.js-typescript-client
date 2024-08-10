@@ -16,6 +16,7 @@ import ModalBody from "../Modal/ModalBody/ModalBody";
 import ModalHeader from "../Modal/ModalHeader/ModalHeader";
 import Paragraph from "./Paragraph/Paragraph";
 import { Button } from "./Button";
+import { MultiSelect } from "./MultiSelector/MultiSelect";
 
 const CartCard = ({ product }: { product?: ICart }) => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
@@ -44,6 +45,33 @@ const CartCard = ({ product }: { product?: ICart }) => {
       handleQuantityChange(quantity - 1);
     }
   };
+
+  const [color, setColor] = useState<string[]>([]);
+  const [size, setSize] = useState<string[]>([]);
+
+  // color options
+  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>(
+    []
+  );
+  const colorOptions =
+    product?.product?.productColors?.map((color) => ({
+      label: color,
+      value: color,
+    })) || [];
+  // sizes options
+  const [sizesSelectedOptions, setSizesSelectedOptions] = useState<string[]>(
+    []
+  );
+  const sizesOptions =
+    product?.product?.productSizes?.map((size) => ({
+      label: size,
+      value: size,
+    })) || [];
+
+  useEffect(() => {
+    setColor(colorSelectedOptions);
+    setSize(sizesSelectedOptions);
+  }, [colorSelectedOptions, sizesSelectedOptions]);
 
   // delete from cart mutation hook
   const [
@@ -87,13 +115,13 @@ const CartCard = ({ product }: { product?: ICart }) => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(removeFromCartData?.message);
-      onClose()
+      onClose();
     }
   }, [error, isError, isSuccess, onClose, removeFromCartData?.message]);
 
   return (
     <div
-      className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 "
+      className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap- "
       key={product?.id}
     >
       <div className="flex ">
@@ -169,6 +197,34 @@ const CartCard = ({ product }: { product?: ICart }) => {
             <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
           </svg>
         </button>
+      </div>
+      <div>
+        <MultiSelect
+          options={colorOptions}
+          onValueChange={(selectedColors) =>
+            setColorSelectedOptions(selectedColors)
+          }
+          defaultValue={colorSelectedOptions}
+          placeholder="Select Colors"
+          variant="inverted"
+          animation={1}
+          maxCount={10}
+          className="w-36"
+        />
+      </div>
+      <div>
+        <MultiSelect
+          options={sizesOptions}
+          onValueChange={(selectedSizes) =>
+            setSizesSelectedOptions(selectedSizes)
+          }
+          defaultValue={sizesSelectedOptions}
+          placeholder="Select Sizes"
+          variant="inverted"
+          animation={1}
+          maxCount={10}
+          className="w-36"
+        />
       </div>
       <div className="flex sm:gap-5 md:gap-24">
         {" "}

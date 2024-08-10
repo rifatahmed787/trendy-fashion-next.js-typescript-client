@@ -139,6 +139,12 @@ const Cart = () => {
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
                   Quantity
                 </h3>
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Color
+                </h3>
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Size
+                </h3>
                 <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
                   Price
                 </h3>
@@ -148,8 +154,8 @@ const Cart = () => {
               </div>
 
               {/* book details */}
-              <div className={`flex items-center  -mx-8 px-1 lg:px-6 py-5`}>
-                <div className=" max-w-[1170px] mx-auto">
+              <div className={`flex items-center  -mx-8 px-1 py-5`}>
+                <div className=" ">
                   {isLoading ? (
                     ""
                   ) : (

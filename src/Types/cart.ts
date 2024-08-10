@@ -11,8 +11,8 @@ export type ICart = {
     productRating: number;
     productPrice: number;
     quantity: number;
-    productColor: string[];
-    productSize:string[];
+    productColors: string[];
+    productSizes:string[];
   };
   quantity: number;
 };
