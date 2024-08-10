@@ -17,10 +17,15 @@ import { get_error_messages } from "@/lib/Error_message";
 import ICONS from "@/components/shared/Icons/AllIcons";
 import { useCreatePaymentMutation } from "@/Redux/features/payment/paymentApi";
 import { useRouter } from "next/navigation";
+import Modal from "@/components/Modal/Modal";
+import ModalBody from "@/components/Modal/ModalBody/ModalBody";
+import ModalHeader from "@/components/Modal/ModalHeader/ModalHeader";
+import Paragraph from "@/components/UI/Paragraph/Paragraph";
+import { Button } from "@/components/UI/Button";
 
 const Cart = () => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  const { openModal } = useModal();
+  const { openModal, onClose, isOpen } = useModal();
   const router = useRouter();
   const [
     clearCart,
@@ -42,8 +47,6 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
-
-  console.log("this is cart", Products)
 
   const [selectedShipping, setSelectedShipping] = useState("standard");
   const [shippingCost, setShippingCost] = useState(0);
@@ -111,8 +114,9 @@ const Cart = () => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(clearCartData?.message);
+      onClose()
     }
-  }, [ClearcartError, ClearcartIsError, clearCartData?.message, isSuccess]);
+  }, [ClearcartError, ClearcartIsError, clearCartData?.message, isSuccess, onClose]);
 
   return (
     <div className={`pb-10 pt-1`}>
@@ -199,11 +203,42 @@ const Cart = () => {
                     <>
                       <button
                         className="font-semibold hover:text-red-500 text-sm flex items-center pr-0 md:pr-12"
-                        onClick={ClearCartHandler}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          openModal("clearCart");
+                        }}
                       >
                         Clear Cart
                         {isClearCartLoading ? ICONS.button_loading_icon : ""}
                       </button>
+                      <Modal isOpen={isOpen("clearCart")} onClose={onClose}>
+                        <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+                          <ModalHeader title="Clear Cart" onClose={onClose} />
+                          <Paragraph className="text-center">
+                            Are you sure you want to clear the <b>Cart</b>?
+                          </Paragraph>
+                          <div className="pt-5 flex justify-center items-center gap-3">
+                            <Button
+                              className="border border-primary-100"
+                              onClick={onClose}
+                            >
+                              Cancel
+                            </Button>
+                            <Button
+                              onClick={ClearCartHandler}
+                              className="bg-red-500 text-white"
+                              icon={
+                                isClearCartLoading
+                                  ? ICONS.button_loading_icon
+                                  : undefined
+                              }
+                              isDisabled={isClearCartLoading}
+                            >
+                              Clear
+                            </Button>
+                          </div>
+                        </ModalBody>
+                      </Modal>
                     </>
                   ) : (
                     ""
@@ -289,7 +324,6 @@ const Cart = () => {
           messages={AlertMessages}
           isAlertOpen={isAlertOpen}
           setIsAlertOpen={setIsAlertOpen}
-         
         />
       )}
     </div>
