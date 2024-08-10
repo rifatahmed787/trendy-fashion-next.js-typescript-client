@@ -13,11 +13,11 @@ import { get_error_messages } from "@/lib/Error_message";
 import TextArea from "../UI/Form-items/TextArea";
 import { useAppSelector } from "@/Hooks/useRedux";
 import RatingPicker from "../UI/Rating/RatingPicker";
-import { useAddProductReviewMutation } from "@/Redux/features/review/reviewApi";
+import { useUpdateReviewMutation } from "@/Redux/features/review/reviewApi";
 import { Button } from "../UI/Button";
 import Paragraph from "../UI/Paragraph/Paragraph";
 
-const AddReviewForm = ({
+const EditReviewForm = ({
   product_details,
 }: {
   product_details: IProduct | undefined;
@@ -30,8 +30,17 @@ const AddReviewForm = ({
   } = useForm();
   const { user } = useAppSelector((state) => state.auth);
 
-  const [review, { data: reviewData, isLoading, isSuccess, isError, error }] =
-    useAddProductReviewMutation();
+  const [
+    updateReview,
+    {
+      data: updateData,
+      isError: isUpdateError,
+      error: updateError,
+      isSuccess: isUpdateSuccess,
+      isLoading: isUpdateLoading,
+    },
+  ] = useUpdateReviewMutation();
+
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
     "success"
@@ -43,7 +52,7 @@ const AddReviewForm = ({
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
-      await review({
+      await updateReview({
         reviewerId: user?.id,
         productId: product_details?.id,
         rating: review_form.rating,
@@ -55,19 +64,18 @@ const AddReviewForm = ({
   };
 
   // Error and success handling
-  useEffect(() => {
-    if (isError && error && "data" in error) {
+   useEffect(() => {
+    if (isUpdateError && updateError && "data" in updateError) {
       setIsAlertOpen(true);
       setAlertType("error");
-      const error_messages = get_error_messages(error);
+      const error_messages = get_error_messages(updateError);
       setAlertMessages(error_messages);
-    } else if (isSuccess) {
+    } else if (isUpdateSuccess) {
       setIsAlertOpen(true);
       setAlertType("success");
-      setAlertMessages(reviewData?.message);
-      onClose();
+      setAlertMessages(updateData?.message);
     }
-  }, [reviewData?.message, error, isError, isSuccess, onClose]);
+  }, [updateData?.message, updateError, isUpdateError, isUpdateSuccess]);
 
   return (
     <>
@@ -131,4 +139,4 @@ const AddReviewForm = ({
   );
 };
 
-export default AddReviewForm;
+export default EditReviewForm;

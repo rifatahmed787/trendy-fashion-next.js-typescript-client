@@ -85,7 +85,7 @@ const WishCard = ({ product }: { product: IWish }) => {
                 ? "transform scale-110 opacity-80 duration-700"
                 : "transform-none opacity-100"
             }`}
-            src={product?.product.productImage[isHovered ? 1 : 0]}
+            src={product?.product.productImages[isHovered ? 1 : 0]}
             alt="product image"
           />
 

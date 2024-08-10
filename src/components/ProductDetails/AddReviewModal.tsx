@@ -16,7 +16,7 @@ const AddReviewModal = ({
     <>
       <Modal isOpen={isOpen("review")} onClose={onClose}>
         <ModalBody>
-          <ModalHeader title="Review" onClose={onClose}/>
+          <ModalHeader title="Add Review" onClose={onClose}/>
           <AddReviewForm product_details={product_details} />
         </ModalBody>
       </Modal>

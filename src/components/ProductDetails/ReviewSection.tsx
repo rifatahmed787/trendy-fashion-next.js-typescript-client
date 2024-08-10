@@ -15,10 +15,7 @@ import {
 } from "@/Redux/features/review/reviewApi";
 import { get_error_messages } from "@/lib/Error_message";
 import ToastContainer from "../UI/Toast";
-import Modal from "../Modal/Modal";
-import ModalBody from "../Modal/ModalBody/ModalBody";
-import ModalHeader from "../Modal/ModalHeader/ModalHeader";
-import { Button } from "../UI/Button";
+import DeleteModal from "../UI/DeleteModal";
 
 const ReviewSection = ({
   product_details,
@@ -37,18 +34,9 @@ const ReviewSection = ({
     return date.toLocaleString();
   };
 
-  const [
-    updateReview,
-    {
-      data: updateData,
-      isError: isUpdateError,
-      error: updateError,
-      isSuccess: isUpdateSuccess,
-      isLoading: isUpdateLoading,
-    },
-  ] = useUpdateReviewMutation();
 
-  const [reviewIdToDelete, setReviewIdToDelete] = useState<number | null>(null);
+
+  const [reviewId, setReviewId] = useState<number | null>(null);
   const [
     deleteReview,
     {
@@ -62,14 +50,13 @@ const ReviewSection = ({
 
   const reviewDeleteHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    console.log("clicked")
-    if (reviewIdToDelete) {
-      deleteReview(reviewIdToDelete);
+    if (reviewId) {
+      deleteReview({ id: reviewId });
     }
   };
 
   const openDeleteModal = (reviewId: number) => {
-    setReviewIdToDelete(reviewId);
+    setReviewId(reviewId);
     openModal("delete");
   };
 
@@ -93,18 +80,6 @@ const ReviewSection = ({
     onClose,
   ]);
 
-  useEffect(() => {
-    if (isUpdateError && updateError && "data" in updateError) {
-      setIsAlertOpen(true);
-      setAlertType("error");
-      const error_messages = get_error_messages(updateError);
-      setAlertMessages(error_messages);
-    } else if (isUpdateSuccess) {
-      setIsAlertOpen(true);
-      setAlertType("success");
-      setAlertMessages(updateData?.message);
-    }
-  }, [updateData?.message, updateError, isUpdateError, isUpdateSuccess]);
 
   return (
     <div className="relative h-[450px] overflow-auto custom-scrollbar">
@@ -151,32 +126,10 @@ const ReviewSection = ({
                         Delete
                       </p>
                     </Dropdown>
-                    <Modal isOpen={isOpen("delete")} onClose={onClose}>
-                      <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
-                        <ModalHeader title="Delete" onClose={onClose} />
-                        <Paragraph className="text-center">
-                          Are you sure you want to delete this <b>review</b>?
-                        </Paragraph>
-                        <div className="pt-5 flex justify-center items-center gap-3">
-                          <Button
-                            className="border border-primary-100"
-                            onClick={onClose}
-                          >
-                            Cancel
-                          </Button>
-                          <Button
-                            onClick={reviewDeleteHandler} 
-                            className="bg-red-500 text-white"
-                            icon={
-                              isDeleteLoading ? ICONS.button_loading_icon : undefined
-                            }
-                            isDisabled={isDeleteLoading}
-                          >
-                            Delete
-                          </Button>
-                        </div>
-                      </ModalBody>
-                    </Modal>
+                    <DeleteModal
+                        deleteHandler={reviewDeleteHandler}
+                        Loading={isDeleteLoading}
+                      />
                   </>
                 )}
               </div>

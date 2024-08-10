@@ -6,7 +6,7 @@ export type IWish = {
   productId: number | IProduct;
   userId: number | IUser;
   product: {
-    productImage: string[];
+    productImages: string[];
     productName: string;
     productRating: number;
     productPrice: number;
