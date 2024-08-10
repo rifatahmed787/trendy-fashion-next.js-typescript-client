@@ -11,10 +11,15 @@ import Ratings from "./Rating/Rating";
 import ICONS from "../shared/Icons/AllIcons";
 import ToastContainer from "./Toast";
 import { ICart } from "@/Types/cart";
+import Modal from "../Modal/Modal";
+import ModalBody from "../Modal/ModalBody/ModalBody";
+import ModalHeader from "../Modal/ModalHeader/ModalHeader";
+import Paragraph from "./Paragraph/Paragraph";
+import { Button } from "./Button";
 
 const CartCard = ({ product }: { product?: ICart }) => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  const { openModal } = useModal();
+  const { openModal, onClose, isOpen } = useModal();
   const [quantity, setQuantity] = useState<number>(product?.quantity ?? 1);
 
   const [updateCartMutation] = useUpdateCartMutation();
@@ -82,8 +87,9 @@ const CartCard = ({ product }: { product?: ICart }) => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(removeFromCartData?.message);
+      onClose()
     }
-  }, [error, isError, isSuccess, removeFromCartData?.message]);
+  }, [error, isError, isSuccess, onClose, removeFromCartData?.message]);
 
   return (
     <div
@@ -113,11 +119,36 @@ const CartCard = ({ product }: { product?: ICart }) => {
           </span>
           <button
             className="font-semibold hover:text-red-500 text-gray-500 text-xs flex items-center"
-            onClick={CartRemoveHandler}
+            onClick={(e) => {
+              e.preventDefault();
+              openModal("cartDelete");
+            }}
           >
             Remove
-            {isRemoveCartLoading ? ICONS.button_loading_icon : ""}
           </button>
+          <Modal isOpen={isOpen("cartDelete")} onClose={onClose}>
+            <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+              <ModalHeader title="Cart Delete" onClose={onClose} />
+              <Paragraph className="text-center">
+                Are you sure you want to delete this <b>Cart</b>?
+              </Paragraph>
+              <div className="pt-5 flex justify-center items-center gap-3">
+                <Button className="border border-primary-100" onClick={onClose}>
+                  Cancel
+                </Button>
+                <Button
+                  onClick={CartRemoveHandler}
+                  className="bg-red-500 text-white"
+                  icon={
+                    isRemoveCartLoading ? ICONS.button_loading_icon : undefined
+                  }
+                  isDisabled={isRemoveCartLoading}
+                >
+                  Delete
+                </Button>
+              </div>
+            </ModalBody>
+          </Modal>
         </div>
       </div>
 

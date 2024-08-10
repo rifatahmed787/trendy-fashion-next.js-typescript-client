@@ -15,7 +15,10 @@ import {
 } from "@/Redux/features/review/reviewApi";
 import { get_error_messages } from "@/lib/Error_message";
 import ToastContainer from "../UI/Toast";
-import DeleteModal from "../UI/DeleteModal";
+import Modal from "../Modal/Modal";
+import ModalBody from "../Modal/ModalBody/ModalBody";
+import ModalHeader from "../Modal/ModalHeader/ModalHeader";
+import { Button } from "../UI/Button";
 
 const ReviewSection = ({
   product_details,
@@ -33,8 +36,6 @@ const ReviewSection = ({
     const date = new Date(timestamp);
     return date.toLocaleString();
   };
-
-
 
   const [reviewId, setReviewId] = useState<number | null>(null);
   const [
@@ -79,7 +80,6 @@ const ReviewSection = ({
     isDeleteSuccess,
     onClose,
   ]);
-
 
   return (
     <div className="relative h-[450px] overflow-auto custom-scrollbar">
@@ -126,10 +126,34 @@ const ReviewSection = ({
                         Delete
                       </p>
                     </Dropdown>
-                    <DeleteModal
-                        deleteHandler={reviewDeleteHandler}
-                        Loading={isDeleteLoading}
-                      />
+                    <Modal isOpen={isOpen("delete")} onClose={onClose}>
+                      <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+                        <ModalHeader title="Delete" onClose={onClose} />
+                        <Paragraph className="text-center">
+                          Are you sure you want to delete this <b>Review</b>?
+                        </Paragraph>
+                        <div className="pt-5 flex justify-center items-center gap-3">
+                          <Button
+                            className="border border-primary-100"
+                            onClick={onClose}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={reviewDeleteHandler}
+                            className="bg-red-500 text-white"
+                            icon={
+                              isDeleteLoading
+                                ? ICONS.button_loading_icon
+                                : undefined
+                            }
+                            isDisabled={isDeleteLoading}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </ModalBody>
+                    </Modal>
                   </>
                 )}
               </div>
