@@ -12,6 +12,7 @@ const registeredModals = {
   register: SignUpForm,
   review: AddReviewForm,
   delete:ReviewSection,
+  editReview:ReviewSection,
   wishDelete:WishCard,
   cartDelete:CartCard,
   clearCart:Cart

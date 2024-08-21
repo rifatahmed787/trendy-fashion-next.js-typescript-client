@@ -19,6 +19,7 @@ import Modal from "../Modal/Modal";
 import ModalBody from "../Modal/ModalBody/ModalBody";
 import ModalHeader from "../Modal/ModalHeader/ModalHeader";
 import { Button } from "../UI/Button";
+import EditReviewForm from "./EditReviewForm";
 
 const ReviewSection = ({
   product_details,
@@ -56,6 +57,10 @@ const ReviewSection = ({
     }
   };
 
+  const openEditModal = (reviewId: number) => {
+    setReviewId(reviewId);
+    openModal("editReview");
+  };
   const openDeleteModal = (reviewId: number) => {
     setReviewId(reviewId);
     openModal("delete");
@@ -120,7 +125,10 @@ const ReviewSection = ({
                   {user?.id && isLoggedIn && (
                     <>
                       <Dropdown>
-                        <p className="cursor-pointer py-1.5 font-semibold font-secondary">
+                        <p
+                          onClick={() => openEditModal(review.id)}
+                          className="cursor-pointer py-1.5 font-semibold font-secondary"
+                        >
                           Edit
                         </p>
                         <p
@@ -130,6 +138,15 @@ const ReviewSection = ({
                           Delete
                         </p>
                       </Dropdown>
+                      {/* Review edit modal */}
+                      <Modal isOpen={isOpen("editReview")} onClose={onClose}>
+                        <ModalBody>
+                          <ModalHeader title="Edit Review" onClose={onClose} />
+                          <EditReviewForm reviewId={reviewId}/>
+                        </ModalBody>
+                      </Modal>
+
+                      {/* Review delete modal */}
                       <Modal isOpen={isOpen("delete")} onClose={onClose}>
                         <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
                           <ModalHeader title="Delete" onClose={onClose} />
