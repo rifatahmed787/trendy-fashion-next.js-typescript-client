@@ -135,11 +135,28 @@ const Cart = () => {
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">
-                  {cart_list_data?.length} {cart_list_data?.length > 1 ? " Items":"Item"}
+                  {cart_list_data?.length}{" "}
+                  {cart_list_data?.length > 1 ? " Items" : "Item"}
                 </h2>
               </div>
-             
 
+              <div className="flex mt-10 mb-5">
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+                  Product Details
+                </h3>
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Color
+                </h3>
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Size
+                </h3>
+                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Price
+                </h3>
+                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+                  Total
+                </h3>
+              </div>
               {/*cart details */}
 
               <div className=" ">
@@ -156,10 +173,7 @@ const Cart = () => {
                             .sort((a: ICart, b: ICart) => a.id - b.id)
                             .map((product: ICart) => {
                               return (
-                                <div
-                                  key={product.id}
-                                  className={`mt-8 cursor-pointer`}
-                                >
+                                <div key={product.id} className={`mt-8`}>
                                   <CartCard product={product} />
                                 </div>
                               );
@@ -242,7 +256,8 @@ const Cart = () => {
               </h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">
-                  {cart_list_data?.length > 1 ? "Items":"Item"} {cart_list_data?.length}
+                  {cart_list_data?.length > 1 ? "Items" : "Item"}{" "}
+                  {cart_list_data?.length}
                 </span>
                 <span className="font-semibold text-sm">
                   ${productsTotalCost.toFixed(2)}

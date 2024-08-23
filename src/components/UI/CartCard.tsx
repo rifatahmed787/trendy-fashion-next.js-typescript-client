@@ -121,29 +121,13 @@ const CartCard = ({ product }: { product?: ICart }) => {
 
   return (
     <div key={product?.id}>
-      <div className="flex mt-10 mb-5">
-        <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
-          Product Details
-        </h3>
-        <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-          Color
-        </h3>
-        <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-          Size
-        </h3>
-        <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-          Price
-        </h3>
-        <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-          Total
-        </h3>
-      </div>
-      <div className="flex items-center lg:gap-5">
+     
+      <div className="flex items-center lg:gap-5 border border-gray-300 hover:border-primary-100 duration-500 rounded-xl p-2">
         <div className="flex w-2/5">
           <Image
             width={100}
             height={100}
-            className="h-32 w-32"
+            className="h-32 w-32 rounded-xl"
             src={product?.product?.productImages[0] || ""}
             alt="product image"
           />
@@ -152,7 +136,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
             <span className="font-bold text-sm">
               {product?.product?.productName}
             </span>
-            <span className="font-bold text-sm py-3">
+            <span className="font-bold text-sm py-1">
               {" "}
               <Ratings
                 starClassName="w-4 h-4 lg:w-5 lg:h-5"
@@ -162,7 +146,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
             <div className="flex items-center">
               <button onClick={decreaseQuantity}>
                 <svg
-                  className="fill-current text-gray-600 w-3"
+                  className="fill-current text-red-600 w-3"
                   viewBox="0 0 448 512"
                 >
                   <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
@@ -176,7 +160,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
               />
               <button onClick={increaseQuantity}>
                 <svg
-                  className="fill-current text-gray-600 w-3"
+                  className="fill-current text-primary-100 w-3"
                   viewBox="0 0 448 512"
                 >
                   <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
