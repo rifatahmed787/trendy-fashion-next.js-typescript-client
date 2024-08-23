@@ -127,196 +127,194 @@ const Cart = () => {
   return (
     <div className={`pb-10 pt-1`}>
       {/* cart section */}
-      <div className={``}>
-        <div className="container mx-auto mt-10">
-          <div className="flex flex-col lg:flex-row justify-center shadow-md my-10">
-            {/* cart item shows here  */}
-            <div className={`w-11/12  lg:w-3/4 px-10 py-10 bg-white`}>
-              <div className="flex justify-between border-b pb-8">
-                <h1 className="font-semibold text-2xl">Shopping Cart</h1>
-                <h2 className="font-semibold text-2xl">
-                  {cart_list_data?.length}{" "}
-                  {cart_list_data?.length > 1 ? " Items" : "Item"}
-                </h2>
-              </div>
 
-              <div className="flex mt-10 mb-5">
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
-                  Product Details
-                </h3>
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Color
-                </h3>
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Size
-                </h3>
-                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Price
-                </h3>
-                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Total
-                </h3>
-              </div>
-              {/*cart details */}
-
-              <div className=" ">
-                {isLoading ? (
-                  <ShopSkeleton />
-                ) : (
-                  <>
-                    {cart_list_data?.length > 0 ? (
-                      <>
-                        {!isError &&
-                          !error &&
-                          cart_list_data?.length > 0 &&
-                          [...cart_list_data]
-                            .sort((a: ICart, b: ICart) => a.id - b.id)
-                            .map((product: ICart) => {
-                              return (
-                                <div key={product.id} className={`mt-8`}>
-                                  <CartCard product={product} />
-                                </div>
-                              );
-                            })}
-                      </>
-                    ) : (
-                      <>
-                        <h1 className={`text-xl text-center font-bold h-96`}>
-                          Cart is <span className="text-primary">Empty!</span>
-                        </h1>
-                      </>
-                    )}
-                  </>
-                )}
-              </div>
-
-              <div className="flex justify-between items-center mt-10 max-h-full">
-                <Link href="/products" className="flex font-semibold text-sm">
-                  <svg className="fill-current mr-2 w-4" viewBox="0 0 448 512">
-                    <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
-                  </svg>
-                  Continue Shopping
-                </Link>
-                <div>
-                  {cart_list_data?.length > 0 ? (
-                    <>
-                      <button
-                        className="font-semibold hover:text-red-500 text-sm flex items-center pr-0 md:pr-12"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          openModal("clearCart");
-                        }}
-                      >
-                        Clear Cart
-                        {isClearCartLoading ? ICONS.button_loading_icon : ""}
-                      </button>
-                      <Modal isOpen={isOpen("clearCart")} onClose={onClose}>
-                        <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
-                          <ModalHeader title="Clear Cart" onClose={onClose} />
-                          <Paragraph className="text-center">
-                            Are you sure you want to clear the <b>Cart</b>?
-                          </Paragraph>
-                          <div className="pt-5 flex justify-center items-center gap-3">
-                            <Button
-                              className="border border-primary-100"
-                              onClick={onClose}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              onClick={ClearCartHandler}
-                              className="bg-red-500 text-white"
-                              icon={
-                                isClearCartLoading
-                                  ? ICONS.button_loading_icon
-                                  : undefined
-                              }
-                              isDisabled={isClearCartLoading}
-                            >
-                              Clear
-                            </Button>
-                          </div>
-                        </ModalBody>
-                      </Modal>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
+      <div className="container mx-auto mt-10">
+        <div className="flex flex-col lg:flex-row justify-center shadow-custom-primary my-10">
+          {/* cart item shows here  */}
+          <div className={`w-full  lg:w-3/4 px-5 py-10 bg-white rounded-lg`}>
+            <div className="flex justify-between border-b pb-8">
+              <h1 className="font-semibold text-2xl">Shopping Cart</h1>
+              <h2 className="font-semibold text-2xl">
+                {cart_list_data?.length}{" "}
+                {cart_list_data?.length > 1 ? " Items" : "Item"}
+              </h2>
             </div>
 
-            {/* order summary starts from here */}
-            <div
-              id="summary"
-              className="w-11/12 lg:w-1/4 px-8 mx-auto py-10 bg-gray-100"
-            >
-              <h1 className="font-semibold text-2xl border-b pb-8">
-                Order Summary
-              </h1>
-              <div className="flex justify-between mt-10 mb-5">
-                <span className="font-semibold text-sm uppercase">
-                  {cart_list_data?.length > 1 ? "Items" : "Item"}{" "}
-                  {cart_list_data?.length}
-                </span>
-                <span className="font-semibold text-sm">
-                  ${productsTotalCost.toFixed(2)}
-                </span>
+            <div className="flex mt-10 mb-5">
+              <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+                Product Details
+              </h3>
+              <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                Color
+              </h3>
+              <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+                Size
+              </h3>
+              <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+                Price
+              </h3>
+              <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+                Total
+              </h3>
+            </div>
+            {/*cart details */}
+
+            <div className=" ">
+              {isLoading ? (
+                <ShopSkeleton />
+              ) : (
+                <>
+                  {cart_list_data?.length > 0 ? (
+                    <>
+                      {!isError &&
+                        !error &&
+                        cart_list_data?.length > 0 &&
+                        [...cart_list_data]
+                          .sort((a: ICart, b: ICart) => a.id - b.id)
+                          .map((product: ICart) => {
+                            return (
+                              <div key={product.id} className={`mt-8`}>
+                                <CartCard product={product} />
+                              </div>
+                            );
+                          })}
+                    </>
+                  ) : (
+                    <>
+                      <h1 className={`text-xl text-center font-bold h-96`}>
+                        Cart is <span className="text-primary">Empty!</span>
+                      </h1>
+                    </>
+                  )}
+                </>
+              )}
+            </div>
+
+            <div className="flex justify-between items-center mt-10 max-h-full">
+              <Link href="/products" className="flex font-semibold text-sm">
+                <svg className="fill-current mr-2 w-4" viewBox="0 0 448 512">
+                  <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                </svg>
+                Continue Shopping
+              </Link>
+              <div>
+                {cart_list_data?.length > 0 ? (
+                  <>
+                    <button
+                      className="font-semibold hover:text-red-500 text-sm flex items-center pr-0 md:pr-12"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal("clearCart");
+                      }}
+                    >
+                      Clear Cart
+                      {isClearCartLoading ? ICONS.button_loading_icon : ""}
+                    </button>
+                    <Modal isOpen={isOpen("clearCart")} onClose={onClose}>
+                      <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+                        <ModalHeader title="Clear Cart" onClose={onClose} />
+                        <Paragraph className="text-center">
+                          Are you sure you want to clear the <b>Cart</b>?
+                        </Paragraph>
+                        <div className="pt-5 flex justify-center items-center gap-3">
+                          <Button
+                            className="border border-primary-100"
+                            onClick={onClose}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            onClick={ClearCartHandler}
+                            className="bg-red-500 text-white"
+                            icon={
+                              isClearCartLoading
+                                ? ICONS.button_loading_icon
+                                : undefined
+                            }
+                            isDisabled={isClearCartLoading}
+                          >
+                            Clear
+                          </Button>
+                        </div>
+                      </ModalBody>
+                    </Modal>
+                  </>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* order summary starts from here */}
+          <div
+            id="summary"
+            className="w-11/12 lg:w-1/4 px-8 mx-auto py-10 bg-gray-100"
+          >
+            <h1 className="font-semibold text-2xl border-b pb-8">
+              Order Summary
+            </h1>
+            <div className="flex justify-between mt-10 mb-5">
+              <span className="font-semibold text-sm uppercase">
+                {cart_list_data?.length > 1 ? "Items" : "Item"}{" "}
+                {cart_list_data?.length}
+              </span>
+              <span className="font-semibold text-sm">
+                ${productsTotalCost.toFixed(2)}
+              </span>
+            </div>
+            <div>
+              <label className="font-medium inline-block mb-3 text-sm uppercase">
+                Shipping
+              </label>
+              <select
+                onChange={handleShippingChange}
+                value={selectedShipping}
+                className="block p-2 text-gray-600 w-full text-sm"
+              >
+                <option value="expedited">
+                  Expedited Shipping(1day) - $10.00
+                </option>
+                <option value="express">Express Shipping(2days) - $8.00</option>
+                <option value="standard">
+                  Standard shipping(5days) - $5.00
+                </option>
+              </select>
+            </div>
+            <div className="pt-10 pb-3">
+              <label
+                htmlFor="promo"
+                className="font-semibold inline-block mb-3 text-sm uppercase"
+              >
+                Promo Code
+              </label>
+              <input
+                type="text"
+                id="promo"
+                placeholder="Enter your code"
+                className="p-2 text-sm w-full"
+              />
+            </div>
+            {/* button for apply  */}
+            <BrandButton text="Apply" icon="" />
+            <div className="border-t mt-8">
+              <div className="flex font-semibold justify-between py-6 text-sm uppercase">
+                <span>Total cost</span>
+                <span>${totalCostWithShipping}</span>
               </div>
               <div>
-                <label className="font-medium inline-block mb-3 text-sm uppercase">
-                  Shipping
-                </label>
-                <select
-                  onChange={handleShippingChange}
-                  value={selectedShipping}
-                  className="block p-2 text-gray-600 w-full text-sm"
+                <button
+                  onClick={handlePaymentClick}
+                  className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
                 >
-                  <option value="expedited">
-                    Expedited Shipping(1day) - $10.00
-                  </option>
-                  <option value="express">
-                    Express Shipping(2days) - $8.00
-                  </option>
-                  <option value="standard">
-                    Standard shipping(5days) - $5.00
-                  </option>
-                </select>
-              </div>
-              <div className="pt-10 pb-3">
-                <label
-                  htmlFor="promo"
-                  className="font-semibold inline-block mb-3 text-sm uppercase"
-                >
-                  Promo Code
-                </label>
-                <input
-                  type="text"
-                  id="promo"
-                  placeholder="Enter your code"
-                  className="p-2 text-sm w-full"
-                />
-              </div>
-              {/* button for apply  */}
-              <BrandButton text="Apply" icon="" />
-              <div className="border-t mt-8">
-                <div className="flex font-semibold justify-between py-6 text-sm uppercase">
-                  <span>Total cost</span>
-                  <span>${totalCostWithShipping}</span>
-                </div>
-                <div>
-                  <button
-                    onClick={handlePaymentClick}
-                    className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
-                  >
-                    Checkout
-                  </button>
-                </div>
+                  Checkout
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       {/* Toast */}
       {isAlertOpen && (
         <ToastContainer
