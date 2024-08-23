@@ -7,7 +7,7 @@ import Logo from "../../../assets/Logo/2 (1).png";
 import NavLinks from "./MegaLinks";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import MobileNav from "./MobileNav";
 import useModal from "@/Hooks/useModal";
 import { useAppDispatch, useAppSelector } from "@/Hooks/useRedux";

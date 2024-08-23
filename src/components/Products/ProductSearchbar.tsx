@@ -26,7 +26,7 @@ const ProductSearchbar = () => {
     <div className="relative flex items-center ">
       <TextInput
         type="text"
-        placeHolder="Search"
+        placeHolder="Search products"
         currentValue={searchKey}
         onChange={(e) => setSearchKey(e.target.value)}
         required={true}

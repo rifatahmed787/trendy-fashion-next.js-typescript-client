@@ -134,7 +134,7 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
                         <Button
                           title="View All"
                           icon={ICONS.small_right_arrow}
-                          variant="secondary"
+                          className="bg-primary-100 w-full text-base font-medium rounded text-white"
                         >View All</Button>
                       </SwiperSlide>
                     )}
