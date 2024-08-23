@@ -120,120 +120,148 @@ const CartCard = ({ product }: { product?: ICart }) => {
   }, [error, isError, isSuccess, onClose, removeFromCartData?.message]);
 
   return (
-    <div
-      className=" w-full  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap- "
-      key={product?.id}
-    >
-      <div className="flex ">
-        <div className="">
+    <div key={product?.id}>
+      <div className="flex mt-10 mb-5">
+        <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+          Product Details
+        </h3>
+        <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+          Color
+        </h3>
+        <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
+          Size
+        </h3>
+        <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+          Price
+        </h3>
+        <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
+          Total
+        </h3>
+      </div>
+      <div className="flex items-center lg:gap-5">
+        <div className="flex w-2/5">
           <Image
             width={100}
             height={100}
-            className="h-28 w-28"
+            className="h-32 w-32"
             src={product?.product?.productImages[0] || ""}
             alt="product image"
           />
-        </div>
-        <div className="flex flex-col justify-between ml-4 flex-grow">
-          <span className="font-bold text-sm">
-            {product?.product?.productName}
-          </span>
-          <span className="font-bold text-sm py-3">
-            {" "}
-            <Ratings
-              starClassName="w-4 h-4 lg:w-5 lg:h-5"
-              ratings={product?.product.productRating || 0}
-            />
-          </span>
-          <button
-            className="font-semibold hover:text-red-500 text-gray-500 text-xs flex items-center"
-            onClick={(e) => {
-              e.preventDefault();
-              openModal("cartDelete");
-            }}
-          >
-            Remove
-          </button>
-          <Modal isOpen={isOpen("cartDelete")} onClose={onClose}>
-            <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
-              <ModalHeader title="Cart Delete" onClose={onClose} />
-              <Paragraph className="text-center">
-                Are you sure you want to delete this <b>Cart</b>?
-              </Paragraph>
-              <div className="pt-5 flex justify-center items-center gap-3">
-                <Button className="border border-primary-100" onClick={onClose}>
-                  Cancel
-                </Button>
-                <Button
-                  onClick={CartRemoveHandler}
-                  className="bg-red-500 text-white"
-                  icon={
-                    isRemoveCartLoading ? ICONS.button_loading_icon : undefined
-                  }
-                  isDisabled={isRemoveCartLoading}
-                >
-                  Delete
-                </Button>
-              </div>
-            </ModalBody>
-          </Modal>
-        </div>
-      </div>
 
-      <div className="flex justify-center items-center">
-        <button onClick={decreaseQuantity}>
-          <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-            <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-          </svg>
-        </button>
-        <input
-          className="mx-2 border text-center w-8 px-1 text-black"
-          type="text"
-          value={quantity}
-          readOnly
-        />
-        <button onClick={increaseQuantity}>
-          <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-          </svg>
-        </button>
-      </div>
-      <div>
-        <MultiSelect
-          options={colorOptions}
-          onValueChange={(selectedColors) =>
-            setColorSelectedOptions(selectedColors)
-          }
-          defaultValue={colorSelectedOptions}
-          placeholder="Select Colors"
-          variant="inverted"
-          animation={1}
-          maxCount={10}
-          className="w-36"
-        />
-      </div>
-      <div>
-        <MultiSelect
-          options={sizesOptions}
-          onValueChange={(selectedSizes) =>
-            setSizesSelectedOptions(selectedSizes)
-          }
-          defaultValue={sizesSelectedOptions}
-          placeholder="Select Sizes"
-          variant="inverted"
-          animation={1}
-          maxCount={10}
-          className="w-36"
-        />
-      </div>
-      <div className="flex sm:gap-5 md:gap-24">
-        {" "}
-        <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center">
-          $ {product?.product?.productPrice}
-        </span>
-        <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center ml-5">
-          $ {((product?.product?.productPrice || 1) * quantity).toFixed(2)}
-        </span>
+          <div className="flex flex-col justify-between ml-4 flex-grow">
+            <span className="font-bold text-sm">
+              {product?.product?.productName}
+            </span>
+            <span className="font-bold text-sm py-3">
+              {" "}
+              <Ratings
+                starClassName="w-4 h-4 lg:w-5 lg:h-5"
+                ratings={product?.product.productRating || 0}
+              />
+            </span>
+            <div className="flex items-center">
+              <button onClick={decreaseQuantity}>
+                <svg
+                  className="fill-current text-gray-600 w-3"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                </svg>
+              </button>
+              <input
+                className="mx-2 border text-center w-8 px-1 text-black"
+                type="text"
+                value={quantity}
+                readOnly
+              />
+              <button onClick={increaseQuantity}>
+                <svg
+                  className="fill-current text-gray-600 w-3"
+                  viewBox="0 0 448 512"
+                >
+                  <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                </svg>
+              </button>
+            </div>
+            <button
+              className="font-semibold hover:text-red-500 text-gray-500 text-xs flex items-center"
+              onClick={(e) => {
+                e.preventDefault();
+                openModal("cartDelete");
+              }}
+            >
+              Remove
+            </button>
+            <Modal isOpen={isOpen("cartDelete")} onClose={onClose}>
+              <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
+                <ModalHeader title="Cart Delete" onClose={onClose} />
+                <Paragraph className="text-center">
+                  Are you sure you want to delete this <b>Cart</b>?
+                </Paragraph>
+                <div className="pt-5 flex justify-center items-center gap-3">
+                  <Button
+                    className="border border-primary-100"
+                    onClick={onClose}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={CartRemoveHandler}
+                    className="bg-red-500 text-white"
+                    icon={
+                      isRemoveCartLoading
+                        ? ICONS.button_loading_icon
+                        : undefined
+                    }
+                    isDisabled={isRemoveCartLoading}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </ModalBody>
+            </Modal>
+          </div>
+        </div>
+
+        <div className="w-1/5 flex justify-center">
+          <MultiSelect
+            options={colorOptions}
+            onValueChange={(selectedColors) =>
+              setColorSelectedOptions(selectedColors)
+            }
+            defaultValue={colorSelectedOptions}
+            placeholder="Select Colors"
+            variant="inverted"
+            animation={1}
+            maxCount={10}
+            className="w-36"
+          />
+        </div>
+        <div className="w-1/5 flex justify-center">
+          <MultiSelect
+            options={sizesOptions}
+            onValueChange={(selectedSizes) =>
+              setSizesSelectedOptions(selectedSizes)
+            }
+            defaultValue={sizesSelectedOptions}
+            placeholder="Select Sizes"
+            variant="inverted"
+            animation={1}
+            maxCount={10}
+            className="w-36"
+          />
+        </div>
+        <div className="w-1/5 flex justify-center">
+          {" "}
+          <span className=" font-semibold text-sm flex items-center">
+            $ {product?.product?.productPrice}
+          </span>
+        </div>
+        <div className="w-1/5 flex justify-center">
+          <span className="font-semibold text-sm flex items-center">
+            $ {((product?.product?.productPrice || 1) * quantity).toFixed(2)}
+          </span>
+        </div>
       </div>
 
       {/* Toast */}

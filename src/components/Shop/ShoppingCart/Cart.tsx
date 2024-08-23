@@ -114,9 +114,15 @@ const Cart = () => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(clearCartData?.message);
-      onClose()
+      onClose();
     }
-  }, [ClearcartError, ClearcartIsError, clearCartData?.message, isSuccess, onClose]);
+  }, [
+    ClearcartError,
+    ClearcartIsError,
+    clearCartData?.message,
+    isSuccess,
+    onClose,
+  ]);
 
   return (
     <div className={`pb-10 pt-1`}>
@@ -129,72 +135,45 @@ const Cart = () => {
               <div className="flex justify-between border-b pb-8">
                 <h1 className="font-semibold text-2xl">Shopping Cart</h1>
                 <h2 className="font-semibold text-2xl">
-                  {cart_list_data?.length} Items{" "}
+                  {cart_list_data?.length} {cart_list_data?.length > 1 ? " Items":"Item"}
                 </h2>
               </div>
-              <div className="flex mt-10 mb-5">
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
-                  Product Details
-                </h3>
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Quantity
-                </h3>
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Color
-                </h3>
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Size
-                </h3>
-                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Price
-                </h3>
-                <h3 className="font-semibold  text-gray-600 text-xs uppercase w-1/5 text-center">
-                  Total
-                </h3>
-              </div>
+             
 
-              {/* book details */}
-              <div className={`flex items-center  -mx-8 px-1 py-5`}>
-                <div className=" ">
-                  {isLoading ? (
-                    ""
-                  ) : (
-                    <>
-                      {" "}
-                      {cart_list_data?.length > 0 ? (
-                        ""
-                      ) : (
-                        <>
-                          <h1 className={`text-xl text-center font-bold h-96`}>
-                            Cart is <span className="text-primary">Empty!</span>
-                          </h1>
-                        </>
-                      )}
-                    </>
-                  )}
+              {/*cart details */}
 
-                  {isLoading ? (
-                    <ShopSkeleton />
-                  ) : (
-                    <>
-                      {!isError &&
-                        !error &&
-                        cart_list_data?.length > 0 &&
-                        [...cart_list_data]
-                          .sort((a: ICart, b: ICart) => a.id - b.id)
-                          .map((product: ICart) => {
-                            return (
-                              <div
-                                key={product.id}
-                                className={`mt-8 cursor-pointer`}
-                              >
-                                <CartCard product={product} />
-                              </div>
-                            );
-                          })}
-                    </>
-                  )}
-                </div>
+              <div className=" ">
+                {isLoading ? (
+                  <ShopSkeleton />
+                ) : (
+                  <>
+                    {cart_list_data?.length > 0 ? (
+                      <>
+                        {!isError &&
+                          !error &&
+                          cart_list_data?.length > 0 &&
+                          [...cart_list_data]
+                            .sort((a: ICart, b: ICart) => a.id - b.id)
+                            .map((product: ICart) => {
+                              return (
+                                <div
+                                  key={product.id}
+                                  className={`mt-8 cursor-pointer`}
+                                >
+                                  <CartCard product={product} />
+                                </div>
+                              );
+                            })}
+                      </>
+                    ) : (
+                      <>
+                        <h1 className={`text-xl text-center font-bold h-96`}>
+                          Cart is <span className="text-primary">Empty!</span>
+                        </h1>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
 
               <div className="flex justify-between items-center mt-10 max-h-full">
@@ -263,7 +242,7 @@ const Cart = () => {
               </h1>
               <div className="flex justify-between mt-10 mb-5">
                 <span className="font-semibold text-sm uppercase">
-                  Items {cart_list_data?.length}
+                  {cart_list_data?.length > 1 ? "Items":"Item"} {cart_list_data?.length}
                 </span>
                 <span className="font-semibold text-sm">
                   ${productsTotalCost.toFixed(2)}

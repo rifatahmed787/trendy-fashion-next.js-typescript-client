@@ -1,33 +1,36 @@
 export default function CartCardSkeleton() {
   return (
-    <div className="min-w-full grid grid-cols-1 bg-gray-50  sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 ">
-      <div className="flex w-full my-5">
-        <div className="h-28 w-28 bg-gray-100 animate-pulse mx-5 md:mx-10 "></div>
-        <div className="flex flex-col justify-between mx-4 flex-grow ">
-          <span className="font-bold text-sm h-10 animate-pulse"></span>
-          <span className="font-bold text-sm py-3 bg-slate-100 animate-pulse"></span>
-          <button className="font-semibold hover:text-red-500 text-gray-500 text-xs flex items-center bg-gray-100 animate-pulse"></button>
+    <div className="min-w-full mt-5 border border-gray-300 rounded-xl p-2 flex items-center gap-10">
+      <div className="flex gap-3">
+        <div className="w-32 h-32 rounded-xl bg-gray-100 flex justify-center items-center">
+          <svg
+            className="w-16 h-16 text-gray-300 animate-pulse"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            viewBox="0 0 20 18"
+          >
+            <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z" />
+          </svg>
+        </div>
+        <div>
+          <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
+          <span className="block w-10/12 h-4 bg-gray-300 animate-pulse rounded mb-4"></span>
+          <div className="flex items-center mt-5 duration-500">
+            <span className="block w-24 h-6 bg-gray-300 animate-pulse rounded mr-2"></span>
+            <span className="block w-8 h-8 bg-gray-300 animate-pulse rounded-full"></span>
+          </div>
         </div>
       </div>
-
-      <div className="flex justify-center items-center mx-3 md:mx-5">
-        <button>
-          <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-            <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-          </svg>
-        </button>
-        <input
-          className="mx-2 border text-center w-8 px-1 bg-gray-100 animate-pulse"
-          type="text"
-          readOnly
-        />
-        <button>
-          <svg className="fill-current text-gray-600 w-3" viewBox="0 0 448 512">
-            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-          </svg>
-        </button>
+      <div>
+        <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
       </div>
-      <span className="text-center w-1/4 font-semibold text-sm flex justify-center items-center"></span>
+      <div>
+        <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
+      </div>
+      <div>
+        <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
+      </div>
     </div>
   );
 }
