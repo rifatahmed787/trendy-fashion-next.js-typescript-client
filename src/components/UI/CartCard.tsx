@@ -4,6 +4,7 @@ import {
   useRemoveCartMutation,
   useUpdateCartMutation,
   useUpdateColorMutation,
+  useUpdateSizeMutation,
 } from "@/Redux/features/cart/cartApi";
 import { get_error_messages } from "@/lib/Error_message";
 import Image from "next/image";
@@ -52,10 +53,6 @@ const CartCard = ({ product }: { product?: ICart }) => {
 
   const onColorValueChange = (selectedColors: string[]) => {
     setColorSelectedOptions(selectedColors);
-    console.log({
-      cartId: product?.id,
-      productColor: selectedColors,
-    });
     updateColor({
       cartId: product?.id,
       data:{
@@ -63,6 +60,19 @@ const CartCard = ({ product }: { product?: ICart }) => {
       },
     });
   };
+
+  // update size in the cart
+  const [updateSize]=useUpdateSizeMutation();
+  const onSizeValueChange=(selectSizes:string[])=>{
+    setSizesSelectedOptions(selectSizes);
+    updateSize({
+      cartId:product?.id,
+      data:{
+        productSize:selectSizes
+      }
+    })
+  }
+
 
   // Handle quantity change
   const handleQuantityChange = (newQuantity: number) => {
@@ -229,9 +239,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
           <div className="w-1/5 flex justify-center">
             <MultiSelect
               options={sizesOptions}
-              onValueChange={(selectedSizes) =>
-                setSizesSelectedOptions(selectedSizes)
-              }
+              onValueChange={onSizeValueChange}
               defaultValue={sizesSelectedOptions}
               placeholder="Select Sizes"
               variant="inverted"
@@ -282,9 +290,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
               />
               <MultiSelect
                 options={sizesOptions}
-                onValueChange={(selectedSizes) =>
-                  setSizesSelectedOptions(selectedSizes)
-                }
+                onValueChange={onSizeValueChange}
                 defaultValue={sizesSelectedOptions}
                 placeholder="Select Sizes"
                 variant="inverted"
