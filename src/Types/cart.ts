@@ -15,4 +15,7 @@ export type ICart = {
     productSizes:string[];
   };
   quantity: number;
+  productColor: string[];
+  productSize:string[];
+  shipping:string;
 };

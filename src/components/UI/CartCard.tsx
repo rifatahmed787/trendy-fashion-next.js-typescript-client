@@ -23,7 +23,6 @@ const CartCard = ({ product }: { product?: ICart }) => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
   const { openModal, onClose, isOpen } = useModal();
   const [quantity, setQuantity] = useState<number>(product?.quantity ?? 1);
-
   const [updateCartMutation] = useUpdateCartMutation();
 
   // Handle quantity change
@@ -214,7 +213,11 @@ const CartCard = ({ product }: { product?: ICart }) => {
               onValueChange={(selectedColors) =>
                 setColorSelectedOptions(selectedColors)
               }
-              defaultValue={colorSelectedOptions}
+              defaultValue={
+                product?.productColor && product.productColor.length > 0
+                  ? product.productColor
+                  : colorSelectedOptions
+              }
               placeholder="Select Colors"
               variant="inverted"
               animation={1}
@@ -228,7 +231,11 @@ const CartCard = ({ product }: { product?: ICart }) => {
               onValueChange={(selectedSizes) =>
                 setSizesSelectedOptions(selectedSizes)
               }
-              defaultValue={sizesSelectedOptions}
+              defaultValue={
+                product?.productSize && product?.productSize?.length > 0
+                  ? product?.productSize
+                  : sizesSelectedOptions
+              }
               placeholder="Select Sizes"
               variant="inverted"
               animation={1}
