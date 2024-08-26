@@ -74,5 +74,5 @@ export const {
   useUpdateCartMutation,
   useClearCartMutation,
   useUpdateColorMutation,
-  useUpdateSizeMutation
+  useUpdateSizeMutation,
 } = cartApi;

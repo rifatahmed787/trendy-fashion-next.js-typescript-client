@@ -47,6 +47,7 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
+  console.log("cart", cart_list_data)
 
   const [selectedShipping, setSelectedShipping] = useState("standard");
   const [shippingCost, setShippingCost] = useState(0);

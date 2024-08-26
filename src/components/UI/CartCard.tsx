@@ -3,6 +3,7 @@ import { useAppSelector } from "@/Hooks/useRedux";
 import {
   useRemoveCartMutation,
   useUpdateCartMutation,
+  useUpdateColorMutation,
 } from "@/Redux/features/cart/cartApi";
 import { get_error_messages } from "@/lib/Error_message";
 import Image from "next/image";
@@ -25,11 +26,47 @@ const CartCard = ({ product }: { product?: ICart }) => {
   const [quantity, setQuantity] = useState<number>(product?.quantity ?? 1);
   const [updateCartMutation] = useUpdateCartMutation();
 
+  // State to track selected colors and sizes
+  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>(
+    product?.productColor || []
+  );
+  const [sizesSelectedOptions, setSizesSelectedOptions] = useState<string[]>(
+    product?.productSize || []
+  );
+
+  // Track available colors and sizes
+  const colorOptions =
+    product?.product?.productColors?.map((color) => ({
+      label: color,
+      value: color,
+    })) || [];
+
+  const sizesOptions =
+    product?.product?.productSizes?.map((size) => ({
+      label: size,
+      value: size,
+    })) || [];
+
+  // Update color in the cart
+  const [updateColor] = useUpdateColorMutation();
+
+  const onColorValueChange = (selectedColors: string[]) => {
+    setColorSelectedOptions(selectedColors);
+    console.log({
+      cartId: product?.id,
+      productColor: selectedColors,
+    });
+    updateColor({
+      cartId: product?.id,
+      data:{
+        productColor: selectedColors
+      },
+    });
+  };
+
   // Handle quantity change
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
-
-    // Call the mutation with the updated quantity
     updateCartMutation({
       cartId: product?.id,
       quantity: newQuantity,
@@ -46,34 +83,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
     }
   };
 
-  const [color, setColor] = useState<string[]>([]);
-  const [size, setSize] = useState<string[]>([]);
-
-  // color options
-  const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>(
-    []
-  );
-  const colorOptions =
-    product?.product?.productColors?.map((color) => ({
-      label: color,
-      value: color,
-    })) || [];
-  // sizes options
-  const [sizesSelectedOptions, setSizesSelectedOptions] = useState<string[]>(
-    []
-  );
-  const sizesOptions =
-    product?.product?.productSizes?.map((size) => ({
-      label: size,
-      value: size,
-    })) || [];
-
-  useEffect(() => {
-    setColor(colorSelectedOptions);
-    setSize(sizesSelectedOptions);
-  }, [colorSelectedOptions, sizesSelectedOptions]);
-
-  // delete from cart mutation hook
+  // Deleting a product from the cart
   const [
     deleteProductFromCart,
     {
@@ -85,14 +95,6 @@ const CartCard = ({ product }: { product?: ICart }) => {
     },
   ] = useRemoveCartMutation();
 
-  // Alert State
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
-  const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
-    "success"
-  );
-  const [AlertMessages, setAlertMessages] = useState("");
-
-  //cart remove Handler
   const CartRemoveHandler = (e: { stopPropagation: () => void }) => {
     e.stopPropagation();
     isLoggedIn
@@ -104,7 +106,13 @@ const CartCard = ({ product }: { product?: ICart }) => {
       : openModal("login");
   };
 
-  //error and success handlaing
+  // Handling error and success alerts
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
+    "success"
+  );
+  const [AlertMessages, setAlertMessages] = useState("");
+
   useEffect(() => {
     if (isError && error && "data" in error) {
       setIsAlertOpen(true);
@@ -137,7 +145,6 @@ const CartCard = ({ product }: { product?: ICart }) => {
                 {product?.product?.productName}
               </span>
               <span className="font-bold text-sm py-1">
-                {" "}
                 <Ratings
                   starClassName="w-4 h-4 lg:w-5 lg:h-5"
                   ratings={product?.product.productRating || 0}
@@ -210,14 +217,8 @@ const CartCard = ({ product }: { product?: ICart }) => {
           <div className="w-1/5 flex justify-center">
             <MultiSelect
               options={colorOptions}
-              onValueChange={(selectedColors) =>
-                setColorSelectedOptions(selectedColors)
-              }
-              defaultValue={
-                product?.productColor && product.productColor.length > 0
-                  ? product.productColor
-                  : colorSelectedOptions
-              }
+              onValueChange={onColorValueChange}
+              defaultValue={colorSelectedOptions}
               placeholder="Select Colors"
               variant="inverted"
               animation={1}
@@ -231,11 +232,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
               onValueChange={(selectedSizes) =>
                 setSizesSelectedOptions(selectedSizes)
               }
-              defaultValue={
-                product?.productSize && product?.productSize?.length > 0
-                  ? product?.productSize
-                  : sizesSelectedOptions
-              }
+              defaultValue={sizesSelectedOptions}
               placeholder="Select Sizes"
               variant="inverted"
               animation={1}
@@ -244,8 +241,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
             />
           </div>
           <div className="w-1/5 flex justify-center">
-            {" "}
-            <span className=" font-semibold text-sm flex items-center">
+            <span className="font-semibold text-sm flex items-center">
               $ {product?.product?.productPrice}
             </span>
           </div>
@@ -257,119 +253,69 @@ const CartCard = ({ product }: { product?: ICart }) => {
         </div>
       </div>
 
-      {/* md and sm device */}
+      {/* Mobile view */}
       <div className="block lg:hidden">
         <div className="relative flex items-center lg:gap-5 border border-gray-300 hover:border-primary-100 duration-500 rounded-xl p-2">
           <div className="flex">
             <Image
               width={100}
               height={100}
-              className="h-36 w-32 rounded-xl"
+              className="h-36 w-36 rounded-xl"
               src={product?.product?.productImages[0] || ""}
               alt="product image"
             />
-
-            <div className="flex flex-col justify-between ml-4 flex-grow">
-              <span className="font-bold text-sm">
-                {product?.product?.productName}
+          </div>
+          <div className="ml-4 flex-grow">
+            <span className="font-bold text-base lg:text-sm">
+              {product?.product?.productName}
+            </span>
+            <div className="flex items-center justify-between py-2">
+              <MultiSelect
+                options={colorOptions}
+                onValueChange={onColorValueChange}
+                defaultValue={colorSelectedOptions}
+                placeholder="Select Colors"
+                variant="inverted"
+                animation={1}
+                maxCount={10}
+                className="w-36"
+              />
+              <MultiSelect
+                options={sizesOptions}
+                onValueChange={(selectedSizes) =>
+                  setSizesSelectedOptions(selectedSizes)
+                }
+                defaultValue={sizesSelectedOptions}
+                placeholder="Select Sizes"
+                variant="inverted"
+                animation={1}
+                maxCount={10}
+                className="w-36"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="font-semibold text-base lg:text-sm">
+                $ {product?.product?.productPrice}
               </span>
-              <div className="flex justify-between">
-                <span className="font-bold text-base py-1">
-                  ${product?.product?.productPrice}
-                </span>
-                <div className="flex items-center">
-                  <button onClick={decreaseQuantity}>
-                    <svg
-                      className="fill-current text-red-600 w-3"
-                      viewBox="0 0 448 512"
-                    >
-                      <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                    </svg>
-                  </button>
-                  <input
-                    className="mx-2 border text-center w-8 px-1 text-black"
-                    type="text"
-                    value={quantity}
-                    readOnly
-                  />
-                  <button onClick={increaseQuantity}>
-                    <svg
-                      className="fill-current text-primary-100 w-3"
-                      viewBox="0 0 448 512"
-                    >
-                      <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <button
-                className="absolute top-2 right-2 border rounded-full border-red-600"
-                onClick={(e) => {
-                  e.preventDefault();
-                  openModal("cartDelete");
-                }}
-              >
-                <RxCross2 className="text-xl text-red-600" />
-              </button>
-              <Modal isOpen={isOpen("cartDelete")} onClose={onClose}>
-                <ModalBody className="w-11/12 md:w-3/4 lg:w-1/4">
-                  <ModalHeader title="Cart Delete" onClose={onClose} />
-                  <Paragraph className="text-center">
-                    Are you sure you want to delete this <b>Cart</b>?
-                  </Paragraph>
-                  <div className="pt-5 flex justify-center items-center gap-3">
-                    <Button
-                      className="border border-primary-100"
-                      onClick={onClose}
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      onClick={CartRemoveHandler}
-                      className="bg-red-500 text-white"
-                      icon={
-                        isRemoveCartLoading
-                          ? ICONS.button_loading_icon
-                          : undefined
-                      }
-                      isDisabled={isRemoveCartLoading}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                </ModalBody>
-              </Modal>
-              <div className="flex flex-col md:flex-row items-center gap-3 md:gap-5">
-                <MultiSelect
-                  options={colorOptions}
-                  onValueChange={(selectedColors) =>
-                    setColorSelectedOptions(selectedColors)
-                  }
-                  defaultValue={colorSelectedOptions}
-                  placeholder="Select Colors"
-                  variant="inverted"
-                  animation={1}
-                  maxCount={10}
-                  className="w-36"
-                />
-                <MultiSelect
-                  options={sizesOptions}
-                  onValueChange={(selectedSizes) =>
-                    setSizesSelectedOptions(selectedSizes)
-                  }
-                  defaultValue={sizesSelectedOptions}
-                  placeholder="Select Sizes"
-                  variant="inverted"
-                  animation={1}
-                  maxCount={10}
-                  className="w-36"
-                />
-              </div>
+              <span className="font-semibold text-base lg:text-sm">
+                ${" "}
+                {((product?.product?.productPrice || 1) * quantity).toFixed(2)}
+              </span>
             </div>
           </div>
+          <button
+            className="absolute top-2 right-2 border rounded-full border-red-600"
+            onClick={(e) => {
+              e.preventDefault();
+              openModal("cartDelete");
+            }}
+          >
+            <RxCross2 className="text-xl text-red-600" />
+          </button>
         </div>
       </div>
 
+      {/* Alerts for success and error */}
       {/* Toast */}
       {isAlertOpen && (
         <ToastContainer
