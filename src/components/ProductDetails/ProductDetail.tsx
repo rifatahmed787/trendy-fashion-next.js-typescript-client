@@ -15,7 +15,8 @@ import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
 import AddReviewModal from "./AddReviewModal";
 import { MultiSelect } from "../UI/MultiSelector/MultiSelect";
-
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 // const FormSchema = z.object({
 //   frameworks: z
@@ -155,7 +156,9 @@ const ProductDetail = ({
       <div className=" my-10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="mt-8">
+          
             <div className="w-[95%] h-[300px] md:h-[500px] border rounded-lg mx-auto">
+            <Zoom>
               <Image
                 className="h-full w-full rounded-lg bg-contain mx-auto"
                 src={
@@ -170,8 +173,9 @@ const ProductDetail = ({
                 quality={100}
                 unoptimized={false}
               />
+              </Zoom>
             </div>
-
+            
             {product_details?.productImages &&
             product_details?.productImages.length > 1 ? (
               <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
