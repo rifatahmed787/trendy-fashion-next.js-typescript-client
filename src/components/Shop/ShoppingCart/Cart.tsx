@@ -1,6 +1,7 @@
 "use client";
 import {
   useClearCartMutation,
+  useCreateOrderMutation,
   useGetCartProductsQuery,
 } from "@/Redux/features/cart/cartApi";
 import ShopSkeleton from "../ShopSkeleton/ShopSkeleton";
@@ -40,6 +41,7 @@ const Cart = () => {
   ] = useClearCartMutation();
 
   const [createPayment] = useCreatePaymentMutation();
+  const [createOrder, {isError:isOrderError, isLoading:isOrderLoading}]=useCreateOrderMutation()
 
   const {
     data: Products,
@@ -50,10 +52,12 @@ const Cart = () => {
   const cart_list_data = Products?.data;
   console.log("cart", cart_list_data);
 
+  // checking if the color and size selected
   const allProductsSelected = cart_list_data?.every(
-    (product: { selectedColor: any; selectedSize: any }) =>
-      product.selectedColor && product.selectedSize
+    (product: { productColor: string[]; productSize: string[] }) =>
+      product.productColor.length > 0 && product.productSize.length > 0
   );
+  
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("online-payment");
 
@@ -119,7 +123,10 @@ const Cart = () => {
       const result = await createPayment({}).unwrap();
       router.push(result.data.url);
     } else if (selectedPaymentMethod === "cash-on-delivery") {
-      // Handle cash on delivery logic here
+      const result=await createOrder({data:cart_list_data}).unwrap();
+      if(result.success) {
+        router.push("/")
+      }
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(

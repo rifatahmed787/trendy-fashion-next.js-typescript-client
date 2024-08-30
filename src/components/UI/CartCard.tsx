@@ -55,24 +55,23 @@ const CartCard = ({ product }: { product?: ICart }) => {
     setColorSelectedOptions(selectedColors);
     updateColor({
       cartId: product?.id,
-      data:{
-        productColor: selectedColors
+      data: {
+        productColor: selectedColors,
       },
     });
   };
 
   // update size in the cart
-  const [updateSize]=useUpdateSizeMutation();
-  const onSizeValueChange=(selectSizes:string[])=>{
+  const [updateSize] = useUpdateSizeMutation();
+  const onSizeValueChange = (selectSizes: string[]) => {
     setSizesSelectedOptions(selectSizes);
     updateSize({
-      cartId:product?.id,
-      data:{
-        productSize:selectSizes
-      }
-    })
-  }
-
+      cartId: product?.id,
+      data: {
+        productSize: selectSizes,
+      },
+    });
+  };
 
   // Handle quantity change
   const handleQuantityChange = (newQuantity: number) => {
@@ -224,7 +223,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
             </div>
           </div>
 
-          <div className="w-1/5 flex justify-center">
+          <div className="w-1/5 flex flex-col justify-center gap-2">
             <MultiSelect
               options={colorOptions}
               onValueChange={onColorValueChange}
@@ -235,8 +234,13 @@ const CartCard = ({ product }: { product?: ICart }) => {
               maxCount={10}
               className="w-36"
             />
+            {product && product?.productColor?.length === 0 && (
+              <Paragraph className="text-red-600">
+                Please Select Color
+              </Paragraph>
+            )}
           </div>
-          <div className="w-1/5 flex justify-center">
+          <div className="w-1/5 flex flex-col gap-2 justify-center">
             <MultiSelect
               options={sizesOptions}
               onValueChange={onSizeValueChange}
@@ -247,6 +251,9 @@ const CartCard = ({ product }: { product?: ICart }) => {
               maxCount={10}
               className="w-36"
             />
+            {product && product?.productSize?.length === 0 && (
+              <Paragraph className="text-red-600">Please Select Size</Paragraph>
+            )}
           </div>
           <div className="w-1/5 flex justify-center">
             <span className="font-semibold text-sm flex items-center">
@@ -264,7 +271,7 @@ const CartCard = ({ product }: { product?: ICart }) => {
       {/* Mobile view */}
       <div className="block lg:hidden">
         <div className="relative flex items-center lg:gap-5 border border-gray-300 hover:border-primary-100 duration-500 rounded-xl p-2">
-          <div className="flex">
+          <div className="flex flex-col gap-2 items-center">
             <Image
               width={100}
               height={100}
@@ -272,32 +279,70 @@ const CartCard = ({ product }: { product?: ICart }) => {
               src={product?.product?.productImages[0] || ""}
               alt="product image"
             />
+             <div className="flex items-center">
+                <button onClick={decreaseQuantity}>
+                  <svg
+                    className="fill-current text-red-600 w-3"
+                    viewBox="0 0 448 512"
+                  >
+                    <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                  </svg>
+                </button>
+                <input
+                  className="mx-2 border text-center w-8 px-1 text-black"
+                  type="text"
+                  value={quantity}
+                  readOnly
+                />
+                <button onClick={increaseQuantity}>
+                  <svg
+                    className="fill-current text-primary-100 w-3"
+                    viewBox="0 0 448 512"
+                  >
+                    <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                  </svg>
+                </button>
+              </div>
           </div>
           <div className="ml-4 flex-grow">
             <span className="font-bold text-base lg:text-sm">
               {product?.product?.productName}
             </span>
-            <div className="flex items-center justify-between py-2">
-              <MultiSelect
-                options={colorOptions}
-                onValueChange={onColorValueChange}
-                defaultValue={colorSelectedOptions}
-                placeholder="Select Colors"
-                variant="inverted"
-                animation={1}
-                maxCount={10}
-                className="w-36"
-              />
-              <MultiSelect
-                options={sizesOptions}
-                onValueChange={onSizeValueChange}
-                defaultValue={sizesSelectedOptions}
-                placeholder="Select Sizes"
-                variant="inverted"
-                animation={1}
-                maxCount={10}
-                className="w-36"
-              />
+            <div className="flex flex-col gap-3 items-center py-2">
+              <div className="flex flex-col gap-2 items-center">
+                <MultiSelect
+                  options={colorOptions}
+                  onValueChange={onColorValueChange}
+                  defaultValue={colorSelectedOptions}
+                  placeholder="Select Colors"
+                  variant="inverted"
+                  animation={1}
+                  maxCount={10}
+                  className="w-36"
+                />
+                {product && product?.productColor?.length === 0 && (
+                  <Paragraph className="text-red-600">
+                    Please Select Color
+                  </Paragraph>
+                )}
+              </div>
+              <div className="flex flex-col gap-2 items-center">
+                <MultiSelect
+                  options={sizesOptions}
+                  onValueChange={onSizeValueChange}
+                  defaultValue={sizesSelectedOptions}
+                  placeholder="Select Sizes"
+                  variant="inverted"
+                  animation={1}
+                  maxCount={10}
+                  className="w-36"
+                />
+                {product && product?.productSize?.length === 0 && (
+                  <Paragraph className="text-red-600">
+                    Please Select Size
+                  </Paragraph>
+                )}
+              </div>
             </div>
             <div className="flex items-center justify-between">
               <span className="font-semibold text-base lg:text-sm">
