@@ -89,7 +89,7 @@ const Account: React.FC<AccountProps> = ({ setAccountDropdownOpen }) => {
           {/* shop */}
           <li>
             <Link
-              href="/addtocart"
+              href="/cart"
               className={`px-4 py-2 text-base w-full text-left text-gray-700  flex items-center gap-2 `}
             >
               <Icon icon="mdi:cart-outline" width={20} />

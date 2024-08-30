@@ -202,14 +202,14 @@ const Navbar = () => {
                   {/* Cart */}
                   <li className="mx-2 relative">
                     <Link
-                      href="/addtocart"
+                      href="/cart"
                       className={`px-2 py-2  w-full  flex items-center gap-2 bg-white shadow-md rounded-md`}
                     >
                       <Icon
                         icon="mdi:cart-outline"
                         width={22}
                         className={`${
-                          pathname === "/addtocart" ? "text-primary-100" : ""
+                          pathname === "/cart" ? "text-primary-100" : ""
                         }`}
                       />
                       <p className="text-lg text-primary-100 absolute -top-4 right-0">

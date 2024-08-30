@@ -15,8 +15,8 @@ import useModal from "@/Hooks/useModal";
 import ToastContainer from "../UI/Toast";
 import AddReviewModal from "./AddReviewModal";
 import { MultiSelect } from "../UI/MultiSelector/MultiSelect";
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 // const FormSchema = z.object({
 //   frameworks: z
@@ -37,7 +37,6 @@ const ProductDetail = ({
   );
   const { openModal } = useModal();
 
-
   // Alert State
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [AlertType, setAlertType] = useState<"success" | "error" | "warning">(
@@ -46,8 +45,8 @@ const ProductDetail = ({
   const [AlertMessages, setAlertMessages] = useState("");
 
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
-  const [color, setColor]=useState<string[]>([])
-  const [size, setSize]=useState<string[]>([])
+  const [color, setColor] = useState<string[]>([]);
+  const [size, setSize] = useState<string[]>([]);
 
   // color options
   const [colorSelectedOptions, setColorSelectedOptions] = useState<string[]>(
@@ -69,7 +68,7 @@ const ProductDetail = ({
     })) || [];
 
   useEffect(() => {
-    setColor( colorSelectedOptions);
+    setColor(colorSelectedOptions);
     setSize(sizesSelectedOptions);
   }, [colorSelectedOptions, sizesSelectedOptions]);
   // add in wish mutation hook
@@ -112,8 +111,8 @@ const ProductDetail = ({
       ? addProductInCart({
           productId: product_details?.id,
           userId: user?.id,
-          productSize:size,
-          productColor:color
+          productSize: size,
+          productColor: color,
         })
       : openModal("login");
   };
@@ -156,11 +155,9 @@ const ProductDetail = ({
       <div className=" my-10">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="mt-8">
-          
-            <div className="w-[95%] h-[300px] md:h-[500px] border rounded-lg mx-auto">
             <Zoom>
               <Image
-                className="h-full w-full rounded-lg bg-contain mx-auto"
+                className="w-full h-[300px] md:h-[500px] rounded-lg bg-contain mx-auto"
                 src={
                   largeImage ||
                   (product_details?.productImages
@@ -173,28 +170,29 @@ const ProductDetail = ({
                 quality={100}
                 unoptimized={false}
               />
-              </Zoom>
-            </div>
-            
+            </Zoom>
+
             {product_details?.productImages &&
             product_details?.productImages.length > 1 ? (
               <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
-                {product_details?.productImages.slice(0, 4).map((img, index) => (
-                  <div key={index}>
-                    <Image
-                      onClick={() => setLargeImage(img)}
-                      className={`rounded-lg cursor-pointer w-16 h-16 md:w-24 md:h-24 ${
-                        largeImage === img
-                          ? "border-4 p-2 border-primary-100"
-                          : "border p-2"
-                      }`}
-                      src={img}
-                      alt={`${product_details?.productName} ${index + 1}`}
-                      width={500}
-                      height={500}
-                    />
-                  </div>
-                ))}
+                {product_details?.productImages
+                  .slice(0, 4)
+                  .map((img, index) => (
+                    <div key={index}>
+                      <Image
+                        onClick={() => setLargeImage(img)}
+                        className={`rounded-lg cursor-pointer w-16 h-16 md:w-24 md:h-24 ${
+                          largeImage === img
+                            ? "border-4 p-2 border-primary-100"
+                            : "border p-2"
+                        }`}
+                        src={img}
+                        alt={`${product_details?.productName} ${index + 1}`}
+                        width={500}
+                        height={500}
+                      />
+                    </div>
+                  ))}
               </div>
             ) : null}
           </div>
