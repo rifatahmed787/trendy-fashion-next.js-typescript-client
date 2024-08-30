@@ -22,6 +22,7 @@ import ModalBody from "@/components/Modal/ModalBody/ModalBody";
 import ModalHeader from "@/components/Modal/ModalHeader/ModalHeader";
 import Paragraph from "@/components/UI/Paragraph/Paragraph";
 import { Button } from "@/components/UI/Button";
+import CheckBox from "@/components/UI/Check-box/Checkbox";
 
 const Cart = () => {
   const { user, isLoggedIn } = useAppSelector((state) => state.auth);
@@ -47,7 +48,14 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
-  console.log("cart", cart_list_data)
+  console.log("cart", cart_list_data);
+
+  const allProductsSelected = cart_list_data?.every(
+    (product: { selectedColor: any; selectedSize: any }) =>
+      product.selectedColor && product.selectedSize
+  );
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("online-payment");
 
   const [selectedShipping, setSelectedShipping] = useState("standard");
   const [shippingCost, setShippingCost] = useState(0);
@@ -100,8 +108,24 @@ const Cart = () => {
 
   // payment handle
   const handlePaymentClick = async () => {
-    const result = await createPayment({}).unwrap();
-    router.push(result.data.url);
+    if (!allProductsSelected) {
+      setIsAlertOpen(true);
+      setAlertType("error");
+      setAlertMessages("Please select product color and size.");
+      return;
+    }
+
+    if (selectedPaymentMethod === "online-payment") {
+      const result = await createPayment({}).unwrap();
+      router.push(result.data.url);
+    } else if (selectedPaymentMethod === "cash-on-delivery") {
+      // Handle cash on delivery logic here
+      setIsAlertOpen(true);
+      setAlertType("success");
+      setAlertMessages(
+        "Cash on Delivery selected. Proceeding to confirmation."
+      );
+    }
   };
 
   //error and success handlaing
@@ -303,8 +327,30 @@ const Cart = () => {
                 <span>Total cost</span>
                 <span>${totalCostWithShipping}</span>
               </div>
+              <div className="flex items-center gap-3 pb-5">
+                <div className="flex items-center gap-1">
+                  <CheckBox
+                    id={"cash-on-delivery"}
+                    checked={selectedPaymentMethod === "cash-on-delivery"}
+                    onChange={() =>
+                      setSelectedPaymentMethod("cash-on-delivery")
+                    }
+                  />
+                  <Paragraph className="text-xs">Cash On Delivery</Paragraph>
+                </div>
+                <div className="flex items-center gap-1">
+                  <CheckBox
+                    id={"online-payment"}
+                    checked={selectedPaymentMethod === "online-payment"}
+                    onChange={() => setSelectedPaymentMethod("online-payment")}
+                  />
+                  <Paragraph className="text-xs">Online Payment</Paragraph>
+                </div>
+              </div>
+
               <div>
                 <button
+                  disabled={!allProductsSelected}
                   onClick={handlePaymentClick}
                   className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
                 >
