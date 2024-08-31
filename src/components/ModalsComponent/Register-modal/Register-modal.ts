@@ -5,6 +5,7 @@ import ReviewSection from "@/components/ProductDetails/ReviewSection";
 import WishCard from "@/components/UI/WishCard";
 import CartCard from "@/components/UI/CartCard";
 import Cart from "@/components/Shop/ShoppingCart/Cart";
+import PostAddress from "@/components/UserDashboard/Profile/PostAddress";
 
 
 const registeredModals = {
@@ -15,7 +16,8 @@ const registeredModals = {
   editReview:ReviewSection,
   wishDelete:WishCard,
   cartDelete:CartCard,
-  clearCart:Cart
+  clearCart:Cart,
+  postAddree:PostAddress
 };
 export type TCurrentModal = keyof typeof registeredModals;
 

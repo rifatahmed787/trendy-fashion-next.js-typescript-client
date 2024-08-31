@@ -17,7 +17,7 @@ export const userApi = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...data },
       }),
-      invalidatesTags: ["profile"],
+      invalidatesTags: ["profile", "cart"],
     }),
 
     editUser: builder.mutation({

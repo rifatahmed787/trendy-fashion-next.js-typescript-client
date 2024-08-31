@@ -29,7 +29,10 @@ export default function CartCardSkeleton() {
         <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
       </div>
       <div>
-        <span className="block w-32 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
+        <span className="block w-24 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
+      </div>
+      <div>
+        <span className="block w-24 h-6 bg-gray-300 animate-pulse rounded mb-4"></span>
       </div>
     </div>
   );

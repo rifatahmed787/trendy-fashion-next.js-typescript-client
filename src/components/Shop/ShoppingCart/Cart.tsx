@@ -41,7 +41,8 @@ const Cart = () => {
   ] = useClearCartMutation();
 
   const [createPayment] = useCreatePaymentMutation();
-  const [createOrder, {isError:isOrderError, isLoading:isOrderLoading}]=useCreateOrderMutation()
+  const [createOrder, { isError: isOrderError, isLoading: isOrderLoading }] =
+    useCreateOrderMutation();
 
   const {
     data: Products,
@@ -57,9 +58,12 @@ const Cart = () => {
     (product: { productColor: string[]; productSize: string[] }) =>
       product.productColor.length > 0 && product.productSize.length > 0
   );
-  
 
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("online-payment");
+  const isDisabled = !allProductsSelected && cart_list_data?.length > 0 || cart_list_data[0].user?.address == null;
+
+
+  const [selectedPaymentMethod, setSelectedPaymentMethod] =
+    useState("online-payment");
 
   const [selectedShipping, setSelectedShipping] = useState("standard");
   const [shippingCost, setShippingCost] = useState(0);
@@ -112,7 +116,7 @@ const Cart = () => {
 
   // payment handle
   const handlePaymentClick = async () => {
-    if (!allProductsSelected) {
+    if (!isDisabled) {
       setIsAlertOpen(true);
       setAlertType("error");
       setAlertMessages("Please select product color and size.");
@@ -123,9 +127,9 @@ const Cart = () => {
       const result = await createPayment({}).unwrap();
       router.push(result.data.url);
     } else if (selectedPaymentMethod === "cash-on-delivery") {
-      const result=await createOrder({data:cart_list_data}).unwrap();
-      if(result.success) {
-        router.push("/")
+      const result = await createOrder({ data: cart_list_data }).unwrap();
+      if (result.success) {
+        router.push("/");
       }
       setIsAlertOpen(true);
       setAlertType("success");
@@ -334,6 +338,8 @@ const Cart = () => {
                 <span>Total cost</span>
                 <span>${totalCostWithShipping}</span>
               </div>
+
+              {/* select payment system */}
               <div className="flex items-center gap-3 pb-5">
                 <div className="flex items-center gap-1">
                   <CheckBox
@@ -355,14 +361,31 @@ const Cart = () => {
                 </div>
               </div>
 
+              {/* checking the address */}
+              {cart_list_data?.length > 0 &&
+                cart_list_data[0].user?.address == null && (
+                  <div className="flex gap-3 items-center pb-5">
+                    <Paragraph>Please add your</Paragraph>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        openModal("postAddree");
+                      }}
+                      className="text-red-600 bg-white border border-red-600 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
+                    >
+                      address
+                    </button>
+                  </div>
+                )}
+
               <div>
-                <button
-                  disabled={!allProductsSelected}
+                <Button
+                  disabled={isDisabled}
                   onClick={handlePaymentClick}
-                  className="bg-primary-100 duration-500 py-3 text-base font-semibold title uppercase w-full"
+                  className="bg-primary-100 w-full text-base font-medium rounded text-white"
                 >
                   Checkout
-                </button>
+                </Button>
               </div>
             </div>
           </div>
