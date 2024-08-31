@@ -53,6 +53,7 @@ export const authApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      
       async onQueryStarted(loginArgs, { dispatch, queryFulfilled }) {
         try {
           const loginRes = await queryFulfilled;
@@ -83,6 +84,7 @@ export const authApi = apiSlice.injectEndpoints({
           console.log({ loginArgs });
         }
       },
+      invalidatesTags:["cart", "wishlist"],
     }),
 
     userLogOut: builder.mutation<unknown, void>({

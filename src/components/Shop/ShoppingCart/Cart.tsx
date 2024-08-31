@@ -40,7 +40,7 @@ const Cart = () => {
     },
   ] = useClearCartMutation();
 
-  const [createPayment] = useCreatePaymentMutation();
+  const [createPayment, {isLoading:isPaymentLoading}] = useCreatePaymentMutation();
   const [createOrder, { isError: isOrderError, isLoading: isOrderLoading }] =
     useCreateOrderMutation();
 
@@ -59,7 +59,7 @@ const Cart = () => {
       product.productColor.length > 0 && product.productSize.length > 0
   );
 
-  const isDisabled = !allProductsSelected && cart_list_data?.length > 0 || cart_list_data[0].user?.address == null;
+  const isDisabled = !allProductsSelected || cart_list_data?.length == 0 || cart_list_data?.length >0 && cart_list_data[0].user?.address == null;
 
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -114,9 +114,9 @@ const Cart = () => {
       : openModal("login");
   };
 
-  // payment handle
-  const handlePaymentClick = async () => {
-    if (!isDisabled) {
+  // Order handle
+  const handleOrderClick = async () => {
+    if (isDisabled) {
       setIsAlertOpen(true);
       setAlertType("error");
       setAlertMessages("Please select product color and size.");
@@ -381,7 +381,8 @@ const Cart = () => {
               <div>
                 <Button
                   disabled={isDisabled}
-                  onClick={handlePaymentClick}
+                  onClick={handleOrderClick}
+                  icon={isOrderLoading || isPaymentLoading ? ICONS.button_loading_icon : undefined}
                   className="bg-primary-100 w-full text-base font-medium rounded text-white"
                 >
                   Checkout
