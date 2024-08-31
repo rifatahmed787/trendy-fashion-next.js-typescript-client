@@ -122,7 +122,7 @@ const ReviewSection = ({
                       </span>
                     </div>
                   </div>
-                  {user?.id && isLoggedIn && (
+                  {user?.id == review?.reviewerId && (
                     <>
                       <Dropdown>
                         <p
