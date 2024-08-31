@@ -66,10 +66,10 @@ export const cartApi = apiSlice.injectEndpoints({
     }),
 
     createOrder:builder.mutation({
-      query:({data, paymentType})=>({
+      query:(data)=>({
         url:`/cart/create-order`,
         method:"POST",
-        body: { ...data, paymentType },
+        body: { ...data },
       }),
       invalidatesTags: ["cart", "products"],
     })
