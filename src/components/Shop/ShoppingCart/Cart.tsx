@@ -127,7 +127,7 @@ const Cart = () => {
       const result = await createPayment({}).unwrap();
       router.push(result.data.url);
     } else if (selectedPaymentMethod === "cash-on-delivery") {
-      const result = await createOrder({ data: cart_list_data }).unwrap();
+      const result = await createOrder({ data: cart_list_data, paymentType:selectedPaymentMethod }).unwrap();
       if (result.success) {
         router.push("/");
       }
