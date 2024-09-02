@@ -12,4 +12,5 @@ export interface IOrder {
   product: IProduct;
   user: IUser;
   totalPrice:number;
+  shipping:string;
 }
