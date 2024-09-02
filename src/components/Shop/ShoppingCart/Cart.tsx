@@ -134,7 +134,7 @@ const Cart = () => {
         })),
       }).unwrap();
       if (result.success) {
-        router.push("/");
+        router.push("/my_order");
       }
       setIsAlertOpen(true);
       setAlertType("success");
