@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/UI/Tab/Ta
 import MyOrder from './MyOrder';
 import RecievedOrder from './RecievedOrder';
 import ShipOrder from './ShipOrder';
+import PaidOrder from './PaidOrder';
 
 
 const OrderTabs = () => {
@@ -20,7 +21,7 @@ const OrderTabs = () => {
                     <MyOrder/>
                 </TabsContent>
                 <TabsContent value='pay'>
-                    {/* <ReviewSection product_details={product_details}/> */}
+                    <PaidOrder/>
                 </TabsContent>
                 <TabsContent value='ship'>
                     <ShipOrder/>
