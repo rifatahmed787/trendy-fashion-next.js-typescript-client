@@ -17,6 +17,7 @@ import {
 import Paragraph from "@/components/UI/Paragraph/Paragraph";
 import Link from "next/link";
 import Dropdown from "@/components/UI/Dropdown";
+import TableSkeleteon from "@/components/Skeleton/TableSkeleteon";
 
 const MyOrder = () => {
   const {
@@ -42,7 +43,7 @@ const MyOrder = () => {
     <div className="container px-5 mx-auto py-5">
       {isLoading ? (
         <>
-          <h1>Loading</h1>
+          <TableSkeleteon/>
         </>
       ) : (
         <>
