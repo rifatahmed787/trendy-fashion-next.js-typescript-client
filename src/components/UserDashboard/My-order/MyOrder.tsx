@@ -27,15 +27,6 @@ const MyOrder = () => {
 
   const orderData = orders?.data;
 
-  const downloadReceipt = (receiptUrl: string, filename: string) => {
-    const link = document.createElement("a");
-    link.href = receiptUrl;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
   return (
     <div className="container px-5 mx-auto py-5">
       {isLoading ? (
