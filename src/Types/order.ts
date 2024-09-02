@@ -13,4 +13,6 @@ export interface IOrder {
   user: IUser;
   totalPrice:number;
   shipping:string;
+  deliveryTime:string;
+  status:string;
 }

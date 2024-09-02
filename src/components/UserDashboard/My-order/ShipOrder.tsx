@@ -15,7 +15,7 @@ import Paragraph from "@/components/UI/Paragraph/Paragraph";
 import Link from "next/link";
 import TableSkeleteon from "@/components/Skeleton/TableSkeleteon";
 
-const RecievedOrder = () => {
+const ShipOrder = () => {
   const {
     data: orders,
     isLoading,
@@ -23,7 +23,7 @@ const RecievedOrder = () => {
     error,
   } = useGetOrderByUserQuery({});
 
-  const orderData = orders?.data?.filter((or: IOrder) => or.shipping == "DONE");
+  const orderData = orders?.data;
 
   return (
     <div className="container px-5 mx-auto py-5">
@@ -41,10 +41,9 @@ const RecievedOrder = () => {
                   <TableRow>
                     <TableHead className="w-[100px]">Invoice</TableHead>
                     <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
-                    <TableHead>Method</TableHead>
                     <TableHead>Amount</TableHead>
-                    <TableHead className="text-right">Shipment</TableHead>
+                    <TableHead>Shipment Status</TableHead>
+                    <TableHead className="text-right">Shipment Time</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -57,37 +56,15 @@ const RecievedOrder = () => {
                         <TableCell>
                           {new Date(order?.createdAt).toLocaleString()}
                         </TableCell>
+                     
                         <TableCell>
-                          {order?.paymentStatus ? (
-                            <>
-                              <Paragraph className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60">
-                                Paid
-                              </Paragraph>
-                            </>
-                          ) : (
-                            <>
-                              <Paragraph className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-red-500 bg-red-200/60">
-                                Unpaid
-                              </Paragraph>
-                            </>
-                          )}
-                        </TableCell>
-                        <TableCell>
-                          {order?.paymentType == "Online" ? (
-                            <>
-                              <Paragraph>Credit Card</Paragraph>
-                            </>
-                          ) : (
-                            <Paragraph>Cash On Delivery</Paragraph>
-                          )}
-                        </TableCell>
-                        <TableCell className="text-right">
                           ${order?.totalPrice}
                         </TableCell>
+                        <TableCell >
+                          {order?.status}
+                        </TableCell>
                         <TableCell className="text-right">
-                          <Paragraph className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-emerald-100/60">
-                            Completed
-                          </Paragraph>
+                        {order?.deliveryTime}
                         </TableCell>
                       </TableRow>
                     </>
@@ -112,23 +89,4 @@ const RecievedOrder = () => {
   );
 };
 
-export default RecievedOrder;
-
-{
-  /* <div className="flex items-center gap-x-2">
-<Image
-  width={8}
-  height={8}
-  className="object-cover w-8 h-8 rounded-full"
-  src={order?.user?.avatar}
-  alt="user profile"
-/>
-<div>
-  <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-    {order?.user?.username}
-  </h2>
-  <p className="text-xs font-normal text-gray-600 ">
-    {order?.user?.email}
-  </p>
-</div> */
-}
+export default ShipOrder;

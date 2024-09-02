@@ -3,6 +3,7 @@ import React from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/UI/Tab/Tab';
 import MyOrder from './MyOrder';
 import RecievedOrder from './RecievedOrder';
+import ShipOrder from './ShipOrder';
 
 
 const OrderTabs = () => {
@@ -21,8 +22,8 @@ const OrderTabs = () => {
                 <TabsContent value='pay'>
                     {/* <ReviewSection product_details={product_details}/> */}
                 </TabsContent>
-                <TabsContent value='pay'>
-                    {/* <ReviewSection product_details={product_details}/> */}
+                <TabsContent value='ship'>
+                    <ShipOrder/>
                 </TabsContent>
                 <TabsContent value='recieve'>
                     <RecievedOrder/>
