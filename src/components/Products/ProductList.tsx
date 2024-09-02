@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { selectSearch } from "@/Redux/features/products/searchSlice";
 import ICONS from "../shared/Icons/AllIcons";
 import CartProduct from "../UI/CartProduct";
+import Paragraph from "../UI/Paragraph/Paragraph";
 
 const ProductList = () => {
   const [open, setOpen] = useState(true);
@@ -180,7 +181,7 @@ const ProductList = () => {
                       )}
                       {
                         isError || error &&  <div className="flex justify-center items-center gap-2 min-h-[50vh]">
-                        <h1>Can't Load the data! Please</h1>
+                        <Paragraph>Can't Load the data! Please</Paragraph>
                         <button
                           onClick={handleReload}
                           className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm flex items-center px-2 py-1 gap-1"
