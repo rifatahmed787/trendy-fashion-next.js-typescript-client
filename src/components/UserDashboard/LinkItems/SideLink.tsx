@@ -8,13 +8,13 @@ import { usePathname } from 'next/navigation';
 const SideLink = () => {
     const pathname=usePathname()
     return (
-        <div>
+        <div className='flex flex-row lg:flex-col items-center lg:items-start'>
              {LinkItems?.map((item) => {
               const isSelected = pathname === item?.ref;
               return (
                 <Button
                   key={item.ref}
-                  className={`flex flex-col ${
+                  className={`${
                     isSelected
                       ? "border-b-[3px] border-primary-100 text-primary-100"
                       : "mainNav-hover-effect"
