@@ -50,13 +50,12 @@ const SignInForm = () => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(loginData?.message ?? "Login successful");
+      setTimeout(() => {
+        onClose();
+      }, 3000);
     }
-  }, [error, isError, isSuccess, loginData?.message]);
-  if (isSuccess) {
-    setTimeout(() => {
-      onClose();
-    }, 3000);
-  }
+  }, [error, isError, isSuccess, loginData?.message, onClose]);
+ 
 
   return (
     <>

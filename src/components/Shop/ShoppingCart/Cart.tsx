@@ -51,7 +51,6 @@ const Cart = () => {
     error,
   } = useGetCartProductsQuery({});
   const cart_list_data = Products?.data;
-  console.log("cart", cart_list_data);
 
   // checking if the color and size selected
   const allProductsSelected = cart_list_data?.every(
