@@ -32,7 +32,7 @@ const ProductDetail = ({
 }) => {
   const [largeImage, setLargeImage] = useState<string | undefined>(
     product_details?.productImages
-      ? product_details.productImages[0]
+      ? product_details?.productImages[0]
       : undefined
   );
   const { openModal } = useModal();
@@ -119,7 +119,7 @@ const ProductDetail = ({
 
   useEffect(() => {
     if (product_details?.productImages) {
-      setLargeImage(product_details.productImages[0]);
+      setLargeImage(product_details?.productImages[0]);
     }
   }, [product_details]);
 
@@ -161,7 +161,7 @@ const ProductDetail = ({
                 src={
                   largeImage ||
                   (product_details?.productImages
-                    ? product_details.productImages[0]
+                    ? product_details?.productImages[0]
                     : "")
                 }
                 alt={`${product_details?.productName}`}

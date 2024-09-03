@@ -56,7 +56,7 @@ const SignUpForm = () => {
       try {
         const uploadResponse = await uploader({ data: formData });
         if (uploadResponse && "data" in uploadResponse) {
-          avatar = uploadResponse.data.images[0];
+          avatar = uploadResponse?.data?.images[0];
         }
       } catch (error) {
         console.error("Error uploading file:", error);
