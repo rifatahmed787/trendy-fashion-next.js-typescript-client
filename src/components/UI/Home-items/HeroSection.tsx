@@ -17,23 +17,23 @@ const HeroSection = ({ hero_section }: heroSectionProps) => {
     <section className="mb-16">
       <div className="max-w-screen-2xl mx-auto relative">
         <Image
-          src={hero_section[0].img}
-          alt={hero_section[0].title}
+          src={hero_section[0]?.img}
+          alt={hero_section[0]?.title}
           width={100}
           height={100}
           className="w-full h-[350px] lg:h-[450px]"
         />
         <div className="py-10 lg:py-20 px-10 absolute left-5 top-0">
           <Paragraph className="md:text-[18px] lg:text-[20px]">
-            {hero_section[0].subTitle}
+            {hero_section[0]?.subTitle}
           </Paragraph>
 
           <SubTitle
-            SubTitle={hero_section[0].title}
+            SubTitle={hero_section[0]?.title}
             className="py-7 md:text-[30px] lg:text-[50px] text-gray-100"
           />
           <Paragraph className="lg:w-1/2 text-gray-700">
-            {hero_section[0].paragraph}
+            {hero_section[0]?.paragraph}
           </Paragraph>
           <div className="mt-10">
             <Link href={"/products"}>

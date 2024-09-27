@@ -66,8 +66,8 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
           <Image
             width={100}
             height={100}
-            src={latestHero[0].imgOne}
-            alt={latestHero[0].title}
+            src={latestHero[0]?.imgOne}
+            alt={latestHero[0]?.title}
             className="w-11/12 lg:w-full object-cover rounded-lg mx-auto"
           />
         </div>
@@ -162,15 +162,15 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
             <Image
               width={100}
               height={100}
-              src={latestHero[0].imgTwo}
-              alt={latestHero[0].title}
+              src={latestHero[0]?.imgTwo}
+              alt={latestHero[0]?.title}
               className="w-full h-[200px] lg:h-full rounded-md mx-auto "
             />
             <div className="px-5 absolute left-5 top-8 z-20">
               <Paragraph className="text-base md:text-lg lg:text-xl font-bold py-3">
-                {latestHero[0].subTitle}
+                {latestHero[0]?.subTitle}
               </Paragraph>
-              <SubTitle SubTitle={latestHero[0].title} className="text-white" />
+              <SubTitle SubTitle={latestHero[0]?.title} className="text-white" />
               <div className="py-5">
                 <WhiteButton text="Buy Now" />
               </div>

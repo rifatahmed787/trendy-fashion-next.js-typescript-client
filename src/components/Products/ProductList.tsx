@@ -18,7 +18,7 @@ const ProductList = () => {
   const [open, setOpen] = useState(true);
   
   const router = useRouter();
-  const searchTerm = useSelector(selectSearch);
+  const search = useSelector(selectSearch);
   // Pagination state
   const [pagination, setPagination] = useState({
     totalPage: 1,
@@ -29,10 +29,13 @@ const ProductList = () => {
   const [filter, setFilter] = useState({
     productName: "",
     categoryName: "",
-    typeName:"",
+    typeName: "",
     productGender: "",
     search: "",
+    minPrice: 0, // default value
+    maxPrice: 1000, // default value
   });
+  
   // the useGetProductsQuery hook
   const {
     data: products,
@@ -44,10 +47,13 @@ const ProductList = () => {
     limit: pagination.pageSize,
     productName: filter.productName,
     categoryName: filter.categoryName,
-    typeName:filter.typeName,
+    typeName: filter.typeName,
     productGender: filter.productGender,
-    searchTerm: searchTerm,
+    search: filter.search,
+    minPrice: filter.minPrice,
+    maxPrice: filter.maxPrice,
   });
+  
 
   const searchParams = useSearchParams();
 
@@ -79,19 +85,37 @@ const ProductList = () => {
   }, [products, pagination.pageSize]);
 
   useEffect(() => {
-    const tempSearchParams = {
-      productName: searchParams.get("productName") ?? "",
-      categoryName: searchParams.get("categoryName") ?? "",
-      typeName:searchParams.get("typeName") ?? "",
-      productGender: searchParams.get("productGender") ?? "",
-      search: searchParams.get("search") ?? "",
-    };
-
-    // Convert 'searchParams' to a regular object
-    const searchParamsObj = Object.fromEntries(searchParams.entries());
-    setFilter({ ...tempSearchParams, ...searchParamsObj });
-  }, [router, searchParams]);
-
+    const productName = searchParams.get("productName") ?? "";
+    const categoryName = searchParams.get("categoryName") ?? "";
+    const typeName = searchParams.get("typeName") ?? "";
+    const productGender = searchParams.get("productGender") ?? "";
+    const search = searchParams.get("search") ?? "";
+  
+    if (!productName && !categoryName && !typeName && !productGender && !search) {
+      // Reset filter if no filters are active
+      setFilter({
+        productName: "",
+        categoryName: "",
+        typeName: "",
+        productGender: "",
+        search: "",
+        minPrice: 0,  
+        maxPrice: 1000,
+      });
+    } else {
+      // Update filters with search params
+      setFilter({
+        productName,
+        categoryName,
+        typeName,
+        productGender,
+        search,
+        minPrice: filter.minPrice,  
+        maxPrice: filter.maxPrice,
+      });
+    }
+  }, [filter.maxPrice, filter.minPrice, router, searchParams]);
+  
   const products_list_data = products?.data?.data;
 
   const handleReload = () => {
@@ -174,7 +198,7 @@ const ProductList = () => {
                     </div>
                   ) : (
                     <>
-                      {searchTerm && (
+                      {search && (
                         <div className="flex justify-center items-center gap-2 min-h-[50vh]">
                           <p className="text-base md:text-lg font-tertiary font-semibold">No products match your search.</p>
                         </div>

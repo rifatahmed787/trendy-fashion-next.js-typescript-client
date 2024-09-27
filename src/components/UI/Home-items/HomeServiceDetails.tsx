@@ -15,7 +15,7 @@ const HomeServiceDetails = ({
       className="w-11/12 lg:w-4/5 -mt-10 mx-auto bg-white shadow-custom-tertiary"
     >
       <Image
-        src={service_details.img}
+        src={service_details?.img}
         width={80}
         height={80}
         alt={service_details?.value}
@@ -23,7 +23,7 @@ const HomeServiceDetails = ({
       />
       <SubTitle SubTitle={service_details?.value} className="text-center"/>
 
-      <Paragraph className="pb-16 pt-5 text-center mx-5">{service_details.service}</Paragraph>
+      <Paragraph className="pb-16 pt-5 text-center mx-5">{service_details?.service}</Paragraph>
     </div>
   );
 };

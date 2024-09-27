@@ -31,8 +31,8 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const startTime = new Date(offer[0].startTime).getTime();
-      const endTime = new Date(offer[0].endTime).getTime();
+      const startTime = new Date(offer[0]?.startTime).getTime();
+      const endTime = new Date(offer[0]?.endTime).getTime();
       const now = new Date().getTime();
 
       let difference = endTime - now;
@@ -69,12 +69,12 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
           width={100}
           height={100}
           src={offer[0]?.img}
-          alt={offer[0].productCategory.categoryName}
+          alt={offer[0]?.productCategory?.categoryName}
           className="w-full h-[400px] md:h-[350px] rounded-md mx-auto"
         />
         <div className="absolute left-1/3 top-1/4 md:top-1/2 z-20">
           <h3 className="text-xl md:text-2xl bg-red-600 px-5 py-3 rounded-bl-3xl rounded-tr-3xl font-secondary font-semibold text-white transform -rotate-[55deg]">
-            UPTO {offer[0].percent}% OFF
+            UPTO {offer[0]?.percent}% OFF
           </h3>
         </div>
         <div className=" absolute top-1/3 md:top-0 left-10 md:left-1/4 w-full h-[250px] md:h-[350px]">
@@ -88,7 +88,7 @@ const HomeModal = ({ offer }: HomeOfferModalProps) => {
 
           <div className="absolute pt-4 top-1/4 left-0 right-0 z-10 flex justify-center">
             <SubTitle
-              SubTitle={`On ${offer[0].productCategory.categoryName}`}
+              SubTitle={`On ${offer[0]?.productCategory?.categoryName}`}
               className=" text-white "
             />
           </div>

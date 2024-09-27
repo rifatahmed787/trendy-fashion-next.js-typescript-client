@@ -64,7 +64,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
         <div className="col-span-2">
           <div className="my-2 h-52 rounded-xl border-2 border-dotted border-primary-200 bg-[#FEF8E5] px-6 py-4">
             <SubTitle
-              SubTitle={deal_section[0].campaign}
+              SubTitle={deal_section[0]?.campaign}
               className="py-5 text-center"
             />
 
@@ -79,7 +79,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
             <Image
               width={300}
               height={64}
-              src={deal_section[0].smImgOne}
+              src={deal_section[0]?.smImgOne}
               alt=""
               className="h-full lg:h-[293px] w-full rounded-lg"
             />
@@ -100,7 +100,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
             <Image
               width={300}
               height={64}
-              src={deal_section[0].smImgTwo}
+              src={deal_section[0]?.smImgTwo}
               alt=""
               className="h-full lg:h-[293px] w-full rounded-lg"
             />
@@ -110,7 +110,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
                 <div className="mx-auto">
                   <BrandButton text="Buy Now" icon="" />
                   <SubTitle
-                    SubTitle={deal_section[0].shipping}
+                    SubTitle={deal_section[0]?.shipping}
                     className="text-gray-300 pt-3"
                   />
                 </div>
@@ -222,7 +222,7 @@ const HomeDealsComponent = ({ deal_section }: dealSectionProps) => {
           {/* section down kids fashion picture */}
           <div
             style={{
-              backgroundImage: `url(${deal_section[0].lgImg})`,
+              backgroundImage: `url(${deal_section[0]?.lgImg})`,
             }}
             className="relative h-[415px] rounded-lg bg-cover bg-center"
           >
