@@ -32,10 +32,12 @@ const ProductList = () => {
     typeName: "",
     productGender: "",
     search: "",
-    minPrice: 0, // default value
-    maxPrice: 1000, // default value
+    minPrice: "", 
+    maxPrice: "", 
   });
   
+  console.log(filter)
+
   // the useGetProductsQuery hook
   const {
     data: products,
@@ -84,38 +86,40 @@ const ProductList = () => {
     }));
   }, [products, pagination.pageSize]);
 
-  useEffect(() => {
-    const productName = searchParams.get("productName") ?? "";
-    const categoryName = searchParams.get("categoryName") ?? "";
-    const typeName = searchParams.get("typeName") ?? "";
-    const productGender = searchParams.get("productGender") ?? "";
-    const search = searchParams.get("search") ?? "";
-  
-    if (!productName && !categoryName && !typeName && !productGender && !search) {
-      // Reset filter if no filters are active
-      setFilter({
-        productName: "",
-        categoryName: "",
-        typeName: "",
-        productGender: "",
-        search: "",
-        minPrice: 0,  
-        maxPrice: 1000,
-      });
-    } else {
-      // Update filters with search params
-      setFilter({
-        productName,
-        categoryName,
-        typeName,
-        productGender,
-        search,
-        minPrice: filter.minPrice,  
-        maxPrice: filter.maxPrice,
-      });
-    }
-  }, [filter.maxPrice, filter.minPrice, router, searchParams]);
-  
+ // In the useEffect where you're updating the filter based on searchParams
+useEffect(() => {
+  const productName = searchParams.get("productName") ?? "";
+  const categoryName = searchParams.get("categoryName") ?? "";
+  const typeName = searchParams.get("typeName") ?? "";
+  const productGender = searchParams.get("productGender") ?? "";
+  const search = searchParams.get("search") ?? "";
+  const minPrice = (searchParams.get("minPrice") ?? "0"); 
+  const maxPrice = (searchParams.get("maxPrice") ?? "0");
+
+  if (!productName && !categoryName && !typeName && !productGender && !search) {
+    // Reset filter if no filters are active
+    setFilter({
+      productName: "",
+      categoryName: "",
+      typeName: "",
+      productGender: "",
+      search: "",
+      minPrice: "",  
+      maxPrice: "",  
+    });
+  } else {
+    // Update filters with search params
+    setFilter({
+      productName,
+      categoryName,
+      typeName,
+      productGender,
+      search,
+      minPrice,
+      maxPrice,
+    });
+  }
+}, [filter.maxPrice, filter.minPrice, router, searchParams]);
   const products_list_data = products?.data?.data;
 
   const handleReload = () => {

@@ -4,14 +4,16 @@ import { useGetUniqueFilteringItemsQuery } from "@/Redux/features/products/produ
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
 import AnimatedFilter from "../UI/Framer-motion/AnimatedFilter";
+import Slider from "rc-slider"; 
+import "rc-slider/assets/index.css"; 
 
 type IFilterProduct = {
   filter: {
     productGender: any;
     categoryName: string;
     typeName: string;
-    minPrice: number;
-    maxPrice: number;
+    minPrice: string;
+    maxPrice: string;
   };
   setFilter: React.Dispatch<
     React.SetStateAction<{
@@ -20,8 +22,8 @@ type IFilterProduct = {
       typeName: string;
       productGender: string;
       search: string;
-      minPrice: number;
-      maxPrice: number;
+      minPrice: string;
+      maxPrice: string;
     }>
   >;
 };
@@ -43,10 +45,9 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
     all_gender = [],
     all_category = [],
     all_type = [],
-    all_price=[]
+    all_price = [],
   } = uniqueFilter?.data?.data || {};
-  const [minPrice, setMinPrice] = useState<number>(all_price[0]);
-  const [maxPrice, setMaxPrice] = useState<number>(all_price[1]);
+
   const uniqueCategory: string[] = (all_category as string[]).flatMap(
     (categoryName: string) => categoryName.split(", ")
   );
@@ -59,15 +60,50 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
     (productType: string) => productType.split(",")
   );
 
+  const [minPrice, maxPrice] = all_price.length ? all_price : [0, 0];
+
   useEffect(() => {
-    // Set default filter category if not present
-    if (!filter.categoryName) {
+    // Set default filter price range if not present
+    if (!filter.minPrice) {
       setFilter((prevFilter) => ({
         ...prevFilter,
-        categoryName: "",
+        minPrice: String(minPrice),
       }));
     }
-  }, [filter.categoryName, setFilter]);
+    if (!filter.maxPrice) {
+      setFilter((prevFilter) => ({
+        ...prevFilter,
+        maxPrice: String(maxPrice),
+      }));
+    }
+  }, [filter.minPrice, filter.maxPrice, minPrice, maxPrice, setFilter]);
+
+  // Handle price range change
+  const handlePriceRangeChange = (value: number | number[]) => {
+    if (Array.isArray(value)) {
+      const [newMinPrice, newMaxPrice] = value;
+
+      // Update state only if values change
+      if (
+        newMinPrice !== Number(filter.minPrice) ||
+        newMaxPrice !== Number(filter.maxPrice)
+      ) {
+        setFilter((prevFilter) => ({
+          ...prevFilter,
+          minPrice: String(newMinPrice),
+          maxPrice: String(newMaxPrice),
+        }));
+
+        console.log("Updated Filter State:", {
+          minPrice: String(newMinPrice),
+          maxPrice: String(newMaxPrice),
+        }); // Log new filter state
+
+        // Update search params
+        router.push(`/products?${searchParams.toString()}`);
+      }
+    }
+  };
 
   // Handle filter change
   const handleFilterChange = (category: string) => {
@@ -93,6 +129,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
     // Update search params and route
     router.push(`/products?${searchParams.toString()}`);
   };
+
   // Handle type change
   const handleTypeChange = (type: string) => {
     const newType = filter.typeName === type ? "" : type;
@@ -117,6 +154,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
   const togglePriceRange = () => {
     setIsPriceRangeVisible(!isPriceRangeVisible);
   };
+
   const toggleFilterVisibility = () => {
     setIsFilterVisible(!isFilterVisible);
   };
@@ -137,9 +175,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
 
   return (
     <div className="space-y-5 mt-3">
-      {/* ----------------
-         All the products
-      ------------------- */}
+      {/* All Products Toggle */}
       <div className="flex items-center">
         <div
           className="flex items-center justify-between gap-[83px]"
@@ -185,9 +221,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
         )}
       </AnimatedFilter>
 
-      {/* ----------------------
-        Filter By category items
-       -------------------------*/}
+      {/* Filter By Category */}
       <div className="flex items-center">
         <div
           className="flex items-center justify-between gap-10"
@@ -225,9 +259,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
         )}
       </AnimatedFilter>
 
-      {/* ----------------------
-      Filter By gender items
-    -------------------------*/}
+      {/* Filter By Gender */}
       <div className="flex items-center">
         <div
           className="flex items-center justify-between gap-[55px]"
@@ -252,7 +284,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
               <div key={gender} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={gender}
-                  checked={filter.productGender.includes(gender)}
+                  checked={filter.productGender === gender}
                   onChange={() => handleGenderChange(gender)}
                 />
                 <h1 className="font-medium leading-none text-gray-700">
@@ -263,12 +295,11 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
           </div>
         )}
       </AnimatedFilter>
-      {/* ----------------------
-      Filter By type items
-    -------------------------*/}
+
+      {/* Filter By Type */}
       <div className="flex items-center">
         <div
-          className="flex items-center justify-between gap-[75px]"
+          className="flex items-center justify-between gap-[72px]"
           onClick={toggleProductType}
         >
           <div className="w-full font-bold">Filter By Type</div>
@@ -290,7 +321,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
               <div key={type} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={type}
-                  checked={filter.typeName.includes(type)}
+                  checked={filter.typeName === type}
                   onChange={() => handleTypeChange(type)}
                 />
                 <h1 className="font-medium leading-none text-gray-700">
@@ -302,74 +333,44 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
         )}
       </AnimatedFilter>
 
-      {/* ----------------
-         Price Range Filter
-      ------------------- */}
-      <div
-        className="flex items-center justify-between gap-[55px]"
-        onClick={togglePriceRange}
-      >
-        <div className="w-full font-bold">Filter By Price</div>
-        <div className="cursor-pointer rounded-full bg-primary-100 p-1 text-xl">
-          <Icon
-            icon="ep:arrow-down"
-            width={15}
-            className={`${
-              isPriceRangeVisible ? "rotate-180 duration-500" : "duration-500"
-            }`}
-          />
+      {/* Price Range Filter */}
+      <div className="flex items-center">
+        <div
+          className="flex items-center justify-between gap-[72px]"
+          onClick={togglePriceRange}
+        >
+          <div className="w-full font-bold">Filter By Price</div>
+          <div className="cursor-pointer rounded-full bg-primary-100 p-1 text-xl">
+            <Icon
+              icon="ep:arrow-down"
+              width={15}
+              className={`${
+                isPriceRangeVisible ? "rotate-180 duration-500" : "duration-500"
+              }`}
+            />
+          </div>
         </div>
       </div>
-
       <AnimatedFilter isVisible={isPriceRangeVisible}>
-  {isPriceRangeVisible && (
-    <div className="flex flex-col space-y-2 mt-2">
-      <div>
-        <label className="font-medium leading-none text-gray-700">Min Price</label>
-        <input
-          type="number"
-          value={minPrice}
-          onChange={(e) => {
-            const value = e.target.value ? Number(e.target.value) : 0; // Ensure it's a number
-            setMinPrice(value);
-            setFilter((prevFilter) => ({
-              ...prevFilter,
-              minPrice: value,
-            }));
-            // Update search params and route
-            const params = new URLSearchParams(searchParams.toString());
-            params.set('minPrice', value.toString());
-            router.push(`/products?${params.toString()}`);
-          }}
-          className="border rounded p-1"
-          placeholder="Min Price"
-        />
-      </div>
-      <div>
-        <label className="font-medium leading-none text-gray-700">Max Price</label>
-        <input
-          type="number"
-          value={maxPrice}
-          onChange={(e) => {
-            const value = e.target.value ? Number(e.target.value) : 0; // Ensure it's a number
-            setMaxPrice(value);
-            setFilter((prevFilter) => ({
-              ...prevFilter,
-              maxPrice: value,
-            }));
-            // Update search params and route
-            const params = new URLSearchParams(searchParams.toString());
-            params.set('maxPrice', value.toString());
-            router.push(`/products?${params.toString()}`);
-          }}
-          className="border rounded p-1"
-          placeholder="Max Price"
-        />
-      </div>
-    </div>
-  )}
-</AnimatedFilter>
+        {isPriceRangeVisible && (
+          <div className="mt-2">
+            <Slider
+              range
+              min={0} 
+              max={5000} 
+              value={[Number(filter.minPrice), Number(filter.maxPrice)]} 
+              onChange={handlePriceRangeChange} 
+              allowCross={false}
+              step={1}
+            />
 
+            <div className="flex justify-between">
+              <span>Min: {filter.minPrice}</span>
+              <span>Max: {filter.maxPrice}</span>
+            </div>
+          </div>
+        )}
+      </AnimatedFilter>
     </div>
   );
 };
