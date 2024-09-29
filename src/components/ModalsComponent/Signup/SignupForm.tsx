@@ -164,10 +164,32 @@ const SignUpForm = () => {
                       placeHolder=""
                       currentValue={field.value}
                       onChange={field.onChange}
-                      required={true}
+                      required={false}
                       id="email"
                       htmlFor="email"
-                      label="Email"
+                      label="Enter Email"
+                    />
+                  )}
+                />
+                <div className="grid grid-cols-3 -my-2 items-center text-gray-400">
+                  <hr className="border-gray-400" />
+                  <p className="text-center text-sm">OR</p>
+                  <hr className="border-gray-400" />
+                </div>
+                <Controller
+                  name="phoneNumber"
+                  control={control}
+                  defaultValue=""
+                  render={({ field }) => (
+                    <TextInput
+                      type="number"
+                      placeHolder=""
+                      currentValue={field.value}
+                      onChange={(e) => field.onChange(e)}
+                      required={false}
+                      id="email"
+                      htmlFor="email"
+                      label="Enter Phone"
                     />
                   )}
                 />
@@ -222,7 +244,9 @@ const SignUpForm = () => {
 					          text-base font-medium rounded text-white"
                 icon={isLoading ? ICONS.button_loading_icon : undefined}
                 isDisabled={isLoading}
-              >Sign UP</Button>
+              >
+                Sign UP
+              </Button>
             </form>
           </div>
           <div className="flex justify-center py-4">

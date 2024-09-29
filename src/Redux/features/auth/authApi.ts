@@ -1,4 +1,5 @@
 import {
+  IGoogleLoginArgs,
   ILoginArgs,
   ILoginRes,
   IRegister,
@@ -87,6 +88,47 @@ export const authApi = apiSlice.injectEndpoints({
       invalidatesTags:["cart", "wishlist"],
     }),
 
+  // user google login
+    userGoogleLogin: builder.mutation<ILoginRes, IGoogleLoginArgs>({
+      query: (data) => ({
+        url: "/auth/google-login",
+        method: "POST",
+        body: data,
+      }),
+      
+      async onQueryStarted(loginArgs, { dispatch, queryFulfilled }) {
+        try {
+          const loginRes = await queryFulfilled;
+          console.log(loginRes);
+
+          if (loginRes) {
+            dispatch(
+              login({
+                isLoggedIn: true,
+                user: loginRes?.data?.data?.user_details || null,
+                accessToken: loginRes?.data?.data?.accessToken || null,
+                refreshToken: loginRes?.data?.data?.refreshToken || null,
+              })
+            );
+
+            Cookies.set(
+              "user",
+              JSON.stringify({
+                user: loginRes?.data?.data?.user_details,
+                isLoggedIn: true,
+              })
+            );
+
+            Cookies.set("token", loginRes?.data?.data?.accessToken ?? "");
+          }
+        } catch {
+          //do nothing
+          console.log({ loginArgs });
+        }
+      },
+      invalidatesTags:["cart", "wishlist"],
+    }),
+
     userLogOut: builder.mutation<unknown, void>({
       query: (data) => ({
         url: "/auth/logout",
@@ -108,5 +150,6 @@ export const {
   useUserLoginMutation,
   useUserRegisterMutation,
   useUserLogOutMutation,
+  useUserGoogleLoginMutation
   // useGetUserDetailsQuery,
 } = authApi;

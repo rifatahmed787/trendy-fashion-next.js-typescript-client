@@ -44,8 +44,16 @@ export interface IRegisterRes {
 
 /* login api start */
 export interface ILoginArgs {
-  email: string;
+  email?: string;
+  phoneNumber?:string;
   password: string;
+}
+
+export interface IGoogleLoginArgs {
+  username: string;
+  email: string;
+  avatar:string;
+  googleId:string | undefined;
 }
 
 export interface ILoginData {
