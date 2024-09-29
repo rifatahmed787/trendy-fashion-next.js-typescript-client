@@ -58,7 +58,7 @@ const Cart = () => {
       product.productColor.length > 0 && product.productSize.length > 0
   );
 
-  const isDisabled = !allProductsSelected || cart_list_data?.length == 0 || cart_list_data?.length >0 && cart_list_data[0].user?.address == null;
+  const isDisabled = !allProductsSelected || cart_list_data?.length == 0 || cart_list_data?.length >0 && cart_list_data[0]?.user?.address == null;
 
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] =
@@ -367,7 +367,7 @@ const Cart = () => {
 
               {/* checking the address */}
               {cart_list_data?.length > 0 &&
-                cart_list_data[0].user?.address == null && (
+                cart_list_data[0]?.user?.address == null && (
                   <div className="flex gap-3 items-center pb-5">
                     <Paragraph>Please add your</Paragraph>
                     <button
