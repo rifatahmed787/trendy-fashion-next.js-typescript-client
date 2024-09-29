@@ -39,6 +39,7 @@ const SignInForm = () => {
   const [
     googleLogin,
     {
+      data: googleLoginData,
       isError: isGoogleLoginError,
       error: googleLoginError,
       isSuccess: googleLoginSuccess,
@@ -112,10 +113,10 @@ const SignInForm = () => {
     } else if (googleLoginSuccess) {
       setIsAlertOpen(true);
       setAlertType("success");
-      setAlertMessages(loginData?.message ?? "Login successful");
+      setAlertMessages(googleLoginData?.message ?? "Login successful");
      
     }
-  }, [ googleLoginError, googleLoginSuccess, isGoogleLoginError, loginData?.message, onClose]);
+  }, [ googleLoginError, googleLoginSuccess, isGoogleLoginError, googleLoginData?.message, onClose]);
 
   return (
     <>
