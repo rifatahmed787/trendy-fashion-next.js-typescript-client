@@ -15,7 +15,10 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/UI/Otp";
 import ToastContainer from "@/components/UI/Toast";
 import useModal from "@/Hooks/useModal";
 import { get_error_messages } from "@/lib/Error_message";
-import { useOtpSignupMutation, useUserRegisterMutation } from "@/Redux/features/auth/authApi";
+import {
+  useOtpSignupMutation,
+  useUserRegisterMutation,
+} from "@/Redux/features/auth/authApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -42,10 +45,12 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
     "success"
   );
   const [AlertMessages, setAlertMessages] = useState("");
-  const [timer, setTimer] = useState(59); 
-  const [isResendAvailable, setIsResendAvailable] = useState(false); 
-  const [sendOtp, { data:sendOtpData, isSuccess, error, isError }] =
-  useOtpSignupMutation();
+  const [timer, setTimer] = useState(59);
+  const [isResendAvailable, setIsResendAvailable] = useState(false);
+  const [
+    sendOtp,
+    { data: sendOtpData, isSuccess, error, isError, isLoading: isOtpLoading },
+  ] = useOtpSignupMutation();
   const [
     register,
     {
@@ -56,7 +61,7 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
       error: registerError,
     },
   ] = useUserRegisterMutation();
-  
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -64,14 +69,13 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
     },
   });
 
-
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
     try {
       await register({
         username: `${userData.firstName} ${userData.lastName}`,
         email: userData.email,
         password: userData.password,
-        otp: data.pin,  
+        otp: data.pin,
       });
     } catch (error) {
       console.error("Error registering user:", error);
@@ -85,9 +89,9 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
         setTimer((prevTimer) => prevTimer - 1);
       }, 1000);
 
-      return () => clearInterval(intervalId); 
+      return () => clearInterval(intervalId);
     } else {
-      setIsResendAvailable(true); 
+      setIsResendAvailable(true);
     }
   }, [timer]);
 
@@ -97,13 +101,12 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
       await sendOtp({
         email: userData.email,
       });
-      setTimer(59); 
-      setIsResendAvailable(false); 
+      setTimer(59);
+      setIsResendAvailable(false);
     } catch (error) {
       console.error("Error resending OTP:", error);
     }
   };
-  
 
   // Error and success handling
   useEffect(() => {
@@ -123,7 +126,7 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
     registerData?.message,
     registerError,
   ]);
-  
+
   useEffect(() => {
     if (isError && error && "data" in error) {
       setIsAlertOpen(true);
@@ -135,12 +138,7 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
       setAlertType("success");
       setAlertMessages(sendOtpData?.message ?? "Resend OTP Successfully");
     }
-  }, [
-    isError,
-    isSuccess,
-    sendOtpData?.message,
-    error,
-  ]);
+  }, [isError, isSuccess, sendOtpData?.message, error]);
 
   if (isRegisterSuccess) {
     setTimeout(() => {
@@ -173,6 +171,23 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
                     </InputOTPGroup>
                   </InputOTP>
                 </FormControl>
+                {/* Timer or Resend Button */}
+                <div className="text-sm text-gray-600">
+                  {isResendAvailable ? (
+                    <Button
+                      icon={
+                        isOtpLoading ? ICONS.button_loading_icon : undefined
+                      }
+                      type="button"
+                      onClick={handleResend}
+                    >
+                      Resend OTP
+                    </Button>
+                  ) : (
+                    <p>Resend OTP in {timer}s</p>
+                  )}
+                </div>
+
                 <FormDescription>
                   Please enter the one-time password sent to your email.
                 </FormDescription>
@@ -180,17 +195,6 @@ export function InputOTPForm({ userData }: { userData: UserData }) {
               </FormItem>
             )}
           />
-
-          {/* Timer or Resend Button */}
-          <div className="text-sm text-gray-600">
-            {isResendAvailable ? (
-              <Button type="button" onClick={handleResend}>
-                Resend
-              </Button>
-            ) : (
-              <p>Resend OTP in {timer}s</p>
-            )}
-          </div>
 
           <Button
             icon={isLoading ? ICONS.button_loading_icon : undefined}

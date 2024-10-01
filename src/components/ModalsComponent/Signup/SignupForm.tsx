@@ -22,6 +22,7 @@ import {
 import { Button } from "@/components/UI/Button";
 import { InputOTPForm } from "./InputOTPForm";
 import { get_error_messages } from "@/lib/Error_message";
+import ToastContainer from "@/components/UI/Toast";
 
 interface UserData {
   firstName: string;
@@ -269,6 +270,14 @@ const SignUpForm = () => {
           </div>
         </ModalBody>
       </Modal>
+      {isAlertOpen && (
+        <ToastContainer
+          type={AlertType}
+          messages={AlertMessages}
+          isAlertOpen={isAlertOpen}
+          setIsAlertOpen={setIsAlertOpen}
+        />
+      )}
     </>
   );
 };
