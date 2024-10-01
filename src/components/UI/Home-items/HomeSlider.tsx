@@ -167,13 +167,13 @@ const HomePageBanner = ({ sliders, hero }: HomePageBannerProps) => {
                   <Image
                     src={slideHero.lgImg}
                     alt=""
-                    className="w-full hidden lg:block  lg:h-[80vh] xl:h-[90vh]"
+                    className="w-full hidden lg:block  lg:h-[90vh]"
                     width={100}
                     height={100}
                     priority={true}
                     quality={100}
                   />
-                  <span className="hidden lg:block absolute top-0 bg-black left-0 opacity-50 inset-0 lg:h-[80vh]"></span>
+                  <span className="hidden lg:block absolute top-0 bg-black left-0 opacity-50 inset-0 lg:h-[90vh]"></span>
                   <Image
                     src={slideHero.smImg}
                     alt=""
