@@ -8,6 +8,7 @@ const nextConfig = {
       "f8g8b9p5.rocketcdn.me",
       "ninetheme.com",
       "dummyimage.com",
+      "lh3.googleusercontent.com"
     ],
   },
 };

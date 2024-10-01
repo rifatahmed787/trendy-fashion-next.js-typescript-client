@@ -23,8 +23,7 @@ import { get_error_messages } from "@/lib/Error_message";
 import { IGoogleLoginArgs, ILoginArgs } from "@/Types/auth.types";
 import ToastContainer from "@/components/UI/Toast";
 import { Button } from "@/components/UI/Button";
-import { signIn, getSession } from "next-auth/react";
-
+import { signIn, useSession } from "next-auth/react";
 
 const SignInForm = () => {
   const { isOpen, onClose, openModal } = useModal();
@@ -54,39 +53,37 @@ const SignInForm = () => {
     }
   };
 
+  const session = useSession();
+  const user = session?.data?.user;
+  // const { data: session } = useSession()
   const handleGoogleSignIn = async () => {
     try {
       await signIn("google");
-  
-      const session = await getSession(); 
-  
-      if (session?.user) {
-        // Extract necessary session details
-        const { email, name, image, id } = session.user;
-  
-        if (!email || !name || !image) {
-          console.error("Incomplete session data");
-          return;
-        }
-  
-        // Construct the data to send to the backend
-        const googleLoginData: IGoogleLoginArgs = {
-          googleId: id,  
-          email,
-          username: name,
-          avatar: image,
-        };
-  
-        // Send the data to the backend using googleLogin mutation
-        await googleLogin(googleLoginData);
-      } else {
-        console.error("Session data is not available");
-      }
+
+      // if (session?.user) {
+
+      //   const { email, name, image } = session.user;
+
+      //   if (!email || !name || !image) {
+      //     console.error("Incomplete session data");
+      //     return;
+      //   }
+
+      //   const googleLoginData: IGoogleLoginArgs = {
+      //     googleId: "",
+      //     email,
+      //     username: name,
+      //     avatar: image,
+      //   };
+
+      //   await googleLogin(googleLoginData);
+      // } else {
+      //   console.error("Session data is not available");
+      // }
     } catch (error) {
       console.error("Google sign-in error:", error);
     }
   };
-  
 
   useEffect(() => {
     if (isError && error && "data" in error) {
@@ -114,9 +111,14 @@ const SignInForm = () => {
       setIsAlertOpen(true);
       setAlertType("success");
       setAlertMessages(googleLoginData?.message ?? "Login successful");
-     
     }
-  }, [ googleLoginError, googleLoginSuccess, isGoogleLoginError, googleLoginData?.message, onClose]);
+  }, [
+    googleLoginError,
+    googleLoginSuccess,
+    isGoogleLoginError,
+    googleLoginData?.message,
+    onClose,
+  ]);
 
   return (
     <>
@@ -148,11 +150,10 @@ const SignInForm = () => {
                         id="email"
                         htmlFor="email"
                         label="Enter Email"
-                       
                       />
                     )}
                   />
-                  <div className="grid grid-cols-3 -my-3 items-center text-gray-400">
+                  {/* <div className="grid grid-cols-3 -my-3 items-center text-gray-400">
                     <hr className="border-gray-400" />
                     <p className="text-center text-sm">OR</p>
                     <hr className="border-gray-400" />
@@ -173,7 +174,7 @@ const SignInForm = () => {
                         label="Enter Phone"
                       />
                     )}
-                  />
+                  /> */}
                   <Controller
                     name="password"
                     control={control}
@@ -226,14 +227,16 @@ const SignInForm = () => {
                 <p className="text-center text-sm">OR</p>
                 <hr className="border-gray-400" />
               </div>
-              <Button
-                className="w-full text-base font-medium rounded bg-white"
-                variant={"outline"}
-                onClick={handleGoogleSignIn}
-              >
-                {ICONS.google}
-                Login with Google
-              </Button>
+              {session?.status !== "loading" && (
+                <Button
+                  className="w-full text-base font-medium rounded bg-white"
+                  variant={"outline"}
+                  onClick={handleGoogleSignIn}
+                >
+                  {ICONS.google}
+                  Login with Google
+                </Button>
+              )}
             </div>
           </div>
           <div className="flex justify-center py-4">

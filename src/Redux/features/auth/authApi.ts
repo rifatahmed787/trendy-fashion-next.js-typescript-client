@@ -48,6 +48,16 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
 
+
+    otpSignup:builder.mutation({
+      query:(data)=>({
+        url: "/auth/send-otp",
+        method: "POST",
+        body: data,
+      })
+    }),
+
+
     userLogin: builder.mutation<ILoginRes, ILoginArgs>({
       query: (data) => ({
         url: "/auth/login",
@@ -148,6 +158,7 @@ export const authApi = apiSlice.injectEndpoints({
 
 export const {
   useUserLoginMutation,
+  useOtpSignupMutation,
   useUserRegisterMutation,
   useUserLogOutMutation,
   useUserGoogleLoginMutation

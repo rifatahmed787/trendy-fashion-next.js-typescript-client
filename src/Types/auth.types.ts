@@ -24,8 +24,8 @@ export interface IAuthState {
 export interface IRegister {
   username: string;
   email: string;
-  avatar: string;
   password: string;
+  otp:string;
 }
 
 export interface IRegisterData {
