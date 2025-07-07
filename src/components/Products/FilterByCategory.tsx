@@ -243,7 +243,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
       <AnimatedFilter isVisible={isFilterVisible}>
         {isFilterVisible && (
           <div>
-            {uniqueCategory.map((category: string) => (
+            {uniqueCategory?.map((category: string) => (
               <div key={category} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={category}
@@ -280,7 +280,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
       <AnimatedFilter isVisible={isProductGender}>
         {isProductGender && (
           <div>
-            {uniqueGender.map((gender: string) => (
+            {uniqueGender?.map((gender: string) => (
               <div key={gender} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={gender}
@@ -317,7 +317,7 @@ const FilterByCategory = ({ filter, setFilter }: IFilterProduct) => {
       <AnimatedFilter isVisible={isProductType}>
         {isProductType && (
           <div>
-            {uniqueType.map((type: string) => (
+            {uniqueType?.map((type: string) => (
               <div key={type} className="mt-2 flex items-center space-x-2">
                 <CheckBox
                   id={type}

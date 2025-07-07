@@ -194,7 +194,7 @@ useEffect(() => {
                       {" "}
                       {!isError &&
                         !error &&
-                        products_list_data.map((product: IProduct) => {
+                        products_list_data?.map((product: IProduct) => {
                           return (
                             <CartProduct key={product.id} product={product} />
                           );

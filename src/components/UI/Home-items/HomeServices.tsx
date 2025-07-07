@@ -23,7 +23,7 @@ const HomeServiceComponent = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-screen-2xl mx-auto justify-items-center items-center gap-5 mt-5">
           {!isError &&
             services?.data?.length > 0 &&
-            services.data.map((service: IService, index: number) => (
+            services?.data?.map((service: IService, index: number) => (
               <div className="w-[90%] md:min-w-[95%] lg:min-w-full" key={service.id}>
                 {(isInView || hasAnimated) ? (
                   <BottomToTop>

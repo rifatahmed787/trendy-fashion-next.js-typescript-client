@@ -89,7 +89,7 @@ const RelatedProduct = ({
           <>
             {filterProducts?.length > 0 ? (
               <>
-                {filterProducts?.slice(0, 20).map((product: IProduct) => (
+                {filterProducts?.slice(0, 20)?.map((product: IProduct) => (
                   <SwiperSlide className="hover:z-50" key={product.id}>
                     <CartProduct product={product} />
                   </SwiperSlide>

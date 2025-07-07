@@ -177,7 +177,7 @@ const ProductDetail = ({
               <div className="grid grid-cols-4 gap-3 mt-4 justify-items-center items-center">
                 {product_details?.productImages
                   .slice(0, 4)
-                  .map((img, index) => (
+                  ?.map((img, index) => (
                     <div key={index}>
                       <Image
                         onClick={() => setLargeImage(img)}

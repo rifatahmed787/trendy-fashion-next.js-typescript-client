@@ -121,7 +121,7 @@ const LatestCollection = ({ latestHero }: latestCollectionProps) => {
               <>
                 {latest_products?.length > 0 ? (
                   <>
-                    {latest_products?.slice(0, 20).map((product: IProduct) => (
+                    {latest_products?.slice(0, 20)?.map((product: IProduct) => (
                       <SwiperSlide className="hover:z-50" key={product.id}>
                         <CartProduct product={product} />
                       </SwiperSlide>
